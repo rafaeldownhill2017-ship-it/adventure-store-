@@ -20,7 +20,7 @@ const normal = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").r
 for (const filme of filmes) {
   // Voz preferida: a primeira da lista `vozes` que já tiver narração gerada.
   const candidatos = filme.vozes.map((v) => `${filme.id}--${v}.alinhamento.json`).filter((a) => arquivos.includes(a));
-  if (!candidatos.length) throw new Error(`Sem narração para ${filme.id}`);
+  if (!candidatos.length) { console.log(`${filme.id}: sem narração gerada, pulando`); continue; }
   const alinhamentoArq = candidatos[0];
   const { alignment, voz } = JSON.parse(await readFile(join(outDir, alinhamentoArq), "utf8"));
 

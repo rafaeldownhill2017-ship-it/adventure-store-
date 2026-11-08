@@ -34,7 +34,7 @@ export const filmes = [
   },
   {
     id: "master1",
-    vozes: ["COLE_AQUI_O_ID_DA_VOZ"],
+    vozes: ["nPczCjzI2devNBz1zQrb"],
     preRoll: 0.6,
     cauda: 4.2,
     cues: {

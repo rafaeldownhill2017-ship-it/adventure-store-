@@ -125,8 +125,8 @@ export const Master1: React.FC = () => {
     [T3, [DX[0], 2.4, 8.8], [DX[0], 0.75, -0.3], 33],
     [c.policia - 0.7, [DX[0] - 0.2, 2.5, 8.6], [DX[0] - 0.2, 0.75, -0.2], 33],
     [T4, [DX[0] - 0.5, 2.9, 9.8], [DX[0] - 0.5, 0.6, 0], 33],
-    [T4, [EX[0], 2.4, EX[2] + 8.6], [EX[0], 1.0, EX[2]], 33],
-    [c.onde - 0.2, [EX[0], 2.6, EX[2] + 8.4], [EX[0], 1.1, EX[2]], 33],
+    [T4, [EX[0], 2.6, EX[2] + 7.4], [EX[0], 0.35, EX[2]], 33],
+    [c.onde - 0.2, [EX[0], 2.7, EX[2] + 7.8], [EX[0], 0.45, EX[2]], 33],
     [c.contribuicoes + 0.6, [EX[0], 5.4, EX[2] + 13.0], [EX[0], 0.8, EX[2] - 1.5], 33],
     [FECHO, [EX[0], 5.7, EX[2] + 13.4], [EX[0], 0.8, EX[2] - 1.5], 33],
   ];
@@ -180,7 +180,7 @@ export const Master1: React.FC = () => {
 
   // ---------------- estação E · quem paga
   const naE = t >= T4 - 0.05;
-  const pilha = p(t, c.paga - 0.2, c.resgate - c.paga + 0.6, ease.inOut);
+  const pilha = 0.4 + 0.6 * p(t, c.paga - 0.2, c.resgate - c.paga + 0.6, ease.inOut);
   const fluxo = t >= c.onde ? (t - c.onde) : -1;
   if (naE && t < c.mande - 0.35) {
     if (t < c.ouSeja) add({ p: [EX[0], 1.25, EX[2] - 0.2], s: mola(T4 + 0.2, 220, 13), txt: "FGC", cor: "#f3c94a", tam: 1.0 });

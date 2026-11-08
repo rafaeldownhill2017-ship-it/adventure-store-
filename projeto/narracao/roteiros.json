@@ -3,12 +3,12 @@
   "modelo": "eleven_v3",
   "idioma": "pt",
   "voz": {
-    "id": "COLE_AQUI_O_ID_DA_VOZ",
-    "nome": "Rode 'npm run vozes' para listar as vozes da sua conta"
+    "id": "nPczCjzI2devNBz1zQrb",
+    "nome": "Brian (grave, narrador)"
   },
   "ajustes": {
-    "stability": 0.55,
-    "similarityBoost": 0.7
+    "stability": 0.5,
+    "similarityBoost": 0.75
   },
   "assinatura": "",
   "filmes": [
