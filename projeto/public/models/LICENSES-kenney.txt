@@ -1,0 +1,78 @@
+== mini-characters
+	
+
+	Mini Characters (1.0)
+
+	Created/distributed by Kenney (www.kenney.nl)
+	Creation date: 17-07-2024 11:31
+	
+			------------------------------
+
+	License: (Creative Commons Zero, CC0)
+	http://creativecommons.org/publicdomain/zero/1.0/
+
+== car-kit
+	
+
+	Car Kit (3.1)
+
+	Created/distributed by Kenney (www.kenney.nl)
+	Creation date: 02-04-2026 14:03
+	
+			------------------------------
+
+	License: (Creative Commons Zero, CC0)
+	http://creativecommons.org/publicdomain/zero/1.0/
+
+== city-kit-commercial
+	
+
+	City Kit Commercial (2.1)
+
+	Created/distributed by Kenney (www.kenney.nl)
+	Creation date: 21-07-2025 18:16
+	
+			------------------------------
+
+	License: (Creative Commons Zero, CC0)
+	http://creativecommons.org/publicdomain/zero/1.0/
+
+== city-kit-suburban
+	
+
+	City Kit Suburban (2.0)
+
+	Created/distributed by Kenney (www.kenney.nl)
+	Creation date: 23-04-2025 20:22
+	
+			------------------------------
+
+	License: (Creative Commons Zero, CC0)
+	http://creativecommons.org/publicdomain/zero/1.0/
+
+== furniture-kit
+	
+
+	Furniture Kit (2.0)
+
+	Created/distributed by Kenney (www.kenney.nl)
+	Creation date: 20-10-2018 16:21
+
+			------------------------------
+
+	License: (Creative Commons Zero, CC0)
+	http://creativecommons.org/publicdomain/zero/1.0/
+
+== nature-kit
+	
+
+	Nature Kit (2.1)
+
+	Created/distributed by Kenney (www.kenney.nl)
+	Creation date: 29-04-2020 01:02
+
+			------------------------------
+
+	License: (Creative Commons Zero, CC0)
+	http://creativecommons.org/publicdomain/zero/1.0/
+

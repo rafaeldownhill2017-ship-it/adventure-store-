@@ -1,0 +1,15 @@
+{
+  "_ajuda": "Um item por vídeo em 'filmes'. 'id' liga o roteiro ao filme (scripts/filmes.config.mjs). 'texto' é o que a voz fala (~900 caracteres = ~60 s). Tags como [serious] ou [excited] só funcionam em alguns modelos; apague se a voz ler em voz alta.",
+  "modelo": "eleven_v3",
+  "idioma": "pt",
+  "voz": { "id": "COLE_AQUI_O_ID_DA_VOZ", "nome": "Rode 'npm run vozes' para listar as vozes da sua conta" },
+  "ajustes": { "stability": 0.55, "similarityBoost": 0.7 },
+  "assinatura": "",
+  "filmes": [
+    {
+      "id": "exemplo",
+      "titulo": "A ligação que ninguém atendeu",
+      "texto": "Uma clínica paga cinco mil reais de anúncio. O telefone toca. E ninguém atende. Olha o caminho dessa ligação. Primeiro, a recepção: duas pessoas, três linhas tocando e um paciente na porta. A ligação cai na caixa postal. Depois, o cliente não espera. Ele procura o próximo da lista. E a clínica da esquina atende em dois toques. Parabéns: você pagou a propaganda do concorrente. O anúncio funcionou. O que falhou foi o processo. Defina quem atende, quanto tempo pode demorar e quem retorna. Mande este vídeo para quem cuida da recepção. E comenta: qual história você quer ver explicada?"
+    }
+  ]
+}

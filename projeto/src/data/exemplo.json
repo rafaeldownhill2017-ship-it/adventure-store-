@@ -1,0 +1,530 @@
+{
+ "id": "exemplo",
+ "voz": "estimada",
+ "preRoll": 0.7,
+ "duracao": 52.453,
+ "fimVoz": 48.253,
+ "cues": {
+  "anuncio": 3.06,
+  "telefone": 4.287,
+  "ninguem": 5.907,
+  "caminho": 7.92,
+  "recepcao": 10.88,
+  "linhas": 13.373,
+  "caixa": 17.633,
+  "espera": 20.653,
+  "proximo": 22.6,
+  "esquina": 25.347,
+  "parabens": 27.82,
+  "processo": 35.32,
+  "defina": 36.413,
+  "atende": 37.2,
+  "tempo": 38.34,
+  "retorna": 40.113,
+  "mande": 41.14,
+  "comenta": 44.793,
+  "fim": 47.653
+ },
+ "palavras": [
+  {
+   "w": "Uma",
+   "start": 0.7,
+   "end": 0.9
+  },
+  {
+   "w": "clínica",
+   "start": 0.96,
+   "end": 1.427
+  },
+  {
+   "w": "paga",
+   "start": 1.487,
+   "end": 1.753
+  },
+  {
+   "w": "cinco",
+   "start": 1.813,
+   "end": 2.147
+  },
+  {
+   "w": "mil",
+   "start": 2.207,
+   "end": 2.407
+  },
+  {
+   "w": "reais",
+   "start": 2.467,
+   "end": 2.8
+  },
+  {
+   "w": "de",
+   "start": 2.86,
+   "end": 3
+  },
+  {
+   "w": "anúncio.",
+   "start": 3.06,
+   "end": 3.527
+  },
+  {
+   "w": "O",
+   "start": 4.087,
+   "end": 4.227
+  },
+  {
+   "w": "telefone",
+   "start": 4.287,
+   "end": 4.82
+  },
+  {
+   "w": "toca.",
+   "start": 4.88,
+   "end": 5.147
+  },
+  {
+   "w": "E",
+   "start": 5.707,
+   "end": 5.847
+  },
+  {
+   "w": "ninguém",
+   "start": 5.907,
+   "end": 6.373
+  },
+  {
+   "w": "atende.",
+   "start": 6.433,
+   "end": 6.833
+  },
+  {
+   "w": "Olha",
+   "start": 7.393,
+   "end": 7.66
+  },
+  {
+   "w": "o",
+   "start": 7.72,
+   "end": 7.86
+  },
+  {
+   "w": "caminho",
+   "start": 7.92,
+   "end": 8.387
+  },
+  {
+   "w": "dessa",
+   "start": 8.447,
+   "end": 8.78
+  },
+  {
+   "w": "ligação.",
+   "start": 8.84,
+   "end": 9.307
+  },
+  {
+   "w": "Primeiro,",
+   "start": 9.867,
+   "end": 10.4
+  },
+  {
+   "w": "a",
+   "start": 10.68,
+   "end": 10.82
+  },
+  {
+   "w": "recepção:",
+   "start": 10.88,
+   "end": 11.413
+  },
+  {
+   "w": "duas",
+   "start": 11.973,
+   "end": 12.24
+  },
+  {
+   "w": "pessoas,",
+   "start": 12.3,
+   "end": 12.767
+  },
+  {
+   "w": "três",
+   "start": 13.047,
+   "end": 13.313
+  },
+  {
+   "w": "linhas",
+   "start": 13.373,
+   "end": 13.773
+  },
+  {
+   "w": "tocando",
+   "start": 13.833,
+   "end": 14.3
+  },
+  {
+   "w": "e",
+   "start": 14.36,
+   "end": 14.5
+  },
+  {
+   "w": "um",
+   "start": 14.56,
+   "end": 14.7
+  },
+  {
+   "w": "paciente",
+   "start": 14.76,
+   "end": 15.293
+  },
+  {
+   "w": "na",
+   "start": 15.353,
+   "end": 15.493
+  },
+  {
+   "w": "porta.",
+   "start": 15.553,
+   "end": 15.887
+  },
+  {
+   "w": "A",
+   "start": 16.447,
+   "end": 16.587
+  },
+  {
+   "w": "ligação",
+   "start": 16.647,
+   "end": 17.113
+  },
+  {
+   "w": "cai",
+   "start": 17.173,
+   "end": 17.373
+  },
+  {
+   "w": "na",
+   "start": 17.433,
+   "end": 17.573
+  },
+  {
+   "w": "caixa",
+   "start": 17.633,
+   "end": 17.967
+  },
+  {
+   "w": "postal.",
+   "start": 18.027,
+   "end": 18.427
+  },
+  {
+   "w": "Depois,",
+   "start": 18.987,
+   "end": 19.387
+  },
+  {
+   "w": "o",
+   "start": 19.667,
+   "end": 19.807
+  },
+  {
+   "w": "cliente",
+   "start": 19.867,
+   "end": 20.333
+  },
+  {
+   "w": "não",
+   "start": 20.393,
+   "end": 20.593
+  },
+  {
+   "w": "espera.",
+   "start": 20.653,
+   "end": 21.053
+  },
+  {
+   "w": "Ele",
+   "start": 21.613,
+   "end": 21.813
+  },
+  {
+   "w": "procura",
+   "start": 21.873,
+   "end": 22.34
+  },
+  {
+   "w": "o",
+   "start": 22.4,
+   "end": 22.54
+  },
+  {
+   "w": "próximo",
+   "start": 22.6,
+   "end": 23.067
+  },
+  {
+   "w": "da",
+   "start": 23.127,
+   "end": 23.267
+  },
+  {
+   "w": "lista.",
+   "start": 23.327,
+   "end": 23.66
+  },
+  {
+   "w": "E",
+   "start": 24.22,
+   "end": 24.36
+  },
+  {
+   "w": "a",
+   "start": 24.42,
+   "end": 24.56
+  },
+  {
+   "w": "clínica",
+   "start": 24.62,
+   "end": 25.087
+  },
+  {
+   "w": "da",
+   "start": 25.147,
+   "end": 25.287
+  },
+  {
+   "w": "esquina",
+   "start": 25.347,
+   "end": 25.813
+  },
+  {
+   "w": "atende",
+   "start": 25.873,
+   "end": 26.273
+  },
+  {
+   "w": "em",
+   "start": 26.333,
+   "end": 26.473
+  },
+  {
+   "w": "dois",
+   "start": 26.533,
+   "end": 26.8
+  },
+  {
+   "w": "toques.",
+   "start": 26.86,
+   "end": 27.26
+  },
+  {
+   "w": "Parabéns:",
+   "start": 27.82,
+   "end": 28.353
+  },
+  {
+   "w": "você",
+   "start": 28.913,
+   "end": 29.18
+  },
+  {
+   "w": "pagou",
+   "start": 29.24,
+   "end": 29.573
+  },
+  {
+   "w": "a",
+   "start": 29.633,
+   "end": 29.773
+  },
+  {
+   "w": "propaganda",
+   "start": 29.833,
+   "end": 30.5
+  },
+  {
+   "w": "do",
+   "start": 30.56,
+   "end": 30.7
+  },
+  {
+   "w": "concorrente.",
+   "start": 30.76,
+   "end": 31.493
+  },
+  {
+   "w": "O",
+   "start": 32.053,
+   "end": 32.193
+  },
+  {
+   "w": "anúncio",
+   "start": 32.253,
+   "end": 32.72
+  },
+  {
+   "w": "funcionou.",
+   "start": 32.78,
+   "end": 33.38
+  },
+  {
+   "w": "O",
+   "start": 33.94,
+   "end": 34.08
+  },
+  {
+   "w": "que",
+   "start": 34.14,
+   "end": 34.34
+  },
+  {
+   "w": "falhou",
+   "start": 34.4,
+   "end": 34.8
+  },
+  {
+   "w": "foi",
+   "start": 34.86,
+   "end": 35.06
+  },
+  {
+   "w": "o",
+   "start": 35.12,
+   "end": 35.26
+  },
+  {
+   "w": "processo.",
+   "start": 35.32,
+   "end": 35.853
+  },
+  {
+   "w": "Defina",
+   "start": 36.413,
+   "end": 36.813
+  },
+  {
+   "w": "quem",
+   "start": 36.873,
+   "end": 37.14
+  },
+  {
+   "w": "atende,",
+   "start": 37.2,
+   "end": 37.6
+  },
+  {
+   "w": "quanto",
+   "start": 37.88,
+   "end": 38.28
+  },
+  {
+   "w": "tempo",
+   "start": 38.34,
+   "end": 38.673
+  },
+  {
+   "w": "pode",
+   "start": 38.733,
+   "end": 39
+  },
+  {
+   "w": "demorar",
+   "start": 39.06,
+   "end": 39.527
+  },
+  {
+   "w": "e",
+   "start": 39.587,
+   "end": 39.727
+  },
+  {
+   "w": "quem",
+   "start": 39.787,
+   "end": 40.053
+  },
+  {
+   "w": "retorna.",
+   "start": 40.113,
+   "end": 40.58
+  },
+  {
+   "w": "Mande",
+   "start": 41.14,
+   "end": 41.473
+  },
+  {
+   "w": "este",
+   "start": 41.533,
+   "end": 41.8
+  },
+  {
+   "w": "vídeo",
+   "start": 41.86,
+   "end": 42.193
+  },
+  {
+   "w": "para",
+   "start": 42.253,
+   "end": 42.52
+  },
+  {
+   "w": "quem",
+   "start": 42.58,
+   "end": 42.847
+  },
+  {
+   "w": "cuida",
+   "start": 42.907,
+   "end": 43.24
+  },
+  {
+   "w": "da",
+   "start": 43.3,
+   "end": 43.44
+  },
+  {
+   "w": "recepção.",
+   "start": 43.5,
+   "end": 44.033
+  },
+  {
+   "w": "E",
+   "start": 44.593,
+   "end": 44.733
+  },
+  {
+   "w": "comenta:",
+   "start": 44.793,
+   "end": 45.26
+  },
+  {
+   "w": "qual",
+   "start": 45.82,
+   "end": 46.087
+  },
+  {
+   "w": "história",
+   "start": 46.147,
+   "end": 46.68
+  },
+  {
+   "w": "você",
+   "start": 46.74,
+   "end": 47.007
+  },
+  {
+   "w": "quer",
+   "start": 47.067,
+   "end": 47.333
+  },
+  {
+   "w": "ver",
+   "start": 47.393,
+   "end": 47.593
+  },
+  {
+   "w": "explicada?",
+   "start": 47.653,
+   "end": 48.253
+  }
+ ]
+}

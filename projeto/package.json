@@ -1,0 +1,44 @@
+{
+  "name": "videos-3d-virais-projeto",
+  "version": "1.0.0",
+  "description": "Projeto Remotion + React Three Fiber para Reels 3D no formato 'como funciona' (9:16)",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "checar": "node scripts/checar.mjs",
+    "dev": "remotion studio src/index.ts",
+    "vozes": "node --env-file=.env.local scripts/narrar.mjs --vozes",
+    "narrar": "node --env-file=.env.local scripts/narrar.mjs",
+    "narrar:simular": "node scripts/narrar.mjs --simular",
+    "timeline": "node scripts/timeline.mjs",
+    "timeline:estimada": "node scripts/timeline-estimada.mjs",
+    "trilha": "node scripts/trilha-exemplo.mjs",
+    "render": "node scripts/render.mjs",
+    "stills": "node scripts/stills.mjs",
+    "folha": "node scripts/sheet.mjs",
+    "check": "tsc"
+  },
+  "dependencies": {
+    "@elevenlabs/elevenlabs-js": "2.74.0",
+    "@react-three/drei": "10.0.6",
+    "@react-three/fiber": "9.1.2",
+    "@react-three/postprocessing": "3.0.4",
+    "@remotion/bundler": "4.0.468",
+    "@remotion/cli": "4.0.468",
+    "@remotion/media": "4.0.468",
+    "@remotion/renderer": "4.0.468",
+    "@remotion/three": "4.0.468",
+    "@types/react": "19.2.7",
+    "@types/three": "0.170.0",
+    "postprocessing": "6.37.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.468",
+    "three": "0.170.0",
+    "typescript": "5.9.3"
+  },
+  "overrides": {
+    "three": "0.170.0"
+  }
+}
