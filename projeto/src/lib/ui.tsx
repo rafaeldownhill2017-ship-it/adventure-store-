@@ -96,7 +96,7 @@ export const Selo: React.FC<{ txt: string }> = ({ txt }) => (
 );
 
 /** Fecho: marca + frase + chamada. Entra por cima de tudo. */
-export const Fecho: React.FC<{ at: number }> = ({ at }) => {
+export const Fecho: React.FC<{ at: number; marca?: { nome: string; linha: string; cta: string } }> = ({ at, marca = MARCA }) => {
   const t = useT();
   const mola = useMola();
   if (t < at - 0.05) return null;
@@ -106,10 +106,10 @@ export const Fecho: React.FC<{ at: number }> = ({ at }) => {
   return (
     <AbsoluteFill style={{ background: C.paper, opacity: p(t, at - 0.05, 0.4) }}>
       <div style={{ position: "absolute", top: 640, left: 0, right: 0, textAlign: "center", fontFamily: FONT, transform: `scale(${0.8 + 0.2 * Math.min(1, fe)})` }}>
-        <div style={{ fontSize: 130, fontWeight: 800, letterSpacing: "-0.04em", color: C.ink, opacity: fw, transform: `translateY(${(1 - fw) * 30}px)` }}>{MARCA.nome}</div>
+        <div style={{ fontSize: 130, fontWeight: 800, letterSpacing: "-0.04em", color: C.ink, opacity: fw, transform: `translateY(${(1 - fw) * 30}px)` }}>{marca.nome}</div>
         <div style={{ margin: "34px auto 0", width: 120 * fl, height: 5, background: C.primaria, borderRadius: 3 }} />
-        <div style={{ marginTop: 34, padding: "0 90px", fontSize: 42, fontWeight: 600, lineHeight: 1.35, color: C.ink, opacity: fl * 0.8 }}>{MARCA.linha}</div>
-        <div style={{ display: "inline-block", marginTop: 60, padding: "18px 38px", borderRadius: 99, background: C.primaria, color: C.paper, fontSize: 36, fontWeight: 700, opacity: p(t, at + 1.8, 0.6) }}>{MARCA.cta}</div>
+        <div style={{ marginTop: 34, padding: "0 90px", fontSize: 42, fontWeight: 600, lineHeight: 1.35, color: C.ink, opacity: fl * 0.8 }}>{marca.linha}</div>
+        <div style={{ display: "inline-block", marginTop: 60, padding: "18px 38px", borderRadius: 99, background: C.primaria, color: C.paper, fontSize: 36, fontWeight: 700, opacity: p(t, at + 1.8, 0.6) }}>{marca.cta}</div>
       </div>
     </AbsoluteFill>
   );

@@ -4,6 +4,8 @@ import { Composition, getRemotionEnvironment, staticFile } from "remotion";
 import { FPS, H, W } from "./brand";
 import dExemplo from "./data/exemplo.json";
 import { Exemplo } from "./films/Exemplo";
+import dMaster1 from "./data/master1.json";
+import { Master1 } from "./films/Master1";
 import { FontGate } from "./lib/fonts";
 import { Timeline, TimelineCtx } from "./lib/time";
 
@@ -24,7 +26,10 @@ const filme = (data: Timeline, Film: React.FC): React.FC => {
   return Comp;
 };
 
-const filmes = [{ id: "exemplo", data: dExemplo as Timeline, C: filme(dExemplo as Timeline, Exemplo) }];
+const filmes = [
+  { id: "exemplo", data: dExemplo as Timeline, C: filme(dExemplo as Timeline, Exemplo) },
+  { id: "master1", data: dMaster1 as Timeline, C: filme(dMaster1 as Timeline, Master1) },
+];
 
 export const Root: React.FC = () => (
   <>
