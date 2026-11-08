@@ -19,3 +19,10 @@
 | Áudio do MP4 sumiu | Render rodou sem `public/mix/<id>.wav` | Rode a trilha e renderize de novo |
 
 Ainda travado? Cole o erro completo no Claude Code dentro da pasta `projeto/` e peça para diagnosticar com a skill `video3d-producao`.
+
+## Rodando em servidor/nuvem sem GPU (ex.: Claude Code na web)
+| Sintoma | O que fazer |
+|---|---|
+| `getaddrinfo ENOTFOUND remotion.media` ao baixar o Chrome Headless Shell | Aponte para um Chromium já instalado: `export REMOTION_BROWSER=/caminho/do/chrome-headless-shell` |
+| `A WebGL context could not be created` (stills só com céu) | Use renderização por software: `export REMOTION_GL=swangle` (mais lento que GPU) |
+| Ajustar paralelismo do render sem editar o script | `export REMOTION_CONCURRENCY=4` |

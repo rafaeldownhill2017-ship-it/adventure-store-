@@ -14,7 +14,7 @@ const serveUrl = await bundle({ entryPoint: join(raiz, "src", "index.ts"), publi
 mkdirSync(join(raiz, "out", "video"), { recursive: true });
 mkdirSync(join(raiz, "entrega"), { recursive: true });
 
-const composition = await selectComposition({ serveUrl, id, chromiumOptions: { gl: "angle" } });
+const composition = await selectComposition({ serveUrl, id, chromiumOptions: { gl: process.env.REMOTION_GL ?? "angle" }, browserExecutable: process.env.REMOTION_BROWSER ?? null });
 const mudo = join(raiz, "out", "video", `${id}-mudo.mp4`);
 const t0 = Date.now();
 let ultimo = -1;
@@ -27,8 +27,8 @@ await renderMedia({
   outputLocation: mudo,
   imageFormat: "jpeg",
   jpegQuality: 95,
-  concurrency: 2,
-  chromiumOptions: { gl: "angle" },
+  concurrency: Number(process.env.REMOTION_CONCURRENCY ?? 2),
+  chromiumOptions: { gl: process.env.REMOTION_GL ?? "angle" }, browserExecutable: process.env.REMOTION_BROWSER ?? null,
   onProgress: ({ progress }) => {
     if (Math.round(progress * 100) % 10 === 0) process.stdout.write(`\r${id} ${Math.round(progress * 100)}%   `);
   },

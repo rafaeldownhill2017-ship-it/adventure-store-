@@ -8,12 +8,12 @@ import { fileURLToPath } from "node:url";
 const raiz = join(dirname(fileURLToPath(import.meta.url)), "..");
 const [id, tempos, escala = "0.5"] = process.argv.slice(2);
 const serveUrl = await bundle({ entryPoint: join(raiz, "src", "index.ts"), publicDir: join(raiz, "public") });
-const composition = await selectComposition({ serveUrl, id, chromiumOptions: { gl: "angle" } });
+const composition = await selectComposition({ serveUrl, id, chromiumOptions: { gl: process.env.REMOTION_GL ?? "angle" }, browserExecutable: process.env.REMOTION_BROWSER ?? null });
 const saida = join(raiz, "out", "stills");
 await mkdir(saida, { recursive: true });
 for (const s of tempos.split(",").map(Number)) {
   const frame = Math.min(composition.durationInFrames - 1, Math.round(s * composition.fps));
   const output = join(saida, `${id}-${s.toFixed(2)}.jpg`);
-  await renderStill({ serveUrl, composition, frame, output, imageFormat: "jpeg", jpegQuality: 85, scale: Number(escala), chromiumOptions: { gl: "angle" }, onBrowserLog: (l) => { if (l.type === "error") console.log("[browser]", l.text.slice(0, 300)); } });
+  await renderStill({ serveUrl, composition, frame, output, imageFormat: "jpeg", jpegQuality: 85, scale: Number(escala), chromiumOptions: { gl: process.env.REMOTION_GL ?? "angle" }, browserExecutable: process.env.REMOTION_BROWSER ?? null, onBrowserLog: (l) => { if (l.type === "error") console.log("[browser]", l.text.slice(0, 300)); } });
   console.log(output);
 }
