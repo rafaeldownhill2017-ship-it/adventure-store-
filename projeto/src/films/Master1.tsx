@@ -140,7 +140,7 @@ export const Master1: React.FC = () => {
   if (naA) {
     add({ p: [A[0] + 0.95, 1.25, 0.6], s: mola(0.35, 220, 13), tipo: "card", titulo: "CDB RENDENDO", txt: "até 140% do CDI", cor: C.destaque, tam: 0.78 });
     if (t >= c.master - 0.2) add({ p: [A[0] - 0.2, 1.95, -1.6], s: mola(c.master - 0.2, 220, 13), txt: "Banco Master", cor: "#ffffff", tam: 0.95 });
-    if (t >= c.olha - 0.1) add({ p: [A[0] + 1.5, 0.7, 2.1], s: mola(c.olha - 0.1, 240, 12), txt: "a fila cresce", cor: "#ffffff", tam: 0.8 });
+    if (t >= c.descobrir - 0.2 && t < c.master - 0.2) add({ p: [A[0] - 0.2, 1.95, -1.6], s: mola(c.descobrir - 0.2, 220, 12), tipo: "card", titulo: "NO FINAL", txt: "quem pagou a conta?", cor: C.alerta, tinta: "#fff", tam: 0.72 });
   }
 
   // ---------------- estação B · a vitrine e o selo do FGC
@@ -164,6 +164,7 @@ export const Master1: React.FC = () => {
     add({ p: [CX[0], 1.25, -1.7], s: mola(c.corretoras - 0.1, 220, 13), txt: "corretoras", cor: "#ffffff", tam: 0.9 });
     if (t >= c.multidao - 0.1) add({ p: [CX[0] - 0.9, 0.8, 0.5], s: mola(c.multidao - 0.1, 240, 12), txt: "a fila virou multidão", cor: C.destaque, tam: 0.8 });
     if (t >= c.oitocentos - 0.2) add({ p: [CX[0] + 0.3, 1.7, 0], s: mola(c.oitocentos - 0.2, 200, 13), tipo: "card", titulo: "CREDORES (FGC)", txt: "≈ 800 mil", cor: "#ffffff", tam: 0.9 });
+    if (t >= c.conhece - 0.2) add({ p: [CX[0], 0.1, 1.4], s: mola(c.conhece - 0.2, 220, 12), tipo: "card", titulo: "COMENTA", txt: "você conhece alguém?", cor: C.destaque, tam: 0.66 });
   }
 
   // ---------------- estação D · o Banco Central fecha a porta
