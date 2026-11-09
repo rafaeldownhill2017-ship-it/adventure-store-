@@ -19,6 +19,9 @@
 | O valor acima de R$ 250 mil vira crédito na liquidação; esses credores (quirografários) ficam atrás na fila, e a recuperação é incerta e pode levar anos | ✔ | [Diário do Comércio](https://diariodocomercio.com.br/financas/entenda-que-acontece-quem-tem-mais-r-250-mil-investidos-master/); [Rota Jurídica](https://www.rotajuridica.com.br/?p=166862) |
 | A liquidante leva bens a leilão (445 lotes, cadeiras de grife, TVs), em 09/11/2026 | ✔ | [Gazeta do Povo](https://www.gazetadopovo.com.br/economia/leilao-do-banco-master-oferta-moveis-de-luxo-e-tvs-de-98-polegadas/); [Times Brasil](https://timesbrasil.com.br/brasil/operacoes-da-pf/leilao-banco-master-447-lotes-herman-miller-will-financeira/) |
 
+## Reconferência em 09/11/2026
+- Sem decisão do STF sobre a soltura até 08/11; ele seguia preso. Indiciado pela PF em 28/10/2026; a PGR ainda não ofereceu denúncia ([CNN Brasil](https://www.cnnbrasil.com.br/politica/fachin-pede-parecer-da-pgr-sobre-soltura-de-vorcaro-no-caso-master/); [Gazeta do Povo](https://www.gazetadopovo.com.br/republica/fachin-consulta-pgr-sobre-soltura-de-vorcaro/)).
+
 ## Nota de precisão sobre a Parte 1
 A Parte 1 diz "no mesmo dia (da liquidação), a PF prende o dono do banco". A operação da PF e a liquidação são de 18/11/2025, e a imprensa (Poder360) relata assim. Mas a abordagem no aeroporto foi na noite de 17/11. A Parte 3 usa a data exata (17/11, 22h).
 
