@@ -10,6 +10,11 @@ import type { CamPose } from "./camera";
 
 // Palco do "mundo contínuo" (formato "como funciona"): céu azul, sol que acompanha o ponto de vista
 // (sombras nítidas em qualquer estação do mapa) e pouco desfoque de miniatura.
+// QUALIDADE=leve (env do render): efeitos mais baratos para máquinas sem placa de vídeo.
+const QUAL = (globalThis as { process?: { env?: Record<string, string | undefined> } }).process?.env?.QUALIDADE;
+const LEVE = QUAL === "leve" || QUAL === "minima";
+const SEM_AO = QUAL === "minima";
+
 export const MUNDO = { ceu: "#a9d6f2", grama: "#86c06a", asfalto: "#8f949a", terra: "#b98a5e" };
 
 const Cam: React.FC<CamPose> = ({ pos, look, fov = 32 }) => {
@@ -43,7 +48,7 @@ const Sol: React.FC<{ alvo: [number, number, number]; cor: string; intensidade: 
       intensity={intensidade}
       color={cor}
       castShadow
-      shadow-mapSize={[2048, 2048]}
+      shadow-mapSize={LEVE ? [1024, 1024] : [2048, 2048]}
       shadow-bias={-0.0004}
       shadow-normalBias={0.02}
       shadow-radius={4}
@@ -90,9 +95,9 @@ export const StageMundo: React.FC<{ cam: CamPose; children: React.ReactNode; ceu
       <meshStandardMaterial color={MUNDO.grama} roughness={0.95} />
     </mesh>
     {children}
-    <EffectComposer multisampling={4}>
-      <N8AO aoRadius={0.5} intensity={1.8} distanceFalloff={0.6} quality="high" />
-      <TiltShift2 blur={0.12 * miniatura} taper={0.6} start={[0, 0.45]} end={[1, 0.45]} samples={10} />
+    <EffectComposer multisampling={LEVE ? 0 : 4}>
+      {SEM_AO ? <></> : <N8AO aoRadius={0.5} intensity={1.8} distanceFalloff={0.6} quality={LEVE ? "performance" : "high"} />}
+      <TiltShift2 blur={0.12 * miniatura} taper={0.6} start={[0, 0.45]} end={[1, 0.45]} samples={LEVE ? 5 : 10} />
       <Bloom intensity={0.2} luminanceThreshold={0.92} mipmapBlur />
       <HueSaturation saturation={saturacao} />
       <Vignette offset={0.3} darkness={0.3} />
