@@ -34,7 +34,7 @@ export const filmes = [
   },
   {
     id: "master1",
-    vozes: ["nPczCjzI2devNBz1zQrb"],
+    vozes: ["TX3LPaxmHKxFdv7VOQHJ"],
     preRoll: 0.6,
     cauda: 4.2,
     cues: {
@@ -51,7 +51,7 @@ export const filmes = [
       multidao: "multidão",
       oitocentos: "oitocentos",
       conhece: "conhece",
-      ate: ["Até", 3],
+      ate: ["Até", 4],
       novembro: "novembro",
       fecha: "fecha",
       liquidacao: "Liquidação",
@@ -62,18 +62,18 @@ export const filmes = [
       resgate: "resgate",
       onde: "onde",
       contribuicoes: "contribuições",
-      ouSeja: "Ou",
+      ouSeja: ["Ou", 2],
       segurou: "segurou",
-      conta: ["conta", 2],
+      conta: ["conta", 3],
       sistema: "sistema",
       mande: "Mande",
-      comenta: "comenta",
+      comenta: ["comenta", 2],
       fim: "barrou",
     },
   },
   {
     id: "master2",
-    vozes: ["nPczCjzI2devNBz1zQrb"],
+    vozes: ["TX3LPaxmHKxFdv7VOQHJ"],
     preRoll: 0.6,
     cauda: 4.2,
     cues: {
@@ -110,7 +110,7 @@ export const filmes = [
   },
   {
     id: "master3",
-    vozes: ["nPczCjzI2devNBz1zQrb"],
+    vozes: ["TX3LPaxmHKxFdv7VOQHJ"],
     preRoll: 0.6,
     cauda: 4.2,
     cues: {

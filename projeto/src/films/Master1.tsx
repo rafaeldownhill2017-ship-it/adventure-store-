@@ -2,7 +2,7 @@ import React from "react";
 import { AbsoluteFill } from "remotion";
 import { C, FONT } from "../brand";
 import { camPorKeys, type Key, type V3 } from "../lib/camera";
-import { Boneco, Modelo, precarregar } from "../lib/kenney";
+import { Ator, Modelo, precarregar } from "../lib/kenney";
 import { MUNDO, StageMundo } from "../lib/StageMundo";
 import { TelaSegura, type Rotulo } from "../lib/telaSegura";
 import { ease, hash, lerp, p, useT, useTimeline } from "../lib/time";
@@ -136,7 +136,6 @@ export const Master1: React.FC = () => {
 
   // ---------------- estação A · a placa e a fila (gancho: objeto + ação + número)
   const naA = t < T1;
-  const nFila = Math.min(7, Math.max(1, Math.floor((t - c.fila + 0.6) / 0.35) + 1));
   if (naA) {
     add({ p: [A[0] + 0.95, 1.25, 0.6], s: mola(0.35, 220, 13), tipo: "card", titulo: "CDB RENDENDO", txt: "até 140% do CDI", cor: C.destaque, tam: 0.78 });
     if (t >= c.master - 0.2) add({ p: [A[0] - 0.2, 1.95, -1.6], s: mola(c.master - 0.2, 220, 13), txt: "Banco Master", cor: "#ffffff", tam: 0.95 });
@@ -206,18 +205,28 @@ export const Master1: React.FC = () => {
             <group position={A}>
               <Modelo url="comercial/building-c" p={[-0.2, 0, -1.6]} alvo={{ largura: 1.5 }} />
               <Placa p={[0.95, 0, 0.55]} s={p(t, 0.05, 0.4, ease.back)} />
-              {Array.from({ length: nFila }, (_, i) => (
-                <Boneco
-                  key={i}
-                  url={PESSOAS[i % PESSOAS.length]}
-                  p={[-0.15 + i * 0.24, 0, -0.55 + i * 0.36]}
-                  rotY={Math.PI + 0.55}
-                  altura={0.56}
-                  s={i === 0 ? 1 : Math.min(1, mola(c.fila - 0.6 + (i - 1) * 0.35, 260, 14))}
-                  anim={i === nFila - 1 && i > 0 ? "walk" : "idle"}
-                  tAnim={t + i * 0.37}
-                />
-              ))}
+              {Array.from({ length: 7 }, (_, i) => {
+                const chega = i === 0 ? -1 : c.fila - 0.6 + (i - 1) * 0.35;
+                const k = p(t, chega, 0.55, ease.out);
+                const alvo: V3 = [-0.15 + i * 0.24, 0, -0.55 + i * 0.36];
+                return (
+                  <Ator
+                    key={i}
+                    url={PESSOAS[i % PESSOAS.length]}
+                    p={[alvo[0] + (1 - k) * 0.7, 0, alvo[2] + (1 - k) * 0.6]}
+                    rotY={i === 0 ? lerp(Math.PI + 0.55, Math.PI * 2 + 0.25, p(t, c.cdi, 0.35) - p(t, c.descobrir + 0.6, 0.4)) : Math.PI + 0.55}
+                    altura={0.56}
+                    t={t}
+                    entra={i === 0 ? undefined : chega}
+                    fase={i * 0.37}
+                    acoes={
+                      i === 0
+                        ? [{ de: 0, anim: "idle" }, { de: c.placa - 0.1, anim: "emote-yes" }, { de: c.cdi + 0.3, anim: "jump" }, { de: c.descobrir, anim: "interact-right" }]
+                        : [{ de: chega, anim: "sprint" }, { de: chega + 0.5, anim: "idle" }, { de: chega + 0.7 + hash(i) * 0.6, anim: i % 2 ? "emote-yes" : "jump" }]
+                    }
+                  />
+                );
+              })}
               <Modelo url="natureza/tree_oak" p={[-1.7, 0, -1.0]} alvo={{ altura: 1.2 }} />
               <Modelo url="natureza/tree_detailed" p={[1.45, 0, -2.0]} alvo={{ altura: 1.1 }} />
             </group>
@@ -227,8 +236,8 @@ export const Master1: React.FC = () => {
             <group position={BX}>
               <Modelo url="comercial/building-h" p={[-0.2, 0, -1.5]} alvo={{ largura: 1.6 }} />
               <SeloFGC p={[0.75, 0.75, 0.3]} s={mola(c.selo - 0.3, 200, 12)} t={t} />
-              <Boneco url={PESSOAS[1]} p={[-0.45, 0, 0.5]} rotY={Math.PI * 0.85} altura={0.56} anim={t >= c.fgc ? "emote-yes" : "idle"} tAnim={t} />
-              <Boneco url={PESSOAS[3]} p={[0.05, 0, 0.75]} rotY={Math.PI * 1.1} altura={0.56} anim={t >= c.duzentos ? "emote-yes" : "idle"} tAnim={t + 0.6} />
+              <Ator url={PESSOAS[1]} p={[-0.45, 0, 0.5]} rotY={Math.PI * 0.85} altura={0.56} t={t} acoes={[{ de: 0, anim: "idle" }, { de: c.vitrine, anim: "interact-right" }, { de: c.fgc - 0.1, anim: "jump" }, { de: c.duzentos + 1.2, anim: "emote-yes", vezes: 2 }]} />
+              <Ator url={PESSOAS[3]} p={[0.05, 0, 0.75]} rotY={Math.PI * 1.1} altura={0.56} t={t} fase={0.6} acoes={[{ de: 0, anim: "idle" }, { de: c.selo, anim: "emote-yes" }, { de: c.duzentos - 0.1, anim: "jump" }, { de: c.duzentos + 1.6, anim: "interact-left" }]} />
               <Modelo url="natureza/tree_oak" p={[-1.9, 0, -1.2]} alvo={{ altura: 1.2 }} />
             </group>
           ) : null}
@@ -242,15 +251,20 @@ export const Master1: React.FC = () => {
                 </group>
               ))}
               {multidao.map(({ i, x, z, t0 }) => (
-                <Boneco
+                <Ator
                   key={i}
                   url={PESSOAS[i % PESSOAS.length]}
                   p={[x, 0, z]}
                   rotY={(hash(i + 3) - 0.5) * 0.8}
                   altura={0.5}
-                  s={Math.min(1, mola(t0, 260, 14))}
-                  anim={hash(i + 5) > 0.6 ? "emote-yes" : "idle"}
-                  tAnim={t + hash(i) * 2}
+                  t={t}
+                  entra={t0}
+                  fase={hash(i) * 1.3}
+                  acoes={[
+                    { de: -1, anim: "idle" },
+                    { de: c.oitocentos - 0.1 + hash(i + 7) * 0.35, anim: "jump" },
+                    { de: c.conhece + hash(i + 2) * 0.8, anim: hash(i + 5) > 0.5 ? "emote-yes" : "interact-right" },
+                  ]}
                 />
               ))}
             </group>
@@ -260,8 +274,8 @@ export const Master1: React.FC = () => {
             <group position={DX}>
               <Modelo url="comercial/building-c" p={[0, 0, -1.6]} alvo={{ largura: 1.5 }} />
               <Fita p={[0, 0.05, 0.05]} k={fita} />
-              <Boneco url={PESSOAS[0]} p={[-0.75, 0, 0.7]} rotY={Math.PI} altura={0.56} anim={t >= c.fecha ? "emote-no" : "idle"} tAnim={t} />
-              <Boneco url={PESSOAS[4]} p={[0.75, 0, 0.8]} rotY={Math.PI} altura={0.56} anim={t >= c.liquidacao ? "emote-no" : "idle"} tAnim={t + 0.4} />
+              <Ator url={PESSOAS[0]} p={[-0.75, 0, 0.7]} rotY={Math.PI} altura={0.56} t={t} acoes={[{ de: 0, anim: "idle" }, { de: c.fecha - 0.05, anim: "emote-no", vezes: 2 }, { de: c.policia, anim: "crouch" }]} />
+              <Ator url={PESSOAS[4]} p={[0.75, 0, 0.8]} rotY={Math.PI} altura={0.56} t={t} fase={0.4} acoes={[{ de: 0, anim: "idle" }, { de: c.liquidacao - 0.05, anim: "emote-no", vezes: 2 }, { de: c.policia + 0.3, anim: "interact-left" }]} />
               {carro > 0.001 ? <Modelo url="carros/sedan" p={[lerp(-3.4, -1.0, carro), 0, 1.2]} rotY={Math.PI / 2} alvo={{ comp: 0.8 }} tinta="#5b7fd6" /> : null}
               <Modelo url="natureza/tree_detailed" p={[1.3, 0, -2.0]} alvo={{ altura: 1.1 }} />
             </group>
@@ -271,6 +285,7 @@ export const Master1: React.FC = () => {
             <group position={EX}>
               <B s={[1.3, 0.04, 0.9]} p={[0, 0.02, 0]} cor="#d8d2c2" />
               <Pilha k={pilha} />
+              <Ator url={PESSOAS[2]} p={[-0.85, 0, 0.35]} rotY={0.5} altura={0.5} t={t} acoes={[{ de: -1, anim: "idle" }, { de: c.quarenta - 0.1, anim: "jump" }, { de: c.resgate, anim: "emote-yes" }, { de: c.contribuicoes, anim: "interact-right" }, { de: c.sistema - 0.1, anim: "emote-no", vezes: 2 }]} />
               {bancosE.map((b, i) => (
                 <Modelo key={i} url={["comercial/building-a", "comercial/building-e", "comercial/building-k", "comercial/building-h"][i]} p={b} alvo={{ largura: 0.85 }} s={t >= c.onde - 0.4 ? Math.min(1, mola(c.onde - 0.4 + i * 0.12, 220, 14)) : 0} />
               ))}
