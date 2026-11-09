@@ -91,3 +91,9 @@ Nada com texto pode aparecer cortado na borda: balões, letreiros, rótulos, CTA
 
 ## 10. Como registrar lições
 Ao fim de cada vídeo, acrescente aqui 3 linhas: o que quebrou, como corrigiu, o que mediria no desempenho. É isso que faz o próximo sair melhor.
+
+## Lições · Caso Master, Partes 1 e 2 (nov/2026)
+- **Servidor sem placa de vídeo:** `REMOTION_GL=swangle` + Chromium local funciona, mas leva ~5 s/quadro. Use `QUALIDADE=leve` (1,7× mais rápido, visual igual) e `scripts/render-blocos.mjs`, que retoma de onde parou se a máquina reiniciar. Antes de reiniciar um render, confira com `ps` que não sobrou processo antigo disputando a CPU.
+- **Cues de palavras repetidas** ("até", "quarenta", "mil", "conta") pegaram a ocorrência errada. Rode `timeline:estimada` e confira os tempos antes de montar a cena.
+- **Retenção:** pergunta em aberto no gancho ("no final você vai descobrir quem pagou"), pergunta direta no meio ("você conhece alguém?"), sussurro na revelação e cliffhanger para a próxima parte. Medir: retenção aos 3 s e aos 30 s, envios por alcance.
+- **Primeiro segundo de cada estação:** a pilha do FGC abria vazia. Comece com parte do objeto visível e deixe crescer.
