@@ -8,6 +8,8 @@ import dMaster1 from "./data/master1.json";
 import { Master1 } from "./films/Master1";
 import dMaster2 from "./data/master2.json";
 import { Master2 } from "./films/Master2";
+import dMaster3 from "./data/master3.json";
+import { Master3 } from "./films/Master3";
 import { FontGate } from "./lib/fonts";
 import { Timeline, TimelineCtx } from "./lib/time";
 
@@ -32,6 +34,7 @@ const filmes = [
   { id: "exemplo", data: dExemplo as Timeline, C: filme(dExemplo as Timeline, Exemplo) },
   { id: "master1", data: dMaster1 as Timeline, C: filme(dMaster1 as Timeline, Master1) },
   { id: "master2", data: dMaster2 as Timeline, C: filme(dMaster2 as Timeline, Master2) },
+  { id: "master3", data: dMaster3 as Timeline, C: filme(dMaster3 as Timeline, Master3) },
 ];
 
 export const Root: React.FC = () => (
