@@ -2,7 +2,7 @@ import React from "react";
 import { AbsoluteFill } from "remotion";
 import { C, FONT } from "../brand";
 import { camPorKeys, type Key, type V3 } from "../lib/camera";
-import { Boneco, Modelo, precarregar } from "../lib/kenney";
+import { Ator, Modelo, precarregar } from "../lib/kenney";
 import { MUNDO, StageMundo } from "../lib/StageMundo";
 import { TelaSegura, type Rotulo } from "../lib/telaSegura";
 import { ease, lerp, p, useT, useTimeline } from "../lib/time";
@@ -127,9 +127,12 @@ export const Master2: React.FC = () => {
 
   // ---------------- C · a corrida de obstáculos
   const naC = t >= T2 - 0.05 && t < T3;
-  const xs = [-1.2, 0, 1.2];
+  const xs = [-0.85, 0.1, 1.0];
   const corre = p(t, T2 + 0.2, T3 - T2 - 0.3, (x) => x);
-  const xRunner = lerp(-1.6, 1.55, corre);
+  const pontos: [number, number][] = [[T2 + 0.2, -1.3], [c.justica, -1.08], [c.cade - 0.4, -1.08], [c.cade, -0.1], [c.camara, 0.5], [c.catorze, 0.88], [c.carimbo - 0.6, 1.3]];
+  let xRunner = pontos[0][1];
+  for (let i = 0; i < pontos.length - 1; i++) if (t >= pontos[i][0]) xRunner = lerp(pontos[i][1], pontos[i + 1][1], Math.min(1, (t - pontos[i][0]) / Math.max(0.01, pontos[i + 1][0] - pontos[i][0])));
+  void corre;
   if (naC) {
     if (t >= c.justica - 0.2) add({ p: [CX[0] + xs[0], 0.75, 0], s: mola(c.justica - 0.2, 240, 12), tipo: "card", titulo: "JUSTIÇA", txt: "trava", cor: C.alerta, tinta: "#fff", tam: 0.62 });
     if (t >= c.cade - 0.2) add({ p: [CX[0] + xs[1], 0.75, 0], s: mola(c.cade - 0.2, 240, 12), tipo: "card", titulo: "CADE", txt: "aprova", cor: C.ok, tinta: "#fff", tam: 0.62 });
@@ -178,8 +181,8 @@ export const Master2: React.FC = () => {
                 </mesh>
               </group>
               <Dinheiro p={[0.4, 0.4, -0.05]} n={8} />
-              <Boneco url="personagens/character-male-d" p={[-0.82, 0, 0.12]} rotY={Math.PI / 2 - 0.2} altura={0.56} anim={t >= c.assinatura ? "emote-yes" : "idle"} tAnim={t} />
-              <Boneco url="personagens/character-male-a" p={[0.82, 0, 0.12]} rotY={-Math.PI / 2 + 0.2} altura={0.56} anim="idle" tAnim={t + 0.5} />
+              <Ator url="personagens/character-male-d" p={[-0.82, 0, 0.12]} rotY={Math.PI / 2 - 0.2} altura={0.56} t={t} acoes={[{ de: 0, anim: "idle" }, { de: c.publico - 0.1, anim: "interact-right" }, { de: c.assinatura - 0.1, anim: "emote-yes" }, { de: c.venda, anim: "jump" }]} />
+              <Ator url="personagens/character-male-a" p={[0.82, 0, 0.12]} rotY={-Math.PI / 2 + 0.2} altura={0.56} t={t} fase={0.5} acoes={[{ de: 0, anim: "idle" }, { de: c.mesa - 0.1, anim: "emote-yes" }, { de: c.assinatura + 0.2, anim: "interact-left" }, { de: c.venda + 0.15, anim: "jump" }]} />
             </group>
           ) : null}
 
@@ -187,7 +190,7 @@ export const Master2: React.FC = () => {
             <group position={BX}>
               <Modelo url="comercial/building-k" p={[-0.3, 0, -1.6]} alvo={{ largura: 1.4 }} />
               <Relogio p={[0.85, 1.05, 0.2]} s={mola(c.prazo - 0.4, 200, 12)} t={t} />
-              <Boneco url="personagens/character-male-d" p={[-0.2, 0, 0.5]} rotY={0.2} altura={0.56} anim={t >= c.cinquenta ? "emote-yes" : "idle"} tAnim={t} />
+              <Ator url="personagens/character-male-d" p={[-0.2, 0, 0.5]} rotY={0.2} altura={0.56} t={t} acoes={[{ de: 0, anim: "idle" }, { de: c.marco, anim: "interact-right" }, { de: c.cinquenta - 0.1, anim: "jump" }, { de: c.prazo - 0.1, anim: "interact-left" }, { de: c.caixa - 0.1, anim: "emote-no", vezes: 2 }]} />
               <Modelo url="natureza/tree_oak" p={[-1.15, 0, -1.9]} alvo={{ altura: 1.0 }} />
             </group>
           ) : null}
@@ -201,7 +204,7 @@ export const Master2: React.FC = () => {
               <Barreira p={[xs[0], 0, 0]} cor={C.alerta} cai={0} />
               <Barreira p={[xs[1], 0, 0]} cor={C.ok} cai={p(t, c.cade - 0.1, 0.4)} />
               <Barreira p={[xs[2], 0, 0]} cor={C.ok} cai={p(t, c.catorze - 0.2, 0.4)} />
-              <Boneco url="personagens/character-male-d" p={[xRunner, 0, 0]} rotY={Math.PI / 2} altura={0.5} anim={corre > 0 && corre < 1 ? "walk" : "idle"} tAnim={t * 1.4} />
+              <Ator url="personagens/character-male-d" p={[xRunner, 0, 0]} rotY={Math.PI / 2} altura={0.5} t={t} acoes={[{ de: 0, anim: "idle" }, { de: T2 + 0.2, anim: "sprint" }, { de: c.justica, anim: "emote-no", vezes: 2 }, { de: c.cade - 0.4, anim: "sprint" }, { de: c.catorze, anim: "jump" }, { de: c.catorze + 0.5, anim: "sprint" }, { de: c.carimbo - 0.6, anim: "idle" }]} />
               <Modelo url="natureza/tree_detailed" p={[1.15, 0, -1.9]} alvo={{ altura: 1.0 }} />
               <Modelo url="natureza/tree_oak" p={[-1.15, 0, -1.9]} alvo={{ altura: 1.0 }} />
             </group>
@@ -219,7 +222,7 @@ export const Master2: React.FC = () => {
                   <sphereGeometry args={[0.05, 12, 10]} />
                 </mesh>
               </group>
-              <Boneco url="personagens/character-female-d" p={[0, 0, -0.55]} altura={0.56} anim={t >= c.nao ? "emote-no" : "idle"} tAnim={t} />
+              <Ator url="personagens/character-female-d" p={[0, 0, -0.55]} altura={0.56} t={t} acoes={[{ de: 0, anim: "idle" }, { de: c.carimbo, anim: "interact-right" }, { de: c.nao - 0.05, anim: "emote-no", vezes: 2 }]} />
             </group>
           ) : null}
 
@@ -234,7 +237,7 @@ export const Master2: React.FC = () => {
               ].map((b, i) => (
                 <Modelo key={i} url="moveis/cardboardBoxClosed" p={b as V3} alvo={{ comp: 0.26 }} s={Math.min(1, mola(c.carteiras - 0.4 + i * 0.12, 220, 13))} />
               ))}
-              <Boneco url="personagens/character-male-b" p={[-0.5, 0, 0.1]} altura={0.56} anim={t >= c.problemas ? "emote-no" : "idle"} tAnim={t} />
+              <Ator url="personagens/character-male-b" p={[-0.5, 0, 0.1]} altura={0.56} t={t} acoes={[{ de: 0, anim: "idle" }, { de: c.escapou - 0.1, anim: "jump" }, { de: c.carteiras, anim: "interact-right" }, { de: c.problemas - 0.1, anim: "emote-no", vezes: 2 }, { de: c.policia, anim: "crouch" }, { de: c.distrito, anim: "idle" }, { de: c.indenizacao - 0.1, anim: "emote-no" }]} />
               {carro > 0.001 ? <Modelo url="carros/sedan" p={[lerp(-3.4, -1.0, carro), 0, 1.0]} rotY={Math.PI / 2} alvo={{ comp: 0.8 }} tinta="#5b7fd6" /> : null}
               <Modelo url="natureza/tree_detailed" p={[1.05, 0, -2.1]} alvo={{ altura: 1.0 }} />
             </group>

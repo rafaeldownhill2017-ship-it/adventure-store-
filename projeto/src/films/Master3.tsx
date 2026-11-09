@@ -2,7 +2,7 @@ import React from "react";
 import { AbsoluteFill } from "remotion";
 import { C, FONT } from "../brand";
 import { camPorKeys, type Key, type V3 } from "../lib/camera";
-import { Boneco, Modelo, precarregar } from "../lib/kenney";
+import { Ator, Modelo, precarregar } from "../lib/kenney";
 import { MUNDO, StageMundo } from "../lib/StageMundo";
 import { TelaSegura, type Rotulo } from "../lib/telaSegura";
 import { ease, lerp, p, useT, useTimeline } from "../lib/time";
@@ -161,7 +161,7 @@ export const Master3: React.FC = () => {
             <group position={A}>
               <Pista />
               <Jatinho p={[0.55, 0, -0.05]} />
-              <Boneco url={VORCARO} p={[lerp(-0.75, -0.15, anda), 0, 0.15]} rotY={Math.PI / 2} altura={0.5} anim={t >= c.policia ? "idle" : "walk"} tAnim={t} />
+              <Ator url={VORCARO} p={[lerp(-0.75, -0.15, anda), 0, 0.15]} rotY={lerp(Math.PI / 2, Math.PI * 0.85, p(t, c.policia, 0.4))} altura={0.5} t={t} acoes={[{ de: 0, anim: "walk" }, { de: c.policia - 0.6, anim: "idle" }]} />
               {carro > 0.001 ? <Modelo url="carros/sedan" p={[lerp(-3.3, -0.85, carro), 0, 0.85]} rotY={Math.PI / 2} alvo={{ comp: 0.8 }} tinta="#5b7fd6" /> : null}
               <Modelo url="natureza/tree_oak" p={[-0.85, 0, -2.2]} alvo={{ altura: 1.0 }} />
             </group>
@@ -172,7 +172,7 @@ export const Master3: React.FC = () => {
               <Modelo url="comercial/building-a" p={[0.25, 0, -1.7]} alvo={{ largura: 1.1 }} />
               <Letreiro p={[0.3, 0.62, -0.6]} cor={virouMaster ? C.destaque : "#c9c6bb"} />
               <B s={[0.5, 0.12, 0.5]} p={[-0.55, 0.06, 0.2]} cor="#e8e2d0" />
-              <Boneco url={VORCARO} p={[-0.55, 0.12, 0.2]} rotY={0.25} altura={0.56} anim={t >= c.lucro ? "emote-yes" : "idle"} tAnim={t} />
+              <Ator url={VORCARO} p={[-0.55, 0.12, 0.2]} rotY={0.25} altura={0.56} t={t} acoes={[{ de: 0, anim: "idle" }, { de: c.maxima, anim: "interact-right" }, { de: c.master - 0.1, anim: "emote-yes" }, { de: c.lucro + 0.6, anim: "jump" }]} />
               {pilha > 0.01
                 ? Array.from({ length: Math.round(pilha * 8) }, (_, j) => (
                     <group key={j} position={[0.85 + (j % 2) * 0.17, 0.03 + Math.floor(j / 2) * 0.06, 0.3]}>
@@ -188,7 +188,7 @@ export const Master3: React.FC = () => {
           {naC ? (
             <group position={CX}>
               <Modelo url="comercial/building-c" p={[0, 0, -1.6]} alvo={{ largura: 1.5 }} />
-              <Boneco url={VORCARO} p={[xBoneco, 0, 0.1]} rotY={sai > 0.02 && sai < 0.98 ? Math.PI / 2 : volta > 0.02 && volta < 0.98 ? -Math.PI / 2 : 0} altura={0.56} anim={(sai > 0.02 && sai < 0.98) || (volta > 0.02 && volta < 0.98) ? "walk" : "idle"} tAnim={t} />
+              <Ator url={VORCARO} p={[xBoneco, 0, 0.1]} rotY={sai > 0.02 && sai < 0.98 ? Math.PI / 2 : volta > 0.02 && volta < 0.98 ? -Math.PI / 2 : 0} altura={0.56} t={t} acoes={[{ de: 0, anim: "idle" }, { de: c.solto - 0.3, anim: "walk" }, { de: c.solto + 0.7, anim: "idle" }, { de: c.supremo - 0.3, anim: "walk" }, { de: c.supremo + 0.7, anim: "idle" }]} />
               <Modelo url="natureza/tree_oak" p={[1.15, 0, -1.9]} alvo={{ altura: 1.0 }} />
             </group>
           ) : null}
@@ -197,7 +197,7 @@ export const Master3: React.FC = () => {
             <group position={DX}>
               <B s={[0.06, 0.5, 0.06]} p={[-1.42, 0.25, 0.15]} cor={C.ok} />
               {fila.map(({ i, x, z }) => (
-                <Boneco key={i} url={PESSOAS[i % PESSOAS.length]} p={[x, 0, z]} rotY={-Math.PI / 2} altura={0.46} anim="idle" tAnim={t + i * 0.3} s={i >= 9 && t < c.limite - 0.3 ? 0 : 1} />
+                <Ator key={i} url={PESSOAS[i % PESSOAS.length]} p={[x, 0, z]} rotY={-Math.PI / 2} altura={0.46} t={t} fase={i * 0.3} entra={i >= 9 ? c.limite - 0.3 + (i - 9) * 0.15 : undefined} acoes={[{ de: -1, anim: "idle" }, ...(i >= 9 ? [{ de: c.limite + 0.4, anim: "emote-no", vezes: 2 }] : [{ de: c.quem + 0.3 + (i % 3) * 0.2, anim: i % 2 ? "emote-yes" : "interact-right" }]), { de: c.cadeiras + (i % 4) * 0.15, anim: "jump" }]} />
               ))}
               {t >= c.limite - 0.3
                 ? [9, 10, 11].map((i) => <B key={i} s={[0.18, 0.02, 0.18]} p={[-1.2 + i * 0.215, 0.012, 0.15]} cor={C.alerta} />)
