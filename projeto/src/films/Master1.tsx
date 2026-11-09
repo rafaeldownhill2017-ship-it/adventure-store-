@@ -174,7 +174,7 @@ export const Master1: React.FC = () => {
     add({ p: [DX[0], 2.0, -1.6], s: mola(T3 + 0.15, 220, 13), txt: "Banco Master", cor: "#ffffff", tam: 0.9 });
     if (t >= c.novembro - 0.4) add({ p: [DX[0] - 0.75, 1.3, 0.4], s: mola(c.novembro - 0.4, 220, 13), tipo: "card", titulo: "BANCO CENTRAL", txt: "18/11/2025", cor: "#ffffff", tam: 0.78 });
     if (t >= c.liquidacao - 0.15) add({ p: [DX[0] + 0.3, 0.55, 0.6], s: mola(c.liquidacao - 0.15, 220, 13), txt: "liquidação extrajudicial", cor: C.alerta, tinta: "#fff", tam: 0.8 });
-    if (t >= c.policia - 0.1) add({ p: [DX[0] - 0.9, 0.55, 1.4], s: mola(c.policia - 0.1, 240, 12), txt: "Polícia Federal · mesmo dia", cor: "#1f3b7a", tinta: "#fff", tam: 0.78 });
+    if (t >= c.policia - 0.1) add({ p: [DX[0] - 0.9, 0.55, 1.4], s: mola(c.policia - 0.1, 240, 12), txt: "Polícia Federal · noite de 17/11", cor: "#1f3b7a", tinta: "#fff", tam: 0.78 });
   }
 
   // ---------------- estação E · quem paga
