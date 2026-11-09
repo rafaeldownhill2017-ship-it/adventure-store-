@@ -17,7 +17,8 @@ const browserExecutable = process.env.REMOTION_BROWSER ?? null;
 const concurrency = Number(process.env.REMOTION_CONCURRENCY ?? 2);
 
 const serveUrl = await bundle({ entryPoint: join(raiz, "src", "index.ts"), publicDir: join(raiz, "public") });
-const composition = await selectComposition({ serveUrl, id, chromiumOptions: { gl }, browserExecutable });
+const timeoutInMilliseconds = 240000;
+const composition = await selectComposition({ serveUrl, id, chromiumOptions: { gl }, browserExecutable, timeoutInMilliseconds });
 const dir = join(raiz, "out", "blocos", id);
 mkdirSync(dir, { recursive: true });
 mkdirSync(join(raiz, "entrega"), { recursive: true });
@@ -31,7 +32,7 @@ for (const [k, [a, b]] of blocos.entries()) {
   const arq = join(dir, `${String(k).padStart(3, "0")}.mp4`);
   if (existsSync(arq)) continue;
   const tmp = `${arq}.parcial.mp4`;
-  await renderMedia({ serveUrl, composition, codec: "h264", crf: 15, muted: true, outputLocation: tmp, imageFormat: "jpeg", jpegQuality: 95, concurrency, frameRange: [a, b], chromiumOptions: { gl }, browserExecutable });
+  await renderMedia({ serveUrl, composition, codec: "h264", crf: 15, muted: true, outputLocation: tmp, imageFormat: "jpeg", jpegQuality: 95, concurrency, frameRange: [a, b], chromiumOptions: { gl }, browserExecutable, timeoutInMilliseconds });
   renameSync(tmp, arq);
   console.log(`${id}: bloco ${k + 1}/${blocos.length} pronto (quadros ${a}-${b}) · ${((Date.now() - t0) / 60000).toFixed(1)} min`);
 }
