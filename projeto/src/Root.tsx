@@ -10,6 +10,7 @@ import dMaster2 from "./data/master2.json";
 import { Master2 } from "./films/Master2";
 import dMaster3 from "./data/master3.json";
 import { Master3 } from "./films/Master3";
+import { Vitrine } from "./films/Vitrine";
 import { FontGate } from "./lib/fonts";
 import { Timeline, TimelineCtx } from "./lib/time";
 
@@ -37,10 +38,21 @@ const filmes = [
   { id: "master3", data: dMaster3 as Timeline, C: filme(dMaster3 as Timeline, Master3) },
 ];
 
+// Vitrine das peças de lib/objetos.tsx: sem voz e sem trilha (não passa pelo `filme`, que toca o mix no Studio).
+const dVitrine: Timeline = { id: "vitrine", duracao: 12, fimVoz: 12, cues: {}, palavras: [] };
+const VitrineComp: React.FC = () => (
+  <TimelineCtx.Provider value={dVitrine}>
+    <FontGate>
+      <Vitrine />
+    </FontGate>
+  </TimelineCtx.Provider>
+);
+
 export const Root: React.FC = () => (
   <>
     {filmes.map(({ id, data, C }) => (
       <Composition key={id} id={id} component={C} durationInFrames={Math.ceil(data.duracao * FPS)} fps={FPS} width={W} height={H} />
     ))}
+    <Composition id="vitrine" component={VitrineComp} durationInFrames={dVitrine.duracao * FPS} fps={FPS} width={W} height={H} />
   </>
 );
