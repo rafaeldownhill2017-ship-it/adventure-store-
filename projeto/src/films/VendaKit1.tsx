@@ -76,12 +76,12 @@ export const VendaKit1: React.FC = () => {
   const T5 = c.dois - 0.4; // "E tem dois jeitos"
   const T6 = c.custa - 0.8; // "Quer saber quanto custa?" (cliente fica até aqui)
   const blocos: [number, V3, number][] = [
-    [0, A, 10.2],
-    [T1, R, 7.6],
-    [T2, P, 9.4],
-    [T3, F, 11.0],
-    [T4, K_, 9.8],
-    [T5, D, 10.0],
+    [0, A, 10.8],
+    [T1, R, 8.1],
+    [T2, P, 9.9],
+    [T3, F, 11.7],
+    [T4, K_, 10.4],
+    [T5, D, 10.6],
     [T6, G, 6.8],
   ];
   const K: Key[] = [];
@@ -97,7 +97,7 @@ export const VendaKit1: React.FC = () => {
     const t1 = i < blocos.length - 1 ? blocos[i + 1][0] : 1e9;
     return t >= t0 - 0.05 && t < t1;
   };
-  const incl = lerp(0, -0.85, p(t, c.tomate - 0.2, 0.9, ease.back)); // a caixa de tomate pesa mais (custa mais)
+  const incl = lerp(Math.sin(t * 5) * 0.22 * Math.max(0, 1 - t / 4.5), -0.85, p(t, c.tomate - 0.2, 0.9, ease.back)); // oscila desde o 1º quadro; depois o tomate pesa mais (custa mais)
   const vidAgora = VIDS[Math.floor(t * 4) % 4];
 
   return (
@@ -162,8 +162,8 @@ export const VendaKit1: React.FC = () => {
             <Placa p={[-0.85, 1.5, 0.2]} txt="SEU PERFIL" cor="#5b3a8c" k={p(t, c.crescer - 0.2, 0.6, (x) => x)} larg={0.66} />
             <Pedestal p={[0.85, 0, 0]} raio={0.5} aro="#ffcf3a" />
             <Modelo url="comercial/building-a" p={[0.85, TOPO_PEDESTAL, -0.1]} alvo={{ largura: 0.62 }} s={mola(c.comercio - 0.3, 200, 12)} />
-            <Placa p={[0.75, 1.95, 0.2]} txt="COMÉRCIO DO BAIRRO" cor="#1d1d1d" k={p(t, c.comercio - 0.1, 0.6, (x) => x)} larg={0.95} s={0.9} />
-            <PilhaMoedas p={[0.3, 0, 0.85]} k={p(t, c.cliente - 0.1, 1.2, (x) => x)} max={9} s={0.7} />
+            <Placa p={[0.7, 1.95, 0.2]} txt="COMÉRCIO DO BAIRRO" cor="#1d1d1d" k={p(t, c.comercio - 0.1, 0.6, (x) => x)} larg={1.05} s={1.0} />
+            <PilhaMoedas p={[0.25, 0, 0.45]} k={p(t, c.cliente - 0.1, 1.2, (x) => x)} max={9} s={0.7} />
           </group>
         ) : null}
 
@@ -177,7 +177,7 @@ export const VendaKit1: React.FC = () => {
 
       {/* camada de topo */}
       <CardNumero t={t} de={-0.6} ate={c.tomate - 0.4} titulo="ESTE VÍDEO" valor="feito por IA" />
-      <CardNumero t={t} de={c.tomate - 0.2} ate={T1 - 0.2} titulo="O KIT QUE FAZ ELE CUSTA" valor="menos que 1 caixa de tomate" cor={C.alerta} tinta="#ffffff" />
+      <CardNumero t={t} de={c.tomate - 0.2} ate={T1 - 0.2} titulo="O KIT QUE FAZ ELE CUSTA" valor="menos que 1 caixa de tomate" cor={C.destaque} />
       <CardNumero t={t} de={c.rolando - 0.1} ate={T2 - 0.2} titulo="ENQUANTO VOCÊ ROLA O FEED" valor="o dinheiro vai pra quem posta" />
       <CardNumero t={t} de={c.dez - 0.2} ate={c.tres - 0.3} titulo="UM DOS MEUS PERFIS · 6 VÍDEOS" valor="10 mi de views" cor={C.destaque} />
       <CardNumero t={t} de={c.tres - 0.1} ate={T3 - 0.2} titulo="ESTE AQUI SAIU JUNTO COM OUTROS 3" valor="4 vídeos · 1 dia" />
@@ -187,7 +187,6 @@ export const VendaKit1: React.FC = () => {
       <CardNumero t={t} de={c.cliente - 0.1} ate={T6 - 0.2} titulo="SEM PROMESSA, SÓ A CONTA" valor="1 cliente já pode pagar o kit" cor={C.destaque} />
       <CardNumero t={t} de={c.custa - 0.2} ate={c.comenta - 0.3} titulo="E O PREÇO?" valor="quer saber quanto custa?" />
       <CardNumero t={t} de={c.comenta - 0.1} ate={99} titulo="TE MANDO TUDO NO DIRECT" valor="comenta PROMPT" cor="#ffcf3a" />
-      <SeloPrompt t={t} de={c.fim + 0.1} />
 
       <PalavraGrande destaque={DESTAQUE} ate={c.fim + 0.1} />
       {blocos.slice(1).map(([x]) => (

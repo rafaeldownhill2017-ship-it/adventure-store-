@@ -1335,7 +1335,7 @@ export const CuboKit: React.FC<{ p?: V3; s?: number; gira?: number }> = ({ p: po
         <mesh castShadow material={lisoMat("#ffcf3a", 0.3, 0.1)}>
           <boxGeometry args={[0.4, 0.4, 0.4]} />
         </mesh>
-        <mesh position={[0, 0.201, 0]} material={lisoMat("#ffe27a", 0.3)}>
+        <mesh position={[0, 0.201, 0]} rotation={[-Math.PI / 2, 0, 0]} material={lisoMat("#ffe27a", 0.3)}>
           <planeGeometry args={[0.39, 0.39]} />
         </mesh>
       </group>
@@ -1428,7 +1428,7 @@ export const CaixaAbre: React.FC<{ p?: V3; s?: number; abre?: number; cor?: stri
         <B s={[0.66, 0.1, 0.66]} cor={escurece(cor, 1.2)} />
         <B s={[0.11, 0.11, 0.67]} cor="#ffcf3a" />
       </group>
-      {abre > 0.2 ? <PlanoTexto linhas={[[rotulo, 1, "#1d2230"]]} fundo="#ffffff" tam={[0.62 * k, 0.2 * k]} p={[0, 0.62 + k * 0.1, 0.1]} px={[440, 142]} /> : null}
+      {abre > 0.2 ? <PlanoTexto linhas={[[rotulo, 1, "#1d2230"]]} fundo="#ffffff" tam={[0.62 * k * Math.max(1, rotulo.length / 9), 0.2 * k]} p={[0, 0.62 + k * 0.1, 0.1]} px={[Math.round(440 * Math.max(1, rotulo.length / 9)), 142]} /> : null}
     </group>
   );
 };
