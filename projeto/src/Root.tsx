@@ -10,6 +10,8 @@ import dMaster2 from "./data/master2.json";
 import { Master2 } from "./films/Master2";
 import dMaster3 from "./data/master3.json";
 import { Master3 } from "./films/Master3";
+import dCarro1 from "./data/carro1.json";
+import { Carro1 } from "./films/Carro1";
 import { Vitrine } from "./films/Vitrine";
 import { FontGate } from "./lib/fonts";
 import { Timeline, TimelineCtx } from "./lib/time";
@@ -36,6 +38,7 @@ const filmes = [
   { id: "master1", data: dMaster1 as Timeline, C: filme(dMaster1 as Timeline, Master1) },
   { id: "master2", data: dMaster2 as Timeline, C: filme(dMaster2 as Timeline, Master2) },
   { id: "master3", data: dMaster3 as Timeline, C: filme(dMaster3 as Timeline, Master3) },
+  { id: "carro1", data: dCarro1 as Timeline, C: filme(dCarro1 as Timeline, Carro1) },
 ];
 
 // Vitrine das peças de lib/objetos.tsx: sem voz e sem trilha (não passa pelo `filme`, que toca o mix no Studio).

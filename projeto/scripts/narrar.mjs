@@ -4,7 +4,8 @@
 //   npm run narrar -- --filme=exemplo  gera a voz de um vídeo (ou de todos, sem --filme)
 //   npm run narrar -- --voz=<id>       usa outra voz sem editar o roteiro
 import { ElevenLabsClient } from "@elevenlabs/elevenlabs-js";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
+import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -50,7 +51,16 @@ for (const f of filmes) {
     .withRawResponse();
   const base = join(saida, `${f.id}--${vozId}`);
   await writeFile(`${base}.mp3`, Buffer.from(data.audioBase64, "base64"));
-  await writeFile(`${base}.alinhamento.json`, JSON.stringify({ texto, voz: vozId, modelo: roteiros.modelo, alignment: data.alignment }, null, 2));
+  // "velocidade" no roteiro (ex.: 1.12): acelera com ffmpeg (atempo, sem mudar o tom) e reescala os tempos das letras.
+  const vel = Number(f.velocidade ?? roteiros.velocidade ?? 1);
+  if (vel !== 1 && data.alignment) {
+    await rename(`${base}.mp3`, `${base}.original.mp3`);
+    execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-i", `${base}.original.mp3`, "-filter:a", `atempo=${vel}`, "-b:a", "128k", `${base}.mp3`]);
+    const a = data.alignment;
+    a.characterStartTimesSeconds = a.characterStartTimesSeconds.map((x) => x / vel);
+    a.characterEndTimesSeconds = a.characterEndTimesSeconds.map((x) => x / vel);
+  }
+  await writeFile(`${base}.alinhamento.json`, JSON.stringify({ texto, voz: vozId, modelo: roteiros.modelo, velocidade: vel, alignment: data.alignment }, null, 2));
   const fim = data.alignment?.characterEndTimesSeconds?.at(-1);
   console.log(`${f.id}: ${fim?.toFixed(1) ?? "?"} s · ${rawResponse.headers.get("x-character-count") ?? texto.length} caracteres · ${base}.mp3`);
 }
