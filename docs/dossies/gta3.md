@@ -28,3 +28,22 @@ Levantado em 20/11/2026. Formato inspirado no Reel do GTA 6 do @ludificando.br (
 - gamevicio, preço do PS5: https://www.gamevicio.com/ofertas/preco-ps5/
 - gameoverdrive, PS5 na Black Friday 2026: https://gameoverdrive.com.br/ps5-mais-barato-black-friday-2026-vale-esperar/
 - Agência Gov, salário mínimo 2026: https://agenciagov.ebc.com.br/noticias/202512/publicado-decreto-que-reajusta-salario-minimo-para-r-1-621-a-partir-de-1o-de-janeiro
+
+## Legenda do post (20/11/2026)
+Pra jogar GTA 6, quem ganha salário mínimo trabalha 753 horas. O motivo? O console. 🎮
+
+GTA 6 (edição padrão): R$ 449,90
+Não roda no console antigo → console novo com disco: R$ 5.099,90 (preço sugerido)
+Total: R$ 5.549,80 = 3,4 salários mínimos ≈ 94 dias de trabalho
+
+E a conta que ninguém faz: esse dinheiro no Tesouro Selic por 12 meses rende ≈ R$ 625. O juro pagava um GTA e ainda sobrava troco (se as taxas ficarem).
+
+Não é pra deixar de jogar. É pra saber quanto custa.
+
+👇 Comenta: COMPREI, BLACK FRIDAY ou PARCELADO?
+📤 Manda pro amigo que já tá jogando.
+
+#gta6 #ps5 #salariominimo #educacaofinanceira #pesonobolso
+
+### Comentário fixado
+📌 Fontes: preço do GTA 6 R$ 449,90 (Tecnoblog); console novo com disco R$ 5.099,90, preço sugerido desde 02/04/2026 (gamevicio); salário mínimo R$ 1.621 = R$ 7,37/h (Decreto 12.797/2025); Tesouro Selic ≈ 11,3% líquido em 12 meses com Selic 13,75% (IR de 17,5%), se as taxas ficarem. Voz gerada por IA.
