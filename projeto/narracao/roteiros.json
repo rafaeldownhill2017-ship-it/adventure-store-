@@ -7,7 +7,7 @@
     "nome": "Liam (animado)"
   },
   "ajustes": {
-    "stability": 0.0,
+    "stability": 0,
     "similarityBoost": 0.75
   },
   "assinatura": "",
@@ -73,6 +73,13 @@
       "voz": "36rVQA1AOIPwpA3Hg1tC",
       "velocidade": 1.12,
       "texto": "O GTA 6 pode ter custado umas trinta Torres Eiffel. Tá rodando por aí que custou quase o mesmo que uma. Fui conferir. E no fim tem uma obra que nem seis GTAs pagam. Começa por Paris: a Torre Eiffel saiu uns quarenta milhões de dólares, em dinheiro de hoje. O GTA 6? A Rockstar nunca contou, mas os analistas falam em até um bilhão e meio de dólares. Quase nove bilhões de reais. Nova York: o Empire State, em dinheiro de hoje, uns seiscentos e oitenta milhões. Cabem até dois Empire State dentro do GTA. Dubai: o Burj Khalifa, o prédio mais alto do mundo, um bilhão e meio. Aqui empata. E a obra que nem seis GTAs pagam? O telescópio James Webb, que viu as galáxias mais antigas já registradas: dez bilhões de dólares. E aqui no Brasil? Console e jogo: cinco mil quinhentos e cinquenta reais. Manda esse vídeo pra quem tá jogando GTA 6."
+    },
+    {
+      "id": "masterstf",
+      "titulo": "Caso Master: o capítulo do Supremo (avulso)",
+      "voz": "36rVQA1AOIPwpA3Hg1tC",
+      "velocidade": 1.12,
+      "texto": "Segundo o UOL, uma versão do relatório da Polícia Federal levantava a suspeita de que Moraes teria antecipado um voto ao dono do Banco Master. E a própria direção da PF rejeitou esse texto. Tirou dois delegados da chefia e mandou refazer. No celular de Daniel Vorcaro, a PF achou conversas citando ministros do Supremo. Foram dez relatórios. Seis não seguiram. Quatro foram pra Procuradoria-Geral da República: Moraes, Toffoli, Nunes Marques e André Mendonça. Agora a PGR decide se arquiva, pede mais investigação ou abre inquérito. Moraes não comentou, nem a defesa de Vorcaro. Ser citado não é crime, e ninguém foi acusado. E a conta do Master? Oitocentos mil credores foram cobertos pelo FGC, o fundo bancado pelos bancos que garante o seu dinheiro. Manda pra quem tem dinheiro parado no banco, e segue pra ver o que a PGR decide."
     }
   ]
 }

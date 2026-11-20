@@ -1,0 +1,746 @@
+{
+ "id": "masterstf",
+ "voz": "36rVQA1AOIPwpA3Hg1tC",
+ "preRoll": 0.3,
+ "duracao": 51.396,
+ "fimVoz": 49.596,
+ "cues": {
+  "uol": 0.693,
+  "moraes": 4.086,
+  "voto": 5.764,
+  "rejeitou": 9.561,
+  "delegados": 11.581,
+  "refazer": 13.087,
+  "celular": 14.113,
+  "ministros": 16.862,
+  "dez": 18.925,
+  "seis": 19.967,
+  "quatro": 21.563,
+  "nomes": 24.002,
+  "pgr": 28.073,
+  "arquiva": 28.977,
+  "investigacao": 30.143,
+  "inquerito": 31.437,
+  "comentou": 32.797,
+  "citado": 35.322,
+  "acusado": 36.764,
+  "conta": 37.912,
+  "oitocentos": 38.95,
+  "fgc": 41.611,
+  "garante": 44.074,
+  "manda": 45.247,
+  "fim": 49.086
+ },
+ "palavras": [
+  {
+   "w": "Segundo",
+   "start": 0.3,
+   "end": 0.586
+  },
+  {
+   "w": "o",
+   "start": 0.621,
+   "end": 0.657
+  },
+  {
+   "w": "UOL,",
+   "start": 0.693,
+   "end": 0.943
+  },
+  {
+   "w": "uma",
+   "start": 0.979,
+   "end": 1.086
+  },
+  {
+   "w": "versão",
+   "start": 1.129,
+   "end": 1.371
+  },
+  {
+   "w": "do",
+   "start": 1.396,
+   "end": 1.443
+  },
+  {
+   "w": "relatório",
+   "start": 1.479,
+   "end": 1.871
+  },
+  {
+   "w": "da",
+   "start": 1.896,
+   "end": 1.943
+  },
+  {
+   "w": "Polícia",
+   "start": 1.996,
+   "end": 2.3
+  },
+  {
+   "w": "Federal",
+   "start": 2.354,
+   "end": 2.729
+  },
+  {
+   "w": "levantava",
+   "start": 2.818,
+   "end": 3.371
+  },
+  {
+   "w": "a",
+   "start": 3.407,
+   "end": 3.443
+  },
+  {
+   "w": "suspeita",
+   "start": 3.496,
+   "end": 3.871
+  },
+  {
+   "w": "de",
+   "start": 3.896,
+   "end": 3.943
+  },
+  {
+   "w": "que",
+   "start": 3.961,
+   "end": 4.014
+  },
+  {
+   "w": "Moraes",
+   "start": 4.086,
+   "end": 4.657
+  },
+  {
+   "w": "teria",
+   "start": 4.746,
+   "end": 5.086
+  },
+  {
+   "w": "antecipado",
+   "start": 5.121,
+   "end": 5.657
+  },
+  {
+   "w": "um",
+   "start": 5.681,
+   "end": 5.729
+  },
+  {
+   "w": "voto",
+   "start": 5.764,
+   "end": 6.086
+  },
+  {
+   "w": "ao",
+   "start": 6.204,
+   "end": 6.443
+  },
+  {
+   "w": "dono",
+   "start": 6.496,
+   "end": 6.729
+  },
+  {
+   "w": "do",
+   "start": 6.753,
+   "end": 6.8
+  },
+  {
+   "w": "Banco",
+   "start": 6.836,
+   "end": 7.014
+  },
+  {
+   "w": "Master.",
+   "start": 7.076,
+   "end": 7.514
+  },
+  {
+   "w": "E",
+   "start": 7.906,
+   "end": 8.085
+  },
+  {
+   "w": "a",
+   "start": 8.121,
+   "end": 8.156
+  },
+  {
+   "w": "própria",
+   "start": 8.214,
+   "end": 8.585
+  },
+  {
+   "w": "direção",
+   "start": 8.628,
+   "end": 8.942
+  },
+  {
+   "w": "da",
+   "start": 8.966,
+   "end": 9.014
+  },
+  {
+   "w": "PF",
+   "start": 9.156,
+   "end": 9.442
+  },
+  {
+   "w": "rejeitou",
+   "start": 9.561,
+   "end": 10.156
+  },
+  {
+   "w": "esse",
+   "start": 10.185,
+   "end": 10.299
+  },
+  {
+   "w": "texto.",
+   "start": 10.371,
+   "end": 10.799
+  },
+  {
+   "w": "Tirou",
+   "start": 10.927,
+   "end": 11.319
+  },
+  {
+   "w": "dois",
+   "start": 11.362,
+   "end": 11.534
+  },
+  {
+   "w": "delegados",
+   "start": 11.581,
+   "end": 11.962
+  },
+  {
+   "w": "da",
+   "start": 12.01,
+   "end": 12.105
+  },
+  {
+   "w": "chefia",
+   "start": 12.162,
+   "end": 12.534
+  },
+  {
+   "w": "e",
+   "start": 12.641,
+   "end": 12.748
+  },
+  {
+   "w": "mandou",
+   "start": 12.791,
+   "end": 13.034
+  },
+  {
+   "w": "refazer.",
+   "start": 13.087,
+   "end": 13.605
+  },
+  {
+   "w": "No",
+   "start": 13.782,
+   "end": 14.068
+  },
+  {
+   "w": "celular",
+   "start": 14.113,
+   "end": 14.425
+  },
+  {
+   "w": "de",
+   "start": 14.449,
+   "end": 14.497
+  },
+  {
+   "w": "Daniel",
+   "start": 14.538,
+   "end": 14.782
+  },
+  {
+   "w": "Vorcaro,",
+   "start": 14.836,
+   "end": 15.425
+  },
+  {
+   "w": "a",
+   "start": 15.193,
+   "end": 15.229
+  },
+  {
+   "w": "PF",
+   "start": 15.324,
+   "end": 15.514
+  },
+  {
+   "w": "achou",
+   "start": 15.55,
+   "end": 15.729
+  },
+  {
+   "w": "conversas",
+   "start": 15.782,
+   "end": 16.3
+  },
+  {
+   "w": "citando",
+   "start": 16.371,
+   "end": 16.8
+  },
+  {
+   "w": "ministros",
+   "start": 16.862,
+   "end": 17.371
+  },
+  {
+   "w": "do",
+   "start": 17.396,
+   "end": 17.443
+  },
+  {
+   "w": "Supremo.",
+   "start": 17.496,
+   "end": 18.014
+  },
+  {
+   "w": "Foram",
+   "start": 18.39,
+   "end": 18.854
+  },
+  {
+   "w": "dez",
+   "start": 18.925,
+   "end": 19.14
+  },
+  {
+   "w": "relatórios.",
+   "start": 19.193,
+   "end": 20.14
+  },
+  {
+   "w": "Seis",
+   "start": 19.967,
+   "end": 20.3
+  },
+  {
+   "w": "não",
+   "start": 20.371,
+   "end": 20.586
+  },
+  {
+   "w": "seguiram.",
+   "start": 20.637,
+   "end": 21.157
+  },
+  {
+   "w": "Quatro",
+   "start": 21.563,
+   "end": 22.063
+  },
+  {
+   "w": "foram",
+   "start": 22.111,
+   "end": 22.349
+  },
+  {
+   "w": "pra",
+   "start": 22.385,
+   "end": 22.492
+  },
+  {
+   "w": "Procuradoria-Geral",
+   "start": 22.528,
+   "end": 23.349
+  },
+  {
+   "w": "da",
+   "start": 23.373,
+   "end": 23.42
+  },
+  {
+   "w": "República:",
+   "start": 23.474,
+   "end": 24.206
+  },
+  {
+   "w": "Moraes,",
+   "start": 24.002,
+   "end": 24.538
+  },
+  {
+   "w": "Toffoli,",
+   "start": 25.352,
+   "end": 26.066
+  },
+  {
+   "w": "Nunes",
+   "start": 25.458,
+   "end": 25.756
+  },
+  {
+   "w": "Marques",
+   "start": 25.809,
+   "end": 26.184
+  },
+  {
+   "w": "e",
+   "start": 26.291,
+   "end": 26.399
+  },
+  {
+   "w": "André",
+   "start": 26.446,
+   "end": 26.684
+  },
+  {
+   "w": "Mendonça.",
+   "start": 26.727,
+   "end": 27.327
+  },
+  {
+   "w": "Agora",
+   "start": 27.549,
+   "end": 27.93
+  },
+  {
+   "w": "a",
+   "start": 27.966,
+   "end": 28.001
+  },
+  {
+   "w": "PGR",
+   "start": 28.073,
+   "end": 28.43
+  },
+  {
+   "w": "decide",
+   "start": 28.481,
+   "end": 28.787
+  },
+  {
+   "w": "se",
+   "start": 28.834,
+   "end": 28.93
+  },
+  {
+   "w": "arquiva,",
+   "start": 28.977,
+   "end": 29.43
+  },
+  {
+   "w": "pede",
+   "start": 29.55,
+   "end": 29.961
+  },
+  {
+   "w": "mais",
+   "start": 29.99,
+   "end": 30.104
+  },
+  {
+   "w": "investigação",
+   "start": 30.143,
+   "end": 30.818
+  },
+  {
+   "w": "ou",
+   "start": 30.937,
+   "end": 31.175
+  },
+  {
+   "w": "abre",
+   "start": 31.218,
+   "end": 31.39
+  },
+  {
+   "w": "inquérito.",
+   "start": 31.437,
+   "end": 31.961
+  },
+  {
+   "w": "Moraes",
+   "start": 32.103,
+   "end": 32.603
+  },
+  {
+   "w": "não",
+   "start": 32.639,
+   "end": 32.746
+  },
+  {
+   "w": "comentou,",
+   "start": 32.797,
+   "end": 33.246
+  },
+  {
+   "w": "nem",
+   "start": 33.356,
+   "end": 33.624
+  },
+  {
+   "w": "a",
+   "start": 33.66,
+   "end": 33.696
+  },
+  {
+   "w": "defesa",
+   "start": 33.749,
+   "end": 34.124
+  },
+  {
+   "w": "de",
+   "start": 34.148,
+   "end": 34.196
+  },
+  {
+   "w": "Vorcaro.",
+   "start": 34.249,
+   "end": 34.767
+  },
+  {
+   "w": "Ser",
+   "start": 34.947,
+   "end": 35.268
+  },
+  {
+   "w": "citado",
+   "start": 35.322,
+   "end": 35.697
+  },
+  {
+   "w": "não",
+   "start": 35.733,
+   "end": 35.84
+  },
+  {
+   "w": "é",
+   "start": 35.875,
+   "end": 35.911
+  },
+  {
+   "w": "crime,",
+   "start": 35.971,
+   "end": 36.411
+  },
+  {
+   "w": "e",
+   "start": 36.252,
+   "end": 36.288
+  },
+  {
+   "w": "ninguém",
+   "start": 36.323,
+   "end": 36.573
+  },
+  {
+   "w": "foi",
+   "start": 36.609,
+   "end": 36.716
+  },
+  {
+   "w": "acusado.",
+   "start": 36.764,
+   "end": 37.359
+  },
+  {
+   "w": "E",
+   "start": 37.65,
+   "end": 37.793
+  },
+  {
+   "w": "a",
+   "start": 37.829,
+   "end": 37.864
+  },
+  {
+   "w": "conta",
+   "start": 37.912,
+   "end": 38.15
+  },
+  {
+   "w": "do",
+   "start": 38.197,
+   "end": 38.293
+  },
+  {
+   "w": "Master?",
+   "start": 38.354,
+   "end": 38.971
+  },
+  {
+   "w": "Oitocentos",
+   "start": 38.95,
+   "end": 39.646
+  },
+  {
+   "w": "mil",
+   "start": 39.7,
+   "end": 39.861
+  },
+  {
+   "w": "credores",
+   "start": 39.918,
+   "end": 40.432
+  },
+  {
+   "w": "foram",
+   "start": 40.479,
+   "end": 40.718
+  },
+  {
+   "w": "cobertos",
+   "start": 40.771,
+   "end": 41.289
+  },
+  {
+   "w": "pelo",
+   "start": 41.332,
+   "end": 41.504
+  },
+  {
+   "w": "FGC,",
+   "start": 41.611,
+   "end": 42.218
+  },
+  {
+   "w": "o",
+   "start": 42.414,
+   "end": 42.521
+  },
+  {
+   "w": "fundo",
+   "start": 42.578,
+   "end": 42.914
+  },
+  {
+   "w": "bancado",
+   "start": 42.935,
+   "end": 43.235
+  },
+  {
+   "w": "pelos",
+   "start": 43.271,
+   "end": 43.449
+  },
+  {
+   "w": "bancos",
+   "start": 43.507,
+   "end": 43.878
+  },
+  {
+   "w": "que",
+   "start": 43.914,
+   "end": 44.021
+  },
+  {
+   "w": "garante",
+   "start": 44.074,
+   "end": 44.449
+  },
+  {
+   "w": "o",
+   "start": 44.503,
+   "end": 44.557
+  },
+  {
+   "w": "seu",
+   "start": 44.583,
+   "end": 44.664
+  },
+  {
+   "w": "dinheiro.",
+   "start": 44.711,
+   "end": 45.235
+  },
+  {
+   "w": "Manda",
+   "start": 45.247,
+   "end": 45.532
+  },
+  {
+   "w": "pra",
+   "start": 45.568,
+   "end": 45.675
+  },
+  {
+   "w": "quem",
+   "start": 45.704,
+   "end": 45.818
+  },
+  {
+   "w": "tem",
+   "start": 45.854,
+   "end": 45.961
+  },
+  {
+   "w": "dinheiro",
+   "start": 45.993,
+   "end": 46.247
+  },
+  {
+   "w": "parado",
+   "start": 46.3,
+   "end": 46.604
+  },
+  {
+   "w": "no",
+   "start": 46.628,
+   "end": 46.675
+  },
+  {
+   "w": "banco,",
+   "start": 46.735,
+   "end": 47.104
+  },
+  {
+   "w": "e",
+   "start": 47.31,
+   "end": 47.453
+  },
+  {
+   "w": "segue",
+   "start": 47.512,
+   "end": 47.81
+  },
+  {
+   "w": "pra",
+   "start": 47.881,
+   "end": 48.096
+  },
+  {
+   "w": "ver",
+   "start": 48.131,
+   "end": 48.238
+  },
+  {
+   "w": "o",
+   "start": 48.274,
+   "end": 48.31
+  },
+  {
+   "w": "que",
+   "start": 48.328,
+   "end": 48.381
+  },
+  {
+   "w": "a",
+   "start": 48.417,
+   "end": 48.453
+  },
+  {
+   "w": "PGR",
+   "start": 48.56,
+   "end": 49.024
+  },
+  {
+   "w": "decide.",
+   "start": 49.086,
+   "end": 49.596
+  }
+ ]
+}

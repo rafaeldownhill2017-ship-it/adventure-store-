@@ -30,3 +30,26 @@ Levantado em 20/11/2026. Referência de formato: Reel do @ludificando.br enviado
 - Brasil 247: https://www.brasil247.com/brasil/caso-master-pf-entrega-a-pgr-dez-relatorios-sobre-mencoes-a-ministros-do-stf-encontradas-no-celular-de-vorcaro/
 - TNH1 (UOL): https://www.tnh1.com.br/noticia/nid/relatorio-rejeitado-na-pf-cita-suspeita-de-moraes-antecipar-voto-a-vorcaro/
 - Diário do Poder: https://diariodopoder.com.br/brasil-e-regioes/ttc-brasil/relatorio-proibido-da-pf-citava-suspeita-de-moraes-antecipar-voto-favoravel-a-vorcaro
+
+## Validação viral (agente estrategista, 20/11/2026)
+Nota 6,5/10 no roteiro original, aprovado com ajustes:
+- o gancho passou a abrir com o fato mais forte (a versão rejeitada pela PF, "segundo o UOL");
+- saiu a frase "os 10 ministros nas conversas", que tem uma fonte só; agora é "conversas citando ministros do Supremo";
+- saiu "a PF leu tudo", que não tem fonte;
+- entrou "nem a defesa de Vorcaro" (fato 9);
+- o fundo virou "FGC, bancado pelos bancos";
+- o CTA agora pede o compartilhamento.
+
+## Roteiro final (voz Matheus 1,12×, 49 s)
+Segundo o UOL, uma versão do relatório da Polícia Federal levantava a suspeita de que Moraes teria antecipado um voto ao dono do Banco Master. E a própria direção da PF rejeitou esse texto. Tirou dois delegados da chefia e mandou refazer. No celular de Daniel Vorcaro, a PF achou conversas citando ministros do Supremo. Foram dez relatórios. Seis não seguiram. Quatro foram pra Procuradoria-Geral da República: Moraes, Toffoli, Nunes Marques e André Mendonça. Agora a PGR decide se arquiva, pede mais investigação ou abre inquérito. Moraes não comentou, nem a defesa de Vorcaro. Ser citado não é crime, e ninguém foi acusado. E a conta do Master? Oitocentos mil credores foram cobertos pelo FGC, o fundo bancado pelos bancos que garante o seu dinheiro. Manda pra quem tem dinheiro parado no banco, e segue pra ver o que a PGR decide.
+
+## Legenda do post
+A PF mandou refazer o relatório sobre Moraes. Segundo o UOL, a 1ª versão citava a suspeita de um voto antecipado a Vorcaro.
+Dos 10 relatórios sobre ministros citados, 4 foram pra PGR, que pode arquivar, pedir mais investigação ou abrir inquérito.
+Ser citado não é crime, e ninguém foi acusado. Moraes e a defesa de Vorcaro não comentaram.
+Quem cobriu os 800 mil credores do Master foi o FGC, bancado pelos próprios bancos.
+Fontes: UOL (via TNH1), O Livre, A Crítica, Brasil 247 · dados de 20/11/2026.
+#bancomaster #stf #pf #fgc #economia #dinheiro
+
+## Comentário fixado
+📌 Sem torcida: ninguém foi acusado, e ser citado em conversa não é crime. O que importa pro seu bolso é que quem garantiu os credores do Master foi o FGC. Quer que eu explique como o FGC protege o seu dinheiro (e qual é o limite)? Comenta FGC.

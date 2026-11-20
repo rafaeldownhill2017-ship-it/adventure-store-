@@ -105,7 +105,7 @@ export const texturaTexto = (linhas: [string, number, string][], fundo: string |
 };
 
 /** Plano com texto (rótulo de garrafa, placa de fábrica, folha de calendário). */
-const PlanoTexto: React.FC<{ linhas: [string, number, string][]; fundo: string | null; tam: [number, number]; p?: V3; r?: V3; px?: [number, number] }> = ({
+export const PlanoTexto: React.FC<{ linhas: [string, number, string][]; fundo: string | null; tam: [number, number]; p?: V3; r?: V3; px?: [number, number] }> = ({
   linhas,
   fundo,
   tam,
