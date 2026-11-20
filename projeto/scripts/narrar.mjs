@@ -29,8 +29,24 @@ if (args.simular) {
   process.exit(0);
 }
 
-if (!process.env.ELEVENLABS_API_KEY) throw new Error("Falta ELEVENLABS_API_KEY. Copie .env.example para .env.local e cole sua chave (plano pago).");
-const client = new ElevenLabsClient();
+// Sem ELEVENLABS_API_KEY: chamada direta, sem cabeçalho de chave (ambiente em nuvem cujo proxy injeta a chave).
+const viaProxy = !process.env.ELEVENLABS_API_KEY || args.proxy;
+if (viaProxy && args.vozes) throw new Error("Falta ELEVENLABS_API_KEY. Copie .env.example para .env.local e cole sua chave (plano pago).");
+const client = viaProxy ? null : new ElevenLabsClient();
+const ttsDireto = async (vozId, corpo) => {
+  const r = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${vozId}/with-timestamps?output_format=mp3_44100_128`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text: corpo.text, model_id: corpo.modelId, language_code: corpo.languageCode, voice_settings: corpo.voiceSettings && { stability: corpo.voiceSettings.stability, similarity_boost: corpo.voiceSettings.similarityBoost } }),
+  });
+  if (!r.ok) throw new Error(`ElevenLabs ${r.status}: ${(await r.text()).slice(0, 300)} (sem chave local: rode com .env.local no seu computador)`);
+  const j = await r.json();
+  const a = j.alignment;
+  return {
+    data: { audioBase64: j.audio_base64, alignment: a && { characters: a.characters, characterStartTimesSeconds: a.character_start_times_seconds, characterEndTimesSeconds: a.character_end_times_seconds } },
+    rawResponse: r,
+  };
+};
 
 if (args.vozes) {
   const { voices } = await client.voices.getAll();
@@ -46,9 +62,8 @@ for (const f of filmes) {
   const vozId = typeof args.voz === "string" ? args.voz : (f.voz ?? roteiros.voz.id);
   if (!vozId || vozId.startsWith("COLE_AQUI")) throw new Error("Defina o id da voz em narracao/roteiros.json (rode 'npm run vozes').");
   const texto = textoDe(f);
-  const { data, rawResponse } = await client.textToSpeech
-    .convertWithTimestamps(vozId, { text: texto, modelId: roteiros.modelo, languageCode: f.idioma ?? roteiros.idioma, voiceSettings: roteiros.ajustes, outputFormat: "mp3_44100_128" })
-    .withRawResponse();
+  const corpo = { text: texto, modelId: roteiros.modelo, languageCode: f.idioma ?? roteiros.idioma, voiceSettings: roteiros.ajustes, outputFormat: "mp3_44100_128" };
+  const { data, rawResponse } = viaProxy ? await ttsDireto(vozId, corpo) : await client.textToSpeech.convertWithTimestamps(vozId, corpo).withRawResponse();
   const base = join(saida, `${f.id}--${vozId}`);
   await writeFile(`${base}.mp3`, Buffer.from(data.audioBase64, "base64"));
   // "velocidade" no roteiro (ex.: 1.12): acelera com ffmpeg (atempo, sem mudar o tom) e reescala os tempos das letras.
