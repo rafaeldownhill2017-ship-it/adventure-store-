@@ -726,7 +726,7 @@ export const CardNumero: React.FC<{ t: number; de: number; ate: number; valor: s
   antes,
   cor = "#ffffff",
   tinta = "#14211d",
-  top = 210,
+  top = 250,
 }) => {
   const mola = useMolaLocal();
   if (t < de || t > ate + 0.3) return null;

@@ -2,10 +2,10 @@
 //   npm run render -- exemplo
 import { bundle } from "@remotion/bundler";
 import { renderMedia, selectComposition } from "@remotion/renderer";
-import { spawnSync } from "node:child_process";
 import { existsSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { finalizar } from "./finalizar.mjs";
 
 const raiz = join(dirname(fileURLToPath(import.meta.url)), "..");
 const id = process.argv[2];
@@ -33,13 +33,7 @@ await renderMedia({
     if (Math.round(progress * 100) % 10 === 0) process.stdout.write(`\r${id} ${Math.round(progress * 100)}%   `);
   },
 });
-const final = join(raiz, "entrega", `${id}.mp4`);
 const wav = join(raiz, "public", "mix", `${id}.wav`);
-if (!existsSync(wav)) {
-  console.log(`\nSem áudio em ${wav} (rode 'npm run trilha -- ${id}'). Entregando só o vídeo.`);
-  spawnSync("ffmpeg", ["-hide_banner", "-y", "-i", mudo, "-c", "copy", "-movflags", "+faststart", final], { windowsHide: true });
-} else {
-  const r = spawnSync("ffmpeg", ["-hide_banner", "-y", "-i", mudo, "-i", wav, "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac", "-b:a", "256k", "-shortest", "-movflags", "+faststart", final], { windowsHide: true });
-  if (r.status !== 0) throw new Error(r.stderr.toString());
-}
+if (!existsSync(wav)) console.log(`\nSem áudio em ${wav} (rode a trilha). Entregando só o vídeo.`);
+const final = finalizar(id); // 12 Mbps, yuv420p tv, BT.709 (ver scripts/finalizar.mjs)
 console.log(`\n${id}: ${final} (${((Date.now() - t0) / 60000).toFixed(1)} min)`);

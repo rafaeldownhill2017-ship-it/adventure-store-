@@ -109,7 +109,7 @@ const moeda = (t0, g = 0.045, pan = 0) => {
   blip(t0 + 0.05, 3800, 3790, { g: g * 0.7, dur: 0.12, pan, rev: 0.3 });
 };
 for (let k = 0; k < 10; k++) ruidoF(0.15 + k * 0.25, 0.02, { tipo: "bp", f: 3000, Q: 4, g: 0.03, dec: 200, alvo: SFX, pan: (k % 2 ? 0.4 : -0.4) }); // tique-taque
-impacto(c.porra - 0.05, 0.6); // "a porra do console": pancada
+impacto(c.porra + 0.15, 0.5); // "a porra do console": pancada
 whoosh(T1 - 0.05, 0.9, 0.08, -0.6, 0.6);
 pop(c.jogo + 0.3, 1000, 0.05);
 blip(c.ps4 + 0.05, 400, 200, { g: 0.06, dur: 0.4 }); // não roda
@@ -125,7 +125,7 @@ for (let k = 0; k < 8; k++) moeda(c.seiscentos + k * 0.12, 0.04, (k % 3 - 1) * 0
 sino(c.juro + 0.3, [72, 76, 79, 84], { g: 0.035, dur: 1.4 });
 whoosh(T4 - 0.05, 0.9, 0.07, 0.4, -0.4);
 [0, 0.25, 0.5].forEach((d) => pop(c.comenta + d, 1100 + d * 600, 0.05));
-const STING = c.fim + 0.15;
+const STING = d.fimVoz + 0.1; // depois da última palavra (antes caía em cima de "parcelado")
 [36, 43, 48, 52, 55, 60].forEach((m, j) => piano(STING + j * 0.02, m, 0.5 - j * 0.03, { dur: Math.min(3, DUR - STING - 0.1), pan: j * 0.22 - 0.55, rev: 0.6 }));
 
 // =====================================================================

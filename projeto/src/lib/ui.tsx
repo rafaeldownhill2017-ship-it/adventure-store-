@@ -38,7 +38,7 @@ export const PalavraGrande: React.FC<{ ate?: number; destaque?: RegExp; y?: numb
   const t = useT();
   const { palavras } = useTimeline();
   if (t > ate) return null;
-  const i = palavras.findIndex((pw, k) => t >= pw.start - 0.04 && t < (palavras[k + 1]?.start ?? pw.end + 0.4) - 0.04);
+  const i = palavras.findIndex((pw, k) => t >= pw.start - 0.04 && t < Math.max(palavras[k + 1]?.start ?? pw.end + 0.4, pw.start + 0.14) - 0.04); // no mínimo 0,14 s por palavra (palavra curta não pisca)
   if (i < 0) return null;
   const txt = palavras[i].w.replace(/[.,:;!?]+$/, "");
   const k = clamp01((t - palavras[i].start + 0.04) / 0.12);
@@ -52,9 +52,9 @@ export const PalavraGrande: React.FC<{ ate?: number; destaque?: RegExp; y?: numb
           fontSize: txt.length > 11 ? 92 : 112,
           letterSpacing: "-0.03em",
           color: destaque?.test(txt) ? C.destaque : "#ffffff",
-          WebkitTextStroke: "10px rgba(10,14,12,0.9)",
+          WebkitTextStroke: "14px rgba(10,14,12,0.94)",
           paintOrder: "stroke fill",
-          textShadow: "0 8px 24px rgba(0,0,0,0.35)",
+          textShadow: "0 6px 18px rgba(0,0,0,0.55), 0 0 30px rgba(0,0,0,0.35)",
           transform: `scale(${0.86 + 0.14 * ease.out(k)})`,
         }}
       >

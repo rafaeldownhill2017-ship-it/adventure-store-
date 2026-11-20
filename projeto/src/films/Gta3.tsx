@@ -52,9 +52,9 @@ export const Gta3: React.FC = () => {
   const t = useT();
   const mola = useMola();
   const { cues: c } = useTimeline();
-  const T1 = c.jogo - 0.4; // "O jogo custa..."
+  const T1 = c.jogo - 0.15; // "O jogo custa..." (não corta "console")
   const T2 = c.somando - 0.2; // "Somando tudo"
-  const T3 = c.conta - 0.9; // "E tem uma conta..."
+  const T3 = c.conta - 0.4; // "E tem uma conta..." (não corta "serviço")
   const T4 = c.deixar - 0.6; // "Não é pra deixar..."
 
   const K: Key[] = [
@@ -86,14 +86,13 @@ export const Gta3: React.FC = () => {
   const votacao = t >= c.comenta - 0.2;
 
   // gancho
-  if (t < T1 && t >= c.console - 0.2) add({ p: [A[0] + 0.85, 1.3, 0.2], s: mola(c.console - 0.2, 260, 11), txt: "o console", cor: C.alerta, tinta: "#fff", tam: 0.9 });
   // somatório
   if (naS && t >= c.tres - 0.2) [0, 1, 2, 3].forEach((i) => add({ p: [S[0] - 1.05 + i * 0.6, i < 3 ? 1.0 : 0.72, 0], s: mola(c.tres - 0.2 + i * 0.12, 240, 12), txt: i < 3 ? "1 salário" : "½", cor: "#ffffff", tam: 0.62 }));
   if (naS && t >= c.semana - 0.3) add({ p: [S[0] + 0.9, 1.0, 1.4], s: mola(c.semana - 0.3, 240, 12), txt: "só o jogo: ~61 h", cor: C.destaque, tam: 0.8 });
   // tesouro
-  if (naT && t >= c.troco - 0.3) add({ p: [T_[0] + 0.9, 0.35, 0.8], s: mola(c.troco - 0.3, 240, 12), txt: "sobra ~R$ 175", cor: C.destaque, tam: 0.82 });
+  if (naT && t >= c.troco - 0.3) add({ p: [T_[0] - 0.55, 1.45, 0.4], s: mola(c.troco - 0.3, 240, 12), txt: "sobra ~R$ 175", cor: C.destaque, tam: 0.82 });
 
-  const salK = (i: number) => p(t, c.tres - 0.1 + i * 0.25, 0.5);
+  const salK = (i: number) => p(t, T2 + 0.4 + i * 0.45, 0.6); // as pilhas crescem já no "Somando" (sem pedestal vazio)
 
   return (
     <AbsoluteFill style={{ background: cor }}>
@@ -102,9 +101,9 @@ export const Gta3: React.FC = () => {
           <group position={A}>
             <Pedestal raio={0.95} aro={votacao ? "#ffc94a" : "#b58cff"} />
             <Ator url={JOGADOR} p={[-0.2, TOPO_PEDESTAL, 0.15]} rotY={0.25} altura={0.9} t={t} acoes={[{ de: 0, anim: "holding-both" }, { de: c.porra - 0.1, anim: "emote-no" }, { de: c.comenta, anim: "interact-right" }]} />
-            <Controle p={[-0.13, TOPO_PEDESTAL + 0.42, 0.42]} rot={[-0.6, 0.25, 0]} s={0.6} />
+            {t < c.porra - 0.1 ? <Controle p={[-0.13, TOPO_PEDESTAL + 0.42, 0.42]} rot={[-0.6, 0.25, 0]} s={0.6} /> : null}
             <ConsoleNovo p={[0.55, TOPO_PEDESTAL, -0.15]} s={0.75 * mola(c.console - 0.25, 220, 10)} liga={p(t, c.console, 0.4)} />
-            {[0, 1, 2, 3, 4].map((i) => (
+            {!votacao && [0, 1, 2, 3, 4].map((i) => (
               <Relogio key={i} p={[[-0.75, -0.45, -0.8, 0.8, 0.5][i], [1.25, 1.7, 2.05, 1.35, 1.95][i], -0.7]} s={0.7 * mola(0.1 + i * 0.12, 220, 12)} t={t} vel={8 + i} />
             ))}
             {votacao ? (
@@ -129,7 +128,7 @@ export const Gta3: React.FC = () => {
             <Placa p={[0, 1.05, 0.1]} txt="NÃO RODA" cor="#d6453a" k={p(t, c.ps4 + 0.1, 0.6, (x) => x)} larg={0.6} />
             <Pedestal p={[1.7, 0, 0]} raio={0.55} aro="#5aa9ff" acende={t >= c.ps5 - 0.2 ? 1 : 0.2} />
             <ConsoleNovo p={[1.7, TOPO_PEDESTAL, 0]} s={0.7 * mola(c.ps5 - 0.3, 220, 12)} liga={p(t, c.ps5, 0.4)} />
-            <Placa p={[1.7, 1.35, 0.1]} txt={t >= c.disco - 0.2 ? "R$ 5.099,90" : "SÓ NO NOVO"} cor={t >= c.disco - 0.2 ? "#d6453a" : "#2fbf71"} k={p(t, c.ps5 + 0.1, 0.6, (x) => x)} larg={0.66} />
+            <Placa p={[1.7, 1.35, 0.1]} txt={t >= c.disco - 0.2 ? "R$ 5.099,90" : "SÓ NO NOVO"} cor={t >= c.disco - 0.2 ? "#1d1d1d" : "#2fbf71"} k={p(t, c.ps5 + 0.1, 0.6, (x) => x)} larg={0.66} />
           </group>
         ) : null}
 
@@ -161,12 +160,14 @@ export const Gta3: React.FC = () => {
       {/* topo: um número grande por vez */}
       <CardNumero t={t} de={-0.6} ate={c.motivo - 0.3} titulo="PRA JOGAR GTA 6 · SALÁRIO MÍNIMO" valor="753 horas" />
       <CardNumero t={t} de={c.motivo - 0.1} ate={T1 - 0.2} titulo="O MOTIVO?" valor="o console" cor={C.alerta} tinta="#ffffff" />
-      <CardNumero t={t} de={c.jogo} ate={c.ps4 - 0.3} titulo="GTA 6 · EDIÇÃO PADRÃO" valor="R$ 449,90" />
-      <CardNumero t={t} de={c.ps4 - 0.1} ate={c.disco - 0.3} titulo="NO CONSOLE ANTIGO" valor="não roda" cor={C.alerta} tinta="#ffffff" />
-      <CardNumero t={t} de={c.disco - 0.1} ate={T2 - 0.2} titulo="CONSOLE NOVO COM DISCO · DESDE ABR/2026" valor="R$ 5.099,90" />
+      <CardNumero t={t} de={c.jogo} ate={c.ps4 - 0.3} titulo="GTA 6 · PREÇO SUGERIDO" valor="R$ 449,90" />
+      <CardNumero t={t} de={c.ps4 - 0.1} ate={c.ps5 - 0.3} titulo="NO CONSOLE ANTIGO" valor="não roda" cor={C.alerta} tinta="#ffffff" />
+      <CardNumero t={t} de={c.ps5 - 0.1} ate={c.disco - 0.3} titulo="SÓ RODA NO" valor="console novo" cor="#25a35a" tinta="#ffffff" />
+      <CardNumero t={t} de={c.disco - 0.1} ate={T2 - 0.2} titulo="CONSOLE NOVO COM DISCO · PREÇO SUGERIDO" valor="R$ 5.099,90" />
       <CardNumero t={t} de={T2 + 0.1} ate={c.tres - 0.3} titulo="JOGO + CONSOLE" valor="R$ 5.549,80" cor={C.destaque} />
       <CardNumero t={t} de={c.tres - 0.1} ate={c.noventa - 0.3} titulo="SALÁRIO MÍNIMO: R$ 1.621" valor="3,4 salários" />
       <CardNumero t={t} de={c.noventa - 0.1} ate={T3 - 0.2} titulo="DIAS DE 8 HORAS" valor="≈ 94 dias" />
+      <CardNumero t={t} de={T3 + 0.1} ate={c.tesouro - 0.3} titulo="E SE ESSE DINHEIRO FICASSE" valor="no Tesouro Selic?" />
       <CardNumero t={t} de={c.tesouro} ate={c.juro - 0.3} titulo="R$ 5.549,80 NO TESOURO SELIC · 12 MESES" valor="≈ + R$ 625" cor={C.destaque} />
       <CardNumero t={t} de={c.juro - 0.1} ate={T4 - 0.2} titulo="SE AS TAXAS FICAREM" valor="o juro paga 1 GTA" />
       <CardNumero t={t} de={T4 + 0.1} ate={c.comenta - 0.3} titulo="NÃO É PRA DEIXAR DE JOGAR" valor="é pra saber quanto custa" />

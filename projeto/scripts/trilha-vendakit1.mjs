@@ -125,7 +125,7 @@ for (let k = 0; k < 8; k++) moeda(c.cliente + k * 0.12, 0.04, (k % 3 - 1) * 0.4)
 whoosh(T6 - 0.05, 0.8, 0.07, 0.4, -0.4);
 riser(c.comenta - 0.1, 0.8, 0.05);
 impacto(c.comenta, 0.35);
-const STING = c.fim + 0.1;
+const STING = d.fimVoz + 0.1; // depois da última palavra
 [36, 43, 48, 52, 55, 60].forEach((m, j) => piano(STING + j * 0.02, m, 0.5 - j * 0.03, { dur: Math.min(3, DUR - STING - 0.1), pan: j * 0.22 - 0.55, rev: 0.6 }));
 
 // =====================================================================
