@@ -798,3 +798,102 @@ export const Carimbo: React.FC<{ t: number; de: number; ate: number; txt: string
     </div>
   );
 };
+
+/* ------------------------------------------------------------------ padaria e trigo (pao1) */
+
+/** Pãozinho francês: elipsoide dourado com o "pestana" (corte) em cima. Comprimento ~0.5 com s=1. */
+export const Paozinho: React.FC<{ p?: V3; rotY?: number; s?: number }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1 }) => {
+  if (s <= 0.002) return null;
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      <mesh position={[0, 0.11, 0]} scale={[1, 0.5, 0.55]} castShadow receiveShadow material={lisoMat("#d9963f", 0.75)}>
+        <sphereGeometry args={[0.25, 24, 16]} />
+      </mesh>
+      <mesh position={[0, 0.215, 0]} rotation={[0, 0, Math.PI / 2]} scale={[0.25, 1, 0.35]} material={lisoMat("#f2d49a", 0.85)}>
+        <capsuleGeometry args={[0.06, 0.26, 4, 10]} />
+      </mesh>
+    </group>
+  );
+};
+
+/** Saco de pão de papel, aberto, com pãezinhos aparecendo. */
+export const SacoPao: React.FC<{ p?: V3; rotY?: number; s?: number }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1 }) => {
+  if (s <= 0.002) return null;
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      <B s={[0.42, 0.62, 0.26]} p={[0, 0.31, 0]} cor="#e8d2a8" rough={0.95} />
+      <B s={[0.43, 0.06, 0.27]} p={[0, 0.6, 0]} cor="#d9bf8f" rough={0.95} />
+      <Paozinho p={[-0.06, 0.55, 0.02]} rotY={0.4} s={0.7} />
+      <Paozinho p={[0.08, 0.6, -0.02]} rotY={-0.6} s={0.65} />
+    </group>
+  );
+};
+
+/** Moinho: torre afunilada, telhado cônico e pás girando (`t` em segundos). */
+export const Moinho: React.FC<{ p?: V3; rotY?: number; s?: number; t?: number }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1, t = 0 }) => {
+  if (s <= 0.002) return null;
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      <mesh position={[0, 0.45, 0]} castShadow receiveShadow material={mat("#efe6d6")}>
+        <cylinderGeometry args={[0.2, 0.3, 0.9, 10]} />
+      </mesh>
+      <mesh position={[0, 1.02, 0]} castShadow material={mat("#a8483a")}>
+        <coneGeometry args={[0.27, 0.3, 10]} />
+      </mesh>
+      <B s={[0.12, 0.2, 0.02]} p={[0, 0.12, 0.29]} cor="#6b4a32" />
+      <group position={[0, 0.82, 0.25]} rotation={[0, 0, t * 1.4]}>
+        {[0, 1, 2, 3].map((i) => (
+          <group key={i} rotation={[0, 0, (i * Math.PI) / 2]}>
+            <B s={[0.03, 0.55, 0.02]} p={[0, 0.3, 0]} cor="#6b4a32" />
+            <B s={[0.12, 0.42, 0.01]} p={[0.07, 0.34, 0]} cor="#f6f1e6" />
+          </group>
+        ))}
+        <mesh rotation={[Math.PI / 2, 0, 0]} material={mat("#3a2f28")}>
+          <cylinderGeometry args={[0.04, 0.04, 0.06, 10]} />
+        </mesh>
+      </group>
+    </group>
+  );
+};
+
+/** Navio graneleiro: casco, porões com trigo, ponte de comando. `balanca` = t para o leve balanço. */
+export const Navio: React.FC<{ p?: V3; rotY?: number; s?: number; t?: number; cor?: string }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1, t = 0, cor = "#c8322a" }) => {
+  if (s <= 0.002) return null;
+  return (
+    <group position={pos} rotation={[Math.sin(t * 1.3) * 0.02, rotY, Math.sin(t * 0.9) * 0.025]} scale={s}>
+      <B s={[1.8, 0.22, 0.5]} p={[0, 0.11, 0]} cor={cor} />
+      <B s={[1.82, 0.12, 0.52]} p={[0, 0.28, 0]} cor="#20252c" />
+      <mesh position={[0.95, 0.22, 0]} rotation={[0, 0, 0]} castShadow material={mat("#20252c")}>
+        <cylinderGeometry args={[0.001, 0.26, 0.34, 3, 1, false, Math.PI / 2]} />
+      </mesh>
+      {[-0.55, -0.15, 0.25].map((x) => (
+        <group key={x} position={[x, 0.34, 0]}>
+          <B s={[0.34, 0.04, 0.4]} cor="#7a5a3e" />
+          <mesh position={[0, 0.04, 0]} scale={[1, 0.35, 1]} material={mat("#e0b44a")}>
+            <sphereGeometry args={[0.17, 10, 6]} />
+          </mesh>
+        </group>
+      ))}
+      <B s={[0.3, 0.36, 0.42]} p={[-0.78, 0.52, 0]} cor="#f2efe8" />
+      <B s={[0.32, 0.06, 0.44]} p={[-0.78, 0.72, 0]} cor="#20252c" />
+      <B s={[0.31, 0.06, 0.43]} p={[-0.78, 0.6, 0]} cor="#7fb0d6" />
+    </group>
+  );
+};
+
+/** Balcão de padaria: base de madeira com vitrine de vidro e pãezinhos dentro. */
+export const Balcao: React.FC<{ p?: V3; rotY?: number; s?: number }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1 }) => {
+  if (s <= 0.002) return null;
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      <B s={[1.1, 0.5, 0.45]} p={[0, 0.25, 0]} cor="#8c5a3a" />
+      <B s={[1.14, 0.04, 0.49]} p={[0, 0.52, 0]} cor="#5a3a24" />
+      <mesh position={[0, 0.7, 0]} material={lisoMat("#dff2ff", 0.1, 0, 0.35)}>
+        <boxGeometry args={[1.0, 0.32, 0.38]} />
+      </mesh>
+      {[-0.32, -0.08, 0.16, 0.38].map((x, i) => (
+        <Paozinho key={x} p={[x - 0.02, 0.54, (i % 2) * 0.08 - 0.04]} rotY={i * 0.7} s={0.55} />
+      ))}
+    </group>
+  );
+};
