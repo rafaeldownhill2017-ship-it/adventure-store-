@@ -143,7 +143,7 @@ const CamPalco: React.FC<CamPose> = ({ pos, look, fov = 30 }) => {
  * sombra macia no piso. Troque `cor` por bloco com `corBloco`. O piso fica um tom abaixo do fundo,
  * o que dá horizonte sem "linha".
  */
-export const PalcoCor: React.FC<{ cam: CamPose; cor: string; children: React.ReactNode; luz?: number; quente?: boolean }> = ({ cam, cor, children, luz = 2.4, quente = false }) => {
+export const PalcoCor: React.FC<{ cam: CamPose; cor: string; children: React.ReactNode; luz?: number; quente?: boolean; semPiso?: boolean }> = ({ cam, cor, children, luz = 2.4, quente = false, semPiso = false }) => {
   const piso = escurece(cor, 0.86);
   return (
     <ThreeCanvas
@@ -182,10 +182,12 @@ export const PalcoCor: React.FC<{ cam: CamPose; cor: string; children: React.Rea
         <object3D attach="target" position={cam.look} />
       </directionalLight>
       <pointLight position={[cam.look[0] - 4, 3, cam.look[2] + 3]} intensity={quente ? 18 : 10} color={quente ? "#ffb36b" : "#ffffff"} distance={14} />
-      <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow position={[cam.look[0], -0.001, cam.look[2]]}>
-        <planeGeometry args={[120, 120]} />
-        <meshStandardMaterial color={piso} roughness={0.92} />
-      </mesh>
+      {semPiso ? null : (
+        <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow position={[cam.look[0], -0.001, cam.look[2]]}>
+          <planeGeometry args={[120, 120]} />
+          <meshStandardMaterial color={piso} roughness={0.92} />
+        </mesh>
+      )}
       {children}
       <EffectComposer multisampling={LEVE ? 0 : 4}>
         <Bloom intensity={0.55} luminanceThreshold={0.85} mipmapBlur />
@@ -1501,9 +1503,8 @@ export const TorreEiffel: React.FC<{ p?: V3; rotY?: number; s?: number; acesa?: 
 };
 
 /** Empire State estilizado (art déco em degraus + antena). Altura ~2.6 com s=1. */
-export const EmpireState: React.FC<{ p?: V3; rotY?: number; s?: number; janelas?: boolean }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1, janelas = true }) => {
+export const EmpireState: React.FC<{ p?: V3; rotY?: number; s?: number; janelas?: boolean; cor?: string }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1, janelas = true, cor = "#c9c1b0" }) => {
   if (s <= 0.002) return null;
-  const cor = "#c9c1b0";
   const blocos: [number, number, number][] = [
     [0.9, 0.35, 0.6], [0.7, 0.9, 0.5], [0.5, 0.45, 0.36], [0.34, 0.25, 0.26], [0.22, 0.18, 0.18],
   ];
