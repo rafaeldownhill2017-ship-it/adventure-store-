@@ -733,7 +733,7 @@ export const CardNumero: React.FC<{ t: number; de: number; ate: number; valor: s
   const sai = 1 - p(t, ate, 0.3, ease.in);
   const k = mola(de) * sai;
   const kv = antes ? mola(de + 0.5) : 1;
-  const tam = Math.max(48, Math.min(150, 1650 / Math.max(4, (antes ? antes.length + 3 : 0) + valor.length)));
+  const tam = Math.max(46, Math.min(150, 1400 / Math.max(4, (antes ? antes.length + 3 : 0) + valor.length)));
   return (
     <div style={{ position: "absolute", top, left: 56, right: 56, display: "flex", justifyContent: "center", pointerEvents: "none" }}>
       <div

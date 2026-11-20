@@ -57,7 +57,7 @@ const SeloPrompt: React.FC<{ t: number; de: number }> = ({ t, de }) => {
   const k = ease.out(Math.min(1, (t - de) / 0.4));
   const pulso = 1 + Math.sin((t - de) * 6) * 0.03;
   return (
-    <div style={{ position: "absolute", left: 0, right: 0, top: 1470, display: "flex", justifyContent: "center", opacity: k }}>
+    <div style={{ position: "absolute", left: 0, right: 0, top: 1290, display: "flex", justifyContent: "center", opacity: k }}>
       <div style={{ padding: "22px 48px", borderRadius: 30, background: "#ffcf3a", color: "#14110a", fontFamily: FONT, fontWeight: 800, fontSize: 64, letterSpacing: "-0.02em", boxShadow: "0 16px 50px rgba(0,0,0,0.45)", transform: `scale(${(0.8 + 0.2 * k) * pulso})` }}>
         comenta PROMPT
       </div>
