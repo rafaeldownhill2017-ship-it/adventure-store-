@@ -75,6 +75,8 @@ for (const filme of filmes) {
     if (fimReal) ultimo.end = +fimReal.toFixed(3);
     console.log(`${filme.id}: calibrado (${movidas} inícios de frase movidos para a fala real)`);
   }
+  // trocas: { "Vem": "Vêm" } corrige a grafia mostrada na legenda sem regravar a voz
+  if (filme.trocas) for (const p of palavras) if (filme.trocas[p.w]) p.w = filme.trocas[p.w];
   const fimVoz = palavras.at(-1).end;
   const acha = (alvo, n = 1) => {
     let vistos = 0;
