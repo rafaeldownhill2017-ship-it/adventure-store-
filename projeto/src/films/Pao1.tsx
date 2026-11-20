@@ -31,10 +31,10 @@ export const Pao1: React.FC = () => {
   const mola = useMola();
   const { cues: c } = useTimeline();
   const FECHO = c.fim + 1.0;
-  const T1 = c.safra - 1.0; // "Esse ano, a safra..."
-  const T2 = c.importado - 0.6; // "E trigo importado..."
-  const T3 = c.moinho - 1.0; // "Esse dólar entra no moinho"
-  const T4 = c.continua - 0.6; // "O pão continua..."
+  const T1 = c.safra - 0.75; // "Esse ano, a safra..."
+  const T2 = c.importado - 0.4; // "E trigo importado..."
+  const T3 = c.moinho - 1.15; // "Esse dólar entra no moinho"
+  const T4 = c.continua - 0.5; // "O pão continua..."
   const T5 = c.comenta - 0.3; // pergunta final
   const elo = [c.moinho, c.padaria, c.balcao];
   // recuo para mostrar a corrente inteira, sem passar do corte seguinte (voz rápida encurta o intervalo)

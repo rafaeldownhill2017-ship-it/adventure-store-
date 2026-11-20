@@ -296,7 +296,7 @@ export const NotasVoando: React.FC<{ de: V3; k: number; n?: number; alcance?: nu
       {Array.from({ length: n }, (_, i) => {
         const a = hash(i) * 0.5;
         const u = clamp01((k - a) / (1 - a + 0.0001));
-        if (u <= 0) return null;
+        if (u <= 0 || u >= 0.995) return null; // some ao fim do voo (não fica parada no ar)
         const dir = (hash(i + 7) - 0.5) * 2.4;
         const sobe = 0.8 + hash(i + 3) * 1.4;
         const x = Math.sin(dir) * alcance * u;
@@ -733,7 +733,7 @@ export const CardNumero: React.FC<{ t: number; de: number; ate: number; valor: s
   const sai = 1 - p(t, ate, 0.3, ease.in);
   const k = mola(de) * sai;
   const kv = antes ? mola(de + 0.5) : 1;
-  const tam = Math.max(72, Math.min(150, 1700 / Math.max(4, (antes ? antes.length + 3 : 0) + valor.length)));
+  const tam = Math.max(48, Math.min(150, 1650 / Math.max(4, (antes ? antes.length + 3 : 0) + valor.length)));
   return (
     <div style={{ position: "absolute", top, left: 56, right: 56, display: "flex", justifyContent: "center", pointerEvents: "none" }}>
       <div
