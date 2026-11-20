@@ -279,7 +279,8 @@ export const filmes = [
     id: "vendakit1",
     vozes: ["36rVQA1AOIPwpA3Hg1tC"], // Matheus 1,12×
     preRoll: 0.3,
-    cauda: 1.4, // termina no cubo com COMENTA PROMPT (loop)
+    calibrar: true, // ajusta inícios de frase à fala real (ver timeline.mjs)
+    cauda: 2.2, // termina no cubo com COMENTA PROMPT (loop)
     cues: {
       feito: "feito",
       tomate: "tomate",

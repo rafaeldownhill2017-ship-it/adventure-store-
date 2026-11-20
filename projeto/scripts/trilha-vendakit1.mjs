@@ -72,7 +72,7 @@ const BEAT = 60 / 112;
 const FECHO = c.fim + 0.1;
 const C_ = [36, 43, 48, 52, 55, 36], Am = [33, 40, 45, 48, 52, 33], F_ = [41, 48, 53, 57, 60, 29], G_ = [31, 38, 43, 47, 50, 31], Em = [40, 47, 52, 55, 59, 28];
 const Cm = [36, 43, 48, 51, 55, 36], Ab = [32, 39, 44, 48, 51, 32], Fm = [41, 48, 53, 56, 60, 29], Gs = [31, 38, 43, 46, 50, 31];
-const T1 = c.rolando - 1.5, T2 = c.perfis - 0.6, T3 = c.tema - 0.75, T4 = c.catorze - 0.3, T5 = c.dois - 0.4, T6 = c.custa - 0.8;
+const T1 = c.rolando - 1.15, T2 = c.perfis - 0.6, T3 = c.tema - 0.75, T4 = c.catorze - 0.3, T5 = c.dois - 0.4, T6 = c.custa - 0.8;
 const secoes = [
   [0.0, T1, [Am, F_, C_, G_], 0.85, true], // gancho: balança
   [T1, T2, [Cm, Ab, Fm, Gs], 0.9, true], // a ferida
@@ -110,7 +110,7 @@ const moeda = (t0, g = 0.045, pan = 0) => {
 };
 impacto(0.1, 0.4);
 pop(c.feito, 1100, 0.05);
-impacto(c.tomate - 0.1, 0.45); // a balança pende para o tomate
+impacto(c.tomate + 0.5, 0.3); // depois de "tomate" (antes cobria a palavra) // a balança pende para o tomate
 whoosh(T1 - 0.05, 0.8, 0.08, -0.5, 0.5);
 for (let k = 0; k < 10; k++) moeda(c.rolando + 0.2 + k * 0.2, 0.035, 0.4);
 whoosh(T2 - 0.05, 0.8, 0.08, 0.5, -0.5);

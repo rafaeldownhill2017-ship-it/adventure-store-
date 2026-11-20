@@ -3,6 +3,7 @@
 // então trocar a voz e rodar este script de novo reposiciona o filme inteiro.
 //   node scripts/timeline.mjs            gera src/data/<filme>.json
 //   node scripts/timeline.mjs --palavras imprime as palavras com tempos
+import { spawnSync } from "node:child_process";
 import { copyFile, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -48,6 +49,32 @@ for (const filme of filmes) {
   // Pausas escritas como "..." viram palavras sem letra; não entram em legenda nem marcação.
   for (let i = palavras.length - 1; i >= 0; i--) if (!normal(palavras[i].w)) palavras.splice(i, 1);
 
+  // calibrar: true (no filmes.config) → o alinhamento do ElevenLabs costuma marcar o início de cada frase
+  // 0,3–0,5 s antes da fala real (conta o silêncio como parte da palavra). Aqui, cada palavra que abre frase
+  // é empurrada para o fim do silêncio medido no áudio, e o fim da voz vira o início do último silêncio.
+  if (filme.calibrar) {
+    const mp3 = join(outDir, alinhamentoArq.replace(".alinhamento.json", ".mp3"));
+    const r = spawnSync("ffmpeg", ["-hide_banner", "-i", mp3, "-af", "silencedetect=noise=-38dB:d=0.1", "-f", "null", "-"], { encoding: "utf8" });
+    const fins = [...r.stderr.matchAll(/silence_end: ([0-9.]+)/g)].map((m) => +m[1] + filme.preRoll);
+    const inis = [...r.stderr.matchAll(/silence_start: ([0-9.]+)/g)].map((m) => +m[1] + filme.preRoll);
+    let movidas = 0;
+    let delta = 0;
+    palavras.forEach((p, i) => {
+      const abreFrase = i === 0 || /[.,!?:…]$/.test(palavras[i - 1].w);
+      if (abreFrase) {
+        const alvo = fins.find((x) => x > p.start - 0.05 && x < p.start + 0.7);
+        delta = alvo && alvo > p.start ? alvo - p.start : 0;
+        if (delta) movidas++;
+      }
+      // a frase inteira anda junto com a primeira palavra (senão a 2ª palavra fica antes da 1ª)
+      p.start = +(p.start + delta).toFixed(3);
+      p.end = +(p.end + delta).toFixed(3);
+    });
+    const ultimo = palavras.at(-1);
+    const fimReal = inis.filter((x) => x > ultimo.start).at(0);
+    if (fimReal) ultimo.end = +fimReal.toFixed(3);
+    console.log(`${filme.id}: calibrado (${movidas} inícios de frase movidos para a fala real)`);
+  }
   const fimVoz = palavras.at(-1).end;
   const acha = (alvo, n = 1) => {
     let vistos = 0;

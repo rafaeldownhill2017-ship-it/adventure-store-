@@ -23,7 +23,16 @@ Você escolhe o tema. O Claude entrega roteiro, voz, cena 3D e legenda. Sem apar
 
 Quer saber quanto custa? Comenta PROMPT que eu te mando tudo no direct. 👇
 
-#ia #claude #reels3d #rendaextra #estudiominiatura
+#ia #claude #reels3d #videos3d #estudiominiatura
 
 ## Mensagem automática (para quem comentar PROMPT)
-> Aqui está! O Estúdio Miniatura é o kit + 14 aulas pra criar Reels 3D com o Claude Code, do tema ao vídeo pronto. R$ 97, pagamento único, garantia de 7 dias. 👉 [link da bio]. Se preferir, também faço o vídeo do seu negócio: é só responder aqui.
+> Aqui está! O Estúdio Miniatura é o kit + 14 aulas pra criar Reels 3D com o Claude Code, do tema ao vídeo pronto. R$ 97, pagamento único, garantia de 7 dias. 👉 [link da bio]
+> Importante: você precisa de uma assinatura do Claude (para o Claude Code); a voz por IA (ElevenLabs) é opcional e paga à parte. Resultados dependem do seu perfil e do seu trabalho.
+> Se preferir, também faço o vídeo do seu negócio: é só responder aqui.
+
+## Auditoria (20/11/2026, 3 agentes)
+- Vídeo: aprovado tecnicamente (−14,1 LUFS, sincronia ok, 12,5 Mbps BT.709).
+- Gráfico: telas dos celulares mostravam preços (R$ 449,90, R$ 0) → trocadas por quadros sem valores; card do tomate com contraste; balança em movimento desde o 1º quadro; câmeras com folga lateral; cubo sem a aba; CTA sem duplicar.
+- Voz: alinhamento adiantado 0,35–0,5 s nos inícios de frase → calibração automática (timeline.mjs, `calibrar: true`); pausas de 0,4 s em "vídeo… que" e "seu… ou"; pancada fora de "tomate"; música −7 dB; acorde final no fim real da voz; "Vêm" com acento.
+- Transparência: "resultado meu, não é garantia" ao lado dos 10 mi; custos do Claude/ElevenLabs avisados na mensagem automática; #rendaextra removida.
+- Ouvir antes de postar: "Claude" (~20 s), o "t" de PROMPT (~41 s), "inteligência artificial" (início).

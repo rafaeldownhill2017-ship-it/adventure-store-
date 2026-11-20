@@ -69,7 +69,7 @@ export const VendaKit1: React.FC = () => {
   const t = useT();
   const mola = useMola();
   const { cues: c } = useTimeline();
-  const T1 = c.rolando - 1.5; // "Enquanto isso..."
+  const T1 = c.rolando - 1.15; // "Enquanto isso..."
   const T2 = c.perfis - 0.6; // "Um dos meus perfis"
   const T3 = c.tema - 0.75; // "Você escolhe o tema"
   const T4 = c.catorze - 0.3; // "Vem catorze aulas"
@@ -179,7 +179,7 @@ export const VendaKit1: React.FC = () => {
       <CardNumero t={t} de={-0.6} ate={c.tomate - 0.4} titulo="ESTE VÍDEO" valor="feito por IA" />
       <CardNumero t={t} de={c.tomate - 0.2} ate={T1 - 0.2} titulo="O KIT QUE FAZ ELE CUSTA" valor="menos que 1 caixa de tomate" cor={C.destaque} />
       <CardNumero t={t} de={c.rolando - 0.1} ate={T2 - 0.2} titulo="ENQUANTO VOCÊ ROLA O FEED" valor="o dinheiro vai pra quem posta" />
-      <CardNumero t={t} de={c.dez - 0.2} ate={c.tres - 0.3} titulo="UM DOS MEUS PERFIS · 6 VÍDEOS" valor="10 mi de views" cor={C.destaque} />
+      <CardNumero t={t} de={c.dez - 0.2} ate={c.tres - 0.3} titulo="UM DOS MEUS PERFIS · RESULTADO MEU, NÃO É GARANTIA" valor="10 mi de views" cor={C.destaque} />
       <CardNumero t={t} de={c.tres - 0.1} ate={T3 - 0.2} titulo="ESTE AQUI SAIU JUNTO COM OUTROS 3" valor="4 vídeos · 1 dia" />
       <CardNumero t={t} de={c.claude - 0.1} ate={c.aparecer - 0.3} titulo="VOCÊ ESCOLHE O TEMA" valor="o Claude entrega o vídeo" />
       <CardNumero t={t} de={c.catorze - 0.1} ate={T5 - 0.2} titulo="NO KIT" valor="14 aulas · 8 skills · projeto" />
