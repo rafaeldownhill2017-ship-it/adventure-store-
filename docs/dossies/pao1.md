@@ -24,3 +24,20 @@ Levantado em 20/11/2026 (busca na web; as páginas não abrem nesta sessão, ent
 - Abitrigo: https://abitrigo.com.br/importacao-de-trigo-deve-ser-recorde-em-2026/
 - Safras & Mercado: https://safras.com.br/brasil-podera-importar-maior-volume-de-trigo-em-30-anos-na-temporada-2026-27
 - TV Sim Brasil (Conab), 16/11/2026: https://tvsimbrasil.com.br/brasil/agro/noticia/2026/11/16/quebra-33-safra-trigo-brasil-importar-recorde-historico
+
+## Legenda do post (20/11/2026)
+Seis da manhã. O pão dos seus filhos já vem com dólar dentro. 🥖
+
+A safra de trigo daqui caiu cerca de um terço, e o Brasil deve importar mais de 9 milhões de toneladas, o maior volume em 30 anos. Trigo importado se paga em dólar. E o dólar fechou a R$ 5,93 em 19/11, o mais alto desde abril de 2025.
+
+Moinho → padaria → balcão. O pão continua do mesmo tamanho; o dinheiro na sua mão é que pode render menos. Não é pânico: é ficar de olho.
+
+👇 Comenta: quanto tá o pãozinho na sua cidade? (Vou juntar os preços num mapa.)
+📤 Manda pra quem compra o pão da casa.
+
+Fontes no primeiro comentário.
+
+#pãofrancês #dólar #trigo #inflação #pesonobolso
+
+### Comentário fixado
+📌 Fontes: dólar à vista de R$ 5,9323 em 19/11/2026 (InfoMoney); importação de trigo acima de 9 mi t em 2026/27 (Abitrigo, Safras & Mercado); safra −33,2% (Conab). Consultados em 20/11/2026. Voz gerada por IA.
