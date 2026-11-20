@@ -1432,3 +1432,251 @@ export const CaixaAbre: React.FC<{ p?: V3; s?: number; abre?: number; cor?: stri
     </group>
   );
 };
+
+/* ------------------------------------------------------------------ marcos do mundo (gta4) — estilizados, feitos em código */
+
+/** Torre Eiffel treliçada (4 pés em arco, 2 plataformas, agulha). `acesa` 0..1 = luzes douradas. Altura ~2.4 com s=1. */
+export const TorreEiffel: React.FC<{ p?: V3; rotY?: number; s?: number; acesa?: number }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1, acesa = 0 }) => {
+  if (s <= 0.002) return null;
+  const ferro = acesa > 0.05 ? luzMat("#e8a93a", 0.25 + acesa * 0.9) : lisoMat("#6b5a48", 0.6, 0.3);
+  const perna = (sx: number, sz: number) => {
+    const segs = 6;
+    return Array.from({ length: segs }, (_, i) => {
+      const y0 = (i / segs) * 1.2;
+      const y1 = ((i + 1) / segs) * 1.2;
+      const r0 = 0.62 * (1 - y0 / 1.6) ** 1.6;
+      const r1 = 0.62 * (1 - y1 / 1.6) ** 1.6;
+      const x0 = sx * r0, z0 = sz * r0, x1 = sx * r1, z1 = sz * r1;
+      const len = Math.hypot(x1 - x0, y1 - y0, z1 - z0);
+      const mid: V3 = [(x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2];
+      const dir = new THREE.Vector3(x1 - x0, y1 - y0, z1 - z0).normalize();
+      const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+      const e = new THREE.Euler().setFromQuaternion(q);
+      return (
+        <mesh key={`${sx}${sz}${i}`} position={mid} rotation={e} castShadow material={ferro}>
+          <boxGeometry args={[0.07, len, 0.07]} />
+        </mesh>
+      );
+    });
+  };
+  const anel = (y: number, r: number, h = 0.05) => (
+    <mesh position={[0, y, 0]} castShadow material={ferro}>
+      <boxGeometry args={[r * 2, h, r * 2]} />
+    </mesh>
+  );
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      {perna(1, 1)}
+      {perna(-1, 1)}
+      {perna(1, -1)}
+      {perna(-1, -1)}
+      {/* arcos da base */}
+      {[0, Math.PI / 2].map((a) => (
+        <mesh key={a} position={[0, 0.2, 0]} rotation={[0, a, 0]} material={ferro}>
+          <torusGeometry args={[0.36, 0.022, 6, 16, Math.PI]} />
+        </mesh>
+      ))}
+      {anel(0.42, 0.42, 0.06)}
+      {anel(0.85, 0.22, 0.05)}
+      {/* corpo superior afunilado + treliça em X */}
+      <mesh position={[0, 1.55, 0]} castShadow material={ferro}>
+        <cylinderGeometry args={[0.035, 0.17, 1.4, 4, 1, true]} />
+      </mesh>
+      {Array.from({ length: 5 }, (_, i) => (
+        <mesh key={i} position={[0, 1.0 + i * 0.26, 0]} rotation={[0, Math.PI / 4, 0]} material={ferro}>
+          <boxGeometry args={[0.3 - i * 0.05, 0.02, 0.3 - i * 0.05]} />
+        </mesh>
+      ))}
+      {anel(2.22, 0.05, 0.06)}
+      <mesh position={[0, 2.38, 0]} material={ferro}>
+        <cylinderGeometry args={[0.008, 0.02, 0.3, 6]} />
+      </mesh>
+      {acesa > 0.3 ? (
+        <mesh position={[0, 2.55, 0]} material={luzMat("#fff2c2", 3)}>
+          <sphereGeometry args={[0.03, 8, 6]} />
+        </mesh>
+      ) : null}
+    </group>
+  );
+};
+
+/** Empire State estilizado (art déco em degraus + antena). Altura ~2.6 com s=1. */
+export const EmpireState: React.FC<{ p?: V3; rotY?: number; s?: number; janelas?: boolean }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1, janelas = true }) => {
+  if (s <= 0.002) return null;
+  const cor = "#c9c1b0";
+  const blocos: [number, number, number][] = [
+    [0.9, 0.35, 0.6], [0.7, 0.9, 0.5], [0.5, 0.45, 0.36], [0.34, 0.25, 0.26], [0.22, 0.18, 0.18],
+  ];
+  let y = 0;
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      {blocos.map(([l, h, pz], i) => {
+        const y0 = y;
+        y += h;
+        return (
+          <group key={i}>
+            <B s={[l, h, pz]} p={[0, y0 + h / 2, 0]} cor={cor} rough={0.7} />
+            {janelas && h > 0.3
+              ? Array.from({ length: Math.floor(l / 0.08) }, (_, j) => (
+                  <B key={j} s={[0.025, h * 0.9, 0.01]} p={[-l / 2 + 0.05 + j * 0.08, y0 + h / 2, pz / 2 + 0.003]} cor="#7f8fa6" />
+                ))
+              : null}
+          </group>
+        );
+      })}
+      <mesh position={[0, y + 0.18, 0]} castShadow material={lisoMat(cor, 0.5)}>
+        <cylinderGeometry args={[0.04, 0.08, 0.36, 8]} />
+      </mesh>
+      <mesh position={[0, y + 0.55, 0]} material={lisoMat("#9aa1ab", 0.4, 0.6)}>
+        <cylinderGeometry args={[0.006, 0.014, 0.42, 6]} />
+      </mesh>
+      <mesh position={[0, y + 0.78, 0]} material={luzMat("#ff4a3a", 2)}>
+        <sphereGeometry args={[0.018, 8, 6]} />
+      </mesh>
+    </group>
+  );
+};
+
+/** Burj Khalifa estilizado (cilindros afunilando em degraus + agulha). Altura ~3.4 com s=1. */
+export const BurjKhalifa: React.FC<{ p?: V3; s?: number }> = ({ p: pos = [0, 0, 0], s = 1 }) => {
+  if (s <= 0.002) return null;
+  const vidro = lisoMat("#9fc3dd", 0.15, 0.6);
+  const n = 9;
+  let y = 0;
+  return (
+    <group position={pos} scale={s}>
+      {Array.from({ length: n }, (_, i) => {
+        const r = 0.32 * (1 - i / (n + 1.5));
+        const h = 0.34 - i * 0.008;
+        const y0 = y;
+        y += h;
+        return (
+          <group key={i}>
+            <mesh position={[0, y0 + h / 2, 0]} castShadow receiveShadow material={vidro}>
+              <cylinderGeometry args={[r * 0.92, r, h, 3]} />
+            </mesh>
+            <mesh position={[0, y0 + h / 2, 0]} rotation={[0, Math.PI / 3, 0]} material={lisoMat("#c7dbe9", 0.2, 0.5)}>
+              <cylinderGeometry args={[r * 0.72, r * 0.8, h * 0.98, 3]} />
+            </mesh>
+          </group>
+        );
+      })}
+      <mesh position={[0, y + 0.3, 0]} material={lisoMat("#d8e3ea", 0.2, 0.7)}>
+        <cylinderGeometry args={[0.012, 0.05, 0.6, 6]} />
+      </mesh>
+    </group>
+  );
+};
+
+/** Palmeira (tronco em gomos + folhas). */
+export const Palmeira: React.FC<{ p?: V3; s?: number; t?: number }> = ({ p: pos = [0, 0, 0], s = 1, t = 0 }) => {
+  if (s <= 0.002) return null;
+  const tronco = mat("#8a6a44");
+  const folha = mat("#3f9a46");
+  return (
+    <group position={pos} scale={s}>
+      {Array.from({ length: 7 }, (_, i) => (
+        <mesh key={i} position={[Math.sin(i * 0.25) * 0.05, 0.08 + i * 0.15, 0]} castShadow material={tronco}>
+          <cylinderGeometry args={[0.045, 0.055, 0.15, 7]} />
+        </mesh>
+      ))}
+      {Array.from({ length: 7 }, (_, i) => {
+        const a = (i / 7) * Math.PI * 2 + Math.sin(t * 1.5 + i) * 0.05;
+        return (
+          <group key={i} position={[0.08, 1.1, 0]} rotation={[0, a, 0]}>
+            <mesh position={[0.28, -0.06, 0]} rotation={[0, 0, -0.45]} scale={[1, 0.12, 0.35]} castShadow material={folha}>
+              <sphereGeometry args={[0.3, 8, 6]} />
+            </mesh>
+          </group>
+        );
+      })}
+    </group>
+  );
+};
+
+/** Telescópio James Webb estilizado: espelho de 18 hexágonos dourados, secundário em tripé e escudo térmico em camadas. */
+export const JamesWebb: React.FC<{ p?: V3; rotY?: number; s?: number; abre?: number }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1, abre = 1 }) => {
+  const hexGeo = useMemo(() => new THREE.CylinderGeometry(0.13, 0.13, 0.03, 6), []);
+  if (s <= 0.002) return null;
+  const k = ease.out(clamp01(abre));
+  const ouro = lisoMat("#f3c03a", 0.18, 0.85);
+  const W = 0.13 * Math.sqrt(3);
+  const hexes: [number, number][] = [];
+  // anel 1 (6) + anel 2 (12) em volta de um centro vazio (como no Webb)
+  for (let q = -2; q <= 2; q++)
+    for (let r = -2; r <= 2; r++) {
+      const s3 = -q - r;
+      const d = Math.max(Math.abs(q), Math.abs(r), Math.abs(s3));
+      if (d === 0 || d > 2) continue;
+      hexes.push([W * (q + r / 2), 0.13 * 1.5 * r]);
+    }
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      {/* escudo térmico (5 camadas em losango) */}
+      {[0, 1, 2, 3, 4].map((i) => (
+        <mesh key={i} position={[0, 0.1 + i * 0.035, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 4]} scale={[1.6 * k, 1.0 * k, 1]} material={lisoMat(i % 2 ? "#b58cff" : "#d9c2ff", 0.4, 0.3, 0.95)}>
+          <planeGeometry args={[1, 1]} />
+        </mesh>
+      ))}
+      {/* espelho primário */}
+      <group position={[0, 0.95, 0]} rotation={[-0.25, 0, 0]}>
+        {hexes.map(([x, y], i) => (
+          <mesh key={i} geometry={hexGeo} position={[x * k, y * k, 0]} rotation={[Math.PI / 2, 0, Math.PI / 6]} castShadow material={ouro} />
+        ))}
+        <B s={[0.12, 0.12, 0.08]} p={[0, 0, -0.06]} cor="#2a2f3a" />
+        {/* secundário e tripé */}
+        {[0, 2.1, 4.2].map((a) => (
+          <mesh key={a} position={[Math.cos(a) * 0.22, Math.sin(a) * 0.22, 0.32]} rotation={[0.35 * Math.sin(a), -0.35 * Math.cos(a), 0]} material={lisoMat("#2a2f3a", 0.5)}>
+            <cylinderGeometry args={[0.008, 0.008, 0.7, 6]} />
+          </mesh>
+        ))}
+        <mesh position={[0, 0, 0.64]} rotation={[Math.PI / 2, 0, 0]} material={ouro}>
+          <cylinderGeometry args={[0.06, 0.06, 0.02, 12]} />
+        </mesh>
+      </group>
+      <B s={[0.08, 0.6, 0.08]} p={[0, 0.5, -0.15]} cor="#2a2f3a" />
+    </group>
+  );
+};
+
+/** Céu estrelado determinístico (esferinhas espalhadas numa casca ao redor de `centro`). */
+export const Estrelas: React.FC<{ centro?: V3; n?: number; raio?: number }> = ({ centro = [0, 0, 0], n = 220, raio = 18 }) => {
+  const pts = useMemo(
+    () =>
+      Array.from({ length: n }, (_, i) => {
+        const u = hash(i * 3 + 1) * 2 - 1;
+        const a = hash(i * 3 + 2) * Math.PI * 2;
+        const r = raio * (0.7 + hash(i * 3 + 3) * 0.3);
+        const sq = Math.sqrt(1 - u * u);
+        return [Math.cos(a) * sq * r, Math.abs(u) * r * 0.8 + 0.5, -Math.abs(Math.sin(a) * sq * r)] as V3;
+      }),
+    [n, raio],
+  );
+  return (
+    <group position={centro}>
+      {pts.map((p0, i) => (
+        <mesh key={i} position={p0} material={luzMat(i % 7 === 0 ? "#ffe9b0" : "#ffffff", 1.5 + hash(i) * 2)}>
+          <sphereGeometry args={[0.025 + hash(i + 9) * 0.035, 5, 4]} />
+        </mesh>
+      ))}
+    </group>
+  );
+};
+
+/** Terra pequena (oceano + manchas de continente). */
+export const Terra: React.FC<{ p?: V3; s?: number; t?: number }> = ({ p: pos = [0, 0, 0], s = 1, t = 0 }) => (
+  <group position={pos} scale={s} rotation={[0.3, t * 0.2, 0]}>
+    <mesh material={lisoMat("#2f6fd6", 0.5)}>
+      <sphereGeometry args={[0.5, 32, 24]} />
+    </mesh>
+    {Array.from({ length: 9 }, (_, i) => {
+      const a = hash(i) * Math.PI * 2;
+      const b = (hash(i + 4) - 0.5) * 2.2;
+      return (
+        <mesh key={i} position={[Math.cos(a) * Math.cos(b) * 0.47, Math.sin(b) * 0.47, Math.sin(a) * Math.cos(b) * 0.47]} scale={[1, 0.6, 1]} material={lisoMat("#3fa14a", 0.7)}>
+          <sphereGeometry args={[0.1 + hash(i + 2) * 0.08, 10, 8]} />
+        </mesh>
+      );
+    })}
+  </group>
+);
