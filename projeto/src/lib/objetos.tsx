@@ -950,3 +950,120 @@ export const GloboSorteio: React.FC<{ p?: V3; rotY?: number; s?: number; t?: num
     </group>
   );
 };
+
+/* ------------------------------------------------------------------ games (gta3) — tudo genérico, sem marca */
+
+/** Console "torre" branco genérico (geração nova), com faixa de luz azul. `liga` 0..1 acende a luz. */
+export const ConsoleNovo: React.FC<{ p?: V3; rotY?: number; s?: number; liga?: number }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1, liga = 1 }) => {
+  if (s <= 0.002) return null;
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      <B s={[0.36, 0.04, 0.3]} p={[0, 0.02, 0]} cor="#20252c" />
+      <mesh position={[-0.1, 0.5, 0]} castShadow receiveShadow material={lisoMat("#f4f6f8", 0.35)}>
+        <boxGeometry args={[0.1, 0.95, 0.42]} />
+      </mesh>
+      <mesh position={[0.1, 0.5, 0]} castShadow receiveShadow material={lisoMat("#f4f6f8", 0.35)}>
+        <boxGeometry args={[0.1, 0.95, 0.42]} />
+      </mesh>
+      <B s={[0.1, 0.92, 0.4]} p={[0, 0.5, 0]} cor="#1c2027" />
+      <mesh position={[0, 0.5, 0.205]} material={liga > 0.05 ? luzMat("#5aa9ff", 0.6 + 1.8 * liga) : lisoMat("#2a3a5a", 0.5)}>
+        <planeGeometry args={[0.03, 0.85]} />
+      </mesh>
+    </group>
+  );
+};
+
+/** Console "antigo" genérico: caixa preta baixa com uma luz fina. */
+export const ConsoleAntigo: React.FC<{ p?: V3; rotY?: number; s?: number }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1 }) => {
+  if (s <= 0.002) return null;
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      <B s={[0.7, 0.1, 0.5]} p={[0, 0.05, 0]} cor="#16191e" rough={0.4} />
+      <B s={[0.7, 0.06, 0.48]} p={[0, 0.13, -0.01]} cor="#20242b" rough={0.4} />
+      <mesh position={[0, 0.1, 0.252]} material={luzMat("#5aa9ff", 1.2)}>
+        <planeGeometry args={[0.5, 0.008]} />
+      </mesh>
+    </group>
+  );
+};
+
+/** Controle de videogame genérico (corpo + duas alças + direcional e botões). */
+export const Controle: React.FC<{ p?: V3; rot?: V3; s?: number; cor?: string }> = ({ p: pos = [0, 0, 0], rot = [0, 0, 0], s = 1, cor = "#f4f6f8" }) => {
+  if (s <= 0.002) return null;
+  const m = lisoMat(cor, 0.35);
+  return (
+    <group position={pos} rotation={rot} scale={s}>
+      <mesh castShadow material={m} scale={[1, 0.35, 0.6]}>
+        <sphereGeometry args={[0.16, 20, 14]} />
+      </mesh>
+      {[-1, 1].map((i) => (
+        <mesh key={i} position={[i * 0.13, -0.01, 0.06]} rotation={[0.5, 0, i * 0.3]} castShadow material={m}>
+          <capsuleGeometry args={[0.045, 0.08, 4, 10]} />
+        </mesh>
+      ))}
+      <B s={[0.05, 0.02, 0.015]} p={[-0.07, 0.05, -0.01]} cor="#20252c" />
+      <B s={[0.015, 0.02, 0.05]} p={[-0.07, 0.05, -0.01]} cor="#20252c" />
+      {[[0.06, -0.02], [0.09, 0.0], [0.06, 0.02], [0.03, 0.0]].map(([x, z], i) => (
+        <mesh key={i} position={[x, 0.055, z - 0.01]} material={lisoMat("#20252c", 0.4)}>
+          <cylinderGeometry args={[0.009, 0.009, 0.01, 10]} />
+        </mesh>
+      ))}
+    </group>
+  );
+};
+
+/** Caixa de jogo (estojo) com capa colorida e título. */
+export const CaixaJogo: React.FC<{ p?: V3; rotY?: number; s?: number; titulo?: string }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1, titulo = "GTA 6" }) => {
+  if (s <= 0.002) return null;
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      <B s={[0.42, 0.56, 0.05]} p={[0, 0.28, 0]} cor="#1c2a6e" />
+      <PlanoTexto linhas={[[titulo, 1.2, "#ffffff"], ["", 0.4, "#fff"]]} fundo="#e8457a" tam={[0.38, 0.4]} p={[0, 0.32, 0.027]} px={[320, 336]} />
+      <mesh position={[0, 0.1, 0.027]} material={lisoMat("#f2a03a", 0.6)}>
+        <planeGeometry args={[0.38, 0.12]} />
+      </mesh>
+    </group>
+  );
+};
+
+/** Relógio de parede/mesa com ponteiros girando por `t` (rápido = tempo "voando"). */
+export const Relogio: React.FC<{ p?: V3; rotY?: number; s?: number; t?: number; vel?: number }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1, t = 0, vel = 6 }) => {
+  if (s <= 0.002) return null;
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      <mesh rotation={[Math.PI / 2, 0, 0]} castShadow material={lisoMat("#d6453a", 0.4)}>
+        <cylinderGeometry args={[0.2, 0.2, 0.06, 32]} />
+      </mesh>
+      <mesh position={[0, 0, 0.031]} material={lisoMat("#fbfaf6", 0.6)}>
+        <circleGeometry args={[0.17, 32]} />
+      </mesh>
+      <B s={[0.012, 0.13, 0.01]} p={[Math.sin(t * vel) * 0.065, Math.cos(t * vel) * 0.065, 0.04]} r={[0, 0, -t * vel]} cor="#1d2230" />
+      <B s={[0.016, 0.09, 0.01]} p={[Math.sin(t * vel / 12) * 0.045, Math.cos(t * vel / 12) * 0.045, 0.042]} r={[0, 0, -t * vel / 12]} cor="#1d2230" />
+    </group>
+  );
+};
+
+/** Placa pendurada num poste (texto em placa colorida). `k` 0..1 = entrada com balanço. */
+export const Placa: React.FC<{ p?: V3; rotY?: number; s?: number; txt: string; cor?: string; tinta?: string; k?: number; larg?: number }> = ({
+  p: pos = [0, 0, 0],
+  rotY = 0,
+  s = 1,
+  txt,
+  cor = "#2fbf71",
+  tinta = "#ffffff",
+  k = 1,
+  larg = 0.7,
+}) => {
+  const e = s * ease.back(clamp01(k));
+  if (e <= 0.002) return null;
+  const bal = Math.sin(clamp01(k) * Math.PI * 3) * (1 - clamp01(k)) * 0.4;
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={e}>
+      <B s={[0.025, 0.3, 0.025]} p={[0, 0.15, 0]} cor="#2a2f3a" />
+      <group position={[0, 0.0, 0]} rotation={[0, 0, bal]}>
+        <B s={[larg + 0.04, 0.24, 0.03]} p={[0, -0.12, 0]} cor={escurece(cor, 0.8)} />
+        <PlanoTexto linhas={[[txt, 1, tinta]]} fundo={cor} tam={[larg, 0.2]} p={[0, -0.12, 0.017]} px={[Math.round(512 * larg / 0.7), 146]} />
+      </group>
+    </group>
+  );
+};

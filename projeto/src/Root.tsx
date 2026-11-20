@@ -16,6 +16,8 @@ import dPao1 from "./data/pao1.json";
 import { Pao1 } from "./films/Pao1";
 import dCaixa1 from "./data/caixa1.json";
 import { Caixa1 } from "./films/Caixa1";
+import dGta3 from "./data/gta3.json";
+import { Gta3 } from "./films/Gta3";
 import { Vitrine } from "./films/Vitrine";
 import { FontGate } from "./lib/fonts";
 import { Timeline, TimelineCtx } from "./lib/time";
@@ -45,6 +47,7 @@ const filmes = [
   { id: "carro1", data: dCarro1 as Timeline, C: filme(dCarro1 as Timeline, Carro1) },
   { id: "pao1", data: dPao1 as Timeline, C: filme(dPao1 as Timeline, Pao1) },
   { id: "caixa1", data: dCaixa1 as Timeline, C: filme(dCaixa1 as Timeline, Caixa1) },
+  { id: "gta3", data: dGta3 as Timeline, C: filme(dGta3 as Timeline, Gta3) },
 ];
 
 // Vitrine das peças de lib/objetos.tsx: sem voz e sem trilha (não passa pelo `filme`, que toca o mix no Studio).
