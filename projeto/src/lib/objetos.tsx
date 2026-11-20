@@ -1067,3 +1067,216 @@ export const Placa: React.FC<{ p?: V3; rotY?: number; s?: number; txt: string; c
     </group>
   );
 };
+
+/* ------------------------------------------------------------------ comida (vídeo de vendas para negócio local) */
+
+/**
+ * Hambúrguer em camadas. `monta` 0..1: cada camada cai do alto e assenta (de baixo para cima).
+ * `vapor` (t em s) solta fumacinha. Diâmetro ~0.8 com s=1.
+ */
+export const Hamburguer: React.FC<{ p?: V3; rotY?: number; s?: number; monta?: number; t?: number; duplo?: boolean }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1, monta = 1, t = 0, duplo = true }) => {
+  if (s <= 0.002) return null;
+  type Cam = { h: number; r: number; cor: string; tipo?: "cupula" | "queijo" | "alface" };
+  const camadas: Cam[] = [
+    { h: 0.1, r: 0.4, cor: "#d99a4e" },
+    { h: 0.12, r: 0.42, cor: "#5a2e1c" },
+    { h: 0.03, r: 0.44, cor: "#ffb72e", tipo: "queijo" },
+    ...(duplo ? ([{ h: 0.12, r: 0.42, cor: "#5a2e1c" }, { h: 0.03, r: 0.44, cor: "#ffb72e", tipo: "queijo" }] as Cam[]) : []),
+    { h: 0.05, r: 0.4, cor: "#d6302a" },
+    { h: 0.04, r: 0.46, cor: "#5cb84a", tipo: "alface" },
+    { h: 0.22, r: 0.42, cor: "#e3a454", tipo: "cupula" },
+  ];
+  let y = 0;
+  const n = camadas.length;
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      {camadas.map((c, i) => {
+        const k = ease.out(clamp01(monta * n - i));
+        const yBase = y;
+        y += c.h;
+        if (k <= 0.001) return null;
+        const cai = (1 - k) * 1.6;
+        const m = lisoMat(c.cor, c.tipo === "queijo" ? 0.35 : 0.6);
+        return (
+          <group key={i} position={[0, yBase + cai, 0]}>
+            {c.tipo === "cupula" ? (
+              <>
+                <mesh position={[0, 0.02, 0]} scale={[1, 0.55, 1]} castShadow material={m}>
+                  <sphereGeometry args={[c.r, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2]} />
+                </mesh>
+                <mesh position={[0, 0.01, 0]} castShadow material={m}>
+                  <cylinderGeometry args={[c.r, c.r * 0.98, 0.04, 32]} />
+                </mesh>
+                {Array.from({ length: 14 }, (_, j) => {
+                  const a = hash(j) * Math.PI * 2;
+                  const rr = 0.08 + hash(j + 3) * 0.26;
+                  const yy = 0.02 + Math.sqrt(Math.max(0, 1 - (rr / c.r) ** 2)) * c.r * 0.55;
+                  return (
+                    <mesh key={j} position={[Math.cos(a) * rr, yy, Math.sin(a) * rr]} rotation={[0, a, 0.3]} scale={[1, 0.45, 0.6]} material={lisoMat("#fff4dc", 0.5)}>
+                      <sphereGeometry args={[0.018, 6, 4]} />
+                    </mesh>
+                  );
+                })}
+              </>
+            ) : c.tipo === "queijo" ? (
+              <group rotation={[0, i * 0.4, 0]}>
+                <B s={[c.r * 1.75, c.h, c.r * 1.75]} p={[0, c.h / 2, 0]} cor={c.cor} rough={0.35} />
+                {[0, 1, 2, 3].map((j) => (
+                  <mesh key={j} position={[Math.cos((j * Math.PI) / 2) * c.r * 0.88, -0.02, Math.sin((j * Math.PI) / 2) * c.r * 0.88]} material={m}>
+                    <coneGeometry args={[0.06, 0.1, 6]} />
+                  </mesh>
+                ))}
+              </group>
+            ) : c.tipo === "alface" ? (
+              <mesh position={[0, c.h / 2, 0]} castShadow material={m}>
+                <cylinderGeometry args={[c.r, c.r * 0.9, c.h, 14]} />
+              </mesh>
+            ) : (
+              <mesh position={[0, c.h / 2, 0]} castShadow receiveShadow material={m}>
+                <cylinderGeometry args={[c.r, c.r, c.h, 32]} />
+              </mesh>
+            )}
+          </group>
+        );
+      })}
+      {monta >= 1 &&
+        [0, 1, 2].map((i) => {
+          const u = ((t * 0.45 + i / 3) % 1 + 1) % 1;
+          return (
+            <mesh key={`v${i}`} position={[Math.sin(u * 6 + i * 2) * 0.1, y + 0.03 + u * 0.55, 0]} scale={0.025 + u * 0.06} material={lisoMat("#ffffff", 0.9, 0, 0.32 * (1 - u))}>
+              <sphereGeometry args={[1, 10, 8]} />
+            </mesh>
+          );
+        })}
+    </group>
+  );
+};
+
+/** Caixinha de batata frita com palitos. `enche` 0..1 faz os palitos subirem. */
+export const Fritas: React.FC<{ p?: V3; rotY?: number; s?: number; enche?: number; cor?: string }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1, enche = 1, cor = "#d6302a" }) => {
+  if (s <= 0.002) return null;
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      <mesh position={[0, 0.2, 0]} castShadow material={lisoMat(cor, 0.5)}>
+        <cylinderGeometry args={[0.2, 0.14, 0.4, 4, 1, false, Math.PI / 4]} />
+      </mesh>
+      {Array.from({ length: 16 }, (_, i) => {
+        const x = (hash(i) - 0.5) * 0.24;
+        const z = (hash(i + 5) - 0.5) * 0.14;
+        const h = 0.28 + hash(i + 9) * 0.12;
+        return <B key={i} s={[0.035, h, 0.035]} p={[x, 0.24 + h / 2 - (1 - ease.out(clamp01(enche))) * 0.3, z]} r={[(hash(i + 2) - 0.5) * 0.3, 0, (hash(i + 4) - 0.5) * 0.3]} cor="#ffcf4a" />;
+      })}
+    </group>
+  );
+};
+
+/** Copo de refrigerante com tampa e canudo. */
+export const Copo: React.FC<{ p?: V3; rotY?: number; s?: number; cor?: string }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1, cor = "#d6302a" }) => {
+  if (s <= 0.002) return null;
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      <mesh position={[0, 0.25, 0]} castShadow material={lisoMat(cor, 0.4)}>
+        <cylinderGeometry args={[0.15, 0.11, 0.5, 24]} />
+      </mesh>
+      <mesh position={[0, 0.25, 0]} material={lisoMat("#ffffff", 0.5)}>
+        <cylinderGeometry args={[0.152, 0.13, 0.12, 24, 1, true]} />
+      </mesh>
+      <mesh position={[0, 0.51, 0]} material={lisoMat("#f2efe8", 0.4)}>
+        <cylinderGeometry args={[0.158, 0.155, 0.03, 24]} />
+      </mesh>
+      <B s={[0.03, 0.3, 0.03]} p={[0.04, 0.62, 0]} r={[0, 0, -0.15]} cor="#ffffff" />
+    </group>
+  );
+};
+
+/** Pizza inteira com fatia saindo (`fatia` 0..1) e queijo esticando. */
+export const Pizza: React.FC<{ p?: V3; rotY?: number; s?: number; fatia?: number }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1, fatia = 0 }) => {
+  if (s <= 0.002) return null;
+  const ang = Math.PI / 4;
+  const disco = (ini: number, len: number, key: string, off: V3 = [0, 0, 0]) => (
+    <group key={key} position={off}>
+      <mesh position={[0, 0.03, 0]} castShadow material={lisoMat("#e0a458", 0.7)}>
+        <cylinderGeometry args={[0.55, 0.55, 0.06, 40, 1, false, ini, len]} />
+      </mesh>
+      <mesh position={[0, 0.065, 0]} material={lisoMat("#ffd04d", 0.45)}>
+        <cylinderGeometry args={[0.49, 0.49, 0.02, 40, 1, false, ini, len]} />
+      </mesh>
+      {Array.from({ length: 10 }, (_, i) => {
+        const a = ini + hash(i + key.length) * len;
+        const r = 0.12 + hash(i + 7) * 0.3;
+        return (
+          <mesh key={i} position={[Math.sin(a) * r, 0.08, Math.cos(a) * r]} material={lisoMat("#b8322a", 0.6)}>
+            <cylinderGeometry args={[0.05, 0.05, 0.015, 14]} />
+          </mesh>
+        );
+      })}
+    </group>
+  );
+  const k = ease.out(clamp01(fatia));
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      {disco(ang, Math.PI * 2 - ang, "corpo")}
+      {disco(0, ang, "fatia", [Math.sin(ang / 2) * 0.35 * k, 0.25 * k, Math.cos(ang / 2) * 0.35 * k])}
+      {k > 0.05 && k < 0.95 ? (
+        <mesh position={[Math.sin(ang / 2) * 0.17 * k, 0.07 + 0.12 * k, Math.cos(ang / 2) * 0.17 * k]} material={lisoMat("#ffd04d", 0.45)}>
+          <cylinderGeometry args={[0.012, 0.012, 0.25 * k, 6]} />
+        </mesh>
+      ) : null}
+    </group>
+  );
+};
+
+/** Xícara de café com pires e vapor (`t`). */
+export const Cafe: React.FC<{ p?: V3; rotY?: number; s?: number; t?: number }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1, t = 0 }) => {
+  if (s <= 0.002) return null;
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      <mesh position={[0, 0.015, 0]} receiveShadow material={lisoMat("#f4f6f8", 0.35)}>
+        <cylinderGeometry args={[0.28, 0.24, 0.03, 32]} />
+      </mesh>
+      <mesh position={[0, 0.15, 0]} castShadow material={lisoMat("#f4f6f8", 0.35)}>
+        <cylinderGeometry args={[0.16, 0.12, 0.24, 28]} />
+      </mesh>
+      <mesh position={[0, 0.262, 0]} material={lisoMat("#5a3420", 0.3)}>
+        <cylinderGeometry args={[0.145, 0.145, 0.01, 28]} />
+      </mesh>
+      <mesh position={[0.17, 0.16, 0]} rotation={[Math.PI / 2, 0, 0]} material={lisoMat("#f4f6f8", 0.35)}>
+        <torusGeometry args={[0.06, 0.018, 8, 16]} />
+      </mesh>
+      {[0, 1, 2].map((i) => {
+        const u = ((t * 0.4 + i / 3) % 1 + 1) % 1;
+        return (
+          <mesh key={i} position={[Math.sin(u * 7 + i) * 0.05, 0.3 + u * 0.5, 0]} scale={0.03 + u * 0.08} material={lisoMat("#ffffff", 0.9, 0, 0.5 * (1 - u))}>
+            <sphereGeometry args={[1, 8, 6]} />
+          </mesh>
+        );
+      })}
+    </group>
+  );
+};
+
+/** Celular com conversa de mensagem (genérico, sem logotipo): bolhas aparecendo com `k` 0..1. */
+export const CelularPedido: React.FC<{ p?: V3; rotY?: number; s?: number; k?: number; linhas?: string[]; cor?: string }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1, k = 1, linhas = ["Oi! Quero 1 combo", "Chega em 30 min 🛵"], cor = "#25a35a" }) => {
+  if (s <= 0.002) return null;
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      <B s={[0.5, 0.95, 0.05]} p={[0, 0.48, 0]} cor="#16191e" rough={0.3} />
+      <mesh position={[0, 0.48, 0.026]} material={lisoMat("#ece5dc", 0.6)}>
+        <planeGeometry args={[0.44, 0.86]} />
+      </mesh>
+      <mesh position={[0, 0.86, 0.027]} material={lisoMat(cor, 0.5)}>
+        <planeGeometry args={[0.44, 0.1]} />
+      </mesh>
+      {linhas.map((l, i) => {
+        const ki = ease.back(clamp01(k * linhas.length - i));
+        if (ki <= 0.01) return null;
+        const meu = i % 2 === 0;
+        return (
+          <group key={i} position={[meu ? 0.03 : -0.03, 0.7 - i * 0.2, 0.03]} scale={ki}>
+            <PlanoTexto linhas={[[l, 1, "#1d2230"]]} fundo={meu ? "#d9fdd3" : "#ffffff"} tam={[0.4, 0.14]} px={[560, 196]} />
+          </group>
+        );
+      })}
+    </group>
+  );
+};

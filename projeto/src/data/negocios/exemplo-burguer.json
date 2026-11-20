@@ -1,0 +1,15 @@
+{
+  "_ajuda": "Um arquivo por cliente. Tudo que aparece no vídeo sai daqui: troque os textos, o produto (hamburguer | pizza | cafe) e as cores. Só use informação que o cliente confirmou (preço, horário, diferenciais). 'exemplo: true' mostra o selo EXEMPLO FICTÍCIO.",
+  "id": "negocio-exemplo",
+  "exemplo": true,
+  "nome": "Burguer da Esquina",
+  "produto": "hamburguer",
+  "cores": { "fundo1": "#7a1f17", "fundo2": "#c8693a", "fundo3": "#2a1a14", "destaque": "#ffc93c" },
+  "gancho": "BATEU A FOME?",
+  "nomeProduto": "X-Esquina Duplo",
+  "descricao": "pão brioche · 2 carnes · cheddar",
+  "diferenciais": ["FEITO NA HORA", "ENTREGA NO BAIRRO", "PIX OU CARTÃO"],
+  "oferta": { "titulo": "COMBO + FRITAS + REFRI", "preco": "R$ 34,90" },
+  "cta": { "linha": "PEÇA NO WHATSAPP", "contato": "(11) 9 0000-0000", "info": "ter. a dom. · 18h às 23h" },
+  "conversa": ["Oi! 1 combo X-Esquina 🍔", "Saindo! Chega em 30 min 🛵"]
+}
