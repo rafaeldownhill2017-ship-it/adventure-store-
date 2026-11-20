@@ -25,7 +25,7 @@ import { Fecho, Flash, Grain, PalavraGrande, Selo, useMola } from "../lib/ui";
 // Taxas e ressalvas: docs/dossies/caixa1.md. É SIMULAÇÃO: o selo fica na tela o vídeo inteiro.
 //
 // >>> ANTES DO RENDER: troque SEGUIDORES pelo número real do perfil no dia (a voz não fala o número). <<<
-export const SEGUIDORES: number | null = null;
+export const SEGUIDORES: number | null = 28; // perfil @pesonobolso em 20/11/2026 (print do usuário)
 const POR_SEGUIDOR = 10;
 
 const fmt = (v: number) => v.toLocaleString("pt-BR", { maximumFractionDigits: 0 });

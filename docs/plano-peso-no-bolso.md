@@ -10,6 +10,27 @@ Versão de 20/11/2026. Revisar todo dia 1º, com os números reais do mês.
 
 ---
 
+## 0. Diagnóstico com números reais (print do perfil, 20/11/2026)
+| Dado | Valor |
+|---|---|
+| Posts | 15 |
+| Seguidores | 28 |
+| Visualizações nos últimos 30 dias | 24,9 mil |
+| Bio | "Entenda o que pesa no seu bolso / Economia em vídeos 3D, sem complicação / Aprenda a criar vídeos com IA" + link do estúdio |
+
+**Leitura:** o alcance já existe. O que trava é virar seguidor: ~28 seguidores para ~24,9 mil visualizações é perto de 0,1%. É uma conta aproximada, porque as views são de 30 dias e os seguidores, acumulados. Portanto, a prioridade nº 1 deste mês não é viralizar mais, é **converter visita em seguidor**.
+
+**O que fazer agora:**
+1. **Motivo para seguir dentro do vídeo.** A Caixa do Bolso faz exatamente isso: "cada seguidor novo coloca R$ 10 na caixa" e "daqui a um mês eu mostro quanto rendeu".
+2. **Fixar 3 Reels no perfil:** o melhor em views, o carro1 e a Caixa do Bolso 1/3. Quem chega pelo Explorar vê a promessa em 3 segundos.
+3. **Bio com uma promessa só para o público** e uma linha para o serviço:
+   - "O preço da vida, explicado com fonte e em 3D"
+   - "Toda semana: Caixa do Bolso + Índice do Pãozinho"
+   - "Quer um vídeo assim pro seu negócio? 👇" + link do estúdio
+   Hoje, "Aprenda a criar vídeos com IA" puxa para outro público.
+4. **Medir por Reel:** "seguidores ganhos" e "visitas ao perfil" (Insights). Meta para dezembro: subir a taxa de seguidores por mil views em relação a novembro. Sem número mágico; comparar com você mesmo.
+5. **Valor por seguidor hoje:** R$ 0 de receita registrada. A primeira receita realista é o serviço 3D (o link já está na bio).
+
 ## 1. A conta do "valor por seguidor"
 Não existe um valor padrão. Calcule o seu todo mês:
 
