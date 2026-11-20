@@ -207,7 +207,7 @@ export const filmes = [
     id: "caixa1",
     vozes: ["36rVQA1AOIPwpA3Hg1tC"], // Matheus 1,12×
     preRoll: 0.5,
-    cauda: 4.2,
+    cauda: 1.4, // termina no cofre (sem cartão branco) para o Reel dar loop
     cues: {
       vinte: "vinte",
       dez: ["dez", 1],

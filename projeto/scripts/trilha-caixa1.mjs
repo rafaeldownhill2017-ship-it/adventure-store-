@@ -69,7 +69,7 @@ const buzina = (t0, dur = 1.1) => {
 // GROOVE (uma seção por bloco de cor)
 // =====================================================================
 const BEAT = 60 / 104;
-const FECHO = c.fim + 1.0;
+const FECHO = c.fim + 0.15; // sem cartão branco: o sting curto cai logo depois da última palavra (loop)
 const C_ = [36, 43, 48, 52, 55, 36], Am = [33, 40, 45, 48, 52, 33], F_ = [41, 48, 53, 57, 60, 29], G_ = [31, 38, 43, 47, 50, 31], Em = [40, 47, 52, 55, 59, 28];
 const Cm = [36, 43, 48, 51, 55, 36], Ab = [32, 39, 44, 48, 51, 32], Fm = [41, 48, 53, 56, 60, 29], Gs = [31, 38, 43, 46, 50, 31];
 const T1 = c.decide - 0.7, T2 = c.cresce - 1.3, T3 = c.comenta - 0.3, T4 = c.segue - 0.3;
@@ -79,7 +79,7 @@ const secoes = [
   [c.dois - 0.3, c.tres - 0.3, [Am, F_, C_, Em], 0.85, true], // mega
   [c.tres - 0.3, T2, [F_, G_, C_, Am], 0.8, true], // poupança e tesouro
   [T2, T3, [C_, G_, Am, F_], 1.0, true], // escada: subida
-  [T3, FECHO, [F_, G_, C_, C_], 0.75, false], // votação e segue
+  [T3, DUR, [F_, G_, C_, C_], 0.75, false], // votação e segue (até o fim, para emendar no loop)
 ];
 const PADRAO = [0, 2, 1, 3, 2, 1, 3, 2];
 for (const [ini, fim, prog, forca, bat] of secoes) {
@@ -131,7 +131,7 @@ whoosh(T4 - 0.05, 0.9, 0.07, 0.4, -0.4);
 moeda(c.segue + 0.6, 0.06);
 const STING = FECHO + 0.25;
 [24, 36, 43, 48, 52, 55, 60, 64].forEach((m, j) => piano(STING + j * 0.02, m, 0.6 - j * 0.03, { dur: Math.min(6.5, DUR - STING - 0.1), pan: j * 0.22 - 0.77, rev: 0.6 }));
-pad([36, 43, 48, 52, 59], STING - 0.15, DUR - 2.0, { att: 0.5, rel: 1.8, g: 0.09, corte: (t) => 2600 - 1500 * suave((t - STING) / 6), rev: 0.7 });
+pad([36, 43, 48, 52, 59], STING - 0.15, DUR - 0.2, { att: 0.5, rel: 1.8, g: 0.09, corte: (t) => 2600 - 1500 * suave((t - STING) / 6), rev: 0.7 });
 sino(STING + 0.05, [72, 76, 79, 84], { g: 0.035, dur: 4, rev: 1 });
 bumbo(STING, { g: 0.45, f0: 100, f1: 38, dec: 3, click: 0.15, alvo: SFX, rev: 0.4, revAlvo: REV_S });
 

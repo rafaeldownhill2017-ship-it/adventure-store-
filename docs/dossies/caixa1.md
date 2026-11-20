@@ -45,3 +45,20 @@ Levantado em 20/11/2026; versão 2 (28 seguidores, pirâmide, Mega e escada de a
 - YouTube Short "guardar 1 real por dia": https://www.youtube.com/shorts/Y7hzwNCXfLE
 - Mega-Sena, preço e chance: https://olhardigital.com.br/2026/04/09/curiosidades/quanto-custa-apostar-na-mega-sena-e-como-aumentar-suas-chances/
 - Seu Dinheiro, Mega-Sena 2026: https://www.seudinheiro.com/2026/economia/mega-sena-acumula-e-premio-vai-a-r-115-milhoes-veja-quanto-custa-apostar-e-suas-chances-de-ganhar-lvgb/
+
+## Auditoria viral (v4, 20/11/2026)
+Critérios tirados dos modelos virais registrados em docs/referencias.md (@agrimporta_com: 500 mil–3 mi views com ~28 mil seguidores; @maxagroapp: dinheiro de fantasia com contador). O Instagram não abre nesta sessão: a comparação é com a anatomia documentada, não com vídeos assistidos hoje.
+
+| Critério | v3 | v4 |
+|---|---|---|
+| Objeto + ação + número em 0–3 s | cofre parado até 3,5 s | cofre abre aos 0,25 s, notas voam, contador rola R$ 0 → R$ 280 |
+| Contador de saldo vivo | barra estática | saldo reage a cada opção: 879 (pirâmide no papel, verde) → 0 (vermelho) · 302 · 311 · meta 500 → 1.000 → 100.000 |
+| Quadro 0 forte (prévia no feed) | quase vazio | card "28 seguidores" já inteiro |
+| Loop | fecho branco de 3,7 s | termina no cofre com "segue" e volta ao gancho |
+| Gancho para a Parte 2 | não estava na voz | chip "ep. 2 em 30 dias: o resultado" |
+| Capa padronizada | — | entrega/caixa1-capa.jpg |
+| Pedido para seguir cedo | — | aos 5 s: "se você seguir agora, vira R$ 290" |
+| Pedido para marcar alguém | ✓ | ✓ "marca quem ia escolher a pirâmide" |
+| Meta perto | ✓ | ✓ 28/50, faltam 22 |
+| Uma palavra por vez; números presos a objetos | ✓ | ✓ |
+| Falta (para o ep. 2) | print de comentário real no gancho | — |

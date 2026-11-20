@@ -20,8 +20,8 @@ import {
   TOPO_PEDESTAL,
 } from "../lib/objetos";
 import { TelaSegura, type Rotulo } from "../lib/telaSegura";
-import { p, useT, useTimeline } from "../lib/time";
-import { Fecho, Flash, Grain, PalavraGrande, Selo, useMola } from "../lib/ui";
+import { ease, lerp, p, useT, useTimeline } from "../lib/time";
+import { Flash, Grain, PalavraGrande, Selo, useMola } from "../lib/ui";
 
 // PESO NO BOLSO · CAIXA DO BOLSO 1/3 · "28 seguidores = R$ 280 (de mentirinha). Meta: 50. Você decide."
 // Duas "besteiras" explicadas (pirâmide e Mega-Sena), duas opções sérias (poupança e Tesouro Selic) e a escada de
@@ -36,7 +36,6 @@ const A: V3 = [0, 0, 0]; // a caixa
 const O: V3 = [20, 0, 0]; // grade 2×2 de opções
 const E: V3 = [40, 0, 0]; // escada de aquisições
 const DESTAQUE = /vinte|oito|dez|duzentos|noventa|seguir|cinquenta|quinhentos|Faltam|jogos|ridícula|marca|mentirinha|você|pirâmide|novecentos|some|tudo|Mega|quarenta|milhão|poupança|trezentos|Tesouro|imposto|cem|mil|carro|PIRÂMIDE|MEGA|POUPANÇA|TESOURO|segue/i;
-const MARCA_PNB = { nome: "Peso no Bolso", linha: "O dinheiro do dia a dia, explicado com fonte.", cta: "Comenta o seu voto" };
 const OPC = [
   { nome: "PIRÂMIDE", x: -1.05, z: -1.1, aro: "#ff6a5a" },
   { nome: "MEGA", x: 1.05, z: -1.1, aro: "#7dffb0" },
@@ -50,32 +49,38 @@ const DEGRAUS = [
 ];
 const META = 50;
 
-/** Barra de progresso da caixa, fixa abaixo da legenda: seguidores/meta. `fantasma` mostra o +1 de quem seguir agora. */
-const BarraMeta: React.FC<{ fantasma: number }> = ({ fantasma }) => {
+/**
+ * CONTADOR DE SALDO + barra da meta, fixo abaixo da legenda (padrão "contador de saldo" das referências).
+ * O valor rola de um número a outro e muda de cor: verde = "no papel", vermelho = perdeu, dourado = meta.
+ */
+const Painel: React.FC<{ valor: number; rotulo: string; cor: string; fantasma: number }> = ({ valor, rotulo, cor, fantasma }) => {
   const k = SEGUIDORES / META;
   const kf = (SEGUIDORES + 1) / META;
   return (
-    <div style={{ position: "absolute", left: 90, right: 90, top: 1540, fontFamily: FONT, color: "#fff" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", fontSize: 32, fontWeight: 800, marginBottom: 12, textShadow: "0 3px 10px rgba(0,0,0,0.4)" }}>
-        <span>CAIXA: R$ {SEGUIDORES * 10}</span>
-        <span>META: {META} = R$ {META * 10}</span>
+    <div style={{ position: "absolute", left: 80, right: 80, top: 1490, fontFamily: FONT, color: "#fff" }}>
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 12, textShadow: "0 3px 10px rgba(0,0,0,0.45)" }}>
+        <span style={{ fontSize: 28, fontWeight: 800, letterSpacing: "0.04em", opacity: 0.92 }}>{rotulo}</span>
+        <span style={{ fontSize: 66, fontWeight: 800, letterSpacing: "-0.03em", color: cor, WebkitTextStroke: "6px rgba(10,14,12,0.85)", paintOrder: "stroke fill" }}>
+          R$ {fmtR(valor)}
+        </span>
       </div>
-      <div style={{ height: 34, borderRadius: 17, background: "rgba(10,14,12,0.55)", overflow: "hidden", position: "relative", boxShadow: "0 8px 24px rgba(0,0,0,0.3)" }}>
+      <div style={{ height: 32, borderRadius: 16, background: "rgba(10,14,12,0.55)", overflow: "hidden", position: "relative", boxShadow: "0 8px 24px rgba(0,0,0,0.3)" }}>
         <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${kf * 100}%`, background: C.destaque, opacity: 0.45 * fantasma }} />
-        <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${k * 100}%`, background: C.destaque, borderRadius: 17 }} />
-        <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, fontWeight: 800, color: "#fff", textShadow: "0 0 6px rgba(0,0,0,0.9), 0 2px 4px rgba(0,0,0,0.8)" }}>
-          {SEGUIDORES}/{META} seguidores{fantasma > 0.5 ? " · você é o próximo?" : ""}
+        <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${k * 100}%`, background: C.destaque, borderRadius: 16 }} />
+        <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 23, fontWeight: 800, color: "#fff", textShadow: "0 0 6px rgba(0,0,0,0.9), 0 2px 4px rgba(0,0,0,0.8)" }}>
+          {SEGUIDORES}/{META} seguidores · meta R$ {META * 10}{fantasma > 0.5 ? " · você é o próximo?" : ""}
         </div>
       </div>
     </div>
   );
 };
+const fmtR = (v: number) => Math.round(v).toLocaleString("pt-BR");
 
 export const Caixa1: React.FC = () => {
   const t = useT();
   const mola = useMola();
   const { cues: c } = useTimeline();
-  const FECHO = c.fim + 1.0;
+  const FECHO = c.fim + 1.0; // sem cartão branco: o vídeo termina no cofre e volta ao gancho (loop)
   const T1 = c.decide - 0.7; // "E quem decide..."
   const T2 = c.cresce - 1.3; // "E quanto mais a caixa cresce"
   const T3 = c.comenta - 0.3; // votação
@@ -114,6 +119,21 @@ export const Caixa1: React.FC = () => {
   const naE = t >= T2 - 0.05 && t < T3;
   const votacao = t >= T3 - 0.05;
   const desaba = p(t, c.some - 0.1, 1.4, (x) => x);
+  // ---------------- contador de saldo
+  const CX = SEGUIDORES * 10;
+  const rola = (t0: number, dur: number, a: number, b: number) => lerp(a, b, p(t, t0, dur, ease.out));
+  let saldo = rola(0.3, 2.6, 0, CX);
+  let rotulo = "CAIXA DO BOLSO";
+  let corSaldo = "#ffffff";
+  if (t >= c.papel - 0.1 && t < c.some - 0.1) [saldo, rotulo, corSaldo] = [rola(c.papel, 2.4, CX, 879), "PIRÂMIDE · NO PAPEL", "#7dffb0"];
+  else if (t >= c.some - 0.1 && t < c.dois - 0.2) [saldo, rotulo, corSaldo] = [rola(c.some - 0.1, 0.7, 879, 0), "PIRÂMIDE · NA VIDA REAL", "#ff6a5a"];
+  else if (t >= c.dois - 0.2 && t < c.tres - 0.2) rotulo = "MEGA · 46 JOGOS DE R$ 6";
+  else if (t >= c.tres - 0.2 && t < c.quatro - 0.2) [saldo, rotulo, corSaldo] = [rola(c.poupanca + 0.3, 1.6, CX, 302), "POUPANÇA · EM 12 MESES", "#7dffb0"];
+  else if (t >= c.quatro - 0.2 && t < T2) [saldo, rotulo, corSaldo] = [rola(c.tesouro + 0.3, 1.6, CX, 311), "TESOURO · 12 MESES, LÍQUIDO", "#7dffb0"];
+  else if (t >= T2 && t < T3) {
+    const m = t < c.cem - 0.3 ? rola(T2 + 0.3, 1.0, CX, 500) : t < c.dezmil - 0.3 ? rola(c.cem - 0.3, 1.0, 500, 1000) : rola(c.dezmil - 0.3, 1.4, 1000, 100000);
+    [saldo, rotulo, corSaldo] = [m, "META DA CAIXA", C.destaque];
+  }
   // nos closes só aparece a opção da vez (as da frente tapavam as de trás); no plano aberto, todas
   const aberto = votacao || t < ini[0] - 0.3;
   const vez = ini.findIndex((a, i) => t >= a - 0.3 && t < fim[i]);
@@ -129,6 +149,7 @@ export const Caixa1: React.FC = () => {
     });
   if (naO && !votacao && t >= c.some + 0.4 && t < fim[0]) add({ p: [O[0] + OPC[0].x, 0.25, OPC[0].z + 0.9], s: mola(c.some + 0.4, 240, 12), txt: "pirâmide é crime (Lei 1.521/51)", cor: "#ffffff", tinta: C.alerta, tam: 0.72 });
   if (naO && !votacao && t >= c.mega && t < fim[1]) add({ p: [O[0] + OPC[1].x, 0.25, OPC[1].z + 0.9], s: mola(c.mega, 240, 12), txt: "jogo é para maiores de 18", cor: "#ffffff", tam: 0.7 });
+  if (t >= c.segue + 0.5) add({ p: [A[0] - 0.55, 1.35, 0.3], s: mola(c.segue + 0.5, 240, 12), txt: "ep. 2 em 30 dias: o resultado", cor: "#ffffff", tam: 0.8 });
   // ---------------- escada
   if (naE)
     DEGRAUS.forEach((d, i) => {
@@ -138,13 +159,13 @@ export const Caixa1: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ background: cor }}>
-      {t < FECHO + 0.6 ? (
+      {true ? (
         <PalcoCor cam={cam} cor={cor}>
           {naA ? (
             <group position={A}>
               <Pedestal raio={0.9} aro="#ffc94a" acende={p(t, 0.2, 0.6)} />
-              <Cofre p={[0, TOPO_PEDESTAL, 0]} abre={p(t, c.dez - 0.2, 1.0)} />
-              <NotasVoando de={[0, TOPO_PEDESTAL + 0.5, 0.4]} k={p(t, c.dez, 2.2, (x) => x)} n={16} alcance={1.6} />
+              <Cofre p={[0, TOPO_PEDESTAL, 0]} abre={p(t, 0.25, 0.7)} />
+              <NotasVoando de={[0, TOPO_PEDESTAL + 0.5, 0.4]} k={p(t, 0.35, 2.6, (x) => x)} n={22} alcance={1.8} />
               <Cofrinho p={[0.62, 0, 1.15]} rotY={-0.5} s={0.42} moeda={p(t, c.segue + 0.4, 0.8, (x) => x)} balanca={p(t, c.segue + 1.1, 0.5, (x) => x)} />
             </group>
           ) : null}
@@ -189,11 +210,11 @@ export const Caixa1: React.FC = () => {
         </PalcoCor>
       ) : null}
 
-      {t < FECHO ? <TelaSegura itens={rot} cam={cam} /> : null}
-      {t < FECHO ? <Selo txt="SIMULAÇÃO · CAIXA DO BOLSO 1/3" /> : null}
+      <TelaSegura itens={rot} cam={cam} />
+      <Selo txt="SIMULAÇÃO · CAIXA DO BOLSO 1/3" />
 
       {/* caixa */}
-      <CardNumero t={t} de={c.vinte - 0.2} ate={c.dez - 0.3} titulo="ESTE PERFIL HOJE" valor={`${SEGUIDORES} seguidores`} />
+      <CardNumero t={t} de={-0.6} ate={c.dez - 0.3} titulo="ESTE PERFIL HOJE" valor={`${SEGUIDORES} seguidores`} />
       <CardNumero t={t} de={c.dez - 0.1} ate={c.seguir - 0.3} titulo={`${SEGUIDORES} × R$ 10`} valor={`R$ ${SEGUIDORES * 10}`} cor={C.destaque} />
       <CardNumero t={t} de={c.seguir - 0.1} ate={c.meta - 0.3} titulo="SE VOCÊ SEGUIR AGORA" antes={`R$ ${SEGUIDORES * 10}`} valor={`R$ ${(SEGUIDORES + 1) * 10}`} />
       <CardNumero t={t} de={c.meta - 0.1} ate={c.faltam - 0.3} titulo="PRIMEIRA META" valor={`${META} = R$ ${META * 10}`} cor={C.destaque} />
@@ -214,14 +235,13 @@ export const Caixa1: React.FC = () => {
       {/* votação e fecho */}
       <CardNumero t={t} de={c.comenta - 0.1} ate={c.marca - 0.3} titulo="COMENTA O SEU VOTO" valor="PIRÂMIDE · MEGA · POUPANÇA · TESOURO" />
       <CardNumero t={t} de={c.marca - 0.1} ate={T4 - 0.2} titulo="E MARCA" valor="quem ia escolher a pirâmide" />
-      <CardNumero t={t} de={c.segue} ate={FECHO - 0.2} titulo="SEGUE PRA VER A CAIXA CRESCER" valor="+ R$ 10 por seguidor" cor={C.destaque} />
-      {t < FECHO ? <BarraMeta fantasma={t >= c.seguir - 0.1 && t < T1 ? 0.5 + 0.5 * Math.sin(t * 8) : t >= T4 ? 1 : 0} /> : null}
+      <CardNumero t={t} de={c.segue} ate={99} titulo="SEGUE PRA VER A CAIXA CRESCER" valor="+ R$ 10 por seguidor" cor={C.destaque} />
+      <Painel valor={saldo} rotulo={rotulo} cor={corSaldo} fantasma={t >= c.seguir - 0.1 && t < T1 ? 0.5 + 0.5 * Math.sin(t * 8) : t >= T4 ? 1 : 0} />
 
-      <PalavraGrande ate={FECHO - 0.3} destaque={DESTAQUE} />
+      <PalavraGrande destaque={DESTAQUE} />
       {[T1, T2, T3, T4].map((x) => (
         <Flash key={x} at={x} />
       ))}
-      <Fecho at={FECHO} marca={MARCA_PNB} />
       <Grain />
     </AbsoluteFill>
   );
