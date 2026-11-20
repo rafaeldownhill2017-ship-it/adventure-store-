@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill } from "remotion";
-import { C } from "../brand";
+import { C, FONT } from "../brand";
 import { camPorKeys, type Key, type V3 } from "../lib/camera";
 import { Modelo, precarregar } from "../lib/kenney";
 import {
@@ -23,7 +23,7 @@ import { TelaSegura, type Rotulo } from "../lib/telaSegura";
 import { p, useT, useTimeline } from "../lib/time";
 import { Fecho, Flash, Grain, PalavraGrande, Selo, useMola } from "../lib/ui";
 
-// PESO NO BOLSO · CAIXA DO BOLSO 1/3 · "28 seguidores = R$ 280 (de mentirinha). Você decide onde eu enfio."
+// PESO NO BOLSO · CAIXA DO BOLSO 1/3 · "28 seguidores = R$ 280 (de mentirinha). Meta: 50. Você decide."
 // Duas "besteiras" explicadas (pirâmide e Mega-Sena), duas opções sérias (poupança e Tesouro Selic) e a escada de
 // aquisições futuras (100 → 1.000 → 10 mil seguidores = o carro zero do carro1). Dados: docs/dossies/caixa1.md.
 // Série de no máximo 3 partes. É SIMULAÇÃO: o selo fica na tela o vídeo inteiro.
@@ -35,7 +35,7 @@ export const SEGUIDORES = 28;
 const A: V3 = [0, 0, 0]; // a caixa
 const O: V3 = [20, 0, 0]; // grade 2×2 de opções
 const E: V3 = [40, 0, 0]; // escada de aquisições
-const DESTAQUE = /vinte|oito|dez|duzentos|mentirinha|você|pirâmide|novecentos|some|tudo|Mega|quarenta|milhão|poupança|trezentos|Tesouro|imposto|cem|mil|carro|PIRÂMIDE|MEGA|POUPANÇA|TESOURO|segue/i;
+const DESTAQUE = /vinte|oito|dez|duzentos|noventa|seguir|cinquenta|quinhentos|Faltam|jogos|ridícula|marca|mentirinha|você|pirâmide|novecentos|some|tudo|Mega|quarenta|milhão|poupança|trezentos|Tesouro|imposto|cem|mil|carro|PIRÂMIDE|MEGA|POUPANÇA|TESOURO|segue/i;
 const MARCA_PNB = { nome: "Peso no Bolso", linha: "O dinheiro do dia a dia, explicado com fonte.", cta: "Comenta o seu voto" };
 const OPC = [
   { nome: "PIRÂMIDE", x: -1.05, z: -1.1, aro: "#ff6a5a" },
@@ -44,10 +44,32 @@ const OPC = [
   { nome: "TESOURO", x: 1.05, z: 1.0, aro: "#ffc94a" },
 ];
 const DEGRAUS = [
-  { x: -1.15, alt: 0.3, seg: "100 seguidores", valor: "R$ 1.000" },
-  { x: 0, alt: 0.6, seg: "1.000 seguidores", valor: "R$ 10 mil" },
+  { x: -1.15, alt: 0.3, seg: "50 seguidores", valor: "R$ 500" },
+  { x: 0, alt: 0.6, seg: "100 seguidores", valor: "R$ 1.000" },
   { x: 1.15, alt: 0.9, seg: "10 mil seguidores", valor: "R$ 100 mil" },
 ];
+const META = 50;
+
+/** Barra de progresso da caixa, fixa abaixo da legenda: seguidores/meta. `fantasma` mostra o +1 de quem seguir agora. */
+const BarraMeta: React.FC<{ fantasma: number }> = ({ fantasma }) => {
+  const k = SEGUIDORES / META;
+  const kf = (SEGUIDORES + 1) / META;
+  return (
+    <div style={{ position: "absolute", left: 90, right: 90, top: 1540, fontFamily: FONT, color: "#fff" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", fontSize: 32, fontWeight: 800, marginBottom: 12, textShadow: "0 3px 10px rgba(0,0,0,0.4)" }}>
+        <span>CAIXA: R$ {SEGUIDORES * 10}</span>
+        <span>META: {META} = R$ {META * 10}</span>
+      </div>
+      <div style={{ height: 34, borderRadius: 17, background: "rgba(10,14,12,0.55)", overflow: "hidden", position: "relative", boxShadow: "0 8px 24px rgba(0,0,0,0.3)" }}>
+        <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${kf * 100}%`, background: C.destaque, opacity: 0.45 * fantasma }} />
+        <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${k * 100}%`, background: C.destaque, borderRadius: 17 }} />
+        <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, fontWeight: 800, color: "#fff", textShadow: "0 0 6px rgba(0,0,0,0.9), 0 2px 4px rgba(0,0,0,0.8)" }}>
+          {SEGUIDORES}/{META} seguidores{fantasma > 0.5 ? " · você é o próximo?" : ""}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export const Caixa1: React.FC = () => {
   const t = useT();
@@ -55,9 +77,9 @@ export const Caixa1: React.FC = () => {
   const { cues: c } = useTimeline();
   const FECHO = c.fim + 1.0;
   const T1 = c.decide - 0.7; // "E quem decide..."
-  const T2 = c.plano - 0.5; // "E o plano é esse"
+  const T2 = c.cresce - 1.3; // "E quanto mais a caixa cresce"
   const T3 = c.comenta - 0.3; // votação
-  const T4 = c.segue - 0.4; // volta à caixa
+  const T4 = c.segue - 0.3; // volta à caixa
   const ini = [c.um, c.dois, c.tres, c.quatro]; // início de cada opção
   const fim = [c.dois, c.tres, c.quatro, T2]; // fim de cada opção
 
@@ -110,7 +132,7 @@ export const Caixa1: React.FC = () => {
   // ---------------- escada
   if (naE)
     DEGRAUS.forEach((d, i) => {
-      const t0 = [c.cem, c.milS, c.dezmil][i] - 0.3;
+      const t0 = [T2 + 0.4, c.cem, c.dezmil][i] - 0.3;
       if (t >= t0) add({ p: [E[0] + d.x, d.alt + 1.05, 0], s: mola(t0, 240, 12), txt: `${d.seg} = ${d.valor}`, cor: i === 2 ? C.destaque : "#ffffff", tam: 0.66 });
     });
 
@@ -121,9 +143,9 @@ export const Caixa1: React.FC = () => {
           {naA ? (
             <group position={A}>
               <Pedestal raio={0.9} aro="#ffc94a" acende={p(t, 0.2, 0.6)} />
-              <Cofre p={[0, TOPO_PEDESTAL, 0]} abre={p(t, c.duzentos - 0.2, 1.0)} />
-              <NotasVoando de={[0, TOPO_PEDESTAL + 0.5, 0.4]} k={p(t, c.duzentos, 2.2, (x) => x)} n={16} alcance={1.6} />
-              <Cofrinho p={[0.8, 0, 1.0]} rotY={-0.5} s={0.45} moeda={p(t, c.segue + 0.4, 0.8, (x) => x)} balanca={p(t, c.segue + 1.1, 0.5, (x) => x)} />
+              <Cofre p={[0, TOPO_PEDESTAL, 0]} abre={p(t, c.dez - 0.2, 1.0)} />
+              <NotasVoando de={[0, TOPO_PEDESTAL + 0.5, 0.4]} k={p(t, c.dez, 2.2, (x) => x)} n={16} alcance={1.6} />
+              <Cofrinho p={[0.62, 0, 1.15]} rotY={-0.5} s={0.42} moeda={p(t, c.segue + 0.4, 0.8, (x) => x)} balanca={p(t, c.segue + 1.1, 0.5, (x) => x)} />
             </group>
           ) : null}
 
@@ -146,7 +168,7 @@ export const Caixa1: React.FC = () => {
           {naE ? (
             <group position={E}>
               {DEGRAUS.map((d, i) => {
-                const t0 = [c.cem, c.milS, c.dezmil][i] - 0.3;
+                const t0 = [T2 + 0.4, c.cem, c.dezmil][i] - 0.3;
                 const s = mola(t0, 200, 13);
                 return (
                   <group key={d.seg} position={[d.x, 0, 0]}>
@@ -171,23 +193,29 @@ export const Caixa1: React.FC = () => {
       {t < FECHO ? <Selo txt="SIMULAÇÃO · CAIXA DO BOLSO 1/3" /> : null}
 
       {/* caixa */}
-      <CardNumero t={t} de={c.vinte - 0.2} ate={c.duzentos - 0.3} titulo="ESTE PERFIL HOJE" valor={`${SEGUIDORES} seguidores`} />
-      <CardNumero t={t} de={c.duzentos - 0.1} ate={T1 - 0.2} titulo={`${SEGUIDORES} × R$ 10`} valor={`R$ ${SEGUIDORES * 10}`} cor={C.destaque} />
+      <CardNumero t={t} de={c.vinte - 0.2} ate={c.dez - 0.3} titulo="ESTE PERFIL HOJE" valor={`${SEGUIDORES} seguidores`} />
+      <CardNumero t={t} de={c.dez - 0.1} ate={c.seguir - 0.3} titulo={`${SEGUIDORES} × R$ 10`} valor={`R$ ${SEGUIDORES * 10}`} cor={C.destaque} />
+      <CardNumero t={t} de={c.seguir - 0.1} ate={c.meta - 0.3} titulo="SE VOCÊ SEGUIR AGORA" antes={`R$ ${SEGUIDORES * 10}`} valor={`R$ ${(SEGUIDORES + 1) * 10}`} />
+      <CardNumero t={t} de={c.meta - 0.1} ate={c.faltam - 0.3} titulo="PRIMEIRA META" valor={`${META} = R$ ${META * 10}`} cor={C.destaque} />
+      <CardNumero t={t} de={c.faltam - 0.1} ate={T1 - 0.2} titulo="FALTAM" valor={`${META - SEGUIDORES} seguidores`} />
       {/* pirâmide */}
       <CardNumero t={t} de={c.piramide - 0.1} ate={c.papel - 0.3} titulo="A PROMESSA" valor="10% ao mês" cor={C.alerta} tinta="#ffffff" />
       <CardNumero t={t} de={c.papel - 0.1} ate={c.some - 0.3} titulo="NO PAPEL, EM 12 MESES" antes="R$ 280" valor="R$ 879" />
       <CardNumero t={t} de={c.some - 0.1} ate={fim[0] - 0.35} titulo="NA VIDA REAL" valor="R$ 0" cor={C.alerta} tinta="#ffffff" />
       {/* mega */}
-      <CardNumero t={t} de={c.quarenta - 0.2} ate={c.chance - 0.3} titulo="R$ 280 ÷ R$ 6 POR JOGO" valor="46 jogos" />
-      <CardNumero t={t} de={c.chance - 0.1} ate={fim[1] - 0.35} titulo="CHANCE DE GANHAR" valor="1 em 1,09 milhão" />
+      <CardNumero t={t} de={c.quarenta - 0.2} ate={c.novo - 0.3} titulo="R$ 280 ÷ R$ 6 POR JOGO" valor="46 jogos" />
+      <CardNumero t={t} de={c.novo - 0.1} ate={c.ridicula - 0.3} titulo="CADA SEGUIDOR NOVO" valor="+ quase 2 jogos" cor={C.destaque} />
+      <CardNumero t={t} de={c.ridicula - 0.1} ate={fim[1] - 0.35} titulo="CHANCE COM 46 JOGOS" valor="1 em 1,09 milhão" />
       {/* poupança e tesouro */}
       <CardNumero t={t} de={c.poupanca} ate={fim[2] - 0.35} titulo="POUPANÇA · 12 MESES" antes="R$ 280" valor="≈ R$ 302" />
       <CardNumero t={t} de={c.tesouro} ate={T2 - 0.3} titulo="TESOURO SELIC · 12 MESES, LÍQUIDO" antes="R$ 280" valor="≈ R$ 311" />
       {/* escada */}
-      <CardNumero t={t} de={c.plano} ate={T3 - 0.2} titulo="O PLANO DA CAIXA" valor="R$ 10 por seguidor" />
+      <CardNumero t={t} de={T2 + 0.2} ate={T3 - 0.2} titulo="A CAIXA CRESCE COM VOCÊ" valor="compra e investe mais" />
       {/* votação e fecho */}
-      <CardNumero t={t} de={c.comenta - 0.1} ate={T4 - 0.2} titulo="COMENTA O SEU VOTO" valor="PIRÂMIDE · MEGA · POUPANÇA · TESOURO" />
-      <CardNumero t={t} de={c.segue} ate={FECHO - 0.2} titulo="SEGUE E ENCHE A CAIXA" valor="+ R$ 10 por seguidor" cor={C.destaque} />
+      <CardNumero t={t} de={c.comenta - 0.1} ate={c.marca - 0.3} titulo="COMENTA O SEU VOTO" valor="PIRÂMIDE · MEGA · POUPANÇA · TESOURO" />
+      <CardNumero t={t} de={c.marca - 0.1} ate={T4 - 0.2} titulo="E MARCA" valor="quem ia escolher a pirâmide" />
+      <CardNumero t={t} de={c.segue} ate={FECHO - 0.2} titulo="SEGUE PRA VER A CAIXA CRESCER" valor="+ R$ 10 por seguidor" cor={C.destaque} />
+      {t < FECHO ? <BarraMeta fantasma={t >= c.seguir - 0.1 && t < T1 ? 0.5 + 0.5 * Math.sin(t * 8) : t >= T4 ? 1 : 0} /> : null}
 
       <PalavraGrande ate={FECHO - 0.3} destaque={DESTAQUE} />
       {[T1, T2, T3, T4].map((x) => (
