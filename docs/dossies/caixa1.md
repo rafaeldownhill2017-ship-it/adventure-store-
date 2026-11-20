@@ -62,3 +62,24 @@ Critérios tirados dos modelos virais registrados em docs/referencias.md (@agrim
 | Meta perto | ✓ | ✓ 28/50, faltam 22 |
 | Uma palavra por vez; números presos a objetos | ✓ | ✓ |
 | Falta (para o ep. 2) | print de comentário real no gancho | — |
+
+## Legenda do post (20/11/2026)
+Esse perfil tem 28 seguidores. Cada um vale R$ 10 na Caixa do Bolso: R$ 280. De mentirinha… mas toda conta é de verdade. 📦
+
+Você decide o que a caixa faz:
+🔺 PIRÂMIDE: promete 10% ao mês. No papel, R$ 879. Na vida real, R$ 0.
+🎱 MEGA: 46 jogos, 1 chance em 1,09 milhão.
+🐷 POUPANÇA: ≈ R$ 302 em 12 meses.
+🏦 TESOURO: ≈ R$ 311 em 12 meses, já sem imposto.
+
+Meta: 50 seguidores = R$ 500. Faltam 22. Cada seguidor novo põe +R$ 10 na caixa.
+
+👇 Comenta o seu voto e marca quem ia escolher a pirâmide.
+📅 Em 30 dias: o resultado.
+
+Simulação educativa. Ninguém ganha prêmio, e não é recomendação de investimento. Pirâmide financeira é crime (Lei 1.521/51). Jogo é para maiores de 18.
+
+#caixadobolso #educacaofinanceira #tesourodireto #poupanca #pesonobolso
+
+### Comentário fixado
+📌 Contas: Selic 13,75% (Copom, 04/11/2026); poupança 0,5% ao mês + TR (~8% a.a.); Tesouro Selic líquido ≈ 11,3% em 12 meses (IR de 17,5%), se as taxas ficarem. Mega-Sena: R$ 6 a aposta, 1 em 50.063.860 por jogo (Loterias Caixa). Pirâmide "10% ao mês" = 280 × 1,1¹² ≈ R$ 879 só no papel. Voz gerada por IA.
