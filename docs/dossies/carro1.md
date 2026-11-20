@@ -44,3 +44,25 @@ Antes da voz: abrir a MP 1.399/2026 (Anexo II) e conferir cada linha marcada (IM
 - Comsefaz: https://comsefaz.org.br/novo/mp-1-399-2026-institui-imposto-seletivo-para-2027-com-aliquotas-de-ate-667-e-reducao-da-referencia-da-cbs/
 - Assertif: https://assertif.com.br/pec-prorrogar-ipi-imposto-seletivo-2027/
 - SpaceMoney: https://www.spacemoney.com.br/economia/imposto-do-pecado-aliquotas-2027
+
+## Legenda do post (20/11/2026)
+Seu pai juntou por anos pra comprar o primeiro carro ZERO da família. Lembra do cheiro? 🚗
+
+Agora carro novo pode entrar no "imposto do pecado", o mesmo do cigarro e da bebida. Começa em fevereiro de 2027, **se o Congresso aprovar** a MP 1.399.
+
+A conta, num carro de R$ 100 mil saindo da fábrica (simulação, ~100 cv, sem outros descontos):
+⚡ elétrico: ≈ R$ 5,2 mil
+🟢 flex: ≈ R$ 7,6 mil
+🔴 só gasolina: ≈ R$ 15,5 mil (o dobro do flex)
+
+O que pouca gente conta: esse imposto foi feito pra entrar no lugar do IPI. Então não dá pra somar tudo no preço da loja. E ele é cobrado na fábrica, no carro zero.
+
+👇 Comenta: qual foi o primeiro carro da sua família?
+📤 Manda pra quem tá pensando em trocar de carro.
+
+Fontes no primeiro comentário. Conteúdo educativo; não é recomendação de compra.
+
+#impostoseletivo #reformatributaria #carronovo #pesonobolso #educacaofinanceira
+
+### Comentário fixado
+📌 Fontes: MP 1.399/2026 (Congresso, matéria 176208) e resumos da Agência Gov, Sittax, TaxUp e Portal do Trânsito (consultados em 20/11/2026). Alíquota-base de 6,3% + ajuste por motor (elétrico −2, flex 0, gasolina +6,5), × 1,21. A MP ainda depende de aprovação no Congresso. Voz gerada por IA.
