@@ -9,6 +9,7 @@ Links que inspiraram o formato e a técnica. **São pistas de estudo**, não mat
 | [Reel do mesmo perfil](https://www.instagram.com/reels/DfN90yPyZ3I/) | Exemplo do formato que motivou a análise da anatomia acima. |
 | [@maxagroapp no Instagram](https://www.instagram.com/maxagroapp/) | Histórias animadas de agro com fantasia de dinheiro ("e se você ganhasse R$ 10 milhões, montaria uma fazenda?"). Padrões observados: dinheiro + decisão pessoal supera conteúdo educativo; contador de saldo na tela; Parte 2 com cliffhanger; gancho com print de comentário real; rivalidade entre países. |
 | [Reel de motion de referência](https://www.instagram.com/reel/De4J0fexm9s/) | Padrão de qualidade de motion curto para apresentação de marca. |
+| Reel "GTA 6: R$ 563 mi em 30 dias" (@ludificando.br), enviado pelo dono em 20/11/2026 (71 s) | Número de choque no topo + objeto 3D (boneco cercado de notas) em 0–3 s; **"O motivo?" + pausa + palavrão dito com naturalidade ("a porra do GTA 6")**, que os comentários apontam como o gatilho do hype; cadeia de números, um por bloco de cor (+69%, +16% × −25%, "8 em 10", +125%); placas penduradas vermelhas e verdes; conta pessoal no fim ("o jogo custa R$ 450… pra quem tinha PS4, R$ 5.500"); CTA com palavra-chave ("Quer criar vídeos como esse? Comenta lúdico"). Usamos só a estrutura. |
 | Adam Mosseri (Instagram) | Declaração pública de que envios por mensagem (sends per reach) são sinal-chave de distribuição para não seguidores. Base do CTA "Mande para ___". |
 
 ## Técnica 3D / Remotion / motion
