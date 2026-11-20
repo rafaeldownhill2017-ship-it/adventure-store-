@@ -21,6 +21,8 @@ import { Gta3 } from "./films/Gta3";
 import dNegocioEx from "./data/negocio-exemplo.json";
 import cfgBurguer from "./data/negocios/exemplo-burguer.json";
 import { type ConfigNegocio, fazNegocio } from "./films/Negocio";
+import dVendaKit1 from "./data/vendakit1.json";
+import { VendaKit1 } from "./films/VendaKit1";
 import { Vitrine } from "./films/Vitrine";
 import { FontGate } from "./lib/fonts";
 import { Timeline, TimelineCtx } from "./lib/time";
@@ -51,6 +53,7 @@ const filmes = [
   { id: "pao1", data: dPao1 as Timeline, C: filme(dPao1 as Timeline, Pao1) },
   { id: "caixa1", data: dCaixa1 as Timeline, C: filme(dCaixa1 as Timeline, Caixa1) },
   { id: "gta3", data: dGta3 as Timeline, C: filme(dGta3 as Timeline, Gta3) },
+  { id: "vendakit1", data: dVendaKit1 as Timeline, C: filme(dVendaKit1 as Timeline, VendaKit1) },
   // vídeos de vendas para negócio local: um JSON de cliente em data/negocios + um timeline em data/<id>.json
   { id: "negocio-exemplo", data: dNegocioEx as Timeline, C: filme(dNegocioEx as Timeline, fazNegocio(cfgBurguer as ConfigNegocio)) },
 ];

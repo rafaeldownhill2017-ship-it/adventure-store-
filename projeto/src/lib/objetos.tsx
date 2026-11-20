@@ -1,9 +1,9 @@
-import { Environment, Lightformer } from "@react-three/drei";
+import { Environment, Lightformer, useTexture } from "@react-three/drei";
 import { ThreeCanvas } from "@remotion/three";
 import { useThree } from "@react-three/fiber";
 import { Bloom, EffectComposer, Vignette } from "@react-three/postprocessing";
 import React, { useLayoutEffect, useMemo } from "react";
-import { spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import * as THREE from "three";
 import { FONT, H, W } from "../brand";
 import type { CamPose } from "./camera";
@@ -1277,6 +1277,158 @@ export const CelularPedido: React.FC<{ p?: V3; rotY?: number; s?: number; k?: nu
           </group>
         );
       })}
+    </group>
+  );
+};
+
+
+/* ------------------------------------------------------------------ venda do kit (vendakit1) */
+
+/** Tomate (esfera achatada vermelha com cabinho verde). */
+export const Tomate: React.FC<{ p?: V3; s?: number; rot?: number }> = ({ p: pos = [0, 0, 0], s = 1, rot = 0 }) => (
+  <group position={pos} rotation={[0, rot, 0]} scale={s}>
+    <mesh position={[0, 0.09, 0]} scale={[1, 0.82, 1]} castShadow material={lisoMat("#e2342a", 0.3)}>
+      <sphereGeometry args={[0.11, 18, 14]} />
+    </mesh>
+    <mesh position={[0, 0.18, 0]} material={lisoMat("#3f8f3a", 0.6)}>
+      <coneGeometry args={[0.04, 0.03, 5]} />
+    </mesh>
+  </group>
+);
+
+/** Caixa de feira (madeira) cheia de tomates. `sai` 0..1: um terço dos tomates pula para fora (para `destino`, relativo). */
+export const CaixaTomate: React.FC<{ p?: V3; rotY?: number; s?: number; sai?: number; destino?: V3 }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1, sai = 0, destino = [1.6, 0, 0] }) => {
+  if (s <= 0.002) return null;
+  const madeira = mat("#b9864f", 0.9);
+  const tomates: { x: number; z: number; y: number; i: number }[] = [];
+  for (let i = 0; i < 18; i++) tomates.push({ x: -0.32 + (i % 6) * 0.13, z: -0.14 + (Math.floor(i / 6) % 3) * 0.14, y: 0.3 + (i >= 12 ? 0.05 : 0) + hash(i) * 0.02, i });
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      {[0, 1, 2].map((r) => (
+        <React.Fragment key={r}>
+          <mesh position={[0, 0.06 + r * 0.11, 0.24]} castShadow material={madeira}><boxGeometry args={[0.9, 0.08, 0.03]} /></mesh>
+          <mesh position={[0, 0.06 + r * 0.11, -0.24]} castShadow material={madeira}><boxGeometry args={[0.9, 0.08, 0.03]} /></mesh>
+        </React.Fragment>
+      ))}
+      {[-1, 1].map((i) => (
+        <mesh key={i} position={[i * 0.44, 0.17, 0]} castShadow material={madeira}><boxGeometry args={[0.04, 0.34, 0.5]} /></mesh>
+      ))}
+      <mesh position={[0, 0.02, 0]} receiveShadow material={madeira}><boxGeometry args={[0.9, 0.03, 0.5]} /></mesh>
+      {tomates.map(({ x, z, y, i }) => {
+        const voa = i % 3 === 0; // 6 de 18 = um terço
+        const k = voa ? ease.inOut(clamp01((sai - (i / 18) * 0.4) / 0.6)) : 0;
+        const px = lerp(x, destino[0] + ((i / 3) % 3 - 1) * 0.14, k);
+        const pz = lerp(z, destino[2] + (i % 2 ? 0.07 : -0.07), k);
+        const py = lerp(y - 0.09, destino[1] + (i > 9 ? 0.12 : 0), k) + Math.sin(k * Math.PI) * 0.9;
+        return <Tomate key={i} p={[px, py, pz]} rot={i} s={1} />;
+      })}
+    </group>
+  );
+};
+
+/** Cubo amarelo do Estúdio Miniatura (a marca do kit), com brilho. `gira` = t. */
+export const CuboKit: React.FC<{ p?: V3; s?: number; gira?: number }> = ({ p: pos = [0, 0, 0], s = 1, gira = 0 }) => {
+  if (s <= 0.002) return null;
+  return (
+    <group position={pos} scale={s}>
+      <group position={[0, 0.32, 0]} rotation={[0.55, gira * 0.8 + 0.6, 0.35]}>
+        <mesh castShadow material={lisoMat("#ffcf3a", 0.3, 0.1)}>
+          <boxGeometry args={[0.4, 0.4, 0.4]} />
+        </mesh>
+        <mesh position={[0, 0.201, 0]} material={lisoMat("#ffe27a", 0.3)}>
+          <planeGeometry args={[0.39, 0.39]} />
+        </mesh>
+      </group>
+    </group>
+  );
+};
+
+/** Balança de dois pratos. `incl` -1..1 inclina (positivo desce o prato direito). Filhos: [esquerda, direita]. */
+export const Balanca: React.FC<{ p?: V3; s?: number; incl?: number; esq?: React.ReactNode; dir?: React.ReactNode }> = ({ p: pos = [0, 0, 0], s = 1, incl = 0, esq, dir }) => {
+  if (s <= 0.002) return null;
+  const a = incl * 0.22;
+  const L = 0.95;
+  const m = lisoMat("#c9ced6", 0.3, 0.7);
+  const prato = (lado: number, filho: React.ReactNode) => {
+    const x = Math.cos(a) * L * lado;
+    const y = 1.2 - Math.sin(a) * L * lado;
+    return (
+      <group position={[x, y, 0]}>
+        {[-1, 1].map((i) => (
+          <B key={i} s={[0.012, 0.42, 0.012]} p={[i * 0.2, -0.21, 0]} r={[0, 0, i * 0.4]} cor="#9aa1ab" />
+        ))}
+        <mesh position={[0, -0.42, 0]} castShadow receiveShadow material={m}>
+          <cylinderGeometry args={[0.4, 0.34, 0.04, 32]} />
+        </mesh>
+        <group position={[0, -0.4, 0]}>{filho}</group>
+      </group>
+    );
+  };
+  return (
+    <group position={pos} scale={s}>
+      <mesh position={[0, 0.03, 0]} castShadow material={m}><cylinderGeometry args={[0.32, 0.38, 0.06, 32]} /></mesh>
+      <mesh position={[0, 0.62, 0]} castShadow material={m}><cylinderGeometry args={[0.035, 0.05, 1.2, 12]} /></mesh>
+      <group position={[0, 1.2, 0]} rotation={[0, 0, -a]}>
+        <mesh rotation={[0, 0, Math.PI / 2]} castShadow material={m}><cylinderGeometry args={[0.03, 0.03, L * 2, 12]} /></mesh>
+      </group>
+      <mesh position={[0, 1.24, 0]} material={lisoMat("#ffcf3a", 0.3, 0.4)}><sphereGeometry args={[0.06, 16, 12]} /></mesh>
+      {prato(-1, esq)}
+      {prato(1, dir)}
+    </group>
+  );
+};
+
+/** Escudo de garantia (verde, com "✓" e texto). */
+export const Escudo: React.FC<{ p?: V3; s?: number; txt?: string; gira?: number }> = ({ p: pos = [0, 0, 0], s = 1, txt = "GARANTIA", gira = 0 }) => {
+  const forma = useMemo(() => {
+    const sh = new THREE.Shape();
+    sh.moveTo(0, 0.5);
+    sh.quadraticCurveTo(0.22, 0.42, 0.42, 0.44);
+    sh.lineTo(0.4, 0.05);
+    sh.quadraticCurveTo(0.36, -0.32, 0, -0.52);
+    sh.quadraticCurveTo(-0.36, -0.32, -0.4, 0.05);
+    sh.lineTo(-0.42, 0.44);
+    sh.quadraticCurveTo(-0.22, 0.42, 0, 0.5);
+    return new THREE.ExtrudeGeometry(sh, { depth: 0.08, bevelEnabled: true, bevelSize: 0.02, bevelThickness: 0.02, bevelSegments: 2 });
+  }, []);
+  if (s <= 0.002) return null;
+  return (
+    <group position={pos} scale={s} rotation={[0, Math.sin(gira) * 0.35, 0]}>
+      <mesh geometry={forma} position={[0, 0.55, -0.04]} castShadow material={lisoMat("#25a35a", 0.35, 0.1)} />
+      <PlanoTexto linhas={[["✓", 1.6, "#ffffff"], [txt, 0.7, "#ffffff"]]} fundo={null} tam={[0.6, 0.6]} p={[0, 0.58, 0.07]} px={[400, 400]} />
+    </group>
+  );
+};
+
+/** Celular mostrando uma imagem (quadro de um vídeo) de public/. `liga` 0..1 acende a tela. */
+export const CelularImagem: React.FC<{ p?: V3; rotY?: number; s?: number; img: string; liga?: number }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1, img, liga = 1 }) => {
+  const tex = useTexture(staticFile(img));
+  tex.colorSpace = THREE.SRGBColorSpace;
+  if (s <= 0.002) return null;
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      <B s={[0.5, 0.92, 0.04]} p={[0, 0.46, 0]} cor="#16191e" rough={0.3} />
+      <mesh position={[0, 0.46, 0.021]}>
+        <planeGeometry args={[0.46, 0.82]} />
+        <meshBasicMaterial map={tex} color={new THREE.Color(0.25 + 0.75 * clamp01(liga), 0.25 + 0.75 * clamp01(liga), 0.25 + 0.75 * clamp01(liga))} toneMapped={false} />
+      </mesh>
+    </group>
+  );
+};
+
+/** Caixa de presente que abre (tampa sobe) revelando um rótulo. */
+export const CaixaAbre: React.FC<{ p?: V3; s?: number; abre?: number; cor?: string; rotulo: string }> = ({ p: pos = [0, 0, 0], s = 1, abre = 0, cor = "#5b3a8c", rotulo }) => {
+  if (s <= 0.002) return null;
+  const k = ease.back(clamp01(abre));
+  return (
+    <group position={pos} scale={s}>
+      <B s={[0.6, 0.4, 0.6]} p={[0, 0.2, 0]} cor={cor} />
+      <B s={[0.1, 0.41, 0.61]} p={[0, 0.2, 0]} cor="#ffcf3a" />
+      <group position={[0, 0.42 + k * 0.45, 0]} rotation={[k * -0.5, 0, k * 0.3]}>
+        <B s={[0.66, 0.1, 0.66]} cor={escurece(cor, 1.2)} />
+        <B s={[0.11, 0.11, 0.67]} cor="#ffcf3a" />
+      </group>
+      {abre > 0.2 ? <PlanoTexto linhas={[[rotulo, 1, "#1d2230"]]} fundo="#ffffff" tam={[0.62 * k, 0.2 * k]} p={[0, 0.62 + k * 0.1, 0.1]} px={[440, 142]} /> : null}
     </group>
   );
 };
