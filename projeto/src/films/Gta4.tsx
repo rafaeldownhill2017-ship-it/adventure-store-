@@ -189,7 +189,7 @@ export const Gta4: React.FC = () => {
       {/* camada de topo */}
       <CardNumero t={t} de={-0.6} ate={c.rodando - 0.3} titulo="O GTA 6 PODE TER CUSTADO" valor="≈ 30 Torres Eiffel" cor={C.destaque} />
       <CardNumero t={t} de={c.rodando - 0.1} ate={c.conferir - 0.25} titulo="TÁ RODANDO POR AÍ" valor="quase 1 Torre" />
-      <Carimbo t={t} de={c.conferir - 0.05} ate={c.fim6 - 1.1} txt="CONFERIMOS" />
+      <Carimbo t={t} de={c.conferir + 0.5} ate={c.fim6 - 0.9} txt="CONFERIMOS" />
       <CardNumero t={t} de={c.fim6 - 0.9} ate={T1 - 0.4} titulo="NO FIM DO VÍDEO" valor="a obra que nem 6 GTAs pagam" />
       <CardNumero t={t} de={c.quarenta - 0.2} ate={tGta - 0.2} titulo="TORRE EIFFEL · EM DINHEIRO DE HOJE" valor="≈ US$ 40 mi" />
       <CardNumero t={t} de={tGta + 0.1} ate={c.nove - 0.3} titulo="GTA 6 · ESTIMATIVA DE ANALISTAS" valor="até US$ 1,5 bi" cor={C.destaque} />

@@ -2,28 +2,28 @@
  "id": "vendakit1",
  "voz": "36rVQA1AOIPwpA3Hg1tC",
  "preRoll": 0.3,
- "duracao": 44.548,
- "fimVoz": 42.348,
+ "duracao": 44.3,
+ "fimVoz": 42.1,
  "cues": {
-  "feito": 0.896,
-  "tomate": 5.177,
-  "rolando": 6.967,
+  "feito": 0.973,
+  "tomate": 5.18,
+  "rolando": 7.211,
   "outra": 9.104,
-  "perfis": 11.036,
-  "dez": 12.343,
-  "tres": 17.225,
-  "tema": 19.628,
-  "claude": 20.185,
-  "aparecer": 24.244,
-  "editar": 25.118,
-  "animar": 26.171,
-  "catorze": 27.5,
-  "skills": 28.785,
-  "projeto": 29.709,
-  "dois": 31.172,
+  "perfis": 11.037,
+  "dez": 12.649,
+  "tres": 17.226,
+  "tema": 19.63,
+  "claude": 20.187,
+  "aparecer": 24.36,
+  "editar": 25.144,
+  "animar": 26.542,
+  "catorze": 27.505,
+  "skills": 28.786,
+  "projeto": 29.71,
+  "dois": 31.174,
   "crescer": 32.967,
-  "comercio": 36,
-  "cliente": 37.351,
+  "comercio": 36.002,
+  "cliente": 37.353,
   "custa": 39.92,
   "comenta": 40.357,
   "fim": 41.834
@@ -31,143 +31,143 @@
  "palavras": [
   {
    "w": "Esse",
-   "start": 0.3,
-   "end": 0.586
+   "start": 0.378,
+   "end": 0.664
   },
   {
    "w": "vídeo",
-   "start": 0.61,
-   "end": 0.729
+   "start": 0.688,
+   "end": 0.807
   },
   {
    "w": "foi",
-   "start": 0.764,
-   "end": 0.871
+   "start": 0.842,
+   "end": 0.949
   },
   {
    "w": "feito",
-   "start": 0.896,
-   "end": 1.086
+   "start": 0.973,
+   "end": 1.164
   },
   {
    "w": "por",
-   "start": 1.121,
-   "end": 1.229
+   "start": 1.199,
+   "end": 1.307
   },
   {
    "w": "inteligência",
-   "start": 1.273,
-   "end": 1.8
+   "start": 1.351,
+   "end": 1.878
   },
   {
    "w": "artificial.",
-   "start": 1.846,
-   "end": 2.371
+   "start": 1.923,
+   "end": 2.449
   },
   {
    "w": "E",
-   "start": 2.82,
-   "end": 2.927
+   "start": 2.823,
+   "end": 2.93
   },
   {
    "w": "o",
-   "start": 2.963,
-   "end": 2.999
+   "start": 2.966,
+   "end": 3.002
   },
   {
    "w": "kit",
-   "start": 3.052,
-   "end": 3.213
+   "start": 3.055,
+   "end": 3.216
   },
   {
    "w": "que",
-   "start": 3.231,
-   "end": 3.285
+   "start": 3.234,
+   "end": 3.287
   },
   {
    "w": "faz",
-   "start": 3.338,
-   "end": 3.499
+   "start": 3.341,
+   "end": 3.502
   },
   {
    "w": "ele",
-   "start": 3.57,
-   "end": 3.785
+   "start": 3.573,
+   "end": 3.787
   },
   {
    "w": "custa",
-   "start": 3.827,
-   "end": 4.07
+   "start": 3.83,
+   "end": 4.073
   },
   {
    "w": "menos",
-   "start": 4.13,
-   "end": 4.427
+   "start": 4.133,
+   "end": 4.43
   },
   {
    "w": "que",
-   "start": 4.445,
-   "end": 4.499
+   "start": 4.448,
+   "end": 4.502
   },
   {
    "w": "uma",
-   "start": 4.535,
-   "end": 4.642
+   "start": 4.537,
+   "end": 4.644
   },
   {
    "w": "caixa",
-   "start": 4.713,
-   "end": 4.999
+   "start": 4.716,
+   "end": 5.002
   },
   {
    "w": "de",
-   "start": 5.046,
-   "end": 5.142
+   "start": 5.049,
+   "end": 5.144
   },
   {
    "w": "tomate.",
-   "start": 5.177,
-   "end": 5.785
+   "start": 5.18,
+   "end": 5.787
   },
   {
    "w": "Enquanto",
-   "start": 5.863,
-   "end": 6.22
+   "start": 5.866,
+   "end": 6.223
   },
   {
    "w": "isso,",
-   "start": 6.263,
-   "end": 6.577
+   "start": 6.266,
+   "end": 6.58
   },
   {
    "w": "você",
-   "start": 6.271,
-   "end": 6.443
+   "start": 6.515,
+   "end": 6.687
   },
   {
    "w": "passa",
-   "start": 6.471,
-   "end": 6.657
+   "start": 6.715,
+   "end": 6.901
   },
   {
    "w": "o",
-   "start": 6.693,
-   "end": 6.729
+   "start": 6.937,
+   "end": 6.972
   },
   {
    "w": "dia",
-   "start": 6.782,
-   "end": 6.943
+   "start": 7.026,
+   "end": 7.187
   },
   {
    "w": "rolando",
-   "start": 6.967,
-   "end": 7.229
+   "start": 7.211,
+   "end": 7.472
   },
   {
    "w": "vídeo…",
-   "start": 7.276,
-   "end": 7.8
+   "start": 7.52,
+   "end": 8.044
   },
   {
    "w": "que",
@@ -201,318 +201,318 @@
   },
   {
    "w": "Um",
-   "start": 10.493,
-   "end": 10.636
+   "start": 10.494,
+   "end": 10.637
   },
   {
    "w": "dos",
-   "start": 10.671,
-   "end": 10.778
+   "start": 10.673,
+   "end": 10.78
   },
   {
    "w": "meus",
-   "start": 10.826,
-   "end": 10.993
+   "start": 10.827,
+   "end": 10.994
   },
   {
    "w": "perfis,",
-   "start": 11.036,
-   "end": 11.564
+   "start": 11.037,
+   "end": 11.566
   },
   {
    "w": "nesse",
-   "start": 11.236,
-   "end": 11.486
+   "start": 11.508,
+   "end": 11.758
   },
   {
    "w": "formato,",
-   "start": 11.539,
-   "end": 11.986
+   "start": 11.812,
+   "end": 12.258
   },
   {
    "w": "fez",
-   "start": 12.033,
-   "end": 12.271
+   "start": 12.339,
+   "end": 12.578
   },
   {
    "w": "dez",
-   "start": 12.343,
-   "end": 12.557
+   "start": 12.649,
+   "end": 12.863
   },
   {
    "w": "milhões",
-   "start": 12.629,
-   "end": 13.129
+   "start": 12.935,
+   "end": 13.435
   },
   {
    "w": "de",
-   "start": 13.153,
-   "end": 13.2
+   "start": 13.459,
+   "end": 13.506
   },
   {
    "w": "views",
-   "start": 13.271,
-   "end": 13.629
+   "start": 13.578,
+   "end": 13.935
   },
   {
    "w": "em",
-   "start": 13.747,
-   "end": 13.986
+   "start": 14.054,
+   "end": 14.292
   },
   {
    "w": "seis",
-   "start": 14.043,
-   "end": 14.271
+   "start": 14.349,
+   "end": 14.578
   },
   {
    "w": "vídeos.",
-   "start": 14.343,
-   "end": 15.057
+   "start": 14.649,
+   "end": 15.363
   },
   {
    "w": "E",
-   "start": 15.546,
-   "end": 15.653
+   "start": 15.548,
+   "end": 15.655
   },
   {
    "w": "esse",
-   "start": 15.696,
-   "end": 15.867
+   "start": 15.698,
+   "end": 15.869
   },
   {
    "w": "aqui",
-   "start": 15.925,
-   "end": 16.153
+   "start": 15.926,
+   "end": 16.155
   },
   {
    "w": "saiu",
-   "start": 16.225,
-   "end": 16.51
+   "start": 16.226,
+   "end": 16.512
   },
   {
    "w": "junto",
-   "start": 16.546,
-   "end": 16.725
+   "start": 16.548,
+   "end": 16.726
   },
   {
    "w": "com",
-   "start": 16.742,
-   "end": 16.796
+   "start": 16.744,
+   "end": 16.798
   },
   {
    "w": "outros",
-   "start": 16.847,
-   "end": 17.153
+   "start": 16.848,
+   "end": 17.155
   },
   {
    "w": "três,",
-   "start": 17.225,
-   "end": 17.725
+   "start": 17.226,
+   "end": 17.726
   },
   {
    "w": "num",
-   "start": 17.64,
-   "end": 17.801
+   "start": 17.643,
+   "end": 17.803
   },
   {
    "w": "dia",
-   "start": 17.872,
-   "end": 18.087
+   "start": 17.875,
+   "end": 18.089
   },
   {
    "w": "só.",
-   "start": 18.182,
-   "end": 18.729
+   "start": 18.185,
+   "end": 18.732
   },
   {
    "w": "Você",
-   "start": 18.943,
-   "end": 19.286
+   "start": 18.945,
+   "end": 19.288
   },
   {
    "w": "escolhe",
-   "start": 19.321,
-   "end": 19.501
+   "start": 19.323,
+   "end": 19.503
   },
   {
    "w": "o",
-   "start": 19.536,
-   "end": 19.571
+   "start": 19.538,
+   "end": 19.573
   },
   {
    "w": "tema…",
-   "start": 19.628,
-   "end": 20.071
+   "start": 19.63,
+   "end": 20.073
   },
   {
    "w": "e",
-   "start": 19.986,
-   "end": 20.022
+   "start": 19.988,
+   "end": 20.023
   },
   {
    "w": "o",
-   "start": 20.093,
-   "end": 20.165
+   "start": 20.095,
+   "end": 20.166
   },
   {
    "w": "Claude",
-   "start": 20.185,
-   "end": 20.308
+   "start": 20.187,
+   "end": 20.309
   },
   {
    "w": "entrega",
-   "start": 20.343,
-   "end": 20.593
+   "start": 20.345,
+   "end": 20.595
   },
   {
    "w": "roteiro,",
-   "start": 20.641,
-   "end": 21.308
+   "start": 20.642,
+   "end": 21.309
   },
   {
    "w": "voz,",
-   "start": 21.164,
-   "end": 21.629
+   "start": 21.338,
+   "end": 21.802
   },
   {
    "w": "cena",
-   "start": 21.931,
-   "end": 22.16
+   "start": 21.936,
+   "end": 22.165
   },
   {
    "w": "em",
-   "start": 22.184,
-   "end": 22.231
+   "start": 22.189,
+   "end": 22.236
   },
   {
    "w": "3D",
-   "start": 22.303,
-   "end": 22.66
+   "start": 22.308,
+   "end": 22.665
   },
   {
    "w": "e",
-   "start": 22.767,
-   "end": 22.874
+   "start": 22.772,
+   "end": 22.879
   },
   {
    "w": "legenda.",
-   "start": 22.946,
-   "end": 23.447
+   "start": 22.95,
+   "end": 23.451
   },
   {
    "w": "Sem",
-   "start": 23.768,
-   "end": 24.197
+   "start": 23.884,
+   "end": 24.313
   },
   {
    "w": "aparecer,",
-   "start": 24.244,
-   "end": 25.018
+   "start": 24.36,
+   "end": 25.134
   },
   {
    "w": "sem",
-   "start": 24.869,
-   "end": 25.056
+   "start": 24.895,
+   "end": 25.082
   },
   {
    "w": "editar,",
-   "start": 25.118,
-   "end": 25.556
+   "start": 25.144,
+   "end": 25.583
   },
   {
    "w": "sem",
-   "start": 25.468,
-   "end": 25.843
+   "start": 25.839,
+   "end": 26.214
   },
   {
    "w": "saber",
-   "start": 25.89,
-   "end": 26.129
+   "start": 26.261,
+   "end": 26.499
   },
   {
    "w": "animar.",
-   "start": 26.171,
-   "end": 26.843
+   "start": 26.542,
+   "end": 27.214
   },
   {
    "w": "Vêm",
-   "start": 27.285,
-   "end": 27.464
+   "start": 27.291,
+   "end": 27.47
   },
   {
    "w": "catorze",
-   "start": 27.5,
-   "end": 27.964
+   "start": 27.505,
+   "end": 27.97
   },
   {
    "w": "aulas,",
-   "start": 28.035,
-   "end": 28.607
+   "start": 28.041,
+   "end": 28.612
   },
   {
    "w": "oito",
-   "start": 28.535,
-   "end": 28.713
+   "start": 28.536,
+   "end": 28.715
   },
   {
    "w": "skills",
-   "start": 28.785,
-   "end": 29.213
+   "start": 28.786,
+   "end": 29.215
   },
   {
    "w": "e",
-   "start": 29.32,
-   "end": 29.427
+   "start": 29.322,
+   "end": 29.429
   },
   {
    "w": "o",
-   "start": 29.552,
-   "end": 29.677
+   "start": 29.554,
+   "end": 29.679
   },
   {
    "w": "projeto",
-   "start": 29.709,
-   "end": 29.927
+   "start": 29.71,
+   "end": 29.929
   },
   {
    "w": "pronto.",
-   "start": 29.989,
-   "end": 30.642
+   "start": 29.991,
+   "end": 30.643
   },
   {
    "w": "E",
-   "start": 30.829,
-   "end": 30.9
+   "start": 30.831,
+   "end": 30.902
   },
   {
    "w": "tem",
-   "start": 30.954,
-   "end": 31.115
+   "start": 30.956,
+   "end": 31.116
   },
   {
    "w": "dois",
-   "start": 31.172,
-   "end": 31.4
+   "start": 31.174,
+   "end": 31.402
   },
   {
    "w": "jeitos",
-   "start": 31.448,
-   "end": 31.757
+   "start": 31.449,
+   "end": 31.759
   },
   {
    "w": "disso",
-   "start": 31.793,
-   "end": 31.972
+   "start": 31.795,
+   "end": 31.974
   },
   {
    "w": "virar",
-   "start": 32.025,
-   "end": 32.257
+   "start": 32.027,
+   "end": 32.259
   },
   {
    "w": "dinheiro:",
-   "start": 32.297,
-   "end": 32.686
+   "start": 32.299,
+   "end": 32.688
   },
   {
    "w": "crescer",
@@ -522,107 +522,107 @@
   {
    "w": "um",
    "start": 33.534,
-   "end": 33.581
+   "end": 33.582
   },
   {
    "w": "perfil",
-   "start": 33.622,
+   "start": 33.623,
    "end": 33.867
   },
   {
    "w": "seu…",
-   "start": 33.938,
-   "end": 34.438
+   "start": 33.939,
+   "end": 34.439
   },
   {
    "w": "ou",
-   "start": 34.589,
-   "end": 34.636
+   "start": 34.59,
+   "end": 34.637
   },
   {
    "w": "vender",
-   "start": 34.672,
-   "end": 35.393
+   "start": 34.673,
+   "end": 35.394
   },
   {
    "w": "esse",
-   "start": 35.422,
-   "end": 35.536
+   "start": 35.423,
+   "end": 35.537
   },
   {
    "w": "vídeo",
-   "start": 35.583,
-   "end": 35.822
+   "start": 35.585,
+   "end": 35.823
   },
   {
    "w": "pro",
-   "start": 35.857,
-   "end": 35.965
+   "start": 35.859,
+   "end": 35.966
   },
   {
    "w": "comércio",
-   "start": 36,
-   "end": 36.393
+   "start": 36.002,
+   "end": 36.394
   },
   {
    "w": "do",
-   "start": 36.417,
-   "end": 36.465
+   "start": 36.419,
+   "end": 36.466
   },
   {
    "w": "seu",
-   "start": 36.5,
-   "end": 36.607
+   "start": 36.502,
+   "end": 36.609
   },
   {
    "w": "bairro.",
-   "start": 36.643,
-   "end": 36.965
+   "start": 36.644,
+   "end": 36.966
   },
   {
    "w": "Um",
-   "start": 36.974,
-   "end": 37.307
+   "start": 36.975,
+   "end": 37.308
   },
   {
    "w": "cliente",
-   "start": 37.351,
-   "end": 37.664
+   "start": 37.353,
+   "end": 37.665
   },
   {
    "w": "só",
-   "start": 37.759,
-   "end": 37.949
+   "start": 37.761,
+   "end": 37.951
   },
   {
    "w": "já",
-   "start": 38.021,
-   "end": 38.164
+   "start": 38.023,
+   "end": 38.165
   },
   {
    "w": "pode",
-   "start": 38.207,
-   "end": 38.378
+   "start": 38.208,
+   "end": 38.38
   },
   {
    "w": "pagar",
-   "start": 38.414,
-   "end": 38.592
+   "start": 38.415,
+   "end": 38.594
   },
   {
    "w": "o",
-   "start": 38.628,
-   "end": 38.664
+   "start": 38.63,
+   "end": 38.665
   },
   {
    "w": "kit.",
-   "start": 38.753,
-   "end": 39.235
+   "start": 38.755,
+   "end": 39.237
   },
   {
    "w": "Quer",
    "start": 39.22,
-   "end": 39.434
+   "end": 39.435
   },
   {
    "w": "saber",
@@ -646,18 +646,18 @@
   },
   {
    "w": "PROMPT",
-   "start": 40.762,
+   "start": 40.763,
    "end": 41.134
   },
   {
    "w": "que",
-   "start": 41.187,
+   "start": 41.188,
    "end": 41.348
   },
   {
    "w": "eu",
    "start": 41.372,
-   "end": 41.419
+   "end": 41.42
   },
   {
    "w": "te",
@@ -672,7 +672,7 @@
   {
    "w": "tudo.",
    "start": 41.834,
-   "end": 42.348
+   "end": 42.1
   }
  ]
 }

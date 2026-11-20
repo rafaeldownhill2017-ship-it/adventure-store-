@@ -105,7 +105,7 @@ for (const [ini, fim, prog, forca, bat] of secoes) {
 // =====================================================================
 impacto(0.1, 0.4);
 for (let i = 0; i < 30; i++) pop(c.trinta - 0.3 + (i / 30) * 1.2, 700 + (i % 6) * 120, 0.025, ((i % 6) - 2.5) * 0.15); // 30 torrinhas brotando
-impacto(c.conferir, 0.45); // carimbo
+impacto(c.conferir + 0.55, 0.4); // carimbo (depois de "conferir")
 whoosh(T1 - 0.05, 0.9, 0.08, -0.5, 0.5);
 sino(T1 + 0.3, [76, 79, 84, 88], { g: 0.03, dur: 1.4 }); // torre acendendo
 pop(c.rockstar - 1.1, 900, 0.05);
@@ -113,11 +113,11 @@ whoosh(T2 - 0.05, 0.9, 0.08, 0.5, -0.5);
 [0, 1].forEach((i) => blip(T2 + 0.6 + i * 0.3, 520, 520, { g: 0.03, dur: 0.12, pan: 0.4 })); // buzina de táxi
 pop(c.cabem + 0.2, 1000, 0.05); pop(c.cabem + 0.45, 1200, 0.05);
 whoosh(T3 - 0.05, 0.9, 0.08, -0.5, 0.5);
-impacto(c.empata - 0.05, 0.3);
+impacto(c.empata + 0.3, 0.3);
 whoosh(T4 - 0.05, 1.2, 0.07, 0.5, -0.5);
-riser(c.webb - 0.2, 1.0, 0.05);
+riser(c.obra + 0.4, 1.4, 0.05);
 for (let i = 0; i < 6; i++) pop(c.obra + 0.5 + i * 0.22, 600 + i * 80, 0.04);
-impacto(c.dez - 0.05, 0.4);
+impacto(c.dez - 0.15, 0.35);
 whoosh(T5 - 0.05, 0.9, 0.08, -0.4, 0.4);
 pop(c.manda, 1100, 0.05);
 const STING = d.fimVoz + 0.1;

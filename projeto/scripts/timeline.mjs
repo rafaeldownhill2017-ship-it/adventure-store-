@@ -54,7 +54,7 @@ for (const filme of filmes) {
   // é empurrada para o fim do silêncio medido no áudio, e o fim da voz vira o início do último silêncio.
   if (filme.calibrar) {
     const mp3 = join(outDir, alinhamentoArq.replace(".alinhamento.json", ".mp3"));
-    const r = spawnSync("ffmpeg", ["-hide_banner", "-i", mp3, "-af", "silencedetect=noise=-38dB:d=0.1", "-f", "null", "-"], { encoding: "utf8" });
+    const r = spawnSync("ffmpeg", ["-hide_banner", "-i", mp3, "-af", "silencedetect=noise=-32dB:d=0.05", "-f", "null", "-"], { encoding: "utf8" });
     const fins = [...r.stderr.matchAll(/silence_end: ([0-9.]+)/g)].map((m) => +m[1] + filme.preRoll);
     const inis = [...r.stderr.matchAll(/silence_start: ([0-9.]+)/g)].map((m) => +m[1] + filme.preRoll);
     let movidas = 0;
@@ -62,7 +62,7 @@ for (const filme of filmes) {
     palavras.forEach((p, i) => {
       const abreFrase = i === 0 || /[.,!?:…]$/.test(palavras[i - 1].w);
       if (abreFrase) {
-        const alvo = fins.find((x) => x > p.start - 0.05 && x < p.start + 0.7);
+        const alvo = fins.filter((x) => x > p.start - 0.05 && x < p.start + 0.7).at(-1); // o último silêncio antes da fala (respiração não conta)
         delta = alvo && alvo > p.start ? alvo - p.start : 0;
         if (delta) movidas++;
       }
