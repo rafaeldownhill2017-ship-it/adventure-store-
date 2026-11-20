@@ -1,5 +1,5 @@
 # Dossiê · caixa1 · Caixa do Bolso 1/3 · "Cada seguidor vale R$ 10 (de mentirinha)"
-Levantado em 20/11/2026. É SIMULAÇÃO: nenhum dinheiro real é investido, prometido ou entregue a seguidores.
+Levantado em 20/11/2026; versão 2 (28 seguidores, pirâmide, Mega e escada de aquisições). É SIMULAÇÃO: nenhum dinheiro real é investido, prometido ou entregue a seguidores.
 
 ## Formato (estudo de modelos)
 - O Instagram não abre nesta sessão, e a busca não achou nenhum caso documentado de "R$ X por seguidor". O formato foi montado a partir de padrões já registrados em docs/referencias.md:
@@ -18,7 +18,17 @@ Levantado em 20/11/2026. É SIMULAÇÃO: nenhum dinheiro real é investido, prom
 | 2 | Regra da poupança: Selic > 8,5% → 0,5% ao mês + TR | regra do BC (via Nubank/Rankia) | vigente |
 | 3 | Poupança: ~8,29% em 12 meses; nov/2026 = 0,6624% (aniversário dia 1º) | Rankia | nov/2026 |
 | 4 | Tesouro Selic, 12 meses, líquido ≈ 13,65% × (1 − 17,5% de IR) ≈ **11,3%** | conta própria; IR regressivo de 17,5% para 361–720 dias | 20/11/2026 |
+| 6 | Seguidores: **28** → caixa de **R$ 280** | print do perfil enviado pelo dono | 20/11/2026 |
+| 7 | Mega-Sena: aposta simples R$ 6; chance de 1 em 50.063.860 por aposta. R$ 280 = 46 jogos (R$ 276) → chance ≈ 1 em 1,09 milhão | Loterias Caixa (via Olhar Digital e Seu Dinheiro, 2026) | nov/2026 |
+| 8 | Pirâmide "10% ao mês": 280 × 1,1¹² ≈ R$ 879 **no papel**; pirâmide financeira é crime contra a economia popular (Lei 1.521/1951, art. 2º, IX) | conta própria + lei | — |
+| 9 | Poupança: 280 × 1,08 ≈ R$ 302 · Tesouro Selic: 280 × 1,1126 ≈ R$ 311 (se as taxas ficarem) | conta própria | 20/11/2026 |
+| 10 | Escada: 100 seguidores = R$ 1.000 · 1.000 = R$ 10 mil · 10 mil = R$ 100 mil (o carro de R$ 100 mil do carro1) | regra da série | — |
 | 5 | Exemplo com R$ 1.000: poupança ≈ R$ 1.080 (8%); Tesouro ≈ R$ 1.112 (11,26%) | conta própria, **se as taxas ficarem iguais** | 20/11/2026 |
+
+## Não afirmar (v2)
+- Nome de nenhuma pirâmide ou empresa real. A "pirâmide" é genérica.
+- Que a Mega "não vale a pena" para quem joga por diversão: o vídeo só mostra a chance. Na tela: "jogo é para maiores de 18".
+- Se a pirâmide vencer a votação, o ep. 2 mostra o "R$ 0" e explica como o golpe funciona. Nunca simular ganho com golpe.
 
 ## Não afirmar
 - Que alguém vai ganhar dinheiro de verdade. **Não é sorteio nem prêmio:** promoção com prêmio exige autorização (Lei 5.768/1971). Nada sai para seguidores.
@@ -33,3 +43,5 @@ Levantado em 20/11/2026. É SIMULAÇÃO: nenhum dinheiro real é investido, prom
 - Rankia, poupança em novembro/2026: https://rankia.com.br/poupanca-novembro-2026-quanto-rende/
 - Acionista, Tesouro Selic ou poupança em 12 meses: https://acionista.com.br/poupanca-ou-tesouro-selic-12-meses/
 - YouTube Short "guardar 1 real por dia": https://www.youtube.com/shorts/Y7hzwNCXfLE
+- Mega-Sena, preço e chance: https://olhardigital.com.br/2026/04/09/curiosidades/quanto-custa-apostar-na-mega-sena-e-como-aumentar-suas-chances/
+- Seu Dinheiro, Mega-Sena 2026: https://www.seudinheiro.com/2026/economia/mega-sena-acumula-e-premio-vai-a-r-115-milhoes-veja-quanto-custa-apostar-e-suas-chances-de-ganhar-lvgb/

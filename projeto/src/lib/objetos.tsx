@@ -897,3 +897,56 @@ export const Balcao: React.FC<{ p?: V3; rotY?: number; s?: number }> = ({ p: pos
     </group>
   );
 };
+
+/* ------------------------------------------------------------------ golpe e sorte (caixa1) */
+
+/** Pirâmide dourada em degraus (a "pirâmide financeira"). `desaba` 0..1: os degraus caem e somem, de cima para baixo. */
+export const Piramide: React.FC<{ p?: V3; rotY?: number; s?: number; desaba?: number }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1, desaba = 0 }) => {
+  if (s <= 0.002) return null;
+  const N = 5;
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      {Array.from({ length: N }, (_, i) => {
+        const lado = 0.95 - i * 0.18;
+        const ordem = (N - 1 - i) / N; // o topo cai primeiro
+        const k = clamp01((desaba - ordem * 0.6) / 0.4);
+        if (k >= 0.999) return null;
+        const y = 0.09 + i * 0.18;
+        return (
+          <group key={i} position={[k * (i % 2 ? 0.6 : -0.6), y * (1 - ease.in(k)), k * 0.3]} rotation={[k * 1.2, 0, k * (i % 2 ? -1.4 : 1.4)]} scale={1 - k * 0.6}>
+            <mesh castShadow receiveShadow material={lisoMat(i === N - 1 ? "#ffe08a" : "#f2c14e", 0.35, 0.3)}>
+              <boxGeometry args={[lado, 0.17, lado]} />
+            </mesh>
+          </group>
+        );
+      })}
+    </group>
+  );
+};
+
+/** Globo de sorteio: esfera de vidro num pé, bolinhas girando por `t`. */
+export const GloboSorteio: React.FC<{ p?: V3; rotY?: number; s?: number; t?: number }> = ({ p: pos = [0, 0, 0], rotY = 0, s = 1, t = 0 }) => {
+  if (s <= 0.002) return null;
+  const cores = ["#2fbf71", "#2fbf71", "#ffffff", "#2fbf71", "#ffffff", "#2fbf71", "#ffffff", "#2fbf71"];
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      <B s={[0.5, 0.06, 0.4]} p={[0, 0.03, 0]} cor="#2a2f3a" />
+      <B s={[0.06, 0.32, 0.06]} p={[0, 0.2, 0]} cor="#9aa1ab" />
+      <mesh position={[0, 0.62, 0]} material={lisoMat("#dff2ff", 0.05, 0, 0.3)}>
+        <sphereGeometry args={[0.3, 28, 20]} />
+      </mesh>
+      <mesh position={[0, 0.62, 0]} rotation={[0, t * 1.5, Math.PI / 2]} material={lisoMat("#c9ced6", 0.3, 0.6)}>
+        <torusGeometry args={[0.31, 0.012, 8, 40]} />
+      </mesh>
+      {cores.map((cor, i) => {
+        const a = t * (2.2 + hash(i) * 1.6) + i * 1.7;
+        const r = 0.15 + hash(i + 3) * 0.08;
+        return (
+          <mesh key={i} position={[Math.cos(a) * r, 0.55 + Math.abs(Math.sin(a * 1.3 + i)) * 0.16, Math.sin(a) * r]} castShadow material={lisoMat(cor, 0.3)}>
+            <sphereGeometry args={[0.045, 12, 10]} />
+          </mesh>
+        );
+      })}
+    </group>
+  );
+};
