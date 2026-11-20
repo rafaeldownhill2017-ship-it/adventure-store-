@@ -13,7 +13,6 @@ import {
   CelularImagem,
   corBloco,
   CuboKit,
-  Escudo,
   NotasVoando,
   PalcoCor,
   Pedestal,
@@ -27,7 +26,7 @@ import { B, Flash, Grain, PalavraGrande, useMola } from "../lib/ui";
 // ESTÚDIO MINIATURA · vendakit1 · venda do kit SEM dizer o preço no vídeo (o preço vai no direct de quem comenta PROMPT).
 // Gatilhos: quebra de expectativa → âncora "menos que uma caixa de tomate" → ferida → prova (perfil do dono: 10 mi)
 // → capacidade (4 vídeos num dia) → facilidade → objeções (aparecer/editar/animar) → valor concreto → caminho do dinheiro
-// → garantia → curiosidade do preço → COMENTA PROMPT. Sem promessa de ganho. Termina em loop no cubo.
+// → curiosidade do preço (sem falar de garantia nem preço no vídeo) → COMENTA PROMPT. Sem promessa de ganho. Termina em loop no cubo.
 precarregar(["personagens/character-male-a", "comercial/building-a"]);
 
 const A: V3 = [0, 0, 0]; // balança
@@ -38,7 +37,7 @@ const K_: V3 = [80, 0, 0]; // o que vem no kit
 const D: V3 = [100, 0, 0]; // dois caminhos
 const G: V3 = [120, 0, 0]; // garantia + CTA
 const VIDS = ["vendakit/v1.jpg", "vendakit/v2.jpg", "vendakit/v3.jpg", "vendakit/v4.jpg"];
-const DESTAQUE = /inteligência|tomate|rolando|dinheiro|outra|perfis|dez|milhões|três|tema|Claude|aparecer|editar|animar|catorze|oito|skills|pronto|dinheiro|comércio|cliente|garantia|volta|custa|PROMPT/i;
+const DESTAQUE = /inteligência|tomate|rolando|dinheiro|outra|perfis|dez|milhões|três|tema|Claude|aparecer|editar|animar|catorze|oito|skills|pronto|dinheiro|comércio|cliente|custa|PROMPT/i;
 
 /** Microfone simples (pé + cápsula). */
 const Microfone: React.FC<{ p: V3; s?: number }> = ({ p: pos, s = 1 }) => (
@@ -70,12 +69,12 @@ export const VendaKit1: React.FC = () => {
   const t = useT();
   const mola = useMola();
   const { cues: c } = useTimeline();
-  const T1 = c.rolando - 1.6; // "Enquanto isso..."
-  const T2 = c.perfis - 0.9; // "Um dos meus perfis"
-  const T3 = c.tema - 0.9; // "Você escolhe o tema"
-  const T4 = c.catorze - 0.5; // "Vem catorze aulas"
-  const T5 = c.dois - 0.7; // "E tem dois jeitos"
-  const T6 = c.garantia - 1.4; // "E se não gostar"
+  const T1 = c.rolando - 1.5; // "Enquanto isso..."
+  const T2 = c.perfis - 0.6; // "Um dos meus perfis"
+  const T3 = c.tema - 0.75; // "Você escolhe o tema"
+  const T4 = c.catorze - 0.3; // "Vem catorze aulas"
+  const T5 = c.dois - 0.4; // "E tem dois jeitos"
+  const T6 = c.custa - 0.8; // "Quer saber quanto custa?" (cliente fica até aqui)
   const blocos: [number, V3, number][] = [
     [0, A, 10.2],
     [T1, R, 7.6],
@@ -170,14 +169,8 @@ export const VendaKit1: React.FC = () => {
 
         {em(6) ? (
           <group position={G}>
-            {t < c.custa - 0.3 ? (
-              <Escudo p={[0, 0, 0]} s={1.4 * mola(T6 + 0.1, 200, 12)} txt="7 DIAS" gira={t * 1.5} />
-            ) : (
-              <>
-                <Pedestal raio={0.9} aro="#ffcf3a" />
-                <CuboKit p={[0, TOPO_PEDESTAL + 0.15, 0]} s={2.0 * mola(c.custa - 0.3, 200, 12)} gira={t} />
-              </>
-            )}
+            <Pedestal raio={0.9} aro="#ffcf3a" />
+            <CuboKit p={[0, TOPO_PEDESTAL + 0.15, 0]} s={2.0 * mola(T6 + 0.1, 200, 12)} gira={t} />
           </group>
         ) : null}
       </PalcoCor>
@@ -192,7 +185,6 @@ export const VendaKit1: React.FC = () => {
       <CardNumero t={t} de={c.catorze - 0.1} ate={T5 - 0.2} titulo="NO KIT" valor="14 aulas · 8 skills · projeto" />
       <CardNumero t={t} de={c.dois - 0.1} ate={c.cliente - 0.3} titulo="2 JEITOS DE VIRAR DINHEIRO" valor="perfil · comércio local" />
       <CardNumero t={t} de={c.cliente - 0.1} ate={T6 - 0.2} titulo="SEM PROMESSA, SÓ A CONTA" valor="1 cliente já pode pagar o kit" cor={C.destaque} />
-      <CardNumero t={t} de={c.garantia - 0.2} ate={c.custa - 0.4} titulo="NÃO GOSTOU?" valor="dinheiro de volta" cor="#25a35a" tinta="#ffffff" />
       <CardNumero t={t} de={c.custa - 0.2} ate={c.comenta - 0.3} titulo="E O PREÇO?" valor="quer saber quanto custa?" />
       <CardNumero t={t} de={c.comenta - 0.1} ate={99} titulo="TE MANDO TUDO NO DIRECT" valor="comenta PROMPT" cor="#ffcf3a" />
       <SeloPrompt t={t} de={c.fim + 0.1} />

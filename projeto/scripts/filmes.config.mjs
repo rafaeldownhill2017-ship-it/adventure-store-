@@ -300,8 +300,6 @@ export const filmes = [
       crescer: "crescer",
       comercio: "comércio",
       cliente: "cliente",
-      garantia: "garantia",
-      volta: "volta",
       custa: ["custa", 2],
       comenta: "Comenta",
       fim: "tudo",
