@@ -102,7 +102,7 @@ for (const [ini, fim, prog, forca, bat] of secoes) {
 // EFEITOS
 // =====================================================================
 braam(0.05, 1.6, 0.06);
-pop(0.2, 700, 0.05);
+impacto(0.25, 0.45); // carimbo do gancho (close)
 riser(c.rejeitou - 1.0, 0.95, 0.045);
 impacto(c.rejeitou, 0.5); // carimbo REJEITADO
 whoosh(c.delegados + 0.1, 0.7, 0.05, -0.6, -0.9);
@@ -117,7 +117,7 @@ whoosh(T2 - 0.05, 0.9, 0.07, -0.5, 0.5);
 for (let i = 0; i < 10; i++) pop(c.dez + i * 0.06, 700 + i * 50, 0.03, (i - 4.5) * 0.1);
 reverso(c.seis - 0.4, 0.45, 0.04);
 impacto(c.quatro + 0.1, 0.3);
-[c.nomes, c.nomes + 1.35, c.nomes + 1.75, c.nomes + 2.45].forEach((x, i) => pop(x, 900 + i * 120, 0.035));
+[c.nomes, 24.8, 25.46, 26.45].forEach((x, i) => pop(x, 900 + i * 120, 0.035));
 whoosh(T3 - 0.05, 0.9, 0.07, 0.5, -0.5);
 [c.arquiva, c.investigacao, c.inquerito].forEach((x, i) => sino(x - 0.1, [69 + i * 3, 76 + i * 3], { g: 0.025, dur: 1.0 }));
 whoosh(T4 - 0.05, 1.1, 0.06, -0.5, 0.5);
