@@ -124,10 +124,10 @@ impacto(c.sessenta - 0.15, 0.3);
 // buzina de erro no "porra"
 for (const [dt, f] of [[0, 110], [0.22, 104]]) {
   let ph = 0;
-  const t0 = c.porra - 0.02 + dt, len = Math.floor(0.2 * SR);
+  const t0 = c.porra + 0.25 + dt, len = Math.floor(0.2 * SR);
   for (let k = 0; k < len; k++) {
     ph += (TAU * f) / SR;
-    const v = Math.tanh(3 * (((ph / TAU) % 1) * 2 - 1)) * 0.07 * Math.min(1, k / 200) * Math.min(1, (len - k) / 400);
+    const v = Math.tanh(3 * (((ph / TAU) % 1) * 2 - 1)) * 0.035 * Math.min(1, k / 200) * Math.min(1, (len - k) / 400);
     soma(SFX, Math.floor(t0 * SR) + k, v, v);
   }
 }
