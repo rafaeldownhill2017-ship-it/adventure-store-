@@ -96,8 +96,8 @@ for (const [ini, fim, prog, forca, bat] of secoes) {
       for (let t = a, j = 0; t < b - 0.05; t += BEAT, j++) {
         bumbo(t, { g: (j % 2 === 0 ? 0.42 : 0.28) * forca, f0: 118, f1: 46, dec: 9, click: 0.12 });
         if (j % 2) for (const dt of [0, 0.012]) ruidoF(t + dt, 0.1, { tipo: "bp", f: 1800, Q: 0.9, g: 0.045 * forca, dec: 30, rev: 0.35 });
-        guizo(t + 0.5 * BEAT, 0.016 * forca, 0.3);
-        if (j % 2) guizo(t, 0.012 * forca, -0.3);
+        guizo(t + 0.5 * BEAT, 0.008 * forca, 0.3);
+        if (j % 2) guizo(t, 0.006 * forca, -0.3);
       }
   }
 }
@@ -114,7 +114,7 @@ whoosh(T1 - 0.05, 1.0, 0.06, 0.5, -0.5);
 impacto(c.passou - 0.1, 0.45); // carimbo APROVADA
 whoosh(T2 - 0.05, 0.9, 0.07, -0.5, 0.5);
 rola(c.trezentos - 0.3, 2.0, 0.022);
-sino(c.media - 0.3, [84, 88], { g: 0.025, dur: 0.9 });
+sino(c.media - 0.3, [84, 88], { g: 0.014, dur: 0.6 });
 whoosh(T3 - 0.05, 0.9, 0.07, 0.5, -0.5);
 whoosh(c.dezoito - 0.45, 0.5, 0.05, 0, 0); // folha virando
 pop(c.dezoito - 0.1, 1000, 0.04);
