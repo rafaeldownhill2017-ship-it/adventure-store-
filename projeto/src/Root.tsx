@@ -23,6 +23,8 @@ import cfgBurguer from "./data/negocios/exemplo-burguer.json";
 import { type ConfigNegocio, fazNegocio } from "./films/Negocio";
 import dVendaKit1 from "./data/vendakit1.json";
 import dMasterStf from "./data/masterstf.json";
+import dNatal13 from "./data/natal13.json";
+import { Natal13 } from "./films/Natal13";
 import { MasterStf } from "./films/MasterStf";
 import { VendaKit1 } from "./films/VendaKit1";
 import dGta4 from "./data/gta4.json";
@@ -60,6 +62,7 @@ const filmes = [
   { id: "gta4", data: dGta4 as Timeline, C: filme(dGta4 as Timeline, Gta4) },
   { id: "vendakit1", data: dVendaKit1 as Timeline, C: filme(dVendaKit1 as Timeline, VendaKit1) },
   { id: "masterstf", data: dMasterStf as Timeline, C: filme(dMasterStf as Timeline, MasterStf) },
+  { id: "natal13", data: dNatal13 as Timeline, C: filme(dNatal13 as Timeline, Natal13) },
   // vídeos de vendas para negócio local: um JSON de cliente em data/negocios + um timeline em data/<id>.json
   { id: "negocio-exemplo", data: dNegocioEx as Timeline, C: filme(dNegocioEx as Timeline, fazNegocio(cfgBurguer as ConfigNegocio)) },
 ];
