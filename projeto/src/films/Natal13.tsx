@@ -246,8 +246,9 @@ export const Natal13: React.FC = () => {
   const T5 = c.gasta - 0.65; // "Então não gasta a segunda"
 
   const blocos: [number, V3, V3, V3][] = [
-    [0, N0, [N0[0], 1.4, 6.0], [N0[0], 0.55, 0]],
-    [T1, SE, [SE[0], 1.7, 6.6], [SE[0], 0.45, -0.3]],
+    [0, N0, [N0[0], 1.0, 2.6], [N0[0], 0.72, 0]],
+    [2.2, N0, [N0[0], 1.4, 6.0], [N0[0], 0.55, 0]],
+    [T1, SE, [SE[0], 1.7, 7.2], [SE[0], 0.45, -0.3]],
     [T2, DI, [DI[0], 1.6, 5.6], [DI[0], 0.5, 0]],
     [T3, CA, [CA[0], 1.4, 5.6], [CA[0], 0.42, 0]],
     [T4, EN, [EN[0], 1.4, 5.8], [EN[0], 0.42, 0]],
@@ -257,6 +258,7 @@ export const Natal13: React.FC = () => {
   blocos.forEach(([t0, , pos, look], i) => {
     const t1 = i < blocos.length - 1 ? blocos[i + 1][0] : c.fim + 3;
     K.push([t0, pos, look, 34]);
+    if (i === 0) return; // close do gancho → pose aberta
     K.push([t1, [pos[0], pos[1] - 0.1, pos[2] * 0.92], look, 34]);
   });
   const cam = camPorKeys(t, K);
@@ -273,8 +275,10 @@ export const Natal13: React.FC = () => {
     0.25,
   );
   const em = (i: number) => {
-    const t0 = blocos[i][0];
-    const t1 = i < blocos.length - 1 ? blocos[i + 1][0] : 1e9;
+    const j = i === 0 ? 0 : i + 1; // bloco 0 tem duas poses de câmera
+    const t0 = blocos[j][0];
+    const prox = i === 0 ? 2 : j + 1;
+    const t1 = prox < blocos.length ? blocos[prox][0] : 1e9;
     return t >= t0 - 0.05 && t < t1;
   };
 
@@ -296,17 +300,17 @@ export const Natal13: React.FC = () => {
             <Presente p={[-0.85, 0, -0.3]} rotY={-0.3} s={0.65} cor="#3a8fe2" />
             <PapaiNoel p={[0.1, 0, -0.2]} rotY={-0.25} s={1.0 * mola(0.1, 220, 12)} pulo={p(t, c.susto - 0.1, 0.5)} braco={0.3} t={t} />
             {/* carteira de trabalho (placa) */}
-            <group position={[0.68, 0, -0.6]} rotation={[0, -0.4, 0]} scale={0.8 * mola(0.4, 220, 12)}>
+            <group position={[0.72, 0, -1.0]} rotation={[0, -0.4, 0]} scale={0.8 * mola(0.4, 220, 12)}>
               <B s={[0.04, 0.6, 0.04]} p={[0, 0.3, 0]} cor="#2a2f3a" />
               <PlanoTexto linhas={[["CARTEIRA", 1, "#ffffff"], ["ASSINADA ✓", 1, "#ffcf3a"]]} fundo="#1d3c7a" tam={[0.5, 0.3]} p={[0, 0.75, 0.03]} px={[500, 300]} />
             </group>
             {/* envelope do 13º: inteiro → duas metades; a 2ª encolhe */}
             {kParte < 0.02 ? (
-              <Envelope p={[0.1, 0.62 + Math.sin(t * 2) * 0.02, 0.45]} s={0.8 * mola(1.2, 220, 12)} txt="13º" sub="DÉCIMO TERCEIRO" />
+              <Envelope p={[0.42, 0.38 + Math.sin(t * 2) * 0.02, 0.4]} s={0.8 * mola(1.2, 220, 12)} txt="13º" sub="DÉCIMO TERCEIRO" />
             ) : (
               <>
-                <Envelope p={[lerp(0.1, -0.42, kParte), 0.62, 0.45]} rot={[0, 0, kParte * 0.1]} s={0.72} txt="1ª" sub="SEM DESCONTO" cor="#e9f5e3" />
-                <Envelope p={[lerp(0.1, 0.55, kParte), 0.62, 0.45]} rot={[0, 0, -kParte * 0.1]} s={0.72 * lerp(1, 0.62, kMenor)} txt="2ª" sub="MENOR" cor="#f5e3e3" />
+                <Envelope p={[lerp(0.42, -0.4, kParte), 0.38, 0.5]} rot={[0, 0, kParte * 0.1]} s={0.72} txt="1ª" sub="SEM DESCONTO" cor="#e9f5e3" />
+                <Envelope p={[lerp(0.42, 0.58, kParte), 0.38, 0.5]} rot={[0, 0, -kParte * 0.1]} s={0.72 * lerp(1, 0.62, kMenor)} txt="2ª" sub="MENOR" cor="#f5e3e3" />
               </>
             )}
           </group>
@@ -318,7 +322,7 @@ export const Natal13: React.FC = () => {
             <Fabrica p={[0.45, 0, -1.4]} s={0.7} cor="#cbb894" placa="FÁBRICA" t={t} />
             {[0, 1, 2].map((i) => {
               const urls = ["personagens/character-male-a", "personagens/character-male-b", "personagens/character-male-f"];
-              return <Boneco key={i} url={urls[i]} p={[0.2 + i * 0.26, 0, -0.45 + i * 0.05]} rotY={-0.4} altura={0.5} anim="idle" tAnim={t + i} s={mola(T1 + 0.3 + i * 0.1, 220, 12)} />;
+              return <Boneco key={i} url={urls[i]} p={[0.2 + i * 0.26, 0, -0.45 + i * 0.05]} rotY={-0.4} altura={0.5} anim={t >= c.passou ? "emote-yes" : "idle"} tAnim={t + i} s={mola(T1 + 0.3 + i * 0.1, 220, 12)} />;
             })}
             {/* escrivaninha com a lei */}
             <B s={[1.1, 0.06, 0.6]} p={[-0.4, 0.5, 0.15]} cor="#5a3b24" />
@@ -348,7 +352,7 @@ export const Natal13: React.FC = () => {
           <group position={DI}>
             <Pedestal p={[0, 0, 0]} raio={0.9} aro="#ffcf3a" acende={p(t, c.trezentos, 0.5)} />
             {[-0.45, -0.15, 0.15, 0.45].map((x, i) => (
-              <PilhaMoedas key={i} p={[x, TOPO_PEDESTAL, i % 2 ? -0.25 : 0.05]} k={p(t, c.trezentos - 0.3 + i * 0.15, 1.6)} max={12} s={1.05} />
+              <PilhaMoedas key={i} p={[x, TOPO_PEDESTAL, i % 2 ? -0.25 : 0.05]} k={p(t, T2 + 0.15 + i * 0.12, c.trezentos - T2 + 0.8)} max={12} s={1.05} />
             ))}
             <NotasVoando de={[0, 0.6, 0.1]} k={p(t, c.trezentos + 0.3, 2.4, (x) => x)} alcance={1.3} n={12} />
             {t >= c.media - 0.4 ? (
@@ -374,9 +378,9 @@ export const Natal13: React.FC = () => {
             <Engrenagem p={[-0.28, 0.85, -0.3]} s={0.85 * mola(T4 + 0.1, 220, 12)} ang={t * 1.2} txt="INSS" />
             <Engrenagem p={[0.48, 0.62, -0.32]} s={0.6 * mola(c.imposto - 0.3, 220, 12)} ang={-t * 1.7 + 0.3} txt="IR" cor="#a0717a" />
             <B s={[1.9, 0.06, 0.4]} p={[0, 0.3, 0.25]} cor="#2a2f3a" />
-            <Envelope p={[lerp(-0.85, 0.75, kPassa), 0.33, 0.3]} s={0.95 * lerp(1, 0.6, p(t, T4 + 1.2, 0.8))} txt="2ª" sub={kPassa > 0.45 ? "MENOR" : "PARCELA"} cor={kPassa > 0.45 ? "#f5e3e3" : "#f4ecd8"} />
+            <Envelope p={[lerp(-0.6, 0.62, kPassa), 0.33, 0.3]} s={1.2 * lerp(1, 0.55, p(t, T4 + 1.2, 0.8))} txt="2ª" sub={kPassa > 0.45 ? "MENOR" : "PARCELA"} cor={kPassa > 0.45 ? "#f5e3e3" : "#f4ecd8"} />
             {t >= c.aposentado - 0.3 ? (
-              <Boneco url="personagens/character-male-b" p={[-0.55, 0, 0.75]} rotY={0.4} altura={0.5} anim="idle" tAnim={t} s={mola(c.aposentado - 0.3, 220, 12)} />
+              <Boneco url="personagens/character-male-b" p={[-0.35, 0, 0.45]} rotY={0.4} altura={0.5} anim="idle" tAnim={t} s={mola(c.aposentado - 0.3, 220, 12)} />
             ) : null}
           </group>
         ) : null}
@@ -402,7 +406,7 @@ export const Natal13: React.FC = () => {
               const z = lerp(0.05, -0.7, k);
               return <Presente p={[x, y, z]} rotY={k * 2} s={0.6} cor="#b04ac8" />;
             })()}
-            <PapaiNoel p={[-0.35, 0, 0.3]} rotY={0.5} s={0.95 * mola(T5 + 0.2, 220, 12)} braco={0.4 + p(t, c.nem - 0.3, 0.5) * 0.6} t={t} />
+            <PapaiNoel p={[-0.35, 0, 0.3]} rotY={lerp(0.5, 0, p(t, c.manda - 0.2, 0.5))} s={0.95 * mola(T5 + 0.2, 220, 12)} braco={0.4 + p(t, c.nem - 0.3, 0.5) * 0.6 - p(t, c.nem + 0.8, 0.4) * 0.4 + p(t, c.manda, 0.4) * 0.5} t={t} />
           </group>
         ) : null}
       </PalcoCor>
@@ -431,7 +435,7 @@ export const Natal13: React.FC = () => {
       ) : null}
 
       <PalavraGrande destaque={DESTAQUE} />
-      {blocos.slice(1).map(([x]) => (
+      {blocos.slice(2).map(([x]) => (
         <Flash key={x} at={x} />
       ))}
       <Grain />
