@@ -379,7 +379,7 @@ export const Fazenda1: React.FC = () => {
       {(em(1) && t >= T1 + 0.2) || em(2) ? (
         <div style={{ position: "absolute", top: 1105, left: 0, right: 0, display: "flex", justifyContent: "center" }}>
           <div style={{ background: "#ffcf3a", color: "#14211d", fontFamily: FONT, fontWeight: 800, fontSize: 46, padding: "10px 34px", borderRadius: 999, boxShadow: "0 10px 30px rgba(0,0,0,0.25)" }}>
-            {fmt(em(1) ? usTerra : brTerra)} hectares
+            {fmt(em(1) ? usTerra : brTerra)} {Math.round(em(1) ? usTerra : brTerra) === 1 ? "hectare" : "hectares"}
           </div>
         </div>
       ) : null}
