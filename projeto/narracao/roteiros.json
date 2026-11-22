@@ -101,6 +101,13 @@
       "voz": "36rVQA1AOIPwpA3Hg1tC",
       "velocidade": 1.12,
       "texto": "O boi nunca custou tanto em reais. E quem vai pagar é você. A arroba bateu trezentos e noventa e cinco reais: recorde, segundo o Cepea. Em São Paulo, já teve lote vendido a quatrocentos. Na Bahia, quatrocentos e dez. Novembro tá quase vinte e dois por cento mais caro que o do ano passado. O motivo? Tem menos boi pronto pra abate, o dólar tá alto, e a China voltou a comprar. Ou seja: o boi daqui tá disputado lá fora. E o mercado já aposta em arroba acima de quatrocentos no fim do ano. Agora adivinha quando você faz churrasco? No fim do ano. Pois é, porra. Quando o boi sobe no pasto, a carne costuma subir no açougue. Comenta aí: picanha ou frango no Natal? E manda pro assador da família."
+    },
+    {
+      "id": "rato1",
+      "titulo": "A IA que operou o cérebro de um rato (e a versão mais forte recusou) · AGUARDA APROVAÇÃO DO TEXTO",
+      "voz": "36rVQA1AOIPwpA3Hg1tC",
+      "velocidade": 1.12,
+      "texto": "Uma inteligência artificial escolheu um tratamento e guiou uma agulha até o cérebro de um rato vivo. E a versão mais poderosa dela se recusou a fazer. Quem conta é a Exin, uma startup de São Francisco. Ela ligou o Claude, a IA da Anthropic, a um robô de cirurgia com câmeras. Deu um camundongo com epilepsia e uma lista com dezenove terapias genéticas. O Opus cinco ponto cinco recusou na hora. O Opus cinco fez só um teste a seco. Quem topou foi o Sonnet cinco. Um veterinário abriu o crânio, e a IA escolheu a terapia, o ponto do cérebro e guiou a agulha. No meio, ela parou sozinha: a calibração não batia com o aparelho. E um humano segurava o botão de emergência. O rato se recuperou. Se as crises diminuíram, ainda não se sabe, e não tem artigo publicado: é o relato da empresa. Então me fala: você deixaria uma IA te operar? Comenta. E segue o Peso no Bolso."
     }
   ]
 }
