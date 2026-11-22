@@ -18,7 +18,7 @@ const US: V3 = [30, 0, 0]; // fazenda nos EUA
 const BR: V3 = [60, 0, 0]; // fazenda no Brasil
 const LD: V3 = [90, 0, 0]; // lado a lado (chuva + colheita)
 const FI: V3 = [120, 0, 0]; // fecho
-const DESTAQUE = /cinco|milhões|dólares|fazendeiro|Estados|Unidos|Brasil|picape|contrato|quinze|trezentos|volta|fita|quarenta|seis|setecentos|dobro|chuva|soja|três|colheita|mil|porra|média|Comenta|vídeos|faturar|link|bio/i;
+const DESTAQUE = /cinco|milhões|dólares|fazendeiro|Estados|Unidos|Brasil|picape|contrato|quinze|trezentos|volta|fita|quarenta|seis|setecentos|dobro|chuva|soja|três|colheita|mil|média|Comenta|vídeos|faturar|link|bio/i;
 
 const TILE = 0.1;
 const GAP = 0.006;
@@ -189,13 +189,13 @@ export const Fazenda1: React.FC = () => {
   const T1 = c.primeiro - 0.3; // EUA
   const TR = c.volta - 0.2; // volta a fita
   const T2 = c.desembarca - 0.6; // Brasil
-  const T3 = c.chuva - 0.6; // lado a lado: chuva/plantio
+  const T3 = c.chuva - 0.1; // lado a lado: chuva/plantio
   const T4 = c.media - 0.4; // fecho
 
   // dinheiro e terra
-  const kUS = ease.inOut(p(t, c.contrato, Math.max(0.5, c.trezentos - c.contrato + 0.6), (x) => x));
+  const kUS = ease.inOut(p(t, c.picape - 0.3, Math.max(0.5, c.trezentos - c.picape + 0.9), (x) => x));
   const kREW = t >= TR && t < T2 ? 1 - clamp01((t - TR) / Math.max(0.4, T2 - TR - 0.1)) : 1; // rebobina a fazenda dos EUA
-  const kBR = ease.inOut(p(t, c.quarenta, Math.max(0.5, c.setecentos - c.quarenta + 0.6), (x) => x));
+  const kBR = ease.inOut(p(t, T2 + 0.5, Math.max(0.5, c.setecentos - T2 + 0.1), (x) => x));
   const usDin = t < TR ? 5e6 * (1 - kUS) : t < T2 ? 5e6 * (1 - kUS * kREW) : 0;
   const usTerra = t < TR ? 336 * kUS : t < T2 ? 336 * kUS * kREW : 336;
   const brDin = 5e6 * (1 - kBR);
@@ -205,11 +205,12 @@ export const Fazenda1: React.FC = () => {
   const rew = t >= TR && t < T2;
 
   const blocos: [number, V3, V3, V3][] = [
-    [0, PR, [PR[0], 1.2, 4.6], [PR[0], 0.7, 0]],
-    [T1, US, [US[0] - 0.05, 5.4, 3.9], [US[0] - 0.05, 0.0, -0.35]],
-    [T2, BR, [BR[0] - 0.1, 6.8, 4.7], [BR[0] - 0.1, 0.0, -0.35]],
-    [T3, LD, [LD[0], 6.6, 4.6], [LD[0], 0.0, -0.25]],
-    [T4, FI, [FI[0], 1.2, 5.2], [FI[0], 0.55, 0]],
+    [0, PR, [PR[0], 1.05, 4.5], [PR[0], 0.72, 0]],
+    [T1, US, [US[0] - 0.05, 4.3, 3.7], [US[0] - 0.05, 0.0, -0.75]],
+    [T2, BR, [BR[0] - 0.1, 5.4, 4.6], [BR[0] - 0.1, 0.0, -0.8]],
+    [T3, LD, [LD[0], 5.6, 4.6], [LD[0], 0.0, 0.1]],
+    [T4, FI, [FI[0], 1.2, 6.6], [FI[0], 0.85, 0]],
+    [c.aprender - 0.6, FI, [FI[0] + 0.12, 1.3, 5.6], [FI[0] + 0.15, 0.95, 0]],
   ];
   const K: Key[] = [];
   blocos.forEach(([t0, , pos, look], i) => {
@@ -231,7 +232,7 @@ export const Fazenda1: React.FC = () => {
   );
   const em = (i: number) => {
     const t0 = blocos[i][0];
-    const t1 = i < blocos.length - 1 ? blocos[i + 1][0] : 1e9;
+    const t1 = i >= 4 ? 1e9 : blocos[i + 1][0];
     return t >= t0 - 0.05 && t < t1;
   };
   const hud = t >= T1 + 0.2 && t < T4 - 0.3;
@@ -242,28 +243,27 @@ export const Fazenda1: React.FC = () => {
         {/* PRÊMIO: cheque gigante + notas caindo + encruzilhada */}
         {em(0) ? (
           <group position={PR}>
-            <Boneco url="personagens/character-male-a" p={[0, 0, 0.3]} rotY={0} altura={0.6} anim={t >= c.cinco ? "emote-yes" : "idle"} tAnim={t} s={mola(0.0, 220, 12)} />
-            <group position={[0, 0.98 + Math.sin(t * 2) * 0.02, -0.1]} rotation={[0, 0, Math.sin(t * 1.5) * 0.04]} scale={mola(c.cinco - 0.3, 220, 12)}>
+            <Boneco url="personagens/character-male-a" p={[0, 0, 0.3]} rotY={0} altura={0.6} anim="emote-yes" tAnim={t + 0.4} s={1} />
+            <group position={[0, 0.98 + Math.sin(t * 2) * 0.02, -0.1]} rotation={[0, 0, Math.sin(t * 1.5) * 0.04]} scale={lerp(1.6, 1, ease.out(p(t, 0, 0.6)))}>
               <B s={[1.2, 0.5, 0.02]} cor="#fbfaf6" />
               <B s={[1.2, 0.07, 0.022]} p={[0, 0.215, 0]} cor="#2a7f4f" />
               <PlanoTexto linhas={[["VOCÊ GANHOU", 0.6, "#4a4f5c"], ["US$ 5.000.000", 1.2, "#1d2230"]]} fundo={null} tam={[1.1, 0.36]} p={[0, -0.03, 0.012]} px={[800, 260]} />
             </group>
             {Array.from({ length: 24 }, (_, i) => {
-              const u = ((t - c.cinco) * 0.5 + hash(i) * 1.5) % 1.5;
-              if (t < c.cinco || u < 0) return null;
+              const u = (t * 0.5 + hash(i) * 1.5) % 1.5;
               return <B key={i} s={[0.16, 0.004, 0.08]} p={[(hash(i + 2) - 0.5) * 2.2, 2.2 - u * 1.6, (hash(i + 5) - 0.5) * 1.2]} r={[u * 6, u * 4, u * 3]} cor="#6dbb5e" />;
             })}
             {t >= c.escolha - 0.4 ? (
               <group position={[0, 0, 0.6]}>
                 {(
                   [
-                    ["EUA", -0.55, "#3c3b6e", "US"],
-                    ["BRASIL", 0.55, "#1f9a4a", "BR"],
+                    ["EUA", -0.42, "#3c3b6e", "US"],
+                    ["BRASIL", 0.38, "#1f9a4a", "BR"],
                   ] as const
                 ).map(([txt, x, corP, pais], i) => (
                   <group key={txt} position={[x, 0, 0]} scale={mola(c.escolha - 0.4 + i * 0.15, 220, 12)}>
                     <Bandeira p={[0, 0, 0]} pais={pais} s={0.7} t={t + i} />
-                    <PlanoTexto linhas={[[txt, 1, "#ffffff"]]} fundo={corP} tam={[0.42, 0.12]} p={[0.15, 0.45, 0.02]} px={[360, 100]} />
+                    <PlanoTexto linhas={[[txt, 1, "#ffffff"]]} fundo={corP} tam={[0.42, 0.12]} p={[0.05, 0.45, 0.02]} px={[360, 100]} />
                   </group>
                 ))}
               </group>
@@ -279,10 +279,10 @@ export const Fazenda1: React.FC = () => {
             <Estrada p={[0, 0, 0.7]} len={4} />
             <Estrada p={[-1.25, 0, 0]} len={3} eixo="z" />
             <Arvores pontos={[[-0.3, -1.25, 0.35], [0.4, -1.3, 0.3], [1.15, -1.2, 0.35], [1.25, 0.2, 0.3], [-1.5, -1.1, 0.35]]} />
-            {t >= c.contrato && t < c.acaba + 0.4 ? <NotasVoando de={[0.2, 1.2, -0.2]} k={p(t, c.contrato, c.acaba - c.contrato + 0.4, (x) => x)} n={16} alcance={1.0} /> : null}
+            {t >= c.picape - 0.3 && t < c.acaba + 0.4 ? <NotasVoando de={[0.2, 1.2, -0.2]} k={p(t, c.picape - 0.3, c.acaba - c.picape + 0.7, (x) => x)} n={16} alcance={1.0} /> : null}
             <Picape p={[lerp(-2.0, -0.55, ease.out(p(t, c.picape - 0.8, 1.4, (x) => x))), 0.012, 0.7]} rotY={0} s={0.45} roda={t * 5} cor="#2a5aa8" />
             <Lavoura p={[0.2, 0, -0.2]} cols={14} total={168} n={168 * usTerra / 336} soja={0} seed={1} />
-            {t >= c.contrato - 0.4 && t < c.acaba ? <Contrato p={[-0.75, 0.6, 0.25]} s={0.65 * mola(c.contrato - 0.4, 220, 12)} k={p(t, c.contrato, 0.7)} valor="US$ 14.900 / ha" /> : null}
+            {t >= c.contrato - 0.4 && t < c.acaba ? <Contrato p={[-0.47, 0.95, 0.35]} s={0.85 * mola(c.contrato - 0.4, 220, 12)} k={p(t, c.contrato, 0.7)} valor="US$ 14.900 / ha" /> : null}
           </group>
         ) : null}
 
@@ -294,10 +294,10 @@ export const Fazenda1: React.FC = () => {
             <Estrada p={[0, 0, 1.15]} len={5} />
             <Estrada p={[-1.6, 0, 0]} len={4} eixo="z" />
             <Arvores pontos={[[-0.4, -1.65, 0.4], [0.4, -1.7, 0.35], [1.2, -1.6, 0.4], [1.55, -0.4, 0.35], [1.55, 0.5, 0.4], [-1.9, -1.4, 0.35]]} />
-            {t >= c.quarenta && t < c.setecentos + 0.4 ? <NotasVoando de={[0.15, 1.4, -0.2]} k={p(t, c.quarenta, c.setecentos - c.quarenta + 0.4, (x) => x)} n={22} alcance={1.4} /> : null}
+            {t >= T2 + 0.5 && t < c.setecentos + 0.4 ? <NotasVoando de={[0.15, 1.4, -0.2]} k={p(t, T2 + 0.5, c.setecentos - T2, (x) => x)} n={22} alcance={1.4} /> : null}
             <Picape p={[lerp(-2.4, -0.85, ease.out(p(t, T2 + 0.1, 1.4, (x) => x))), 0.012, 1.15]} s={0.5} roda={t * 5} cor="#c8302c" />
             <Lavoura p={[0.15, 0, -0.2]} cols={21} total={369} n={369 * brTerra / 738} soja={0} seed={2} />
-            {t >= c.quarenta - 0.4 && t < c.setecentos ? <Contrato p={[-1.05, 0.7, 0.5]} s={0.75 * mola(c.quarenta - 0.4, 220, 12)} k={p(t, c.quarenta, 0.7)} valor="US$ 6.770 / ha" /> : null}
+            {t >= c.quarenta - 0.4 && t < c.setecentos ? <Contrato p={[-0.66, 1.05, 0.7]} s={1.0 * mola(c.quarenta - 0.4, 220, 12)} k={p(t, c.quarenta, 0.7)} valor="US$ 6.770 / ha" /> : null}
           </group>
         ) : null}
 
@@ -311,35 +311,46 @@ export const Fazenda1: React.FC = () => {
               <Lavoura p={[0, 0, -0.2]} cols={14} total={168} n={168} soja={soja} seed={1} />
               <Bandeira p={[-0.85, 0, -0.95]} pais="US" s={0.6} t={t} />
               {[0, 1, 2].map((i) => (
-                <Caminhao key={i} p={[lerp(-0.4, 0.5, colhe) - i * 0.45, 0, 0.95]} s={0.45} k={clamp01(colhe * 3 - i)} t={t} />
+                <Caminhao key={i} p={[lerp(-0.2, 0.55, colhe) - i * 0.42, 0, 0.82]} s={0.45} k={clamp01(colhe * 3 - i)} t={t} />
               ))}
             </group>
             <group position={[0.52, 0, 0]} scale={0.6}>
               <Lavoura p={[0, 0, -0.2]} cols={21} total={369} n={369} soja={soja} seed={2} />
-              <Bandeira p={[1.25, 0, -1.2]} pais="BR" s={0.6} t={t} />
+              <Bandeira p={[0.95, 0, -1.2]} pais="BR" s={0.6} t={t} />
               {[0, 1, 2, 3, 4, 5, 6].map((i) => (
-                <Caminhao key={i} p={[lerp(-0.6, 1.0, colhe) - i * 0.33, 0, 1.12]} s={0.4} k={clamp01(colhe * 7 - i)} t={t} />
+                <Caminhao key={i} p={[lerp(0.2, 1.0, colhe) - i * 0.3, 0, 1.0]} s={0.4} k={clamp01(colhe * 7 - i)} t={t} />
               ))}
             </group>
-            {t >= c.planta - 0.2 && t < c.colheita ? <Modelo url="carros/tractor" p={[lerp(-1.1, 1.2, p(t, c.planta - 0.2, 4.0, (x) => x)), 0, 0.45]} rotY={0} alvo={{ comp: 0.3 }} /> : null}
+            {t >= c.planta - 0.2 && t < c.colheita ? <Modelo url="carros/tractor" p={[lerp(-0.9, 0.9, p(t, c.planta - 0.2, 4.0, (x) => x)), 0, 0.4]} rotY={0} alvo={{ comp: 0.3 }} /> : null}
           </group>
         ) : null}
 
-        {/* FECHO: aqui ou lá? */}
+        {/* FECHO: colunas de sacas proporcionais à colheita (EUA 1.200 t × BR 2.730 t) */}
         {em(4) ? (
           <group position={FI}>
             {(
               [
-                ["US", -0.4, "#3c3b6e", "EUA · 1.200 t"],
-                ["BR", 0.4, "#1f9a4a", "BRASIL · 2.730 t"],
+                ["US", -0.36, "#3c3b6e", "EUA · 1.200 t", 5],
+                ["BR", 0.36, "#1f9a4a", "BRASIL · 2.730 t", 11],
               ] as const
-            ).map(([pais, x, corP, txt], i) => (
-              <group key={pais} position={[x, 0, 0]}>
-                <Pedestal raio={0.33} aro={corP} acende={t >= c.aquiLa ? 1 : 0.3} s={mola(T4 + 0.1 + i * 0.12, 220, 12)} />
-                <Bandeira p={[-0.12, TOPO_PEDESTAL, 0]} pais={pais} s={0.6 * mola(T4 + 0.2 + i * 0.12, 220, 12)} t={t + i} />
-                <PlanoTexto linhas={[[txt, 1, "#ffffff"]]} fundo={corP} tam={[0.62, 0.11]} p={[0, 1.18, 0.05]} px={[560, 100]} />
-              </group>
-            ))}
+            ).map(([pais, x, corP, txt, nCam], i) => {
+              const sobe = ease.out(p(t, T4 + 0.2 + i * 0.4, 1.4));
+              const nVis = Math.max(0, Math.round(nCam * sobe));
+              const topo = nVis * 0.1;
+              return (
+                <group key={pais} position={[x, 0, 0]}>
+                  <B s={[0.5, 0.04, 0.5]} p={[0, 0.02, 0]} cor={corP} />
+                  {Array.from({ length: nVis }, (_, k) => (
+                    <group key={k} position={[0, 0.04 + k * 0.1 + 0.05, 0]} rotation={[0, (k % 2) * 0.12 - 0.06, 0]}>
+                      <B s={[0.38, 0.09, 0.3]} cor={k % 2 ? "#e0c48a" : "#d4b276"} />
+                      <B s={[0.39, 0.012, 0.31]} p={[0, 0.03, 0]} cor="#b89a5e" />
+                    </group>
+                  ))}
+                  <Bandeira p={[-0.12, 0.04 + topo, 0]} pais={pais} s={0.5 * mola(T4 + 0.3 + i * 0.4, 220, 12)} t={t + i} />
+                  <PlanoTexto linhas={[[txt, 1, "#ffffff"]]} fundo={corP} tam={[0.6, 0.11]} p={[0, 0.62 + topo, 0.05]} px={[560, 100]} />
+                </group>
+              );
+            })}
           </group>
         ) : null}
       </PalcoCor>
@@ -348,12 +359,12 @@ export const Fazenda1: React.FC = () => {
       {hud ? (
         <>
           <Caixa x={56} pais="EUA" cor="#7aa8ff" dinheiro={usDin} terra={usTerra} ativo={em(1) || em(3)} alerta={t >= c.acaba - 0.2 && t < TR} />
-          <Caixa x={594} pais="BRASIL" cor="#5ad17a" dinheiro={t < T2 ? 5e6 : brDin} terra={t < T2 ? 0 : brTerra} ativo={em(2) || em(3)} />
+          <Caixa x={594} pais="BRASIL" cor="#5ad17a" dinheiro={brDin} terra={brTerra} ativo={em(2) || em(3)} />
         </>
       ) : null}
 
       {/* pílula de hectares */}
-      {(em(1) && t >= c.contrato) || em(2) ? (
+      {(em(1) && t >= c.picape - 0.3) || em(2) ? (
         <div style={{ position: "absolute", top: 1105, left: 0, right: 0, display: "flex", justifyContent: "center" }}>
           <div style={{ background: "#ffcf3a", color: "#14211d", fontFamily: FONT, fontWeight: 800, fontSize: 46, padding: "10px 34px", borderRadius: 999, boxShadow: "0 10px 30px rgba(0,0,0,0.25)" }}>
             {fmt(em(1) ? usTerra : brTerra)} hectares
@@ -374,23 +385,23 @@ export const Fazenda1: React.FC = () => {
       <CardNumero t={t} de={-0.6} ate={c.largar - 0.4} titulo="IMAGINA QUE VOCÊ GANHOU" valor="US$ 5 milhões 💸" cor={C.destaque} />
       <CardNumero t={t} de={c.largar - 0.2} ate={c.escolha - 0.4} titulo="E RESOLVE VIRAR" valor="fazendeiro 🚜" />
       <CardNumero t={t} de={c.escolha - 0.2} ate={T1 - 0.3} titulo="SÓ TEM UMA ESCOLHA" valor="EUA ou Brasil?" cor={C.destaque} />
-      <CardNumero t={t} de={c.quinze - 0.2} ate={c.acaba - 0.4} top={520} titulo="EUA · HECTARE DE LAVOURA (USDA 2026)" valor="≈ US$ 14.900" />
+      <CardNumero t={t} de={c.quinze - 0.2} ate={c.acaba - 0.4} top={520} titulo="EUA · MÉDIA DA LAVOURA (USDA 2026)" valor="≈ US$ 14.900" />
       <CardNumero t={t} de={c.trezentos - 0.2} ate={TR - 0.2} top={520} titulo="O DINHEIRO ACABA EM" valor="336 hectares" cor="#ff5a4e" tinta="#ffffff" />
       <CardNumero t={t} de={c.quarenta - 0.2} ate={c.seis - 0.3} top={520} titulo="BRASIL · MÉDIA (SCOT CONSULTORIA)" valor="R$ 40 mil / ha" />
-      <CardNumero t={t} de={c.seis - 0.1} ate={c.setecentos - 0.4} top={520} titulo="NO CÂMBIO DA SEMANA" valor="≈ US$ 6.770" />
-      <CardNumero t={t} de={c.setecentos - 0.2} ate={T3 - 0.4} top={520} titulo="O MESMO DINHEIRO COMPRA" valor="738 hectares" cor={C.destaque} />
-      <Carimbo t={t} de={c.dobro - 0.1} ate={T3 - 0.4} txt="MAIS QUE O DOBRO" top={760} />
+      <CardNumero t={t} de={c.seis - 0.1} ate={c.setecentos - 0.4} top={520} titulo="CÂMBIO 19/11 · US$ 1 = R$ 5,93" valor="≈ US$ 6.770" />
+      <CardNumero t={t} de={c.setecentos - 0.2} ate={c.dobro - 0.25} top={520} titulo="O MESMO DINHEIRO COMPRA" valor="738 hectares" cor={C.destaque} />
+      <Carimbo t={t} de={c.dobro - 0.15} ate={T3 - 0.1} txt="2X MAIS TERRA" top={540} />
       <CardNumero t={t} de={c.la - 0.2} ate={c.aqui - 0.4} top={520} titulo="EUA · SOJA (USDA, MAI/2026)" valor="3,6 t/ha" />
       <CardNumero t={t} de={c.aqui - 0.2} ate={c.colheita - 0.4} top={520} titulo="BRASIL · SOJA (CONAB, MAI/2026)" valor="3,7 t/ha" cor={C.destaque} />
       <CardNumero t={t} de={c.americano - 0.2} ate={c.brasileiro - 0.4} top={520} titulo="COLHEITA NOS EUA" valor="≈ 1.200 t" />
-      <CardNumero t={t} de={c.brasileiro - 0.2} ate={c.porra - 0.3} top={520} titulo="COLHEITA NO BRASIL" valor="≈ 2.730 t" cor={C.destaque} />
-      <Carimbo t={t} de={c.porra - 0.05} ate={T4 - 0.4} txt="MESMA GRANA" top={540} />
+      <CardNumero t={t} de={c.brasileiro - 0.2} ate={c.porra - 0.6} top={520} titulo="COLHEITA NO BRASIL" valor="≈ 2.730 t" cor={C.destaque} />
+      <Carimbo t={t} de={c.porra - 0.5} ate={T4 - 0.15} txt="MESMA GRANA" top={540} />
       <CardNumero t={t} de={T4 + 0.1} ate={c.aquiLa - 0.4} titulo="É MÉDIA NACIONAL" valor="terra boa custa bem mais" />
       <CardNumero t={t} de={c.aquiLa - 0.2} ate={c.aprender - 0.6} titulo="COMENTA" valor="fazendeiro aqui ou lá?" cor={C.destaque} />
       <CardNumero t={t} de={c.aprender - 0.4} ate={99} titulo="QUER FAZER VÍDEOS ASSIM?" valor="link na bio 👆" cor={C.destaque} />
 
       <PalavraGrande destaque={DESTAQUE} />
-      {blocos.slice(1).map(([x]) => (
+      {blocos.slice(1, 5).map(([x]) => (
         <Flash key={x} at={x} />
       ))}
       <Flash at={c.porra} cor="#ffcf3a" max={0.25} />

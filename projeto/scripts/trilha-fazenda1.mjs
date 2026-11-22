@@ -114,25 +114,25 @@ whoosh(T1 - 0.05, 0.8, 0.07, -0.5, 0.5);
 motor(c.picape - 0.8, 1.6, 0.03, 70); // picape chegando
 kaching(c.contrato + 0.4, -0.2);
 rola(c.contrato + 0.4, Math.max(1, c.trezentos - c.contrato), 0.018);
-impacto(c.trezentos + 0.6, 0.3); // dinheiro acabou
+impacto(c.trezentos + 1.3, 0.25); // dinheiro acabou (depois do "trinta e seis")
 // fita rebobinando: varredura descendente + chiado
-for (let k = 0; k < 6; k++) blip(TR + k * 0.12, 1800 - k * 200, 400, { g: 0.035, dur: 0.12, pan: (k % 2 ? 0.3 : -0.3) });
-ruidoF(TR, Math.max(0.6, T2 - TR), { tipo: "bp", f: 2500, Q: 0.8, g: 0.02, dec: 0.5, alvo: SFX });
+for (let k = 0; k < 4; k++) blip(c.volta - 0.6 + k * 0.12, 1800 - k * 250, 400, { g: 0.025, dur: 0.1, pan: (k % 2 ? 0.3 : -0.3) });
+ruidoF(c.volta + 0.6, 0.8, { tipo: "bp", f: 2500, Q: 0.8, g: 0.01, dec: 2, alvo: SFX });
 whoosh(T2 - 0.05, 0.8, 0.07, 0.5, -0.5);
 motor(T2 + 0.1, 1.5, 0.03, 70);
 kaching(c.quarenta + 0.4, 0.2);
 rola(c.quarenta + 0.4, Math.max(1, c.setecentos - c.quarenta), 0.018);
-impacto(c.dobro - 0.1, 0.3); // carimbo MAIS QUE O DOBRO
+impacto(c.dobro + 0.45, 0.25); // carimbo 2X (depois da palavra)
 whoosh(T3 - 0.05, 0.9, 0.06, -0.4, 0.4);
 ruidoF(T3 + 0.2, Math.max(1, c.colheita - T3 - 0.4), { tipo: "bp", f: 4500, Q: 0.5, g: 0.012, dec: 0.4, alvo: SFX }); // chuva
 motor(c.planta - 0.2, 4.0, 0.025, 55); // trator
 for (let i = 0; i < 3; i++) blip(c.americano + i * 0.3, 420, 420, { g: 0.03, dur: 0.15, pan: -0.5 });
 for (let i = 0; i < 7; i++) blip(c.brasileiro + i * 0.2, 470, 470, { g: 0.03, dur: 0.12, pan: 0.5 });
-impacto(c.porra + 0.35, 0.35);
+impacto(c.porra + 0.2, 0.25);
 whoosh(T4 - 0.05, 0.8, 0.06, 0.4, -0.4);
 pop(c.aquiLa, 800, 0.04, -0.4); pop(c.aquiLa + 0.5, 1000, 0.04, 0.4);
 sino(c.aprender - 0.1, [79, 84], { g: 0.02, dur: 0.8 });
-const STING = d.fimVoz + 0.1;
+const STING = d.fimVoz + 0.3;
 [36, 43, 48, 52, 55, 60].forEach((m, j) => piano(STING + j * 0.02, m, 0.5 - j * 0.03, { dur: Math.min(3, DUR - STING - 0.1), pan: j * 0.22 - 0.55, rev: 0.6 }));
 
 // =====================================================================
@@ -173,7 +173,7 @@ let env = 0;
 for (let i = 0; i < N; i++) {
   const lvl = Math.max(Math.abs(voz[0][i]), Math.abs(voz[1][i]));
   env += (lvl - env) * (lvl > env ? 1 / (SR * 0.01) : 1 / (SR * 0.35));
-  const duck = 1 - 0.45 * Math.min(1, env / 0.05);
+  const duck = 1 - 0.6 * Math.min(1, env / 0.05);
   const f = Math.min(1, i / (0.02 * SR)) * Math.min(1, Math.max(0, (N - i) / (1.0 * SR)));
   for (const ch of [0, 1]) mix[ch][i] = (voz[ch][i] + musica[ch][i] * MUSICA * duck + efeitos[ch][i] * EFEITOS) * f;
 }

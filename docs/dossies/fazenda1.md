@@ -12,6 +12,8 @@ Levantado em 22/11/2026. Formato inspirado no "caixa" do @agroscalepy (referênc
 | 6 | Produtividade da soja: Brasil 3.697 kg/ha (Conab, mai/2026); EUA 3.560 kg/ha (USDA/PSD, mai/2026) | Embrapa Soja (dados econômicos) | ✔ |
 | 7 | Colheita: EUA ≈ 336 × 3,56 ≈ 1.200 t; Brasil ≈ 738 × 3,7 ≈ 2.730 t | cálculo nosso | aproximado |
 
+| 8 | "Terra boa em Mato Grosso custa bem mais": em Sorriso (MT), anúncios pedem ≈ R$ 65 mil a R$ 87 mil/ha (ex.: Fazenda Sichieri, 921 ha; leilão Fazenda em Valo, 523 ha); Iowa US$ 10.700/acre (USDA) | MF Rural (anúncios), USDA | anúncios: referência, não média |
+
 ## Não afirmar
 - Que é investimento recomendado ou lucro garantido (o vídeo só compara terra e colheita).
 - Que terra boa custa a média: Iowa custa US$ 10.700/acre e Mato Grosso do Sul R$ 47 mil/ha. A fala avisa que é média.
