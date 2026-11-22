@@ -129,7 +129,7 @@ export const Rato1: React.FC = () => {
     [T1, LB, [LB[0], 1.4, 5.7], [LB[0], 0.6, 0]],
     [T2, LI, [LI[0], 1.1, 3.8], [LI[0], 0.6, 0]],
     [T3, MO, [MO[0], 1.2, 6.6], [MO[0], 0.5, 0]],
-    [T4, AG, [AG[0] + 0.28, 1.0, 4.2], [AG[0] + 0.28, 0.6, 0]],
+    [T4, AG, [AG[0] + 0.36, 1.0, 4.4], [AG[0] + 0.36, 0.6, 0]],
     [T5, PA, [PA[0], 1.2, 5.2], [PA[0], 0.6, 0]],
     [T6, RE, [RE[0], 1.0, 4.2], [RE[0], 0.55, 0]],
     [T7, VC, [VC[0], 1.4, 5.8], [VC[0], 0.6, 0]],
@@ -237,7 +237,7 @@ export const Rato1: React.FC = () => {
         {em(5) ? (
           <group position={PA}>
             <BracoRobo p={[-0.55, 0, -0.1]} s={0.85} desce={0.55} t={t} alerta />
-            <Monitor p={[0.3, 0, -0.7]} s={0.7} fundo="#4a0f12" linhas={[["⚠ PAROU", 1.3, "#ff6a5a"], ["calibração ≠", 1, "#ffffff"], ["faixa do aparelho", 0.9, "#ffd0c8"]]} />
+            <Monitor p={[0.5, 0, -0.75]} s={0.7} fundo="#4a0f12" linhas={[["⚠ PAROU", 1.3, "#ff6a5a"], ["calibração ≠", 1, "#ffffff"], ["faixa do aparelho", 0.9, "#ffd0c8"]]} />
             {t >= c.botao - 0.4 ? (
               <group position={[0.45, 0, 0.3]} scale={mola(c.botao - 0.4, 220, 12)}>
                 <Boneco url="personagens/character-female-d" p={[0, 0, 0]} rotY={-0.5} altura={0.6} anim="idle" tAnim={t} />
@@ -277,7 +277,7 @@ export const Rato1: React.FC = () => {
             ))}
             <Boneco url="personagens/character-male-a" p={[0.15, 0.48, 0]} rotY={Math.PI / 2} altura={0.55} anim="idle" tAnim={t} />
             <BracoRobo p={[-0.75, 0, -0.15]} s={0.9} desce={0.3 + 0.1 * Math.sin(t * 2)} t={t} />
-            <group position={[0.72, 0, -0.5]}>
+            <group position={[0.55, 0, -0.55]}>
               <B s={[0.04, 1.2, 0.04]} p={[0, 0.6, 0]} cor="#2a2f3a" />
               <group position={[-0.2, 1.08, 0]}>
                 <PlanoTexto linhas={[["SIM", 1, "#ffffff"]]} fundo="#2a9a5a" tam={[0.4, 0.16]} px={[300, 120]} />
