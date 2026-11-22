@@ -506,7 +506,7 @@ export const filmes = [
   },
   {
     id: "fazenda1",
-    vozes: ["36rVQA1AOIPwpA3Hg1tC"], // Matheus 1,12× · AGUARDA APROVAÇÃO DO TEXTO
+    vozes: ["36rVQA1AOIPwpA3Hg1tC"], // Matheus 1,12×
     preRoll: 0.3,
     calibrar: true,
     cauda: 1.8,
@@ -523,7 +523,7 @@ export const filmes = [
       volta: "volta",
       desembarca: "desembarca",
       quarenta: ["quarenta", 1],
-      seis: ["seis", 1],
+      seis: ["seis", 2],
       mesmos: "mesmos",
       setecentos: "setecentos",
       dobro: "dobro",
@@ -536,8 +536,11 @@ export const filmes = [
       brasileiro: "brasileiro,",
       porra: "porra",
       media: "média:",
-      virava: "virava",
-      fim: "Comenta",
+      aquiLa: ["aqui", 2],
+      comenta: "Comenta.",
+      aprender: "aprender",
+      faturar: "faturar,",
+      fim: "bio",
     },
   },
 ];

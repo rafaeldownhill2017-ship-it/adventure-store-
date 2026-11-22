@@ -18,7 +18,7 @@ const US: V3 = [30, 0, 0]; // fazenda nos EUA
 const BR: V3 = [60, 0, 0]; // fazenda no Brasil
 const LD: V3 = [90, 0, 0]; // lado a lado (chuva + colheita)
 const FI: V3 = [120, 0, 0]; // fecho
-const DESTAQUE = /cinco|milhões|dólares|fazendeiro|Estados|Unidos|Brasil|picape|contrato|quinze|trezentos|volta|fita|quarenta|seis|setecentos|dobro|chuva|soja|três|colheita|mil|porra|média|Comenta/i;
+const DESTAQUE = /cinco|milhões|dólares|fazendeiro|Estados|Unidos|Brasil|picape|contrato|quinze|trezentos|volta|fita|quarenta|seis|setecentos|dobro|chuva|soja|três|colheita|mil|porra|média|Comenta|vídeos|faturar|link|bio/i;
 
 const TILE = 0.1;
 const GAP = 0.006;
@@ -335,9 +335,9 @@ export const Fazenda1: React.FC = () => {
               ] as const
             ).map(([pais, x, corP, txt], i) => (
               <group key={pais} position={[x, 0, 0]}>
-                <Pedestal raio={0.33} aro={corP} acende={t >= c.virava ? 1 : 0.3} s={mola(T4 + 0.1 + i * 0.12, 220, 12)} />
+                <Pedestal raio={0.33} aro={corP} acende={t >= c.aquiLa ? 1 : 0.3} s={mola(T4 + 0.1 + i * 0.12, 220, 12)} />
                 <Bandeira p={[-0.12, TOPO_PEDESTAL, 0]} pais={pais} s={0.6 * mola(T4 + 0.2 + i * 0.12, 220, 12)} t={t + i} />
-                <PlanoTexto linhas={[[txt, 1, "#ffffff"]]} fundo={corP} tam={[0.62, 0.11]} p={[0, 0.14, 0.34]} px={[560, 100]} />
+                <PlanoTexto linhas={[[txt, 1, "#ffffff"]]} fundo={corP} tam={[0.62, 0.11]} p={[0, 1.18, 0.05]} px={[560, 100]} />
               </group>
             ))}
           </group>
@@ -384,9 +384,10 @@ export const Fazenda1: React.FC = () => {
       <CardNumero t={t} de={c.aqui - 0.2} ate={c.colheita - 0.4} top={520} titulo="BRASIL · SOJA (CONAB, MAI/2026)" valor="3,7 t/ha" cor={C.destaque} />
       <CardNumero t={t} de={c.americano - 0.2} ate={c.brasileiro - 0.4} top={520} titulo="COLHEITA NOS EUA" valor="≈ 1.200 t" />
       <CardNumero t={t} de={c.brasileiro - 0.2} ate={c.porra - 0.3} top={520} titulo="COLHEITA NO BRASIL" valor="≈ 2.730 t" cor={C.destaque} />
-      <Carimbo t={t} de={c.porra - 0.05} ate={T4 - 0.4} txt="O MESMO DINHEIRO" top={540} />
-      <CardNumero t={t} de={T4 + 0.1} ate={c.virava - 0.4} titulo="É MÉDIA NACIONAL" valor="terra boa custa bem mais" />
-      <CardNumero t={t} de={c.virava - 0.2} ate={99} titulo="COMENTA" valor="fazendeiro aqui ou lá?" cor={C.destaque} />
+      <Carimbo t={t} de={c.porra - 0.05} ate={T4 - 0.4} txt="MESMA GRANA" top={540} />
+      <CardNumero t={t} de={T4 + 0.1} ate={c.aquiLa - 0.4} titulo="É MÉDIA NACIONAL" valor="terra boa custa bem mais" />
+      <CardNumero t={t} de={c.aquiLa - 0.2} ate={c.aprender - 0.6} titulo="COMENTA" valor="fazendeiro aqui ou lá?" cor={C.destaque} />
+      <CardNumero t={t} de={c.aprender - 0.4} ate={99} titulo="QUER FAZER VÍDEOS ASSIM?" valor="link na bio 👆" cor={C.destaque} />
 
       <PalavraGrande destaque={DESTAQUE} />
       {blocos.slice(1).map(([x]) => (
