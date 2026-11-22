@@ -124,7 +124,7 @@ whoosh(T3 - 0.05, 0.9, 0.07, -0.5, 0.5);
 motor(T3 + 0.1, 3.0, 0.03, 80); // avião
 kaching(c.nove + 0.8, -0.2);
 kaching(c.soma + 1.6, 0.2);
-impacto(c.estourou - 0.45, 0.25); // alarme/estouro antes da palavra
+impacto(c.estourou - 0.1, 0.25); // alarme/estouro antes da palavra
 for (let k = 0; k < 3; k++) blip(c.estourou + 0.15 + k * 0.14, 300 - k * 40, 300 - k * 40, { g: 0.05, dur: 0.12 });
 whoosh(T4 - 0.05, 0.8, 0.07, 0.5, -0.5);
 motor(T4 + 0.2, 2.4, 0.025, 85);
@@ -133,10 +133,10 @@ rola(c.sete + 0.1, 1.5, 0.02);
 whoosh(T5 - 0.05, 0.8, 0.07, -0.5, 0.5);
 motor(T5 + 0.2, 4.0, 0.03, 75);
 kaching(c.onze + 0.4, 0.3);
-impacto(c.porra + 0.36, 0.16);
+impacto(c.porra + 0.45, 0.16);
 whoosh(T6 - 0.05, 0.8, 0.07, 0.4, -0.4);
 for (let i = 0; i < 4; i++) blip(c.golpe - 2.2 + i * 0.35, 1320, 1320, { g: 0.022, dur: 0.07, pan: 0.2, rev: 0.3 }); // mensagens do golpista
-impacto(c.golpe - 0.35, 0.22); // carimbo GOLPE antes da palavra
+impacto(c.golpe - 0.12, 0.16); // carimbo GOLPE antes da palavra
 whoosh(T7 - 0.05, 0.8, 0.06, -0.4, 0.4);
 torcida(T7 + 0.1, 2.0, 0.01);
 pop(c.estadio, 900, 0.025, -0.4); pop(c.comenta - 1.1, 1000, 0.025, 0.4);
@@ -182,7 +182,7 @@ let env = 0;
 for (let i = 0; i < N; i++) {
   const lvl = Math.max(Math.abs(voz[0][i]), Math.abs(voz[1][i]));
   env += (lvl - env) * (lvl > env ? 1 / (SR * 0.01) : 1 / (SR * 0.35));
-  const duck = 1 - 0.6 * Math.min(1, env / 0.05);
+  const duck = 1 - 0.75 * Math.min(1, env / 0.02);
   const f = Math.min(1, i / (0.02 * SR)) * Math.min(1, Math.max(0, (N - i) / (1.0 * SR)));
   for (const ch of [0, 1]) mix[ch][i] = (voz[ch][i] + musica[ch][i] * MUSICA * duck + efeitos[ch][i] * EFEITOS) * f;
 }
