@@ -47,7 +47,7 @@ const Estadio: React.FC<{ p: V3; s?: number; rotY?: number; t?: number; luz?: nu
         <group key={l} position={[l * 1.1, 0, 0]}>
           <B s={[0.03, 0.2, 0.03]} p={[0, 0.1, -0.22]} cor="#ffffff" />
           <B s={[0.03, 0.2, 0.03]} p={[0, 0.1, 0.22]} cor="#ffffff" />
-          <B s={[0.03, 0.03, 0.47]} p={[0, 0.2, 0]} cor="#ffffff" />
+          <B s={[0.03, 0.03, 0.47]} p={[0, 0.12, 0]} cor="#ffffff" />
         </group>
       ))}
       {[0, 1].map((nivel) =>
@@ -333,7 +333,7 @@ export const Libertadores1: React.FC = () => {
     { de: c.nove - 0.2, ate: c.soma - 0.2, titulo: "PASSAGEM + HOTEL (EST. OUT/2026)", valor: "≈ R$ 9.300" },
     { de: c.soma - 0.1, ate: c.soma + 1.3, titulo: "+ INGRESSO DA CATEGORIA 2", valor: "≈ R$ 1.483" },
     { de: c.soma + 1.4, ate: c.estourou - 0.2, titulo: "TOTAL", valor: "R$ 10.783", cor: "#ff5a4e", tinta: "#ffffff" },
-    { de: T4 + 0.1, ate: c.sete - 0.2, titulo: "PACOTE DE AGÊNCIA", valor: "voo + 3 noites + ingresso" },
+    { de: T4 + 0.1, ate: c.sete - 0.2, titulo: "PACOTE DE AGÊNCIA", valor: "voo + 3 noites + ingresso cat. 2" },
     { de: c.sete - 0.1, ate: c.cabe - 0.1, titulo: "A PARTIR DE", valor: "R$ 7.979", cor: C.destaque },
     { de: c.cabe + 0.3, ate: T5 - 0.15, titulo: "SOBRAM", valor: "R$ 2.021", cor: "#2a9a5a", tinta: "#ffffff" },
     { de: T5 + 0.1, ate: c.onze - 0.2, titulo: "BATE-VOLTA · VOO FRETADO", valor: "mesmo dia" },
@@ -351,13 +351,13 @@ export const Libertadores1: React.FC = () => {
         {/* 0: estádio visto de cima */}
         {em(0) ? (
           <group position={E0}>
-            <Estadio p={[0, 0, 0]} s={0.3 * mola(0.0, 200, 12)} rotY={Math.sin(t * 0.5) * 0.3} t={t} />
+            <Estadio p={[0, 0, 0]} s={0.27 * mola(0.0, 200, 12)} rotY={Math.sin(t * 0.5) * 0.3} t={t} />
           </group>
         ) : null}
 
         {/* 1: ingresso cat. 1 × salário mínimo (maços lado a lado) */}
         {em(1) ? (
-          <group position={[E0b[0], 0.22, 0]} scale={0.6}>
+          <group position={[E0b[0], 0.12, 0]} scale={0.66}>
             <group position={[0.24, 0, 0.1]} scale={Math.min(1, mola(c.minimo - 2.55, 220, 12))}>
               <Maco p={[0, 0, 0]} n={20 * ease.out(p(t, c.minimo - 2.5, 1.2))} s={0.8} cor="#d9a21e" h={0.03} />
               <PlanoTexto linhas={[["INGRESSO CAT. 1", 1, "#ffffff"]]} fundo="#c8262c" tam={[0.5, 0.1]} p={[0, 0.58, 0.2]} px={[480, 100]} />
@@ -373,7 +373,7 @@ export const Libertadores1: React.FC = () => {
 
         {/* 2: você tem R$ 10 mil */}
         {em(2) ? (
-          <group position={[E1[0], 0.22, 0]} scale={0.6}>
+          <group position={[E1[0], 0.12, 0]} scale={0.66}>
             {[-0.4, -0.2, 0, 0.2, 0.4].map((x, i) => (
               <Maco key={x} p={[x, 0, -0.1]} n={14} s={0.45 * mola(T1 + 0.05 + i * 0.08, 220, 12)} />
             ))}
@@ -384,7 +384,7 @@ export const Libertadores1: React.FC = () => {
 
         {/* 3: os 3 ingressos, um de cada vez, com maço proporcional */}
         {em(3) ? (
-          <group position={[E2[0], 0.22, 0]} scale={0.6}>
+          <group position={[E2[0], 0.12, 0]} scale={0.66}>
             {tks.map(([cr, l1, l2, t0, n], i) => {
               const fim = i < tks.length - 1 ? tks[i + 1][3] : T3 + 0.1;
               if (t < t0 - 0.05 || t > fim + 0.3) return null;
@@ -402,7 +402,7 @@ export const Libertadores1: React.FC = () => {
 
         {/* 4: conta própria: avião cruza, hotel, ingresso cat. 2 */}
         {em(4) ? (
-          <group position={[E3[0], 0.22, 0]} scale={0.6}>
+          <group position={[E3[0], 0.12, 0]} scale={0.66}>
             <Hotel p={[0.35, 0, -0.05]} s={0.7 * mola(T3 + 0.1, 220, 12)} />
             <Aviao p={[lerp(-1.0, -0.05, ease.out(p(t, T3, 3.0))), 0.58 + 0.08 * Math.sin(p(t, T3, 3.0) * Math.PI), 0.2]} s={0.85} rolo={Math.sin(t * 1.2) * 0.06} />
             {t >= c.soma - 0.5 ? <Ingresso p={[-0.28, 0.1, 0.7]} rot={[0, 0.1, 0.03]} s={0.62 * mola(c.soma - 0.5, 220, 12)} cor="#d9a21e" l1="CATEGORIA 2" l2="≈ R$ 1.483" /> : null}
@@ -412,26 +412,26 @@ export const Libertadores1: React.FC = () => {
 
         {/* 5: pacote */}
         {em(5) ? (
-          <group position={[E4[0], 0.22, 0]} scale={0.6}>
+          <group position={[E4[0], 0.12, 0]} scale={0.66}>
             <PacoteCaixa p={[-0.1, 0, 0.1]} s={0.95 * mola(T4 + 0.1, 220, 12)} />
             <Aviao p={[0.25 + Math.cos(t * 1.2) * 0.1, 0.62 + Math.sin(t * 1.5) * 0.04, -0.1]} s={0.5 * mola(c.pacote + 0.3, 220, 12)} rotY={0.3} />
             <Ingresso p={[-0.1, 0.55 + 0.05 * Math.sin(t * 2), 0.2]} rot={[0, 0, -0.3]} s={0.45 * mola(c.pacote + 1.2, 220, 12)} cor="#d9a21e" l1="CATEGORIA 2" l2="INCLUSO" />
-            <Pedestal p={[0, -0.02, 0.1]} raio={0.7} alt={0.02} aro="#3aff7a" acende={p(t, c.cabe - 0.2, 0.5)} />
+            <Pedestal p={[0, -0.02, 0.1]} raio={0.55} alt={0.02} aro="#3aff7a" acende={p(t, c.cabe - 0.2, 0.5)} />
           </group>
         ) : null}
 
         {/* 6: bate-volta */}
         {em(6) ? (
-          <group position={[E5[0], 0.22, 0]} scale={0.6}>
-            <Aviao p={[lerp(-0.5, 0.4, ease.inOut(p(t, T5, 4.6))), 0.55 + 0.1 * Math.sin(p(t, T5, 4.6) * Math.PI), 0.1]} s={0.9} rolo={Math.sin(t * 1.4) * 0.06} />
+          <group position={[E5[0], 0.12, 0]} scale={0.66}>
+            <Aviao p={[lerp(-0.4, 0.25, ease.inOut(p(t, T5, 4.6))), 0.55 + 0.1 * Math.sin(p(t, T5, 4.6) * Math.PI), 0.1]} s={0.72} rolo={Math.sin(t * 1.4) * 0.06} />
             <Relogio p={[-0.38, 0, 0.55]} s={0.55 * mola(c.bateVolta, 220, 12)} t={t} vel={10} />
-            <PlanoTexto linhas={[["MESMO DIA", 1, "#ffffff"]]} fundo="#c8262c" tam={[0.5, 0.11]} p={[0.25, 0.1, 0.6]} px={[480, 104]} />
+            <PlanoTexto linhas={[["MESMO DIA", 1, "#ffffff"]]} fundo="#c8262c" tam={[0.5, 0.11]} p={[-0.3, 0.32, 0.6]} px={[480, 104]} />
           </group>
         ) : null}
 
         {/* 7: golpe: ingresso nominal → oferta no celular (X vermelho) → canal oficial */}
         {em(7) ? (
-          <group position={[E6[0], 0.22, 0]} scale={0.6}>
+          <group position={[E6[0], 0.12, 0]} scale={0.66}>
             {(() => {
               const k = ease.inOut(p(t, c.golpe - 1.7, 0.5));
               return <Ingresso p={[lerp(0, -0.33, k), lerp(0.3, 0.5, k), 0.3]} rot={[0, 0.2, 0.03]} s={lerp(0.85, 0.5, k) * mola(T6, 220, 12)} cor="#2f78c8" l1="INGRESSO NOMINAL" l2="SEU NOME" l3="DIGITAL" />;
@@ -449,7 +449,7 @@ export const Libertadores1: React.FC = () => {
 
         {/* 8: duas portas: estádio × sofá */}
         {em(8) ? (
-          <group position={[E7[0], 0.22, 0]} scale={0.6}>
+          <group position={[E7[0], 0.12, 0]} scale={0.66}>
             <Porta p={[-0.3, 0, 0]} s={0.62 * mola(T7 + 0.1, 220, 12)} cor="#2f78c8" txt="ESTÁDIO" emoji="🏟️" ativo={t >= c.estadio - 0.05 && t < c.estadio + 1.0} t={t} />
             <Porta p={[0.3, 0, 0]} s={0.62 * mola(T7 + 0.25, 220, 12)} cor="#c8262c" txt="SOFÁ" emoji="🛋️" ativo={t >= sofa - 0.05 && t < sofa + 1.0} t={t} />
           </group>
@@ -461,7 +461,7 @@ export const Libertadores1: React.FC = () => {
       {/* câmbio sempre visível durante os ingressos */}
       {t >= c.tres - 0.45 && t < T3 ? (
         <div style={{ position: "absolute", top: 722, left: 0, right: 0, display: "flex", justifyContent: "center", pointerEvents: "none" }}>
-          <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 34, color: "#ffffff", background: "rgba(14,18,24,0.75)", padding: "8px 26px", borderRadius: 999 }}>CÂMBIO 19/11 · US$ 1 = R$ 5,93</div>
+          <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 40, color: "#ffffff", background: "rgba(14,18,24,0.75)", padding: "8px 26px", borderRadius: 999 }}>CÂMBIO 19/11 · US$ 1 = R$ 5,93</div>
         </div>
       ) : null}
 
@@ -471,10 +471,10 @@ export const Libertadores1: React.FC = () => {
         const ate = prox ? Math.min(k.ate, prox.de - 0.32) : k.ate;
         return <CardNumero key={i} t={t} de={k.de} ate={ate} top={topoEm(k.de)} titulo={k.titulo} valor={k.valor} cor={k.cor} tinta={k.tinta} />;
       })}
-      <Carimbo t={t} de={c.dez + 2.1} ate={T2 - 0.3} txt="DÁ?" top={topoEm(c.dez) + 250} />
-      <Carimbo t={t} de={c.estourou - 0.1} ate={T4 - 0.1} txt="ESTOUROU!" top={topoEm(c.estourou) + 250} />
-      <Carimbo t={t} de={c.cabe - 0.1} ate={T5 - 0.3} txt="CABE!" cor="#2a9a5a" top={topoEm(c.cabe) + 250} />
-      <Carimbo t={t} de={c.porra - 0.35} ate={T6 - 0.05} txt="FALTA R$ 1.912" top={topoEm(c.porra) + 250} />
+      <Carimbo t={t} de={c.dez + 2.1} ate={T2 - 0.3} txt="DÁ?" top={topoEm(c.dez) + 310} />
+      <Carimbo t={t} de={c.estourou - 0.1} ate={T4 - 0.1} txt="ESTOUROU!" top={topoEm(c.estourou) + 310} />
+      <Carimbo t={t} de={c.cabe - 0.1} ate={T5 - 0.3} txt="CABE!" cor="#2a9a5a" top={topoEm(c.cabe) + 310} />
+      <Carimbo t={t} de={c.porra - 0.35} ate={T6 - 0.05} txt="FALTA R$ 1.912" top={topoEm(c.porra) + 310} />
       <Carimbo t={t} de={c.golpe - 0.1} ate={T7 - 0.1} txt="GOLPE!" top={300} />
 
       <PalavraGrande destaque={DESTAQUE} />
