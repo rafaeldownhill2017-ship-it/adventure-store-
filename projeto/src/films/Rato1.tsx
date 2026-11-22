@@ -125,14 +125,14 @@ export const Rato1: React.FC = () => {
   const T7 = c.operar - 1.6; // "Então me fala"
 
   const blocos: [number, V3, V3, V3][] = [
-    [0, H0, [H0[0] + 0.2, 1.1, 3.4], [H0[0] + 0.2, 0.55, 0]],
-    [T1, LB, [LB[0], 1.4, 5.0], [LB[0], 0.6, 0]],
+    [0, H0, [H0[0] + 0.28, 1.1, 4.5], [H0[0] + 0.28, 0.6, 0]],
+    [T1, LB, [LB[0], 1.4, 5.7], [LB[0], 0.6, 0]],
     [T2, LI, [LI[0], 1.1, 3.8], [LI[0], 0.6, 0]],
-    [T3, MO, [MO[0], 1.3, 5.8], [MO[0], 0.55, 0]],
-    [T4, AG, [AG[0] + 0.25, 1.0, 3.0], [AG[0] + 0.25, 0.5, 0]],
-    [T5, PA, [PA[0], 1.2, 4.6], [PA[0], 0.6, 0]],
-    [T6, RE, [RE[0], 1.0, 3.6], [RE[0], 0.5, 0]],
-    [T7, VC, [VC[0], 1.4, 5.0], [VC[0], 0.65, 0]],
+    [T3, MO, [MO[0], 1.2, 6.6], [MO[0], 0.5, 0]],
+    [T4, AG, [AG[0] + 0.28, 1.0, 4.2], [AG[0] + 0.28, 0.6, 0]],
+    [T5, PA, [PA[0], 1.2, 5.2], [PA[0], 0.6, 0]],
+    [T6, RE, [RE[0], 1.0, 4.2], [RE[0], 0.55, 0]],
+    [T7, VC, [VC[0], 1.4, 5.8], [VC[0], 0.6, 0]],
   ];
   const K: Key[] = [];
   blocos.forEach(([t0, , pos, look], i) => {
@@ -237,9 +237,9 @@ export const Rato1: React.FC = () => {
         {em(5) ? (
           <group position={PA}>
             <BracoRobo p={[-0.55, 0, -0.1]} s={0.85} desce={0.55} t={t} alerta />
-            <Monitor p={[0.15, 0, -0.45]} s={0.75} fundo="#4a0f12" linhas={[["⚠ PAROU", 1.3, "#ff6a5a"], ["calibração ≠", 1, "#ffffff"], ["faixa do aparelho", 0.9, "#ffd0c8"]]} />
+            <Monitor p={[0.3, 0, -0.7]} s={0.7} fundo="#4a0f12" linhas={[["⚠ PAROU", 1.3, "#ff6a5a"], ["calibração ≠", 1, "#ffffff"], ["faixa do aparelho", 0.9, "#ffd0c8"]]} />
             {t >= c.botao - 0.4 ? (
-              <group position={[0.65, 0, 0.25]} scale={mola(c.botao - 0.4, 220, 12)}>
+              <group position={[0.45, 0, 0.3]} scale={mola(c.botao - 0.4, 220, 12)}>
                 <Boneco url="personagens/character-female-d" p={[0, 0, 0]} rotY={-0.5} altura={0.6} anim="idle" tAnim={t} />
                 <group position={[-0.18, 0.42, 0.12]}>
                   <B s={[0.12, 0.08, 0.12]} cor="#1d2230" />
@@ -261,7 +261,7 @@ export const Rato1: React.FC = () => {
               <Rato p={[0, TOPO_PEDESTAL, 0]} s={1.3 * mola(T6 + 0.1, 220, 12)} t={t} />
             </group>
             {t >= c.crises - 0.3 ? (
-              <group position={[0.55, 0.95, 0]} scale={mola(c.crises - 0.3, 220, 12)}>
+              <group position={[0.42, 0.95, 0]} scale={mola(c.crises - 0.3, 220, 12)}>
                 <PlanoTexto linhas={[["?", 1, "#ffcf3a"]]} fundo={null} tam={[0.3, 0.4]} px={[200, 260]} />
               </group>
             ) : null}
@@ -277,7 +277,7 @@ export const Rato1: React.FC = () => {
             ))}
             <Boneco url="personagens/character-male-a" p={[0.15, 0.48, 0]} rotY={Math.PI / 2} altura={0.55} anim="idle" tAnim={t} />
             <BracoRobo p={[-0.75, 0, -0.15]} s={0.9} desce={0.3 + 0.1 * Math.sin(t * 2)} t={t} />
-            <group position={[0.95, 0, -0.4]}>
+            <group position={[0.72, 0, -0.5]}>
               <B s={[0.04, 1.2, 0.04]} p={[0, 0.6, 0]} cor="#2a2f3a" />
               <group position={[-0.2, 1.08, 0]}>
                 <PlanoTexto linhas={[["SIM", 1, "#ffffff"]]} fundo="#2a9a5a" tam={[0.4, 0.16]} px={[300, 120]} />
