@@ -25,6 +25,8 @@ import dVendaKit1 from "./data/vendakit1.json";
 import dMasterStf from "./data/masterstf.json";
 import dNatal13 from "./data/natal13.json";
 import dPicape1 from "./data/picape1.json";
+import dBoi1 from "./data/boi1.json";
+import { Boi1 } from "./films/Boi1";
 import { Picape1 } from "./films/Picape1";
 import { Natal13 } from "./films/Natal13";
 import { MasterStf } from "./films/MasterStf";
@@ -66,6 +68,7 @@ const filmes = [
   { id: "masterstf", data: dMasterStf as Timeline, C: filme(dMasterStf as Timeline, MasterStf) },
   { id: "natal13", data: dNatal13 as Timeline, C: filme(dNatal13 as Timeline, Natal13) },
   { id: "picape1", data: dPicape1 as Timeline, C: filme(dPicape1 as Timeline, Picape1) },
+  { id: "boi1", data: dBoi1 as Timeline, C: filme(dBoi1 as Timeline, Boi1) },
   // vídeos de vendas para negócio local: um JSON de cliente em data/negocios + um timeline em data/<id>.json
   { id: "negocio-exemplo", data: dNegocioEx as Timeline, C: filme(dNegocioEx as Timeline, fazNegocio(cfgBurguer as ConfigNegocio)) },
 ];
