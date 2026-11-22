@@ -3,7 +3,7 @@ import { AbsoluteFill } from "remotion";
 import { C, FONT } from "../brand";
 import { camPorKeys, type Key, type V3 } from "../lib/camera";
 import { Boneco, Modelo, precarregar } from "../lib/kenney";
-import { Carimbo, CardNumero, corBloco, PalcoCor, Pedestal, PlanoTexto, TOPO_PEDESTAL } from "../lib/objetos";
+import { Carimbo, CardNumero, corBloco, NotasVoando, PalcoCor, Pedestal, PlanoTexto, TOPO_PEDESTAL } from "../lib/objetos";
 import { clamp01, ease, hash, lerp, p, useT, useTimeline } from "../lib/time";
 import { B, Flash, Grain, PalavraGrande, useMola } from "../lib/ui";
 import { Bandeira, Picape } from "./Picape1";
@@ -29,10 +29,13 @@ const Lavoura: React.FC<{ p: V3; cols: number; total: number; n: number; soja: n
   const W = cols * (TILE + GAP);
   const D = rows * (TILE + GAP);
   const lotes = [];
+  const maxD = cols + rows;
   for (let i = 0; i < total; i++) {
     const r = Math.floor(i / cols);
     const cc = i % cols;
-    const k = clamp01(n - i); // 0..1 deste lote (cascata)
+    // onda diagonal: começa no canto de baixo à direita e varre até o de cima à esquerda
+    const ordem = ((cols - 1 - cc) + (rows - 1 - r)) / maxD; // 0..1
+    const k = clamp01((n / total) * 1.25 * maxD - ordem * maxD);
     if (k <= 0) continue;
     const x = -W / 2 + cc * (TILE + GAP) + TILE / 2;
     const z = -D / 2 + r * (TILE + GAP) + TILE / 2;
@@ -61,6 +64,25 @@ const Lavoura: React.FC<{ p: V3; cols: number; total: number; n: number; soja: n
     </group>
   );
 };
+
+/** Estrada cinza com faixa tracejada (ao longo de x se `eixo`="x"). */
+const Estrada: React.FC<{ p: V3; len: number; eixo?: "x" | "z" }> = ({ p: pos, len, eixo = "x" }) => (
+  <group position={pos} rotation={[0, eixo === "z" ? Math.PI / 2 : 0, 0]}>
+    <B s={[len, 0.012, 0.2]} p={[0, 0.006, 0]} cor="#8a9099" rough={0.95} />
+    {Array.from({ length: Math.floor(len / 0.2) }, (_, i) => (
+      <B key={i} s={[0.09, 0.014, 0.012]} p={[-len / 2 + 0.1 + i * 0.2, 0.008, 0]} cor="#f2efe8" />
+    ))}
+  </group>
+);
+
+/** Fileira de árvores (Kenney) para emoldurar a fazenda. */
+const Arvores: React.FC<{ pontos: [number, number, number][] }> = ({ pontos }) => (
+  <>
+    {pontos.map(([x, z, h], i) => (
+      <Modelo key={i} url={i % 2 ? "natureza/tree_default" : "natureza/tree_oak"} p={[x, 0, z]} alvo={{ altura: h }} />
+    ))}
+  </>
+);
 
 /** Celeiro + silos (sede da fazenda). */
 const Sede: React.FC<{ p: V3; s?: number; cor?: string; rotY?: number }> = ({ p: pos, s = 1, cor = "#b8322a", rotY = 0 }) => (
@@ -184,9 +206,9 @@ export const Fazenda1: React.FC = () => {
 
   const blocos: [number, V3, V3, V3][] = [
     [0, PR, [PR[0], 1.2, 4.6], [PR[0], 0.7, 0]],
-    [T1, US, [US[0], 2.6, 5.6], [US[0], 0.1, -0.3]],
-    [T2, BR, [BR[0], 3.6, 7.2], [BR[0], 0.0, -0.3]],
-    [T3, LD, [LD[0], 3.2, 6.6], [LD[0], 0.0, -0.1]],
+    [T1, US, [US[0] - 0.05, 5.4, 3.9], [US[0] - 0.05, 0.0, -0.35]],
+    [T2, BR, [BR[0] - 0.1, 6.8, 4.7], [BR[0] - 0.1, 0.0, -0.35]],
+    [T3, LD, [LD[0], 6.6, 4.6], [LD[0], 0.0, -0.25]],
     [T4, FI, [FI[0], 1.2, 5.2], [FI[0], 0.55, 0]],
   ];
   const K: Key[] = [];
@@ -200,9 +222,9 @@ export const Fazenda1: React.FC = () => {
     t,
     [
       [0, "#2a1f4a"],
-      [T1, "#6fa8dc"],
-      [T2, "#5fb3a0"],
-      [T3, "#4a6a8a"],
+      [T1, "#9fd977"],
+      [T2, "#9fd977"],
+      [T3, "#8cc66a"],
       [T4, "#2f8f5b"],
     ],
     0.25,
@@ -254,10 +276,13 @@ export const Fazenda1: React.FC = () => {
           <group position={US}>
             <Sede p={[-0.75, 0, -1.05]} s={0.75} cor="#b8322a" rotY={0.3} />
             <Bandeira p={[-1.0, 0, -0.45]} pais="US" s={0.6} t={t} />
-            <B s={[3, 0.012, 0.22]} p={[0, 0.006, 0.7]} cor="#9a8a6a" />
+            <Estrada p={[0, 0, 0.7]} len={4} />
+            <Estrada p={[-1.25, 0, 0]} len={3} eixo="z" />
+            <Arvores pontos={[[-0.3, -1.25, 0.35], [0.4, -1.3, 0.3], [1.15, -1.2, 0.35], [1.25, 0.2, 0.3], [-1.5, -1.1, 0.35]]} />
+            {t >= c.contrato && t < c.acaba + 0.4 ? <NotasVoando de={[0.2, 1.2, -0.2]} k={p(t, c.contrato, c.acaba - c.contrato + 0.4, (x) => x)} n={16} alcance={1.0} /> : null}
             <Picape p={[lerp(-2.0, -0.55, ease.out(p(t, c.picape - 0.8, 1.4, (x) => x))), 0.012, 0.7]} rotY={0} s={0.45} roda={t * 5} cor="#2a5aa8" />
             <Lavoura p={[0.2, 0, -0.2]} cols={14} total={168} n={168 * usTerra / 336} soja={0} seed={1} />
-            {t >= c.contrato - 0.4 && t < c.acaba ? <Contrato p={[0.35, 0.8, 0.6]} s={0.8 * mola(c.contrato - 0.4, 220, 12)} k={p(t, c.contrato, 0.7)} valor="US$ 14.900 / ha" /> : null}
+            {t >= c.contrato - 0.4 && t < c.acaba ? <Contrato p={[-0.75, 0.6, 0.25]} s={0.65 * mola(c.contrato - 0.4, 220, 12)} k={p(t, c.contrato, 0.7)} valor="US$ 14.900 / ha" /> : null}
           </group>
         ) : null}
 
@@ -266,10 +291,13 @@ export const Fazenda1: React.FC = () => {
           <group position={BR}>
             <Sede p={[-1.05, 0, -1.5]} s={0.8} cor="#e8e2d6" rotY={0.3} />
             <Bandeira p={[-1.35, 0, -0.8]} pais="BR" s={0.6} t={t} />
-            <Modelo url="natureza/tree_oak" p={[1.25, 0, -1.4]} alvo={{ altura: 0.6 }} />
+            <Estrada p={[0, 0, 1.15]} len={5} />
+            <Estrada p={[-1.6, 0, 0]} len={4} eixo="z" />
+            <Arvores pontos={[[-0.4, -1.65, 0.4], [0.4, -1.7, 0.35], [1.2, -1.6, 0.4], [1.55, -0.4, 0.35], [1.55, 0.5, 0.4], [-1.9, -1.4, 0.35]]} />
+            {t >= c.quarenta && t < c.setecentos + 0.4 ? <NotasVoando de={[0.15, 1.4, -0.2]} k={p(t, c.quarenta, c.setecentos - c.quarenta + 0.4, (x) => x)} n={22} alcance={1.4} /> : null}
             <Picape p={[lerp(-2.4, -0.85, ease.out(p(t, T2 + 0.1, 1.4, (x) => x))), 0.012, 1.15]} s={0.5} roda={t * 5} cor="#c8302c" />
             <Lavoura p={[0.15, 0, -0.2]} cols={21} total={369} n={369 * brTerra / 738} soja={0} seed={2} />
-            {t >= c.quarenta - 0.4 && t < c.setecentos ? <Contrato p={[0.3, 1.0, 0.8]} s={0.8 * mola(c.quarenta - 0.4, 220, 12)} k={p(t, c.quarenta, 0.7)} valor="US$ 6.770 / ha" /> : null}
+            {t >= c.quarenta - 0.4 && t < c.setecentos ? <Contrato p={[-1.05, 0.7, 0.5]} s={0.75 * mola(c.quarenta - 0.4, 220, 12)} k={p(t, c.quarenta, 0.7)} valor="US$ 6.770 / ha" /> : null}
           </group>
         ) : null}
 
@@ -277,6 +305,8 @@ export const Fazenda1: React.FC = () => {
         {em(3) ? (
           <group position={LD}>
             <Chuva centro={[0, 0, 0]} t={t} k={p(t, T3 + 0.2, 0.6) * (1 - p(t, c.colheita - 0.6, 0.6))} />
+            <Estrada p={[-0.14, 0, 0]} len={3} eixo="z" />
+            <Estrada p={[0, 0, 0.75]} len={4} />
             <group position={[-0.72, 0, 0]} scale={0.6}>
               <Lavoura p={[0, 0, -0.2]} cols={14} total={168} n={168} soja={soja} seed={1} />
               <Bandeira p={[-0.85, 0, -0.95]} pais="US" s={0.6} t={t} />
@@ -320,6 +350,15 @@ export const Fazenda1: React.FC = () => {
           <Caixa x={56} pais="EUA" cor="#7aa8ff" dinheiro={usDin} terra={usTerra} ativo={em(1) || em(3)} alerta={t >= c.acaba - 0.2 && t < TR} />
           <Caixa x={594} pais="BRASIL" cor="#5ad17a" dinheiro={t < T2 ? 5e6 : brDin} terra={t < T2 ? 0 : brTerra} ativo={em(2) || em(3)} />
         </>
+      ) : null}
+
+      {/* pílula de hectares */}
+      {(em(1) && t >= c.contrato) || em(2) ? (
+        <div style={{ position: "absolute", top: 1105, left: 0, right: 0, display: "flex", justifyContent: "center" }}>
+          <div style={{ background: "#ffcf3a", color: "#14211d", fontFamily: FONT, fontWeight: 800, fontSize: 46, padding: "10px 34px", borderRadius: 999, boxShadow: "0 10px 30px rgba(0,0,0,0.25)" }}>
+            {fmt(em(1) ? usTerra : brTerra)} hectares
+          </div>
+        </div>
       ) : null}
 
       {/* efeito "volta a fita" */}
