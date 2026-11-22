@@ -20,7 +20,7 @@ const FI: V3 = [125, 0, 0];
 const DESTAQUE = /Brasil|Argentina|Sério|S10|High|Country|tabela|trezentos|duzentos|Paraguai|cinquenta|sessenta|fabrica|porra|imposto|margem|Comenta|manda/i;
 
 /** Picape genérica cabine dupla. Comprimento ~1.0 com s=1, frente para +x. */
-const Picape: React.FC<{ p: V3; rotY?: number; s?: number; cor?: string; roda?: number }> = ({ p: pos, rotY = 0, s = 1, cor = "#c8302c", roda = 0 }) => {
+export const Picape: React.FC<{ p: V3; rotY?: number; s?: number; cor?: string; roda?: number }> = ({ p: pos, rotY = 0, s = 1, cor = "#c8302c", roda = 0 }) => {
   if (s <= 0.002) return null;
   return (
     <group position={pos} rotation={[0, rotY, 0]} scale={s}>
@@ -58,7 +58,7 @@ const Picape: React.FC<{ p: V3; rotY?: number; s?: number; cor?: string; roda?: 
 };
 
 /** Bandeira (mastro + pano com leve ondulação). Desenhada em código: BR, AR, PY. */
-const Bandeira: React.FC<{ p: V3; pais: "BR" | "AR" | "PY"; s?: number; t?: number }> = ({ p: pos, pais, s = 1, t = 0 }) => {
+export const Bandeira: React.FC<{ p: V3; pais: "BR" | "AR" | "PY" | "US"; s?: number; t?: number }> = ({ p: pos, pais, s = 1, t = 0 }) => {
   if (s <= 0.002) return null;
   const onda = Math.sin(t * 3) * 0.08;
   const pano =
@@ -83,6 +83,13 @@ const Bandeira: React.FC<{ p: V3; pais: "BR" | "AR" | "PY"; s?: number; t?: numb
           <circleGeometry args={[0.035, 16]} />
           <meshStandardMaterial color="#f6b40e" side={2} />
         </mesh>
+      </>
+    ) : pais === "US" ? (
+      <>
+        {Array.from({ length: 7 }, (_, i) => (
+          <B key={i} s={[0.5, 0.0486, 0.01]} p={[0, 0.146 - i * 0.0486, 0]} cor={i % 2 ? "#ffffff" : "#b22234"} />
+        ))}
+        <B s={[0.22, 0.17, 0.012]} p={[-0.14, 0.085, 0.001]} cor="#3c3b6e" />
       </>
     ) : (
       <>
