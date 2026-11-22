@@ -114,7 +114,7 @@ whoosh(T1 - 0.05, 0.8, 0.07, -0.5, 0.5);
 motor(c.picape - 0.8, 1.6, 0.03, 70); // picape chegando
 kaching(c.contrato + 0.4, -0.2);
 rola(c.contrato + 0.4, Math.max(1, c.trezentos - c.contrato), 0.018);
-impacto(c.trezentos + 1.3, 0.25); // dinheiro acabou (depois do "trinta e seis")
+impacto(c.volta - 0.4, 0.2); // dinheiro acabou (na pausa antes de "Agora")
 // fita rebobinando: varredura descendente + chiado
 for (let k = 0; k < 4; k++) blip(c.volta - 0.6 + k * 0.12, 1800 - k * 250, 400, { g: 0.025, dur: 0.1, pan: (k % 2 ? 0.3 : -0.3) });
 ruidoF(c.volta + 0.6, 0.8, { tipo: "bp", f: 2500, Q: 0.8, g: 0.01, dec: 2, alvo: SFX });
@@ -128,9 +128,9 @@ ruidoF(T3 + 0.2, Math.max(1, c.colheita - T3 - 0.4), { tipo: "bp", f: 4500, Q: 0
 motor(c.planta - 0.2, 4.0, 0.025, 55); // trator
 for (let i = 0; i < 3; i++) blip(c.americano + i * 0.3, 420, 420, { g: 0.03, dur: 0.15, pan: -0.5 });
 for (let i = 0; i < 7; i++) blip(c.brasileiro + i * 0.2, 470, 470, { g: 0.03, dur: 0.12, pan: 0.5 });
-impacto(c.porra + 0.2, 0.25);
+impacto(c.porra + 0.36, 0.16); // antes do "Só"
 whoosh(T4 - 0.05, 0.8, 0.06, 0.4, -0.4);
-pop(c.aquiLa, 800, 0.04, -0.4); pop(c.aquiLa + 0.5, 1000, 0.04, 0.4);
+pop(c.aquiLa, 800, 0.022, -0.4); pop(c.aquiLa + 0.5, 1000, 0.022, 0.4);
 sino(c.aprender - 0.1, [79, 84], { g: 0.02, dur: 0.8 });
 const STING = d.fimVoz + 0.3;
 [36, 43, 48, 52, 55, 60].forEach((m, j) => piano(STING + j * 0.02, m, 0.5 - j * 0.03, { dur: Math.min(3, DUR - STING - 0.1), pan: j * 0.22 - 0.55, rev: 0.6 }));
