@@ -66,7 +66,7 @@ const BalancaBoi: React.FC<{ p: V3; s?: number; k: number; children?: React.Reac
     ))}
     <group position={[0, 0.11, 0]}>{children}</group>
     {/* mostrador */}
-    <group position={[0.85, 0, -0.1]}>
+    <group position={[0.8, 0, -0.1]} scale={1.05}>
       <B s={[0.05, 0.9, 0.05]} p={[0, 0.45, 0]} cor="#2a2f3a" />
       <mesh position={[0, 1.05, 0]} rotation={[Math.PI / 2, 0, 0]}>
         <cylinderGeometry args={[0.26, 0.26, 0.06, 32]} />
@@ -76,8 +76,11 @@ const BalancaBoi: React.FC<{ p: V3; s?: number; k: number; children?: React.Reac
         <circleGeometry args={[0.23, 32]} />
         <meshStandardMaterial color="#f6f3ec" />
       </mesh>
-      <PlanoTexto linhas={[["R$ / @", 1, "#4a4f5c"]]} fundo={null} tam={[0.2, 0.06]} p={[0, 0.94, 0.036]} px={[300, 90]} />
-      <group position={[0, 1.05, 0.04]} rotation={[0, 0, lerp(1.2, -1.2, ease.out(clamp01(k)))]}>
+      <PlanoTexto linhas={[["R$/@", 1, "#4a4f5c"]]} fundo={null} tam={[0.16, 0.05]} p={[0, 0.96, 0.036]} px={[300, 90]} />
+      {([["300", -1.0], ["350", 0], ["400", 1.0]] as const).map(([v, a]) => (
+        <PlanoTexto key={v} linhas={[[v, 1, v === "400" ? "#c8262c" : "#1d2230"]]} fundo={null} tam={[0.12, 0.05]} p={[Math.sin(a) * 0.15, 1.05 + Math.cos(a) * 0.15, 0.036]} px={[200, 90]} />
+      ))}
+      <group position={[0, 1.05, 0.04]} rotation={[0, 0, lerp(1.4, -0.9, ease.out(clamp01(k)))]}>
         <B s={[0.02, 0.2, 0.01]} p={[0, 0.09, 0]} cor="#c8262c" />
       </group>
       <mesh position={[0, 1.05, 0.045]}>
@@ -121,32 +124,37 @@ const Churrasqueira: React.FC<{ p: V3; s?: number; t: number; troca: number }> =
         <B s={[1.2, 0.025, 0.025]} cor="#c9ced6" />
         {kp > 0.01 ? (
           <group scale={kp}>
-            <B s={[0.5, 0.18, 0.26]} cor="#8a2a22" />
-            <B s={[0.5, 0.06, 0.27]} p={[0, 0.1, 0]} cor="#f2ead8" />
+            <mesh scale={[1, 0.6, 0.8]} rotation={[0, 0, Math.PI / 2]}>
+              <cylinderGeometry args={[0.17, 0.17, 0.5, 20, 1, false, 0, Math.PI]} />
+              <meshStandardMaterial color="#a0302a" roughness={0.7} />
+            </mesh>
+            <mesh scale={[1, 0.62, 0.82]} rotation={[0, 0, Math.PI / 2]}>
+              <cylinderGeometry args={[0.172, 0.172, 0.5, 20, 1, true, Math.PI * 0.05, Math.PI * 0.35]} />
+              <meshStandardMaterial color="#f2e6c8" roughness={0.8} side={2} />
+            </mesh>
+            {[-0.15, 0, 0.15].map((x) => (
+              <B key={x} s={[0.025, 0.005, 0.27]} p={[x, 0.105, 0]} cor="#3a1a14" />
+            ))}
           </group>
         ) : null}
         {kf > 0.01 ? (
           <group scale={kf}>
-            <mesh scale={[1.2, 0.8, 0.9]}>
-              <sphereGeometry args={[0.18, 16, 12]} />
-              <meshStandardMaterial color="#d9963a" roughness={0.6} />
+            <mesh scale={[1.25, 0.85, 0.95]}>
+              <sphereGeometry args={[0.18, 18, 14]} />
+              <meshStandardMaterial color="#c97a2a" roughness={0.55} />
             </mesh>
             {[-1, 1].map((i) => (
-              <B key={i} s={[0.06, 0.18, 0.06]} p={[0.18, -0.02, i * 0.08]} r={[0, 0, -0.8]} cor="#d9963a" />
+              <group key={i} position={[0.2, 0.0, i * 0.09]} rotation={[0, 0, -0.7]}>
+                <mesh scale={[0.6, 1, 0.6]}>
+                  <sphereGeometry args={[0.09, 12, 10]} />
+                  <meshStandardMaterial color="#c97a2a" roughness={0.55} />
+                </mesh>
+                <B s={[0.03, 0.12, 0.03]} p={[0, 0.12, 0]} cor="#f2ead8" />
+              </group>
             ))}
           </group>
         ) : null}
       </group>
-      {/* fumaça */}
-      {[0, 1, 2].map((i) => {
-        const u = (t * 0.5 + i / 3) % 1;
-        return (
-          <mesh key={i} position={[(i - 1) * 0.25, 1.3 + u * 0.8, -0.1]} scale={0.1 + u * 0.15}>
-            <sphereGeometry args={[1, 10, 8]} />
-            <meshStandardMaterial color="#d8d8d8" transparent opacity={0.5 * (1 - u)} />
-          </mesh>
-        );
-      })}
     </group>
   );
 };
@@ -163,8 +171,8 @@ export const Boi1: React.FC = () => {
   const T6 = c.adivinha - 0.6; // "Agora adivinha"
 
   const blocos: [number, V3, V3, V3][] = [
-    [0, H0, [H0[0], 1.1, 4.8], [H0[0], 0.5, 0]],
-    [T1, BA, [BA[0] + 0.15, 1.3, 5.9], [BA[0] + 0.15, 0.5, 0]],
+    [0, H0, [H0[0], 1.0, 4.4], [H0[0], 0.78, 0]],
+    [T1, BA, [BA[0] + 0.02, 1.1, 5.0], [BA[0] + 0.02, 0.62, 0]],
     [T2, MP, [MP[0], 1.4, 6.4], [MP[0], 0.45, 0]],
     [T3, GR, [GR[0], 1.3, 5.4], [GR[0], 0.45, 0]],
     [T4, PA, [PA[0], 1.4, 7.0], [PA[0], 0.4, 0]],
@@ -209,9 +217,8 @@ export const Boi1: React.FC = () => {
             <group rotation={[0, Math.sin(t * 0.8) * 0.4 - 0.5, 0]}>
               <Boi p={[0, TOPO_PEDESTAL, 0]} s={1.0 * mola(0.0, 220, 12)} t={t} />
             </group>
-            <group position={[0.35, 1.1 + Math.sin(t * 2) * 0.03, 0.2]} rotation={[0, 0, Math.sin(t * 3) * 0.15]} scale={mola(0.3, 220, 12)}>
-              <B s={[0.008, 0.25, 0.008]} p={[0, 0.12, 0]} cor="#4a4f5c" />
-              <PlanoTexto linhas={[["R$ ???", 1, "#c8262c"]]} fundo="#fff6d8" tam={[0.36, 0.16]} p={[0, -0.05, 0]} px={[360, 160]} />
+            <group position={[-0.38, 0.62, 0.55]} rotation={[0, 0.25, Math.sin(t * 3) * 0.05]} scale={0.7 * mola(0.2, 220, 12)}>
+              <PlanoTexto linhas={[[`R$ ${Math.round(lerp(120, 395, ease.out(p(t, 0.3, 2.4, (x) => x))))}`, 1, "#c8262c"]]} fundo="#fff6d8" tam={[0.62, 0.22]} px={[420, 150]} />
             </group>
           </group>
         ) : null}
@@ -219,7 +226,7 @@ export const Boi1: React.FC = () => {
         {/* BALANÇA: arroba recorde */}
         {em(1) ? (
           <group position={BA}>
-            <BalancaBoi p={[-0.25, 0, 0]} k={p(t, c.trezentos - 0.3, 1.4)}>
+            <BalancaBoi p={[-0.35, 0, 0]} k={p(t, c.trezentos - 0.3, 1.4)}>
               <Boi p={[0, 0, 0]} s={0.9} t={t} />
             </BalancaBoi>
           </group>
@@ -235,8 +242,8 @@ export const Boi1: React.FC = () => {
               ] as const
             ).map(([nome, x, t0, val]) => (
               <group key={nome} position={[x, 0, 0]}>
-                <Pedestal raio={0.42} aro="#ffcf3a" acende={p(t, t0, 0.4)} s={mola(T2 + 0.1, 220, 12)} />
-                <Boi p={[0, TOPO_PEDESTAL, 0]} rotY={-0.6} s={0.62 * mola(t0, 220, 12)} t={t} />
+                <Pedestal raio={0.42} aro="#ffcf3a" acende={p(t, t0, 0.4)} s={mola(T2 - 0.15, 260, 12)} />
+                <Boi p={[0, TOPO_PEDESTAL, 0]} rotY={-0.6} s={0.62 * mola(Math.min(t0, T2), 220, 12)} t={t} />
                 <PlanoTexto linhas={t >= t0 + 0.2 ? [[nome, 0.7, "#14211d"], [val, 1, "#14211d"]] : [[nome, 0.7, "#14211d"], ["?", 1, "#14211d"]]} fundo="#ffcf3a" tam={[0.56, 0.28]} p={[0, 1.08, 0.1]} px={[460, 230]} />
               </group>
             ))}
@@ -247,7 +254,7 @@ export const Boi1: React.FC = () => {
         {em(3) ? (
           <group position={GR}>
             <Barra p={[-0.42, 0, 0]} alt={0.62} k={p(t, T3 + 0.2, 0.8)} cor="#8a929e" rot="NOV/2025" />
-            <Barra p={[0.42, 0, 0]} alt={0.76} k={p(t, c.vinte - 0.2, 0.9)} cor="#c8262c" rot="NOV/2026" val="+21,9%" />
+            <Barra p={[0.42, 0, 0]} alt={0.76} k={p(t, c.vinte - 0.2, 0.9)} cor="#c8262c" rot="NOV/2026" />
           </group>
         ) : null}
 
@@ -262,8 +269,8 @@ export const Boi1: React.FC = () => {
             {t >= c.menos - 0.2 ? <Boi p={[-0.15, 0.01, 0.25]} rotY={-0.4} s={0.55 * (1 - p(t, c.menos, 0.5) * 0.999)} t={t + 1} /> : null}
             {/* moeda de dólar inflando */}
             {t >= c.dolar - 0.3 ? (
-              <group position={[0.45, 0.7, -0.4]} scale={0.3 + 0.25 * ease.back(p(t, c.dolar - 0.2, 0.6, (x) => x))}>
-                <mesh rotation={[Math.PI / 2, 0, t]}>
+              <group position={[0.4, 0.8, -0.4]} rotation={[0, Math.sin(t * 2) * 0.15, 0]} scale={0.4 + 0.3 * ease.back(p(t, c.dolar - 0.2, 0.6, (x) => x))}>
+                <mesh rotation={[Math.PI / 2, 0, 0]}>
                   <cylinderGeometry args={[0.5, 0.5, 0.12, 32]} />
                   <meshStandardMaterial color="#5fae5a" metalness={0.3} roughness={0.4} />
                 </mesh>
@@ -272,9 +279,9 @@ export const Boi1: React.FC = () => {
             ) : null}
             {/* navio para a China */}
             {t >= c.china - 0.4 ? (
-              <group position={[lerp(-0.5, 0.9, p(t, c.china - 0.3, 4.5, (x) => x)), 0, 0.75]}>
-                <Navio s={0.55} t={t} />
-                <PlanoTexto linhas={[["→ CHINA", 1, "#ffffff"]]} fundo="#c8262c" tam={[0.45, 0.13]} p={[-0.43, 0.62, 0.12]} px={[420, 120]} />
+              <group position={[lerp(-0.25, 0.35, p(t, c.china - 0.3, 4.5, (x) => x)), 0, 0.7]}>
+                <Navio s={0.75} t={t} />
+                <PlanoTexto linhas={[["→ CHINA", 1, "#ffffff"]]} fundo="#c8262c" tam={[0.8, 0.22]} p={[0, 0.95, 0.12]} px={[480, 132]} />
               </group>
             ) : null}
           </group>
@@ -298,11 +305,11 @@ export const Boi1: React.FC = () => {
       {/* camada de topo: um card por vez */}
       <CardNumero t={t} de={-0.6} ate={c.pagar - 0.45} titulo="O BOI NUNCA CUSTOU TANTO" valor="em reais 🐂" cor={C.destaque} />
       <CardNumero t={t} de={c.pagar - 0.25} ate={T1 - 0.4} titulo="E QUEM VAI PAGAR" valor="é você" />
-      <CardNumero t={t} de={T1 + 0.1} ate={c.cepea - 0.35} titulo="ARROBA DO BOI · CEPEA 18/11" valor="R$ 395,40" cor={C.destaque} />
-      <Carimbo t={t} de={c.cepea - 0.15} ate={T2 - 0.4} txt="RECORDE" />
-      <CardNumero t={t} de={T2 + 0.1} ate={c.bahia - 0.4} titulo="SÃO PAULO · LOTES PONTUAIS" valor="R$ 400" />
+      <CardNumero t={t} de={T1 + 0.1} ate={c.cepea - 1.25} titulo="ARROBA DO BOI · CEPEA 18/11" valor="R$ 395,40" cor={C.destaque} />
+      <Carimbo t={t} de={c.cepea - 1.05} ate={T2 - 0.4} txt="RECORDE" top={330} />
+      <CardNumero t={t} de={c.paulo - 0.3} ate={c.bahia - 0.4} titulo="SÃO PAULO · LOTES PONTUAIS" valor="R$ 400" />
       <CardNumero t={t} de={c.bahia - 0.2} ate={T3 - 0.4} titulo="FEIRA DE SANTANA (BA) · 17/11" valor="R$ 410" cor={C.destaque} />
-      <CardNumero t={t} de={T3 + 0.1} ate={T4 - 0.4} titulo="NOVEMBRO × NOVEMBRO DE 2025" valor="+21,9%" cor="#ff5a4e" tinta="#ffffff" />
+      <CardNumero t={t} de={T3 + 0.1} ate={T4 - 0.4} titulo="NOVEMBRO (ATÉ 13/11) × NOV/2025" valor="+21,9%" cor="#ff5a4e" tinta="#ffffff" />
       <CardNumero t={t} de={T4 + 0.1} ate={c.dolar - 0.4} titulo="MOTIVO 1" valor="menos boi pra abate" />
       <CardNumero t={t} de={c.dolar - 0.2} ate={c.china - 0.4} titulo="MOTIVO 2" valor="dólar alto" />
       <CardNumero t={t} de={c.china - 0.2} ate={c.ouSeja - 0.4} titulo="MOTIVO 3" valor="a China voltou a comprar" />

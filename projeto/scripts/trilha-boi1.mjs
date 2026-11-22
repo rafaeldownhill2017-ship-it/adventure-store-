@@ -59,7 +59,7 @@ const buzina = (t0, dur = 1.1) => {
   for (let k = 0; k < Math.floor(dur * SR); k++) {
     const x = k / (dur * SR);
     ph += (TAU * 98) / SR;
-    const v = (Math.sin(ph) + 0.5 * Math.sin(ph * 2) + 0.25 * Math.sin(ph * 3)) * suave(x * 8) * (1 - suave((x - 0.8) / 0.2)) * 0.06;
+    const v = (Math.sin(ph) + 0.5 * Math.sin(ph * 2) + 0.25 * Math.sin(ph * 3)) * suave(x * 8) * (1 - suave((x - 0.8) / 0.2)) * 0.038;
     soma(SFX, Math.floor(t0 * SR) + k, v, v);
     soma(REV_S, Math.floor(t0 * SR) + k, v * 0.6, v * 0.6);
   }
@@ -120,13 +120,13 @@ impacto(0.1, 0.35);
 mugido(0.2, 0.9, 0.035);
 whoosh(T1 - 0.05, 0.8, 0.07, -0.5, 0.5);
 rola(c.trezentos - 0.3, 1.4, 0.018); // ponteiro subindo
-impacto(c.cepea - 0.15, 0.45); // carimbo RECORDE
+impacto(c.cepea - 1.05, 0.25); // carimbo RECORDE (no "recorde", antes do "Cepea")
 whoosh(T2 - 0.05, 0.8, 0.07, 0.5, -0.5);
 pop(c.paulo, 900, 0.045, -0.4);
 pop(c.bahia, 1100, 0.045, 0.4);
 whoosh(T3 - 0.05, 0.8, 0.07, -0.5, 0.5);
 riser(c.vinte - 0.9, 0.9, 0.04);
-impacto(c.vinte, 0.3);
+impacto(c.vinte - 0.3, 0.25);
 whoosh(T4 - 0.05, 0.8, 0.07, 0.5, -0.5);
 pop(c.menos, 700, 0.04);
 pop(c.dolar - 0.1, 1000, 0.04);
@@ -144,7 +144,7 @@ for (const [dt, f] of [[0, 110], [0.22, 104]]) {
     soma(SFX, Math.floor(t0 * SR) + k, v, v);
   }
 }
-impacto(c.porra, 0.5);
+impacto(c.porra + 0.35, 0.35);
 pop(c.picanha, 800, 0.045, -0.4);
 pop(c.frango, 1000, 0.045, 0.4);
 pop(c.manda, 1100, 0.05);
@@ -177,7 +177,7 @@ const temVoz = existsSync(vozMp3) && d.voz !== "estimada";
 const voz = bus();
 if (temVoz) {
   const vozNorm = join(raiz, "out", "audio", `${ID}-voz.wav`);
-  ff(["-i", vozMp3, "-af", "highpass=f=70,acompressor=threshold=-20dB:ratio=3:attack=5:release=120,loudnorm=I=-16:TP=-2:LRA=7", "-ar", String(SR), "-ac", "2", vozNorm]);
+  ff(["-i", vozMp3, "-af", "volume=enable='between(t,0,0.58)':volume=0,highpass=f=70,acompressor=threshold=-20dB:ratio=3:attack=5:release=120,loudnorm=I=-16:TP=-2:LRA=7", "-ar", String(SR), "-ac", "2", vozNorm]);
   const [VL, VR] = decode(vozNorm);
   const v0 = Math.round(d.preRoll * SR);
   for (let j = 0; j < VL.length && v0 + j < N; j++) [voz[0][v0 + j], voz[1][v0 + j]] = [VL[j], VR[j]];
