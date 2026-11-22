@@ -106,12 +106,12 @@ impacto(0.1, 0.3);
 for (let i = 0; i < 6; i++) blip(0.5 + i * 0.55, 1760, 1760, { g: 0.018, dur: 0.06, pan: 0.3, rev: 0.2 }); // bipe de monitor
 motor(0.4, 3.2, 0.02, 90); // servo do braço
 pop(c.cobra + 0.2, 1100, 0.04);
-rola(c.dois - 0.1, 0.9, 0.022); // moedas
+rola(c.dois - 0.1, 0.9, 0.06); // moedas
 sino(c.doze - 0.1, [84, 88], { g: 0.016, dur: 0.6 });
 whoosh(T1 - 0.05, 0.8, 0.07, -0.5, 0.5);
 pop(c.arduino - 0.2, 900, 0.04);
 whoosh(T2 - 0.05, 0.8, 0.07, 0.5, -0.5);
-impacto(c.recusou - 0.1, 0.4); // carimbo RECUSOU
+impacto(c.recusou - 0.35, 0.2); // carimbo RECUSOU (antes da palavra)
 whoosh(T3 - 0.05, 0.8, 0.07, -0.5, 0.5);
 for (let i = 0; i < 4; i++) blip(c.dezenove + i * 0.12, 1200 + i * 150, 1200 + i * 150, { g: 0.02, dur: 0.05 });
 motor(c.agulha2 - 1.0, 1.1, 0.025, 110);
@@ -119,7 +119,7 @@ whoosh(T4 - 0.05, 0.8, 0.07, 0.5, -0.5);
 for (let t = T4 + 0.3; t < T4 + 2.0; t += 0.5) ruidoF(t, 0.03, { tipo: "bp", f: 2600, Q: 3, g: 0.02, dec: 120, alvo: SFX }); // tique-taque
 pop(c.veterinario, 800, 0.04);
 whoosh(T5 - 0.05, 0.8, 0.07, -0.5, 0.5);
-impacto(c.artigo - 0.1, 0.35); // carimbo SEM ARTIGO
+impacto(c.artigo - 0.35, 0.2); // carimbo SEM ARTIGO (antes da palavra)
 whoosh(T6 - 0.05, 0.8, 0.07, 0.4, -0.4);
 pop(c.substitui, 800, 0.04, -0.4);
 pop(c.substitui + 1.3, 1000, 0.04, 0.4);

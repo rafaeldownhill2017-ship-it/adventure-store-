@@ -128,7 +128,7 @@ const Foto: React.FC<{ p: V3; rot?: V3; s?: number; img: string; asp: number; le
         <planeGeometry args={[w, h]} />
         <meshBasicMaterial map={tex} toneMapped={false} />
       </mesh>
-      {legenda ? <PlanoTexto linhas={[[legenda, 1, "#1d2230"]]} fundo={null} tam={[w, 0.09]} p={[0, -h / 2 - 0.07, 0.002]} px={[700, 80]} /> : null}
+      {legenda ? <PlanoTexto linhas={[[legenda, 1, "#1d2230"]]} fundo={null} tam={[w * 0.8, 0.11]} p={[0, -h / 2 - 0.07, 0.002]} px={[560, 80]} /> : null}
     </group>
   );
 };
@@ -145,11 +145,12 @@ export const Rato1: React.FC = () => {
   const T6 = c.substitui - 1.6; // "Então me fala"
 
   const blocos: [number, V3, V3, V3][] = [
-    [0, H0, [H0[0] + 0.3, 1.1, 4.5], [H0[0] + 0.3, 0.62, 0]],
+    [0, H0, [H0[0] + 0.62, 0.75, 1.9], [H0[0] + 0.62, 0.55, 0.1]],
+    [2.2, H0, [H0[0] + 0.3, 1.1, 4.5], [H0[0] + 0.3, 0.62, 0]],
     [T1, LB, [LB[0], 1.1, 4.2], [LB[0], 0.75, 0]],
-    [T2, MO, [MO[0], 1.15, 5.0], [MO[0], 0.55, 0]],
+    [T2, MO, [MO[0], 1.05, 5.0], [MO[0], 0.36, 0]],
     [T3, AG, [AG[0], 1.05, 4.6], [AG[0], 0.7, 0]],
-    [T4, PA, [PA[0], 1.2, 5.2], [PA[0], 0.62, 0]],
+    [T4, PA, [PA[0], 1.1, 5.2], [PA[0], 0.45, 0]],
     [T5, RE, [RE[0], 1.1, 4.6], [RE[0], 0.6, 0]],
     [T6, VC, [VC[0], 1.3, 5.9], [VC[0], 0.68, 0]],
   ];
@@ -157,6 +158,7 @@ export const Rato1: React.FC = () => {
   blocos.forEach(([t0, , pos, look], i) => {
     const t1 = i < blocos.length - 1 ? blocos[i + 1][0] : c.fim + 3;
     K.push([t0, pos, look, 34]);
+    if (i === 0) return;
     K.push([t1, [pos[0], pos[1] - 0.1, pos[2] * 0.92], look, 34]);
   });
   const cam = camPorKeys(t, K);
@@ -174,8 +176,10 @@ export const Rato1: React.FC = () => {
     0.25,
   );
   const em = (i: number) => {
-    const t0 = blocos[i][0];
-    const t1 = i < blocos.length - 1 ? blocos[i + 1][0] : 1e9;
+    const j = i === 0 ? 0 : i + 1;
+    const t0 = blocos[j][0];
+    const prox = i === 0 ? 2 : j + 1;
+    const t1 = prox < blocos.length ? blocos[prox][0] : 1e9;
     return t >= t0 - 0.05 && t < t1;
   };
 
@@ -187,19 +191,22 @@ export const Rato1: React.FC = () => {
           <group position={H0}>
             <Pedestal p={[0.68, 0, 0.1]} raio={0.32} aro="#5ad1ff" />
             <Rato p={[0.66, TOPO_PEDESTAL, 0.1]} rotY={-0.4} s={0.95 * mola(0.0, 220, 12)} t={t} dorme={1} />
-            <BracoRobo p={[-0.15, 0, -0.05]} s={1.0} desce={p(t, 0.4, 3.2)} t={t} />
+            <BracoRobo p={[-0.15, 0, -0.05]} s={1.0} desce={p(t, 0.1, 2.0)} t={t} />
+            <group position={[0.32, 0.9, 0.25]} rotation={[0, 0.1, Math.sin(t * 3) * 0.06]} scale={mola(c.cobra - 0.2, 220, 12)}>
+              <PlanoTexto linhas={[[t >= c.doze - 0.2 ? "≈ R$ 12" : "R$ ?", 1, "#c8262c"]]} fundo="#fff6d8" tam={[0.5, 0.18]} px={[420, 150]} />
+            </group>
           </group>
         ) : null}
 
         {/* LABORATÓRIO: foto real (camundongo) + robô "feito com Arduino" (foto do aparelho antigo) */}
         {em(1) ? (
           <group position={LB}>
-            <Foto p={[-0.32, 0.92, -0.3]} rot={[0, 0.2, -0.05]} s={0.78 * mola(T1 + 0.1, 220, 12)} img="fotos/rato/luva.jpg" asp={1.5} legenda="camundongo de laboratório (foto ilustrativa)" />
+            <Foto p={[-0.32, 0.92, -0.3]} rot={[0, 0.2, -0.05]} s={0.78 * mola(T1 + 0.1, 220, 12)} img="fotos/rato/luva.jpg" asp={1.5} legenda="FOTO ILUSTRATIVA" />
             {t >= c.arduino - 0.5 ? (
-              <Foto p={[0.38, 0.85, -0.15]} rot={[0, -0.2, 0.05]} s={0.62 * mola(c.arduino - 0.5, 220, 12)} img="fotos/rato/estereotaxico.jpg" asp={650 / 771} legenda="aparelho de cirurgia cerebral (antigo)" />
+              <Foto p={[0.38, 0.85, -0.15]} rot={[0, -0.2, 0.05]} s={0.62 * mola(c.arduino - 0.5, 220, 12)} img="fotos/rato/estereotaxico.jpg" asp={650 / 771} legenda="ILUSTRATIVA · ANTIGO" />
             ) : null}
             {t >= c.arduino - 0.2 ? (
-              <group position={[0.0, 0.22, 0.45]} rotation={[0.5, 0, 0]} scale={1.1 * mola(c.arduino - 0.2, 220, 12)}>
+              <group position={[0.15, 0.02, 0.95]} rotation={[0.35, 0, 0]} scale={0.9 * mola(c.arduino - 0.2, 220, 12)}>
                 <B s={[0.5, 0.03, 0.34]} cor="#1f7a8c" />
                 {[-0.15, 0, 0.15].map((x) => (
                   <B key={x} s={[0.08, 0.04, 0.06]} p={[x, 0.035, 0.05]} cor="#1d1d1d" />
@@ -208,14 +215,14 @@ export const Rato1: React.FC = () => {
                 <PlanoTexto linhas={[["ARDUINO", 1, "#ffffff"]]} fundo={null} tam={[0.3, 0.06]} p={[0.05, 0.02, -0.1]} r={[-Math.PI / 2, 0, 0]} px={[300, 60]} />
               </group>
             ) : null}
-            <Rato p={[-0.28, 0, 0.55]} rotY={0.5} s={0.75} t={t} />
+            <Rato p={[-0.18, 0, 0.5]} rotY={0.5} s={0.7} t={t} />
           </group>
         ) : null}
 
         {/* MODELOS: Opus 5.5 recusou */}
         {em(2) ? (
           <group position={MO}>
-            <RoboIA p={[-0.38, 0, 0]} nome="OPUS 5.5" placa="RECUSOU" corPlaca="#c8262c" kPlaca={p(t, c.recusou - 0.3, 0.5)} t={t} olho="#ff8a7a" />
+            <RoboIA p={[-0.38, 0, 0]} nome="OPUS 5.5" corPlaca="#c8262c" kPlaca={p(t, c.recusou - 0.3, 0.5)} t={t} olho="#ff8a7a" />
             <RoboIA p={[0.38, 0, 0]} nome="SONNET 5" placa="?" corPlaca="#4a4f5c" kPlaca={0.0} t={t + 2} olho="#7affb0" />
           </group>
         ) : null}
@@ -223,7 +230,7 @@ export const Rato1: React.FC = () => {
         {/* SONNET 5 TOPOU: lista de 19 → agulha com o cérebro (ilustração NIH) */}
         {em(3) ? (
           <group position={AG}>
-            <Foto p={[0.0, 1.05, -0.35]} s={0.95 * mola(c.dezenove - 0.6, 220, 12)} img="fotos/rato/cerebro.jpg" asp={1000 / 600} legenda="cérebro de camundongo (ilustração NIH)" />
+            <Foto p={[0.0, 1.05, -0.35]} s={0.95 * mola(c.dezenove - 0.6, 220, 12)} img="fotos/rato/cerebro.jpg" asp={1000 / 600} legenda="ILUSTRAÇÃO (NIH)" />
             {/* mira sobre a foto do cérebro */}
             {t >= c.agulha2 - 0.8 ? (
               <group position={[0.02, 1.08, -0.3]} rotation={[0, 0, t * 1.5]} scale={0.9 + 0.1 * Math.sin(t * 5)}>
@@ -236,7 +243,7 @@ export const Rato1: React.FC = () => {
                 ))}
               </group>
             ) : null}
-            <BracoRobo p={[-0.55, 0, 0.35]} s={0.75} desce={p(t, c.agulha2 - 1.0, 1.0)} t={t} />
+            <BracoRobo p={[-0.75, 0, 0.45]} s={0.6} desce={p(t, c.agulha2 - 1.0, 1.0)} t={t} />
             <Rato p={[0.0, 0, 0.45]} rotY={-0.4} s={0.75} t={t} dorme={1} />
           </group>
         ) : null}
@@ -246,31 +253,24 @@ export const Rato1: React.FC = () => {
           <group position={PA}>
             {(
               [
-                ["IA: 1h+", -0.45, "#c8262c", 1.0],
-                ["NORMAL: ~45 min", 0.45, "#2a9a5a", 0.75],
+                ["IA: 60+ MIN", 0.55, "#c8262c", 1.0, 0],
+                ["NORMAL: ~45 MIN", 0.2, "#2a9a5a", 0.75, 1],
               ] as const
-            ).map(([txt, x, corR, frac], i) => (
-              <group key={txt} position={[x, 0, -0.2]} scale={mola(T4 + 0.1 + i * 0.25, 220, 12)}>
-                <B s={[0.04, 0.6, 0.04]} p={[0, 0.3, 0]} cor="#2a2f3a" />
-                <mesh position={[0, 0.85, 0]} rotation={[Math.PI / 2, 0, 0]}>
-                  <cylinderGeometry args={[0.24, 0.24, 0.05, 32]} />
-                  <meshStandardMaterial color="#2a2f3a" />
-                </mesh>
-                <mesh position={[0, 0.85, 0.027]}>
-                  <circleGeometry args={[0.215, 32]} />
-                  <meshStandardMaterial color="#f6f3ec" />
-                </mesh>
-                <mesh position={[0, 0.85, 0.03]}>
-                  <ringGeometry args={[0.0, 0.2, 32, 1, Math.PI / 2 - Math.PI * 2 * frac * clamp01((t - T4 - 0.3) / 1.5), Math.PI * 2 * frac * clamp01((t - T4 - 0.3) / 1.5)]} />
-                  <meshStandardMaterial color={corR} transparent opacity={0.7} />
-                </mesh>
-                <PlanoTexto linhas={[[txt, 1, "#ffffff"]]} fundo={corR} tam={[0.55, 0.12]} p={[0, 0.5, 0.05]} px={[460, 100]} />
-              </group>
-            ))}
+            ).map(([txt, y, corR, frac, i]) => {
+              const k = ease.out(clamp01((t - T4 - 0.2 - i * 0.6) / 0.9)) * frac * (i === 0 ? 1 : clamp01((t - c.quarenta + 0.4) / 0.6) > 0 ? 1 : 0.0001);
+              const L = 1.5 * k;
+              return (
+                <group key={txt} position={[-0.75, 0.55 + y, -0.2]}>
+                  <B s={[1.5, 0.2, 0.06]} p={[0.75, 0, -0.03]} cor="#2a2f3a" />
+                  {L > 0.01 ? <B s={[L, 0.18, 0.08]} p={[L / 2, 0, 0]} cor={corR} /> : null}
+                  <PlanoTexto linhas={[[txt, 1, "#ffffff"]]} fundo={null} tam={[0.9, 0.14]} p={[0.5, 0, 0.05]} px={[640, 100]} />
+                </group>
+              );
+            })}
             {t >= c.veterinario - 0.4 ? (
-              <group position={[0.0, 0, 0.45]} scale={mola(c.veterinario - 0.4, 220, 12)}>
+              <group position={[-0.25, 0, 0.45]} scale={mola(c.veterinario - 0.4, 220, 12)}>
                 <Boneco url="personagens/character-female-d" p={[0, 0, 0]} rotY={0} altura={0.55} anim="idle" tAnim={t} />
-                <PlanoTexto linhas={[["✓ LIBERA CADA PASSO", 1, "#14211d"]]} fundo="#ffcf3a" tam={[0.6, 0.11]} p={[0, 0.7, 0.05]} px={[520, 96]} />
+                <PlanoTexto linhas={[["✓ LIBERA CADA PASSO", 1, "#14211d"]]} fundo="#ffcf3a" tam={[0.8, 0.15]} p={[0.55, 0.3, 0.05]} px={[560, 104]} />
               </group>
             ) : null}
           </group>
@@ -279,8 +279,8 @@ export const Rato1: React.FC = () => {
         {/* QUANTO CUSTOU? não divulgado; foto real das gaiolas */}
         {em(5) ? (
           <group position={RE}>
-            <Foto p={[0, 0.9, -0.3]} rot={[0, 0, -0.04]} s={0.85 * mola(T5 + 0.1, 220, 12)} img="fotos/rato/gaiolas.jpg" asp={1} legenda="biotério (foto ilustrativa)" />
-            <group position={[0.3, 0.28, 0.35]} scale={mola(T5 + 0.3, 220, 12)}>
+            <Foto p={[0, 0.9, -0.3]} rot={[0, 0, -0.04]} s={0.85 * mola(T5 + 0.1, 220, 12)} img="fotos/rato/gaiolas.jpg" asp={1} legenda="FOTO ILUSTRATIVA" />
+            <group position={[0.3, 0.45, 0.35]} scale={mola(T5 + 0.3, 220, 12)}>
               <PlanoTexto linhas={[["R$ ???", 1, "#c8262c"]]} fundo="#fff6d8" tam={[0.5, 0.18]} px={[420, 150]} />
             </group>
           </group>
@@ -289,17 +289,23 @@ export const Rato1: React.FC = () => {
         {/* SUBSTITUI OU SÓ AJUDA? */}
         {em(6) ? (
           <group position={VC}>
-            <BracoRobo p={[-0.7, 0, -0.15]} s={0.85} desce={0.3 + 0.1 * Math.sin(t * 2)} t={t} />
+            <BracoRobo p={[-1.0, 0, -0.35]} s={0.7} desce={0.3 + 0.1 * Math.sin(t * 2)} t={t} />
             <Boneco url="personagens/character-male-a" p={[0.0, 0, 0.1]} rotY={-0.3} altura={0.6} anim="idle" tAnim={t} />
-            <group position={[0.3, 0, -0.5]}>
-              <B s={[0.04, 1.2, 0.04]} p={[0, 0.6, 0]} cor="#2a2f3a" />
-              <group position={[-0.3, 1.08, 0.03]}>
-                <PlanoTexto linhas={[["SUBSTITUI", 1, "#ffffff"]]} fundo={t >= c.substitui && t < c.substitui + 1.1 ? "#c8262c" : "#7a2a2e"} tam={[0.52, 0.15]} px={[400, 116]} />
-              </group>
-              <group position={[0.3, 0.86, 0.03]}>
-                <PlanoTexto linhas={[["SÓ AJUDA", 1, "#ffffff"]]} fundo={t >= c.substitui + 1.3 ? "#2a9a5a" : "#1f5a3a"} tam={[0.52, 0.15]} px={[400, 116]} />
-              </group>
-            </group>
+            {(
+              [
+                ["SUBSTITUI", -0.36, "#c8262c", c.substitui],
+                ["SÓ AJUDA", 0.36, "#2a9a5a", c.substitui + 1.3],
+              ] as const
+            ).map(([txt, x, corB, t0]) => {
+              const ativo = t >= t0 && t < t0 + 1.2;
+              const pulso = 1 + (ativo ? 0.12 * Math.abs(Math.sin((t - t0) * 6)) : t >= c.fim ? 0.05 * Math.sin(t * 5 + x * 10) : 0);
+              return (
+                <group key={txt} position={[x, 0.95, 0.5]} scale={pulso * mola(T6 + 0.2, 220, 12)}>
+                  <B s={[0.66, 0.24, 0.06]} cor={corB} />
+                  <PlanoTexto linhas={[[txt, 1, "#ffffff"]]} fundo={null} tam={[0.6, 0.18]} p={[0, 0, 0.035]} px={[480, 144]} />
+                </group>
+              );
+            })}
           </group>
         ) : null}
       </PalcoCor>
@@ -313,18 +319,18 @@ export const Rato1: React.FC = () => {
       <CardNumero t={t} de={c.claude - 0.2} ate={c.arduino - 0.4} titulo="LIGOU O CLAUDE A" valor="um robô de cirurgia" />
       <CardNumero t={t} de={c.arduino - 0.2} ate={T2 - 0.4} titulo="FEITO COM" valor="Arduino (peça de hobby)" />
       <CardNumero t={t} de={T2 + 0.1} ate={c.recusou - 0.3} titulo="A VERSÃO MAIS FORTE" valor="Opus 5.5" />
-      <Carimbo t={t} de={c.recusou - 0.1} ate={T3 - 0.4} txt="RECUSOU" />
+      <Carimbo t={t} de={c.recusou - 0.35} ate={T3 - 0.4} txt="RECUSOU" top={300} />
       <CardNumero t={t} de={T3 + 0.1} ate={c.dezenove - 0.4} titulo="QUEM TOPOU" valor="Sonnet 5" cor={C.destaque} />
       <CardNumero t={t} de={c.dezenove - 0.2} ate={T4 - 0.4} titulo="ESCOLHEU ENTRE 19 TERAPIAS" valor="e guiou a agulha" />
       <CardNumero t={t} de={T4 + 0.1} ate={c.quarenta - 0.4} titulo="MAS A CONTA..." valor="mais de 1 hora" cor="#ff5a4e" tinta="#ffffff" />
       <CardNumero t={t} de={c.quarenta - 0.2} ate={c.veterinario - 0.4} titulo="O NORMAL" valor="~45 minutos" />
       <CardNumero t={t} de={c.veterinario - 0.2} ate={T5 - 0.4} titulo="UM VETERINÁRIO" valor="liberou cada passo" />
       <CardNumero t={t} de={T5 + 0.1} ate={c.artigo - 0.4} titulo="QUANTO CUSTOU TUDO?" valor="não divulgado" />
-      <Carimbo t={t} de={c.artigo - 0.1} ate={T6 - 0.4} txt="SEM ARTIGO PUBLICADO" />
+      <Carimbo t={t} de={c.artigo - 0.35} ate={T6 - 0.4} txt="SEM ARTIGO" />
       <CardNumero t={t} de={T6 + 0.1} ate={99} titulo="COMENTA" valor="substitui ou só ajuda?" cor={C.destaque} />
 
       <PalavraGrande destaque={DESTAQUE} />
-      {blocos.slice(1).map(([x]) => (
+      {blocos.slice(2).map(([x]) => (
         <Flash key={x} at={x} />
       ))}
       <Grain />
