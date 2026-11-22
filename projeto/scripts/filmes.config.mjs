@@ -545,7 +545,7 @@ export const filmes = [
   },
   {
     id: "libertadores1",
-    vozes: ["36rVQA1AOIPwpA3Hg1tC"], // Matheus 1,12× · AGUARDA APROVAÇÃO DO TEXTO (por enquanto, timeline estimada)
+    vozes: ["36rVQA1AOIPwpA3Hg1tC"], // Matheus 1,12× · texto aprovado em 22/11
     preRoll: 0.3,
     calibrar: true,
     cauda: 1.8,
