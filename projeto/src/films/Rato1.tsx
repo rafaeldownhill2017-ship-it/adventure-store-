@@ -230,7 +230,7 @@ export const Rato1: React.FC = () => {
         {/* SONNET 5 TOPOU: lista de 19 → agulha com o cérebro (ilustração NIH) */}
         {em(3) ? (
           <group position={AG}>
-            <Foto p={[0.0, 1.05, -0.35]} s={0.95 * mola(c.dezenove - 0.6, 220, 12)} img="fotos/rato/cerebro.jpg" asp={1000 / 600} legenda="ILUSTRAÇÃO (NIH)" />
+            <Foto p={[0.0, 1.05, -0.35]} s={0.95 * mola(T3 + 0.3, 220, 12)} img="fotos/rato/cerebro.jpg" asp={1000 / 600} legenda="ILUSTRAÇÃO (NIH)" />
             {/* mira sobre a foto do cérebro */}
             {t >= c.agulha2 - 0.8 ? (
               <group position={[0.02, 1.08, -0.3]} rotation={[0, 0, t * 1.5]} scale={0.9 + 0.1 * Math.sin(t * 5)}>
@@ -258,12 +258,12 @@ export const Rato1: React.FC = () => {
               ] as const
             ).map(([txt, y, corR, frac, i]) => {
               const k = ease.out(clamp01((t - T4 - 0.2 - i * 0.6) / 0.9)) * frac * (i === 0 ? 1 : clamp01((t - c.quarenta + 0.4) / 0.6) > 0 ? 1 : 0.0001);
-              const L = 1.5 * k;
+              const L = 1.2 * k;
               return (
-                <group key={txt} position={[-0.75, 0.55 + y, -0.2]}>
-                  <B s={[1.5, 0.2, 0.06]} p={[0.75, 0, -0.03]} cor="#2a2f3a" />
+                <group key={txt} position={[-0.6, 0.55 + y, -0.2]}>
+                  <B s={[1.2, 0.2, 0.06]} p={[0.6, 0, -0.03]} cor="#2a2f3a" />
                   {L > 0.01 ? <B s={[L, 0.18, 0.08]} p={[L / 2, 0, 0]} cor={corR} /> : null}
-                  <PlanoTexto linhas={[[txt, 1, "#ffffff"]]} fundo={null} tam={[0.9, 0.14]} p={[0.5, 0, 0.05]} px={[640, 100]} />
+                  <PlanoTexto linhas={[[txt, 1, "#ffffff"]]} fundo={null} tam={[0.8, 0.14]} p={[0.45, 0, 0.05]} px={[640, 100]} />
                 </group>
               );
             })}
