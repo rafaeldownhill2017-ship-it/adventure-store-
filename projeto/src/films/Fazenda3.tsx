@@ -45,8 +45,8 @@ export const Fazenda3: React.FC = () => {
     { de: c.faltava - 0.2, ate: T[1] - 0.2, titulo: "FALTAVA", valor: "preço da saca e governo" },
     { de: T[1] + 0.1, ate: c.cento - 0.35, titulo: "SACA DE SOJA · 60 KG", valor: "Paranaguá", cor: C.destaque },
     { de: c.cento - 0.2, ate: T[2] - 0.2, titulo: "SACA EM PARANAGUÁ · CEPEA, 17/11", valor: "≈ R$ 167" },
-    { de: T[2] + 0.1, ate: c.perde - 0.3, titulo: "ESTUDO DO USDA · MÉDIA 2023–25", valor: "preço × produtividade − custo" },
-    { de: c.perde - 0.2, ate: c.oitocentos - 0.35, titulo: "EUA · RETORNO POR HECTARE", valor: "≈ −R$ 1.030", cor: "#ff5a4e", tinta: "#ffffff" },
+    { de: T[2] + 0.1, ate: c.perde - 0.3, titulo: "ESTUDO USDA 2023–25 (PREÇO DO ESTUDO, NÃO A SACA DE HOJE)", valor: "preço × produtividade − custo" },
+    { de: c.perde - 0.2, ate: c.oitocentos - 0.35, titulo: "EUA (CORAÇÃO DA SOJA) · RETORNO/ha", valor: "≈ −R$ 1.030", cor: "#ff5a4e", tinta: "#ffffff" },
     { de: c.oitocentos - 0.2, ate: T[3] - 0.2, titulo: "MATO GROSSO · RETORNO POR HECTARE", valor: "≈ +R$ 790", cor: "#2a9a5a", tinta: "#ffffff" },
     { de: T[3] + 0.1, ate: c.unico - 0.1, titulo: "EUA · APOIO DO GOVERNO", valor: "pagamento único (2025)", cor: C.destaque },
     { de: c.unico + 0.1, ate: c.quatrocentos - 0.35, titulo: "ANUNCIADO: SOJA", valor: "US$ 30,88 por acre" },
@@ -71,10 +71,10 @@ export const Fazenda3: React.FC = () => {
           <group>
             <Maco p={[-0.33, 0, 0]} n={51 * g(0.2, 1.4)} s={0.8} h={0.008} cor="#5fae5a" />
             <Maco p={[0.33, 0, 0]} n={39.5 * g(0.5, 1.4)} s={0.8} h={0.008} cor="#5fae5a" />
-            <PlanoTexto linhas={[["R$ 10.200", 1, "#ffffff"]]} fundo="#c8262c" tam={[0.5, 0.11]} p={[-0.28, 0.2, 0.5]} px={[500, 110]} />
-            <PlanoTexto linhas={[["R$ 7.900", 1, "#ffffff"]]} fundo="#1f7a42" tam={[0.5, 0.11]} p={[0.33, 0.16, 0.5]} px={[500, 110]} />
-            <Bandeira p={[-0.33, 0.48, 0]} pais="US" s={0.4 * mola(0.8, 220, 12)} t={t} />
-            <Bandeira p={[0.33, 0.4, 0]} pais="BR" s={0.4 * mola(1.2, 220, 12)} t={t} />
+            <PlanoTexto linhas={[["R$ 10.200", 1, "#ffffff"]]} fundo="#c8262c" tam={[0.5, 0.11]} p={[-0.28, 0.46, 0.5]} px={[500, 110]} />
+            <PlanoTexto linhas={[["R$ 7.900", 1, "#ffffff"]]} fundo="#1f7a42" tam={[0.5, 0.11]} p={[0.33, 0.38, 0.5]} px={[500, 110]} />
+            <Bandeira p={[-0.33, 0.8, 0]} pais="US" s={0.4 * mola(0.8, 220, 12)} t={t} />
+            <Bandeira p={[0.33, 0.72, 0]} pais="BR" s={0.4 * mola(1.2, 220, 12)} t={t} />
           </group>,
         )}
 
@@ -90,7 +90,7 @@ export const Fazenda3: React.FC = () => {
             {[-0.45, 0.45, 0.35, -0.35].map((x, i) => (
               <B key={i} s={[0.1, 0.1, 0.1]} p={[x, 0.05 + (i % 2) * 0.1, 0.15 + i * 0.05]} cor="#e0b030" />
             ))}
-            <PlanoTexto linhas={[["PARANAGUÁ", 1, "#ffffff"]]} fundo="#1b3a5a" tam={[0.8, 0.12]} p={[0, 0.95, 0.2]} px={[720, 110]} />
+            <PlanoTexto linhas={[["PARANAGUÁ", 1, "#ffffff"]]} fundo="#1b3a5a" tam={[0.8, 0.12]} p={[0, 0.82, 0.2]} px={[720, 110]} />
           </group>,
         )}
 
@@ -102,6 +102,7 @@ export const Fazenda3: React.FC = () => {
             <Maco p={[0.33, 0, 0]} n={7.9 * g(c.oitocentos - 0.2, 0.9)} s={0.8} h={0.008} cor="#5fae5a" />
             <PlanoTexto linhas={[["− R$ 1.030", 1, "#ffffff"]]} fundo="#c8262c" tam={[0.55, 0.11]} p={[-0.3, 0.14, 0.5]} px={[550, 110]} />
             <PlanoTexto linhas={[["+ R$ 790", 1, "#ffffff"]]} fundo="#1f7a42" tam={[0.5, 0.11]} p={[0.33, 0.14, 0.5]} px={[500, 110]} />
+            <PlanoTexto linhas={[["USDA", 1, "#ffffff"], ["MÉDIA 2023–25", 0.6, "#ffffff"]]} fundo="#2f2a5a" tam={[0.5, 0.26]} p={[0, 0.7, 0.2]} px={[480, 240]} />
             <Bandeira p={[-0.33, 0.22, 0]} pais="US" s={0.4 * mola(c.perde - 0.1, 220, 12)} t={t} />
             <Bandeira p={[0.33, 0.2, 0]} pais="BR" s={0.4 * mola(c.oitocentos - 0.1, 220, 12)} t={t} />
           </group>,
@@ -113,9 +114,9 @@ export const Fazenda3: React.FC = () => {
           <group>
             <Maco p={[0, 0, 0]} n={4.5 * g(c.quatrocentos - 0.3, 0.8)} s={0.9} h={0.008} cor="#5fae5a" />
             <group scale={mola(c.unico, 220, 12)}>
-              <PlanoTexto linhas={[["PAGAMENTO ÚNICO", 1, "#1b3a1b"], ["2025 · SOJA", 0.7, "#1b3a1b"]]} fundo="#f2f2e0" tam={[0.85, 0.3]} p={[0, 0.5, 0.2]} px={[760, 260]} />
+              <PlanoTexto linhas={[["PAGAMENTO ÚNICO", 1, "#1b3a1b"], ["2025 · SOJA", 0.7, "#1b3a1b"]]} fundo="#f2f2e0" tam={[0.85, 0.3]} p={[0, 0.4, 0.2]} px={[760, 260]} />
             </group>
-            <Bandeira p={[-0.46, 0.15, 0.1]} pais="US" s={0.45 * mola(T[3] + 0.1, 220, 12)} t={t} />
+            <Bandeira p={[0, 0.85, 0.1]} pais="US" s={0.45 * mola(T[3] + 0.1, 220, 12)} t={t} />
           </group>,
         )}
 
@@ -124,8 +125,8 @@ export const Fazenda3: React.FC = () => {
           4,
           <group>
             <Modelo url="comercial/building-a" p={[0, 0, 0]} alvo={{ altura: 0.8 }} s={mola(T[4], 220, 12)} />
-            <PlanoTexto linhas={[["PLANO SAFRA", 1, "#ffffff"]]} fundo="#1f7a42" tam={[0.8, 0.13]} p={[0, 0.4, 0.5]} px={[720, 120]} />
-            <Bandeira p={[0.5, 0.15, 0.1]} pais="BR" s={0.45 * mola(T[4] + 0.1, 220, 12)} t={t} />
+            <PlanoTexto linhas={[["PLANO SAFRA", 1, "#ffffff"]]} fundo="#1f7a42" tam={[0.8, 0.13]} p={[0, 0.98, 0.3]} px={[720, 120]} />
+            <Bandeira p={[0.3, 0.2, 0.5]} pais="BR" s={0.45 * mola(T[4] + 0.1, 220, 12)} t={t} />
           </group>,
         )}
 
@@ -165,7 +166,6 @@ export const Fazenda3: React.FC = () => {
         const ate = prox ? Math.min(k.ate, prox.de - 0.32) : k.ate;
         return <CardNumero key={i} t={t} de={k.de} ate={ate} top={250} titulo={k.titulo} valor={k.valor} cor={k.cor} tinta={k.tinta} />;
       })}
-      <Carimbo t={t} de={c.emprestimo + 0.5} ate={T[5] - 0.1} txt="NÃO É PAGAMENTO" top={560} />
 
       <PalavraGrande destaque={DESTAQUE} />
       {T.slice(1).map((x) => (
