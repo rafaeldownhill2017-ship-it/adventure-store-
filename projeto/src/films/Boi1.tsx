@@ -21,7 +21,7 @@ const CH: V3 = [150, 0, 0];
 const DESTAQUE = /boi|reais|você|arroba|trezentos|recorde|Cepea|Paulo|quatrocentos|Bahia|vinte|menos|dólar|China|disputado|mercado|churrasco|fim|porra|pasto|açougue|picanha|frango|Natal|manda|assador/i;
 
 /** Boi miniatura (blocos): corpo, cabeça com chifres, pernas, rabo. Comprimento ~0.9 com s=1, frente +x. */
-const Boi: React.FC<{ p: V3; rotY?: number; s?: number; cor?: string; t?: number }> = ({ p: pos, rotY = 0, s = 1, cor = "#f1ece2", t = 0 }) => {
+export const Boi: React.FC<{ p: V3; rotY?: number; s?: number; cor?: string; t?: number }> = ({ p: pos, rotY = 0, s = 1, cor = "#f1ece2", t = 0 }) => {
   if (s <= 0.002) return null;
   const pasta = Math.sin(t * 2) * 0.05;
   return (
@@ -57,7 +57,7 @@ const Boi: React.FC<{ p: V3; rotY?: number; s?: number; cor?: string; t?: number
 };
 
 /** Balança de boi: plataforma com grade + mostrador redondo com ponteiro (k 0..1). */
-const BalancaBoi: React.FC<{ p: V3; s?: number; k: number; children?: React.ReactNode }> = ({ p: pos, s = 1, k, children }) => (
+export const BalancaBoi: React.FC<{ p: V3; s?: number; k: number; children?: React.ReactNode }> = ({ p: pos, s = 1, k, children }) => (
   <group position={pos} scale={s}>
     <B s={[1.1, 0.1, 0.6]} p={[0, 0.05, 0]} cor="#5a636e" />
     <B s={[1.04, 0.02, 0.54]} p={[0, 0.105, 0]} cor="#7a838e" />
