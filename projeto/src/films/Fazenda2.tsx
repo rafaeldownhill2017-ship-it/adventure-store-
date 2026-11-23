@@ -94,9 +94,9 @@ export const Fazenda2: React.FC = () => {
             </group>
             <Bandeira p={[0.35, 0.45, 0.6]} pais="BR" s={0.5 * mola(1.2, 220, 12)} t={t} />
             {t >= c.colheita - 0.1 ? (
-              <group position={[0, 0, 0.9]}>
-                <B s={[0.25, 1.2 * 0.22 * ease.out(p(t, c.colheita - 0.1, 1.2)), 0.25]} p={[-0.5, 0.11 * ease.out(p(t, c.colheita - 0.1, 1.2)), 0]} cor="#e0b030" />
-                <B s={[0.25, 2.7 * 0.22 * ease.out(p(t, c.duzentas - 0.1, 1.4)), 0.25]} p={[0.35, 0.11 * 2.7 * ease.out(p(t, c.duzentas - 0.1, 1.4)), 0]} cor="#e0b030" />
+              <group position={[0, 0, 0.3]}>
+                <B s={[0.2, 1.2 * 0.22 * ease.out(p(t, c.colheita - 0.1, 1.2)), 0.2]} p={[-0.45, 0.11 * ease.out(p(t, c.colheita - 0.1, 1.2)), 0]} cor="#e0b030" />
+                <B s={[0.2, 2.7 * 0.22 * ease.out(p(t, c.duzentas - 0.1, 1.4)), 0.2]} p={[0.35, 0.11 * 2.7 * ease.out(p(t, c.duzentas - 0.1, 1.4)), 0]} cor="#e0b030" />
               </group>
             ) : null}
           </group>,
@@ -144,9 +144,9 @@ export const Fazenda2: React.FC = () => {
           4,
           <group>
             <Maco p={[-0.33, 0, 0]} n={17 * ease.out(p(t, T[4] + 0.2, 1.0))} s={0.8} h={0.012} cor="#5fae5a" />
-            <Maco p={[0.33, 0, 0]} n={26 * ease.out(p(t, c.duzentosSess - 0.2, 1.0))} s={0.8} h={0.012} cor="#5fae5a" />
+            <Maco p={[0.33, 0, 0]} n={26 * ease.out(p(t, T[4] + 0.5, 1.0))} s={0.8} h={0.012} cor="#5fae5a" />
             <Bandeira p={[-0.33, 0.42, 0]} pais="US" s={0.4 * mola(c.cento - 0.1, 220, 12)} t={t} />
-            <Bandeira p={[0.33, 0.5, 0]} pais="BR" s={0.4 * mola(c.duzentosSess - 0.1, 220, 12)} t={t} />
+            <Bandeira p={[0.33, 0.5, 0]} pais="BR" s={0.4 * mola(T[4] + 0.6, 220, 12)} t={t} />
           </group>,
         )}
 
@@ -154,11 +154,11 @@ export const Fazenda2: React.FC = () => {
         {W(
           5,
           <group>
-            <Maco p={[-0.33, 0, 0]} n={62 * ease.out(p(t, c.seiscentos - 0.2, 1.2))} s={0.8} h={0.012} cor="#5fae5a" />
-            <Maco p={[0.33, 0, 0]} n={2.8 * ease.out(p(t, c.trinta - 0.2, 0.6))} s={0.8} h={0.012} cor="#5fae5a" />
-            <Modelo url="carros/tractor" p={[0, 0.2, 0.7]} alvo={{ comp: 0.75 }} s={mola(T[5], 220, 12)} />
-            <Bandeira p={[-0.33, 0.7, 0]} pais="US" s={0.4 * mola(c.seiscentos - 0.1, 220, 12)} t={t} />
-            <Bandeira p={[0.33, 0.3, 0]} pais="BR" s={0.4 * mola(c.trinta - 0.1, 220, 12)} t={t} />
+            <Maco p={[-0.33, 0, 0]} n={62 * ease.out(p(t, c.seiscentos - 0.2, 1.2))} s={0.8} h={0.008} cor="#5fae5a" />
+            <Maco p={[0.33, 0, 0]} n={2.8 * ease.out(p(t, c.trinta - 0.2, 0.6))} s={0.8} h={0.008} cor="#5fae5a" />
+            <Modelo url="carros/tractor" p={[0.14, 0.2, 0.6]} alvo={{ comp: 0.5 }} s={mola(T[5], 220, 12)} />
+            <Bandeira p={[-0.33, 0.42, 0]} pais="US" s={0.4 * mola(c.seiscentos - 0.1, 220, 12)} t={t} />
+            <Bandeira p={[0.33, 0.16, 0]} pais="BR" s={0.4 * mola(c.trinta - 0.1, 220, 12)} t={t} />
           </group>,
         )}
 
