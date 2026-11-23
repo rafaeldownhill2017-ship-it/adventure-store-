@@ -70,7 +70,7 @@ const buzina = (t0, dur = 1.1) => {
 // =====================================================================
 const BEAT = 60 / 108;
 const Am = [33, 40, 45, 48, 52, 33], F_ = [41, 48, 53, 57, 60, 29], Dm = [38, 45, 50, 53, 57, 26], E_ = [40, 47, 52, 56, 59, 28], C_ = [36, 43, 48, 52, 55, 36], G_ = [31, 38, 43, 47, 50, 31];
-const T1 = c.perguntaram - 0.3, T2 = c.hoje + 1.0, T3 = c.dez - 0.6, T4 = c.maquinas - 0.5, T5 = c.imposto - 0.4, T6 = c.saca - 0.5, T7 = c.olha - 0.4, T8 = c.parte - 0.3;
+const T1 = c.perguntaram - 0.3, T2 = c.hoje + 1.0, T3 = c.dez - 0.6, T4 = c.imposto - 0.4, T5 = c.manut - 0.4, T6 = c.saca - 0.5, T7 = c.olha - 0.4, T8 = c.parte - 0.3;
 const secoes = [
   [0.0, T1, [C_, G_, Am, F_], 0.9, true], // recap
   [T1, T3, [F_, G_, C_, C_], 0.9, true], // comentários + 1 hectare
@@ -106,7 +106,7 @@ const kaching = (t0, pan = 0) => {
   blip(t0 + 0.05, 3300, 3300, { g: 0.03, dur: 0.3, pan, rev: 0.3 });
   ruidoF(t0 + 0.08, 0.12, { tipo: "bp", f: 1500, Q: 1, g: 0.05, dec: 25, alvo: SFX, pan });
 };
-impacto(0.1, 0.25);
+impacto(0.1, 0.18);
 sino(c.cinco - 0.1, [72, 76, 79, 84], { g: 0.03, dur: 1.2 }); // prêmio do episódio 1
 pop(c.trezentos - 0.2, 900, 0.035, -0.4); pop(c.setecentos - 0.2, 1100, 0.035, 0.4);
 kaching(c.colheita + 0.1, 0.2);
@@ -118,9 +118,9 @@ whoosh(T3 - 0.05, 0.8, 0.07, -0.4, 0.4);
 pop(c.dez - 0.15, 700, 0.04, -0.4); rola(c.dez, 1.4, 0.016);
 pop(c.mato - 0.15, 1000, 0.04, 0.4); rola(c.mato, 1.2, 0.016);
 whoosh(T4 - 0.05, 0.8, 0.06, 0.4, -0.4);
-motor(T4 + 0.1, 3.0, 0.025, 55); // trator
+pop(c.cento - 0.15, 700, 0.035, -0.4); pop(c.duzentosSess - 0.15, 1000, 0.035, 0.4);
 whoosh(T5 - 0.05, 0.8, 0.06, -0.4, 0.4);
-for (let k = 0; k < 2; k++) blip(c.imposto + 0.5 + k * 0.4, 330 - k * 40, 330 - k * 40, { g: 0.03, dur: 0.18 });
+pop(c.seiscentos - 0.15, 700, 0.04, -0.4); rola(c.seiscentos, 1.0, 0.016); pop(c.trinta - 0.15, 1000, 0.035, 0.4);
 whoosh(T6 - 0.05, 0.8, 0.06, 0.4, -0.4);
 pop(c.vantagem - 0.15, 500, 0.03, 0.3);
 whoosh(T7 - 0.05, 0.9, 0.07, -0.5, 0.5);
@@ -176,6 +176,6 @@ for (let i = 0; i < N; i++) {
 const bruto = join(raiz, "out", "audio", `${ID}-bruto.wav`);
 writeWav(bruto, mix);
 const final = join(raiz, "public", "mix", `${ID}.wav`);
-ff(["-i", bruto, "-af", "highpass=f=32,equalizer=f=180:t=q:w=1:g=-2,equalizer=f=3200:t=q:w=1.2:g=2,acompressor=threshold=-16dB:ratio=2:attack=15:release=220:makeup=1,loudnorm=I=-14:TP=-2.2:LRA=9", "-ar", String(SR), "-ac", "2", "-c:a", "pcm_s16le", final]);
+ff(["-i", bruto, "-af", "highpass=f=32,equalizer=f=180:t=q:w=1:g=-2,equalizer=f=3200:t=q:w=1.2:g=2,acompressor=threshold=-16dB:ratio=2:attack=15:release=220:makeup=1,loudnorm=I=-14:TP=-2.7:LRA=9", "-ar", String(SR), "-ac", "2", "-c:a", "pcm_s16le", final]);
 const m = lufs(final);
 console.log(`${ID}: ${DUR.toFixed(2)}s · ${m.input_i} LUFS · pico ${m.input_tp} dBTP · ${temVoz ? "com voz" : "SEM VOZ (provisório)"}`);
