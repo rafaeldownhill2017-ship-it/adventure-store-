@@ -132,8 +132,8 @@ export const Fazenda2: React.FC = () => {
           <group>
             <Maco p={[-0.33, 0, 0]} n={51 * stackH(0)} s={0.8} h={0.012} cor="#5fae5a" />
             <Maco p={[0.33, 0, 0]} n={39.5 * stackH(1)} s={0.8} h={0.012} cor="#5fae5a" />
-            <PlanoTexto linhas={[["R$ 10.200", 1, "#ffffff"]]} fundo="#c8262c" tam={[0.5, 0.11]} p={[-0.33, 0.2, 0.5]} px={[500, 110]} />
-            <PlanoTexto linhas={[["R$ 7.900", 1, "#ffffff"]]} fundo="#1f7a42" tam={[0.5, 0.11]} p={[0.33, 0.2, 0.5]} px={[500, 110]} />
+            <PlanoTexto linhas={[["R$ 10.200", 1, "#ffffff"]]} fundo="#c8262c" tam={[0.5, 0.11]} p={[-0.33, 0.3, 0.5]} px={[500, 110]} />
+            <PlanoTexto linhas={[["R$ 7.900", 1, "#ffffff"]]} fundo="#1f7a42" tam={[0.5, 0.11]} p={[0.33, 0.24, 0.5]} px={[500, 110]} />
             <Bandeira p={[-0.33, 0.45, 0]} pais="US" s={0.4 * mola(T[3] + 0.1, 220, 12)} t={t} />
             <Bandeira p={[0.33, 0.36, 0]} pais="BR" s={0.4 * mola(c.mato - 0.1, 220, 12)} t={t} />
           </group>,
@@ -157,7 +157,7 @@ export const Fazenda2: React.FC = () => {
             <Maco p={[-0.33, 0, 0]} n={62 * ease.out(p(t, c.seiscentos - 0.2, 1.2))} s={0.8} h={0.012} cor="#5fae5a" />
             <Maco p={[0.33, 0, 0]} n={2.8 * ease.out(p(t, c.trinta - 0.2, 0.6))} s={0.8} h={0.012} cor="#5fae5a" />
             <Modelo url="carros/tractor" p={[0, 0, 0.45]} alvo={{ comp: 0.4 }} s={mola(T[5], 220, 12)} />
-            <Bandeira p={[-0.33, 0.86, 0]} pais="US" s={0.4 * mola(c.seiscentos - 0.1, 220, 12)} t={t} />
+            <Bandeira p={[-0.33, 0.7, 0]} pais="US" s={0.4 * mola(c.seiscentos - 0.1, 220, 12)} t={t} />
             <Bandeira p={[0.33, 0.3, 0]} pais="BR" s={0.4 * mola(c.trinta - 0.1, 220, 12)} t={t} />
           </group>,
         )}
