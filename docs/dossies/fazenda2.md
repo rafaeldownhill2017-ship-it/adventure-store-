@@ -16,6 +16,16 @@ Gancho: comentário real no vídeo 1: "E os impostos e custos de manutenção?"
 O público pede o ciclo completo: **preço da saca → custo → apoio do governo → sobra por hectare**. Estrutura sugerida: colheita (vídeo 1) → custo (parte 2) → saca e apoio do governo (parte 3, fecha a série; máximo 3 partes, cada uma superando a anterior).
 Dados que faltam, todos com fonte e data: preço da saca de soja (Cepea/Conab) e do bushel (USDA/CBOT); crédito rural e seguro no Brasil (Plano Safra 2026/27); apoio direto aos agricultores nos EUA (programas do USDA e pagamentos de 2026). Sem esses dados, não afirmar quem tem "vantagem".
 
+## Dado principal (lido no PDF completo: USDA ERS, EIB-310, out/2026, médias 2023–25)
+- Soja, custo total por acre (operacional + overhead com terra e máquinas): EUA média nacional US$ 656,16; Heartland ≈ 6,5% acima (≈ US$ 699). Brasil média nacional US$ 558,97; Mato Grosso ≈ 3,6% abaixo (≈ US$ 539). Percentuais vêm do relatório; os dois valores em dólar de Heartland e MT são contas minhas.
+- Por hectare (× 2,471): Heartland ≈ US$ 1.727/ha; MT ≈ US$ 1.332/ha. Com US$ 1 = R$ 5,93 (19/11): ≈ R$ 10.200/ha e ≈ R$ 7.900/ha. Diferença ≈ R$ 2.300/ha.
+- Por quê: terra e recuperação de capital (máquinas e equipamentos) mais caros nos EUA; Brasil faz dupla safra (soja + milho). Em MT o custo operacional é 63% do total, e fertilizante, defensivo e semente são os maiores itens (35%, 34%, 13% do operacional).
+- Produtividade 2023–25: Heartland 58 bu/acre, média EUA 55.
+- O relatório diz que o custo por bushel dos EUA fica menos distante (MT ≈ 75% do Heartland no milho) e que os EUA têm custo operacional menor por acre e por bushel na soja, mas custo total maior.
+- **Pagamentos do governo e seguro rural NÃO estão incluídos no relatório.** A "vantagem do governo" fica para a parte 3, com fontes próprias.
+- Referência cruzada: Imea 2026/27 MT ≈ R$ 8.200/ha (conferir); mesma ordem de grandeza dos R$ 7.900/ha do USDA, mas são anos e metodologias diferentes.
+- Fontes: https://www.ers.usda.gov/media/29733/eib-310.pdf ; saca em Paranaguá ≈ R$ 167,43 (17/11, Cepea via Brasil 61); dólar fechou R$ 5,93 em 19/11.
+
 ## Pendências antes de roteiro
 1. Converter acre→hectare (1 ha = 2,471 acres) e dólar→real com câmbio datado.
 2. Ler o EIB 310 inteiro para um número EUA × Brasil na mesma base.
@@ -29,3 +39,6 @@ Dados que faltam, todos com fonte e data: preço da saca de soja (Cepea/Conab) e
 
 ## Resposta ao comentário (para o dono postar)
 "Boa pergunta! Esse vídeo mostrou só a colheita, e o custo de plantar muda tudo. A parte 2 vem aí, comenta 'custo' que eu te aviso 👇"
+
+## Roteiro proposto (aguardando aprovação do dono)
+Plantar um hectare de soja custa mais no Brasil ou nos Estados Unidos? Quem responde é o governo americano. Média de três anos. No coração dos Estados Unidos, uns dez mil e duzentos reais por hectare. No Mato Grosso, sete mil e novecentos. Mais de dois mil reais de diferença. Por quê? Terra e máquina. Lá o aluguel da terra e o custo do trator pesam muito mais. Aqui o gasto grande é dentro da lavoura. Adubo, defensivo e semente. E o governo, ajuda quanto? Esse estudo não conta apoio do governo nem seguro. Então ninguém pode dizer que um lado sai ganhando só com esse número. Na parte três eu trago o preço da saca e o apoio do governo, com fonte. Comenta custo que eu aviso. E quer aprender a fazer vídeos assim? Link na bio.
