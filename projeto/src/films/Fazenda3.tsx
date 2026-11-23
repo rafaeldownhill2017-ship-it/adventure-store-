@@ -73,8 +73,8 @@ export const Fazenda3: React.FC = () => {
             <Maco p={[0.33, 0, 0]} n={39.5 * g(0.5, 1.4)} s={0.8} h={0.008} cor="#5fae5a" />
             <PlanoTexto linhas={[["R$ 10.200", 1, "#ffffff"]]} fundo="#c8262c" tam={[0.5, 0.11]} p={[-0.28, 0.46, 0.5]} px={[500, 110]} />
             <PlanoTexto linhas={[["R$ 7.900", 1, "#ffffff"]]} fundo="#1f7a42" tam={[0.5, 0.11]} p={[0.33, 0.38, 0.5]} px={[500, 110]} />
-            <Bandeira p={[-0.33, 0.8, 0]} pais="US" s={0.4 * mola(0.8, 220, 12)} t={t} />
-            <Bandeira p={[0.33, 0.72, 0]} pais="BR" s={0.4 * mola(1.2, 220, 12)} t={t} />
+            <Bandeira p={[-0.33, 0.62, 0]} pais="US" s={0.4 * mola(0.8, 220, 12)} t={t} />
+            <Bandeira p={[0.33, 0.56, 0]} pais="BR" s={0.4 * mola(1.2, 220, 12)} t={t} />
           </group>,
         )}
 
@@ -102,7 +102,7 @@ export const Fazenda3: React.FC = () => {
             <Maco p={[0.33, 0, 0]} n={7.9 * g(c.oitocentos - 0.2, 0.9)} s={0.8} h={0.008} cor="#5fae5a" />
             <PlanoTexto linhas={[["− R$ 1.030", 1, "#ffffff"]]} fundo="#c8262c" tam={[0.55, 0.11]} p={[-0.3, 0.14, 0.5]} px={[550, 110]} />
             <PlanoTexto linhas={[["+ R$ 790", 1, "#ffffff"]]} fundo="#1f7a42" tam={[0.5, 0.11]} p={[0.33, 0.14, 0.5]} px={[500, 110]} />
-            <PlanoTexto linhas={[["USDA", 1, "#ffffff"], ["MÉDIA 2023–25", 0.6, "#ffffff"]]} fundo="#2f2a5a" tam={[0.5, 0.26]} p={[0, 0.7, 0.2]} px={[480, 240]} />
+            <PlanoTexto linhas={[["USDA", 1, "#ffffff"], ["MÉDIA 2023–25", 0.6, "#ffffff"]]} fundo="#2f2a5a" tam={[0.5, 0.26]} p={[0.28, 0.7, 0.2]} px={[480, 240]} />
             <Bandeira p={[-0.33, 0.22, 0]} pais="US" s={0.4 * mola(c.perde - 0.1, 220, 12)} t={t} />
             <Bandeira p={[0.33, 0.2, 0]} pais="BR" s={0.4 * mola(c.oitocentos - 0.1, 220, 12)} t={t} />
           </group>,
@@ -116,7 +116,6 @@ export const Fazenda3: React.FC = () => {
             <group scale={mola(c.unico, 220, 12)}>
               <PlanoTexto linhas={[["PAGAMENTO ÚNICO", 1, "#1b3a1b"], ["2025 · SOJA", 0.7, "#1b3a1b"]]} fundo="#f2f2e0" tam={[0.85, 0.3]} p={[0, 0.4, 0.2]} px={[760, 260]} />
             </group>
-            <Bandeira p={[0, 0.85, 0.1]} pais="US" s={0.45 * mola(T[3] + 0.1, 220, 12)} t={t} />
           </group>,
         )}
 
