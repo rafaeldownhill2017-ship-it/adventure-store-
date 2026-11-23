@@ -1,4 +1,5 @@
 import React from "react";
+import * as THREE from "three";
 import { AbsoluteFill } from "remotion";
 import { C } from "../brand";
 import { camPorKeys, type Key, type V3 } from "../lib/camera";
@@ -16,24 +17,50 @@ precarregar(["personagens/character-male-a"]);
 const S: V3[] = [0, 30, 60, 90, 120, 150].map((x) => [x, 0, 0] as V3);
 const DESTAQUE = /picanha|quilo|dia|salário|mínimo|setenta|cinquenta|pior|outubro|cento|dobro|culpa|boi|arroba|recorde|trezentos|ceia|dois|oito|conta|Comenta|vídeos|Link|bio/i;
 
-/** Picanha: meio cilindro vermelho com capa de gordura e marmoreio (mesma do vídeo do boi). Comprimento ≈ 0.5·s. */
+/** Picanha: cunha de carne vermelha (secção trapezoidal extrudada) com capa de gordura branca em cima e fibras na face. Comprimento ≈ 0.5·s. */
+const PICANHA_SHAPE = (() => {
+  const sh = new THREE.Shape();
+  sh.moveTo(-0.17, 0);
+  sh.lineTo(0.17, 0);
+  sh.lineTo(0.1, 0.2);
+  sh.quadraticCurveTo(0, 0.25, -0.1, 0.2);
+  sh.lineTo(-0.17, 0);
+  return sh;
+})();
 const Picanha: React.FC<{ p: V3; s?: number; rotY?: number }> = ({ p: pos, s = 1, rotY = 0 }) => {
   if (s <= 0.002) return null;
   return (
     <group position={pos} scale={s} rotation={[0, rotY, 0]}>
-      <group position={[0, 0.0, 0]}>
-        <mesh scale={[1, 0.6, 0.8]} rotation={[0, 0, Math.PI / 2]}>
-          <cylinderGeometry args={[0.17, 0.17, 0.5, 20, 1, false, 0, Math.PI]} />
-          <meshStandardMaterial color="#a0302a" roughness={0.7} />
-        </mesh>
-        <mesh scale={[1, 0.62, 0.82]} rotation={[0, 0, Math.PI / 2]}>
-          <cylinderGeometry args={[0.172, 0.172, 0.5, 20, 1, true, Math.PI * 0.05, Math.PI * 0.35]} />
-          <meshStandardMaterial color="#f2e6c8" roughness={0.8} side={2} />
-        </mesh>
-        {[-0.15, 0, 0.15].map((x) => (
-          <B key={x} s={[0.025, 0.005, 0.27]} p={[x, 0.105, 0]} cor="#3a1a14" />
-        ))}
-      </group>
+      {/* carne */}
+      <mesh position={[-0.25, 0, 0]} rotation={[0, Math.PI / 2, 0]} castShadow>
+        <extrudeGeometry args={[PICANHA_SHAPE, { depth: 0.5, bevelEnabled: false }]} />
+        <meshStandardMaterial color="#b3262e" roughness={0.55} />
+      </mesh>
+      {/* capa de gordura no topo */}
+      <mesh position={[-0.25, 0.012, 0]} rotation={[0, Math.PI / 2, 0]} scale={[1.04, 1.0, 1.0]}>
+        <extrudeGeometry
+          args={[
+            (() => {
+              const g = new THREE.Shape();
+              g.moveTo(-0.105, 0.19);
+              g.quadraticCurveTo(0, 0.245, 0.105, 0.19);
+              g.lineTo(0.1, 0.2);
+              g.quadraticCurveTo(0, 0.255, -0.1, 0.2);
+              g.lineTo(-0.105, 0.19);
+              return g;
+            })(),
+            { depth: 0.5, bevelEnabled: false },
+          ]}
+        />
+        <meshStandardMaterial color="#f4e8c8" roughness={0.7} />
+      </mesh>
+      {/* fibras/marmoreio na face do corte */}
+      {[0.04, 0.08, 0.12, 0.16].map((y, i) => (
+        <B key={y} s={[0.012, 0.012, 0.26 - i * 0.045]} p={[0.252, y, 0]} cor="#7a1a22" />
+      ))}
+      {[-0.18, -0.06, 0.06, 0.18].map((x) => (
+        <B key={x} s={[0.012, 0.15, 0.012]} p={[x, 0.09, 0.172 - Math.abs(x) * 0.05]} cor="#8f1c25" />
+      ))}
     </group>
   );
 };
@@ -88,15 +115,15 @@ export const Picanha1: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ background: cor }}>
-      <PalcoCor cam={camPose} cor={cor} luz={2.4}>
+      <PalcoCor cam={camPose} cor={cor} luz={2.9}>
         {/* 0: gancho — picanha no pedestal com etiqueta de preço subindo */}
         {em(0) ? (
           <group position={S[0]}>
             <Pedestal raio={0.6} aro="#ffcf3a" />
             <group rotation={[0, Math.sin(t * 0.8) * 0.4 - 0.5, 0]}>
-              <Picanha p={[0, TOPO_PEDESTAL + 0.01, 0]} s={2.5 * mola(0.0, 220, 12)} />
+              <Picanha p={[0, TOPO_PEDESTAL + 0.01, 0]} s={1.9 * mola(0.0, 220, 12)} />
             </group>
-            <group position={[-0.3, 0.62, 0.75]} rotation={[0, 0.25, Math.sin(t * 3) * 0.05]} scale={0.6 * mola(0.2, 220, 12)}>
+            <group position={[-0.2, 0.7, 0.8]} rotation={[0, 0.25, Math.sin(t * 3) * 0.05]} scale={0.6 * mola(0.2, 220, 12)}>
               <PlanoTexto linhas={[[rs(lerp(20, 78.47, ease.out(p(t, 0.3, 2.4, (x) => x)))), 1, "#c8262c"]]} fundo="#fff6d8" tam={[0.74, 0.22]} px={[500, 150]} />
             </group>
           </group>
@@ -107,7 +134,7 @@ export const Picanha1: React.FC = () => {
           <group position={S[1]}>
             <group position={[-0.45, 0, 0]}>
               <Pedestal raio={0.42} aro="#ffcf3a" acende={g(Tm, 0.4)} s={mola(Tm - 0.15, 260, 12)} />
-              <Picanha p={[0, TOPO_PEDESTAL + 0.01, 0]} s={1.7 * mola(Tm, 220, 12)} rotY={-0.5} />
+              <Picanha p={[0, TOPO_PEDESTAL + 0.01, 0]} s={1.1 * mola(Tm, 220, 12)} rotY={-0.5} />
               <Placa nome="1 KG PICANHA" val="R$ 78,47" mostra x={0} />
             </group>
             <group position={[0.45, 0, 0]}>
@@ -129,7 +156,7 @@ export const Picanha1: React.FC = () => {
             ).map(([nome, x, t0, val]) => (
               <group key={nome} position={[x, 0, 0]}>
                 <Pedestal raio={0.42} aro="#ffcf3a" acende={g(t0, 0.4)} s={mola(Tout - 0.15, 260, 12)} />
-                <Picanha p={[0, TOPO_PEDESTAL + 0.01, 0]} rotY={-0.5} s={1.7 * mola(Math.min(t0, Tout), 220, 12)} />
+                <Picanha p={[0, TOPO_PEDESTAL + 0.01, 0]} rotY={-0.5} s={1.1 * mola(Math.min(t0, Tout), 220, 12)} />
                 <Placa nome={nome} val={val} mostra={t >= t0 + 0.2} />
               </group>
             ))}
@@ -143,7 +170,7 @@ export const Picanha1: React.FC = () => {
             <group rotation={[0, Math.sin(t * 0.8) * 0.4 - 0.5, 0]}>
               <Boi p={[0, TOPO_PEDESTAL, 0]} s={1.0 * mola(Tcul, 220, 12)} t={t} />
             </group>
-            <group position={[-0.38, 0.62, 0.55]} rotation={[0, 0.25, Math.sin(t * 3) * 0.05]} scale={0.7 * mola(Tcul + 0.2, 220, 12)}>
+            <group position={[-0.25, 0.62, 0.55]} rotation={[0, 0.25, Math.sin(t * 3) * 0.05]} scale={0.7 * mola(Tcul + 0.2, 220, 12)}>
               <PlanoTexto linhas={[[`R$ ${Math.round(lerp(120, 395, ease.out(p(t, c.arroba - 0.1, 2.0, (x) => x))))}`, 1, "#c8262c"]]} fundo="#fff6d8" tam={[0.62, 0.22]} px={[420, 150]} />
             </group>
           </group>
@@ -159,18 +186,18 @@ export const Picanha1: React.FC = () => {
               const k = ease.out(p(t, c.oito - 0.3 + i * 0.1, 0.4));
               return <B key={i} s={[0.24 * k, 0.02, 0.24 * k]} p={[x, 0.06, z]} cor="#f2f2ee" />;
             })}
-            <Picanha p={[0, 0.07, 0.5]} s={1.5 * mola(c.dois - 0.1, 220, 12)} rotY={0.1} />
-            <Picanha p={[0, 0.27, 0.5]} s={1.5 * mola(c.dois, 220, 12)} rotY={-0.1} />
-            <PlanoTexto linhas={[["2 KG", 1, "#ffffff"]]} fundo="#a6302b" tam={[0.45, 0.14]} p={[0.55, 0.5, 0.5]} px={[450, 140]} />
+            <Picanha p={[-0.1, 0.07, 0.5]} s={1.0 * mola(c.dois - 0.1, 220, 12)} rotY={0.1} />
+            <Picanha p={[-0.1, 0.3, 0.5]} s={1.0 * mola(c.dois, 220, 12)} rotY={-0.1} />
+            <PlanoTexto linhas={[["2 KG", 1, "#ffffff"]]} fundo="#a6302b" tam={[0.45, 0.14]} p={[0.45, 0.42, 0.5]} px={[450, 140]} />
           </group>
         ) : null}
 
         {/* 5: CTA */}
         {em(5) ? (
           <group position={S[5]}>
-            <Boneco url="personagens/character-male-a" p={[0, 0.2, 0.5]} altura={0.55} anim="idle" tAnim={t} s={mola(Tcom, 220, 12)} />
+            <Boneco url="personagens/character-male-a" p={[0, 0.1, 0.5]} altura={0.9} anim="idle" tAnim={t} s={mola(Tcom, 220, 12)} />
             <group scale={mola(Tcom + 0.1, 200, 12)}>
-              <PlanoTexto linhas={[["PREÇO NA SUA CIDADE?", 1, "#ffffff"]]} fundo="#10331f" tam={[1.0, 0.16]} p={[0, 0.85, 0.3]} px={[880, 140]} />
+              <PlanoTexto linhas={[["PREÇO NA SUA CIDADE?", 1, "#ffffff"]]} fundo="#10331f" tam={[1.0, 0.16]} p={[0, 1.1, 0.3]} px={[880, 140]} />
             </group>
           </group>
         ) : null}
@@ -181,7 +208,7 @@ export const Picanha1: React.FC = () => {
         const ate = prox ? Math.min(k.ate, prox.de - 0.32) : k.ate;
         return <CardNumero key={i} t={t} de={k.de} ate={ate} top={250} titulo={k.titulo} valor={k.valor} cor={k.cor} tinta={k.tinta} />;
       })}
-      <Carimbo t={t} de={c.dobro - 0.1} ate={Tcul - 0.15} txt="2,4× MAIS CARO" top={560} />
+      <Carimbo t={t} de={c.dobro - 0.1} ate={Tcul - 0.15} txt="2,4× MAIS CARO" top={1500} />
 
       <PalavraGrande destaque={DESTAQUE} />
       {T.slice(1).map((x) => (

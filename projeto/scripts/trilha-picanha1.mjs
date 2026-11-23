@@ -117,7 +117,7 @@ whoosh(T2 - 0.05, 0.8, 0.07, 0.4, -0.4);
 sino(c.arroba - 0.1, [76, 79], { g: 0.02, dur: 0.8 });
 whoosh(T3 - 0.05, 0.8, 0.07, -0.4, 0.4);
 for (let i = 0; i < 8; i++) pop(c.oito - 0.3 + i * 0.1, 700 + i * 70, 0.02, i % 2 ? 0.3 : -0.3); // pratos
-kaching(c.carne + 0.05, 0.2);
+kaching(c.carne - 0.72, 0.2);
 whoosh(T4 - 0.05, 0.8, 0.06, 0.4, -0.4);
 sino(d.fimVoz + 0.05, [79, 84], { g: 0.02, dur: 0.8 });
 const STING = d.fimVoz + 0.3;
