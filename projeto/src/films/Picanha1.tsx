@@ -3,8 +3,8 @@ import { AbsoluteFill } from "remotion";
 import { C } from "../brand";
 import { camPorKeys, type Key, type V3 } from "../lib/camera";
 import { Boneco, precarregar } from "../lib/kenney";
-import { Carimbo, CardNumero, corBloco, PalcoCor, PlanoTexto } from "../lib/objetos";
-import { ease, p, useT, useTimeline } from "../lib/time";
+import { Carimbo, CardNumero, corBloco, PalcoCor, Pedestal, PlanoTexto, TOPO_PEDESTAL } from "../lib/objetos";
+import { ease, lerp, p, useT, useTimeline } from "../lib/time";
 import { B, Flash, Grain, PalavraGrande, useMola } from "../lib/ui";
 import { Boi } from "./Boi1";
 import { Maco } from "./Libertadores1";
@@ -16,17 +16,24 @@ precarregar(["personagens/character-male-a"]);
 const S: V3[] = [0, 30, 60, 90, 120, 150].map((x) => [x, 0, 0] as V3);
 const DESTAQUE = /picanha|quilo|dia|salário|mínimo|setenta|cinquenta|pior|outubro|cento|dobro|culpa|boi|arroba|recorde|trezentos|ceia|dois|oito|conta|Comenta|vídeos|Link|bio/i;
 
-/** Picanha em bloco: carne vermelha com capa de gordura e marmoreio. Comprimento ≈ 0.6·s. */
+/** Picanha: meio cilindro vermelho com capa de gordura e marmoreio (mesma do vídeo do boi). Comprimento ≈ 0.5·s. */
 const Picanha: React.FC<{ p: V3; s?: number; rotY?: number }> = ({ p: pos, s = 1, rotY = 0 }) => {
   if (s <= 0.002) return null;
   return (
     <group position={pos} scale={s} rotation={[0, rotY, 0]}>
-      <B s={[0.6, 0.14, 0.3]} p={[0, 0.07, 0]} cor="#a6302b" rough={0.6} />
-      <B s={[0.6, 0.05, 0.3]} p={[0, 0.165, 0]} cor="#f3e6c8" rough={0.7} />
-      <B s={[0.5, 0.03, 0.26]} p={[0.02, 0.1, 0.0]} cor="#c0453c" rough={0.6} />
-      {[-0.18, 0, 0.18].map((x) => (
-        <B key={x} s={[0.025, 0.12, 0.31]} p={[x, 0.07, 0]} cor="#e8c9b0" rough={0.8} />
-      ))}
+      <group position={[0, 0.0, 0]}>
+        <mesh scale={[1, 0.6, 0.8]} rotation={[0, 0, Math.PI / 2]}>
+          <cylinderGeometry args={[0.17, 0.17, 0.5, 20, 1, false, 0, Math.PI]} />
+          <meshStandardMaterial color="#a0302a" roughness={0.7} />
+        </mesh>
+        <mesh scale={[1, 0.62, 0.82]} rotation={[0, 0, Math.PI / 2]}>
+          <cylinderGeometry args={[0.172, 0.172, 0.5, 20, 1, true, Math.PI * 0.05, Math.PI * 0.35]} />
+          <meshStandardMaterial color="#f2e6c8" roughness={0.8} side={2} />
+        </mesh>
+        {[-0.15, 0, 0.15].map((x) => (
+          <B key={x} s={[0.025, 0.005, 0.27]} p={[x, 0.105, 0]} cor="#3a1a14" />
+        ))}
+      </group>
     </group>
   );
 };
@@ -36,105 +43,137 @@ export const Picanha1: React.FC = () => {
   const mola = useMola();
   const { cues: c } = useTimeline();
 
-  const T = [0, c.outubro - 0.3, c.culpa - 0.4, c.conta - 0.5, c.comenta - 0.3];
+  const Tm = c.minimo - 0.5; // pedestal do salário
+  const Tout = c.outubro - 0.3; // duas lojas
+  const Tcul = c.culpa - 0.4; // boi
+  const Tcon = c.conta - 0.5; // ceia
+  const Tcom = c.comenta - 0.3; // CTA
+  const T = [0, Tm, Tout, Tcul, Tcon, Tcom];
   const fim = c.fim + 3;
   const cam = (i: number, y: number, z: number, ly: number): [V3, V3] => [[S[i][0], y, z], [S[i][0], ly, 0]];
-  const poses: [V3, V3][] = [cam(0, 1.15, 3.0, 0.38), cam(1, 1.15, 3.0, 0.4), cam(2, 1.2, 3.1, 0.4), cam(3, 1.3, 3.1, 0.35), cam(4, 1.1, 3.2, 0.45)];
+  const poses: [V3, V3][] = [cam(0, 1.0, 4.4, 0.78), cam(1, 1.3, 6.2, 0.5), cam(2, 1.3, 6.2, 0.5), cam(3, 1.0, 4.4, 0.78), cam(4, 1.3, 5.4, 0.4), cam(5, 1.4, 5.2, 0.7)];
   const K: Key[] = [];
   T.forEach((t0, i) => {
     const t1 = i < T.length - 1 ? T[i + 1] : fim;
     const [pos, look] = poses[i];
     K.push([t0, pos, look, 34]);
-    K.push([t1, [pos[0] + (i % 2 ? -0.12 : 0.12), pos[1] - 0.08, pos[2] * 0.94], look, 34]);
+    K.push([t1, [pos[0], pos[1] - 0.1, pos[2] * 0.92], look, 34]);
   });
   const camPose = camPorKeys(t, K);
-  const cor = corBloco(t, [[0, "#6a2a2a"], [T[1], "#2f4a6a"], [T[2], "#5a4a2a"], [T[3], "#2f6a4a"], [T[4], "#2f8f5b"]], 0.25);
+  const cor = corBloco(t, [[0, "#3a2a22"], [Tm, "#4a2a1a"], [Tout, "#2f4a6a"], [Tcul, "#5a4a2a"], [Tcon, "#2f6a4a"], [Tcom, "#2f8f5b"]], 0.25);
   const em = (i: number) => t >= T[i] - 0.05 && t < (i < T.length - 1 ? T[i + 1] : 1e9);
-  const W = (i: number, ch: React.ReactNode) => (em(i) ? <group position={[S[i][0], 0.08, 0]} scale={0.76}>{ch}</group> : null);
   const g = (t0: number, d = 1.0) => ease.out(p(t, t0, d));
+  const rs = (v: number) => `R$ ${v.toFixed(2).replace(".", ",")}`;
 
   const cards: { de: number; ate: number; titulo: string; valor: string; cor?: string; tinta?: string }[] = [
     { de: -0.6, ate: c.setenta - 0.3, titulo: "1 KG DE PICANHA > 1 DIA DE SALÁRIO MÍNIMO", valor: "olha a conta 👇", cor: C.destaque },
     { de: c.setenta - 0.2, ate: c.minimo - 0.3, titulo: "PICANHA · BH · NOVEMBRO · 1 KG", valor: "R$ 78,47", cor: "#ff5a4e", tinta: "#ffffff" },
-    { de: c.minimo - 0.2, ate: T[1] - 0.2, titulo: "1 DIA DO SALÁRIO MÍNIMO (R$ 1.621 ÷ 30)", valor: "R$ 54", cor: "#2a9a5a", tinta: "#ffffff" },
-    { de: T[1] + 0.1, ate: c.cinq54b - 0.3, titulo: "O MESMO CORTE, NA MESMA CIDADE", valor: "em outubro (BH)", cor: C.destaque },
+    { de: c.minimo - 0.2, ate: Tout - 0.2, titulo: "1 DIA DO SALÁRIO MÍNIMO (R$ 1.621 ÷ 30)", valor: "R$ 54", cor: "#2a9a5a", tinta: "#ffffff" },
+    { de: Tout + 0.1, ate: c.cinq54b - 0.3, titulo: "O MESMO CORTE, NA MESMA CIDADE", valor: "em outubro (BH)", cor: C.destaque },
     { de: c.cinq54b - 0.2, ate: c.cento - 0.3, titulo: "LOJA MAIS BARATA", valor: "R$ 54,98", cor: "#2a9a5a", tinta: "#ffffff" },
     { de: c.cento - 0.2, ate: c.dobro - 0.3, titulo: "LOJA MAIS CARA", valor: "R$ 129,90", cor: "#ff5a4e", tinta: "#ffffff" },
-    { de: c.dobro - 0.2, ate: T[2] - 0.2, titulo: "DIFERENÇA", valor: "mais que o dobro" },
-    { de: T[2] + 0.1, ate: c.arroba - 0.3, titulo: "A CULPA É DO BOI", valor: "oferta de gado restrita", cor: C.destaque },
-    { de: c.arroba - 0.2, ate: T[3] - 0.2, titulo: "ARROBA DO BOI · RECORDE · CEPEA, NOV/2026", valor: "≈ R$ 395", cor: "#ff5a4e", tinta: "#ffffff" },
-    { de: T[3] + 0.1, ate: c.carne - 0.3, titulo: "CEIA (EXEMPLO): 2 KG PARA 8 PESSOAS", valor: "conta da picanha" },
-    { de: c.carne - 0.2, ate: T[4] - 0.2, titulo: "SÓ DE PICANHA", valor: "≈ R$ 157", cor: "#ff5a4e", tinta: "#ffffff" },
+    { de: c.dobro - 0.2, ate: Tcul - 0.2, titulo: "DIFERENÇA", valor: "mais que o dobro" },
+    { de: Tcul + 0.1, ate: c.arroba - 0.3, titulo: "A CULPA É DO BOI", valor: "oferta de gado restrita", cor: C.destaque },
+    { de: c.arroba - 0.2, ate: Tcon - 0.2, titulo: "ARROBA DO BOI · RECORDE · CEPEA, NOV/2026", valor: "≈ R$ 395", cor: "#ff5a4e", tinta: "#ffffff" },
+    { de: Tcon + 0.1, ate: c.carne - 0.3, titulo: "CEIA (EXEMPLO): 2 KG PARA 8 PESSOAS", valor: "conta da picanha" },
+    { de: c.carne - 0.2, ate: Tcom - 0.2, titulo: "SÓ DE PICANHA", valor: "≈ R$ 157", cor: "#ff5a4e", tinta: "#ffffff" },
     { de: c.comenta - 0.2, ate: c.fim - 1.6, titulo: "COMENTA", valor: "o preço aí na sua cidade 👇", cor: C.destaque },
     { de: c.fim - 1.5, ate: 99, titulo: "QUER FAZER VÍDEOS ASSIM?", valor: "link na bio 👆", cor: C.destaque },
   ];
 
+  /** Placa amarela de pedestal (nome + valor ou "?"). */
+  const Placa: React.FC<{ nome: string; val: string; mostra: boolean; x?: number }> = ({ nome, val, mostra, x = 0 }) => (
+    <PlanoTexto linhas={mostra ? [[nome, 0.7, "#14211d"], [val, 1, "#14211d"]] : [[nome, 0.7, "#14211d"], ["?", 1, "#14211d"]]} fundo="#ffcf3a" tam={[0.56, 0.28]} p={[x, 1.08, 0.1]} px={[460, 230]} />
+  );
+
   return (
     <AbsoluteFill style={{ background: cor }}>
-      <PalcoCor cam={camPose} cor={cor} luz={2.2}>
-        {/* 0: gancho — picanha de 1 kg × um dia de salário */}
-        {W(
-          0,
-          <group>
-            <Maco p={[-0.3, 0, 0.2]} n={7.85 * g(c.setenta - 0.3, 0.8)} s={0.7} h={0.03} cor="#5fae5a" />
-            <Picanha p={[-0.3, 0.07 + 7.85 * 0.03 * g(c.setenta - 0.3, 0.8), 0.2]} s={0.7 * mola(0.0, 220, 12)} rotY={0.3 + Math.sin(t * 1.2) * 0.1} />
-            <Maco p={[0.35, 0, 0.2]} n={5.4 * g(c.minimo - 0.3, 0.8)} s={0.7} h={0.03} cor="#5fae5a" />
-            <PlanoTexto linhas={[["R$ 78,47", 1, "#ffffff"]]} fundo="#c8262c" tam={[0.55, 0.12]} p={[-0.3, 0.6, 0.5]} px={[550, 120]} />
-            <PlanoTexto linhas={[["R$ 54", 1, "#ffffff"]]} fundo="#1f7a42" tam={[0.4, 0.12]} p={[0.35, 0.38, 0.5]} px={[400, 120]} />
-          </group>,
-        )}
-
-        {/* 1: o mesmo corte, duas lojas */}
-        {W(
-          1,
-          <group>
-            <Picanha p={[-0.3, 0.05, 0.1]} s={0.65 * mola(T[1], 220, 12)} rotY={0.3} />
-            <Picanha p={[0.3, 0.05, 0.1]} s={0.65 * mola(c.cinq54b, 220, 12)} rotY={-0.3} />
-            <PlanoTexto linhas={[["R$ 54,98", 1, "#ffffff"]]} fundo="#1f7a42" tam={[0.5, 0.12]} p={[-0.3, 0.42, 0.4]} px={[500, 120]} />
-            <group scale={mola(c.cento, 220, 12)} position={[0.3, 0.42, 0.4]}>
-              <PlanoTexto linhas={[["R$ 129,90", 1, "#ffffff"]]} fundo="#c8262c" tam={[0.6, 0.12]} px={[600, 120]} />
+      <PalcoCor cam={camPose} cor={cor} luz={2.4}>
+        {/* 0: gancho — picanha no pedestal com etiqueta de preço subindo */}
+        {em(0) ? (
+          <group position={S[0]}>
+            <Pedestal raio={0.6} aro="#ffcf3a" />
+            <group rotation={[0, Math.sin(t * 0.8) * 0.4 - 0.5, 0]}>
+              <Picanha p={[0, TOPO_PEDESTAL + 0.01, 0]} s={2.5 * mola(0.0, 220, 12)} />
             </group>
-          </group>,
-        )}
-
-        {/* 2: a culpa é do boi */}
-        {W(
-          2,
-          <group>
-            <Boi p={[0, 0.02, 0]} s={1.0 * mola(T[2], 220, 12)} t={t} />
-            <group scale={mola(c.arroba, 220, 12)} position={[0.1, 0.85, 0.3]}>
-              <PlanoTexto linhas={[["RECORDE", 1, "#ffffff"]]} fundo="#c8262c" tam={[0.5, 0.12]} px={[500, 120]} />
+            <group position={[-0.3, 0.62, 0.75]} rotation={[0, 0.25, Math.sin(t * 3) * 0.05]} scale={0.6 * mola(0.2, 220, 12)}>
+              <PlanoTexto linhas={[[rs(lerp(20, 78.47, ease.out(p(t, 0.3, 2.4, (x) => x)))), 1, "#c8262c"]]} fundo="#fff6d8" tam={[0.74, 0.22]} px={[500, 150]} />
             </group>
-          </group>,
-        )}
+          </group>
+        ) : null}
 
-        {/* 3: a conta da ceia (8 pratos + 2 kg) */}
-        {W(
-          3,
-          <group>
-            <B s={[1.0, 0.04, 0.5]} p={[0, 0.02, 0]} cor="#7a5a3a" rough={0.9} />
+        {/* 1: picanha × um dia de salário (dois pedestais) */}
+        {em(1) ? (
+          <group position={S[1]}>
+            <group position={[-0.45, 0, 0]}>
+              <Pedestal raio={0.42} aro="#ffcf3a" acende={g(Tm, 0.4)} s={mola(Tm - 0.15, 260, 12)} />
+              <Picanha p={[0, TOPO_PEDESTAL + 0.01, 0]} s={1.7 * mola(Tm, 220, 12)} rotY={-0.5} />
+              <Placa nome="1 KG PICANHA" val="R$ 78,47" mostra x={0} />
+            </group>
+            <group position={[0.45, 0, 0]}>
+              <Pedestal raio={0.42} aro="#ffcf3a" acende={g(c.minimo - 0.2, 0.4)} s={mola(Tm - 0.15, 260, 12)} />
+              <Maco p={[0, TOPO_PEDESTAL, 0]} n={5.4 * g(c.minimo - 0.2, 0.8)} s={0.9} h={0.03} cor="#5fae5a" />
+              <Placa nome="1 DIA DE SALÁRIO" val="R$ 54" mostra={t >= c.minimo - 0.1} x={0} />
+            </group>
+          </group>
+        ) : null}
+
+        {/* 2: o mesmo corte, duas lojas */}
+        {em(2) ? (
+          <group position={S[2]}>
+            {(
+              [
+                ["MAIS BARATA", -0.45, c.cinq54b - 0.2, "R$ 54,98"],
+                ["MAIS CARA", 0.45, c.cento - 0.2, "R$ 129,90"],
+              ] as const
+            ).map(([nome, x, t0, val]) => (
+              <group key={nome} position={[x, 0, 0]}>
+                <Pedestal raio={0.42} aro="#ffcf3a" acende={g(t0, 0.4)} s={mola(Tout - 0.15, 260, 12)} />
+                <Picanha p={[0, TOPO_PEDESTAL + 0.01, 0]} rotY={-0.5} s={1.7 * mola(Math.min(t0, Tout), 220, 12)} />
+                <Placa nome={nome} val={val} mostra={t >= t0 + 0.2} />
+              </group>
+            ))}
+          </group>
+        ) : null}
+
+        {/* 3: o boi (volta do vídeo da arroba) */}
+        {em(3) ? (
+          <group position={S[3]}>
+            <Pedestal raio={0.6} aro="#ffcf3a" />
+            <group rotation={[0, Math.sin(t * 0.8) * 0.4 - 0.5, 0]}>
+              <Boi p={[0, TOPO_PEDESTAL, 0]} s={1.0 * mola(Tcul, 220, 12)} t={t} />
+            </group>
+            <group position={[-0.38, 0.62, 0.55]} rotation={[0, 0.25, Math.sin(t * 3) * 0.05]} scale={0.7 * mola(Tcul + 0.2, 220, 12)}>
+              <PlanoTexto linhas={[[`R$ ${Math.round(lerp(120, 395, ease.out(p(t, c.arroba - 0.1, 2.0, (x) => x))))}`, 1, "#c8262c"]]} fundo="#fff6d8" tam={[0.62, 0.22]} px={[420, 150]} />
+            </group>
+          </group>
+        ) : null}
+
+        {/* 4: a conta da ceia (8 pratos + 2 kg) */}
+        {em(4) ? (
+          <group position={S[4]}>
+            <B s={[1.5, 0.05, 0.7]} p={[0, 0.025, 0]} cor="#7a5a3a" rough={0.9} />
             {Array.from({ length: 8 }, (_, i) => {
-              const x = -0.39 + (i % 4) * 0.26;
-              const z = i < 4 ? -0.12 : 0.12;
+              const x = -0.55 + (i % 4) * 0.37;
+              const z = i < 4 ? -0.17 : 0.17;
               const k = ease.out(p(t, c.oito - 0.3 + i * 0.1, 0.4));
-              return <B key={i} s={[0.17 * k, 0.015, 0.17 * k]} p={[x, 0.05, z]} cor="#f2f2ee" />;
+              return <B key={i} s={[0.24 * k, 0.02, 0.24 * k]} p={[x, 0.06, z]} cor="#f2f2ee" />;
             })}
-            <Picanha p={[0, 0.06, 0.38]} s={0.8 * mola(c.dois - 0.1, 220, 12)} rotY={0.1} />
-            <Picanha p={[0, 0.2, 0.38]} s={0.8 * mola(c.dois, 220, 12)} rotY={-0.1} />
-            <PlanoTexto linhas={[["2 KG", 1, "#ffffff"]]} fundo="#a6302b" tam={[0.4, 0.12]} p={[0.3, 0.45, 0.5]} px={[400, 120]} />
-          </group>,
-        )}
+            <Picanha p={[0, 0.07, 0.5]} s={1.5 * mola(c.dois - 0.1, 220, 12)} rotY={0.1} />
+            <Picanha p={[0, 0.27, 0.5]} s={1.5 * mola(c.dois, 220, 12)} rotY={-0.1} />
+            <PlanoTexto linhas={[["2 KG", 1, "#ffffff"]]} fundo="#a6302b" tam={[0.45, 0.14]} p={[0.55, 0.5, 0.5]} px={[450, 140]} />
+          </group>
+        ) : null}
 
-        {/* 4: CTA */}
-        {W(
-          4,
-          <group>
-            <Boneco url="personagens/character-male-a" p={[0, 0.2, 0.5]} altura={0.55} anim="idle" tAnim={t} s={mola(T[4], 220, 12)} />
-            <group scale={mola(T[4] + 0.1, 200, 12)}>
+        {/* 5: CTA */}
+        {em(5) ? (
+          <group position={S[5]}>
+            <Boneco url="personagens/character-male-a" p={[0, 0.2, 0.5]} altura={0.55} anim="idle" tAnim={t} s={mola(Tcom, 220, 12)} />
+            <group scale={mola(Tcom + 0.1, 200, 12)}>
               <PlanoTexto linhas={[["PREÇO NA SUA CIDADE?", 1, "#ffffff"]]} fundo="#10331f" tam={[1.0, 0.16]} p={[0, 0.85, 0.3]} px={[880, 140]} />
             </group>
-          </group>,
-        )}
+          </group>
+        ) : null}
       </PalcoCor>
 
       {cards.map((k, i) => {
@@ -142,7 +181,7 @@ export const Picanha1: React.FC = () => {
         const ate = prox ? Math.min(k.ate, prox.de - 0.32) : k.ate;
         return <CardNumero key={i} t={t} de={k.de} ate={ate} top={250} titulo={k.titulo} valor={k.valor} cor={k.cor} tinta={k.tinta} />;
       })}
-      <Carimbo t={t} de={c.dobro - 0.1} ate={T[2] - 0.15} txt="2,4× MAIS CARO" top={560} />
+      <Carimbo t={t} de={c.dobro - 0.1} ate={Tcul - 0.15} txt="2,4× MAIS CARO" top={560} />
 
       <PalavraGrande destaque={DESTAQUE} />
       {T.slice(1).map((x) => (
