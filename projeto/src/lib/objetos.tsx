@@ -771,7 +771,7 @@ export const CardNumero: React.FC<{ t: number; de: number; ate: number; valor: s
 export const Carimbo: React.FC<{ t: number; de: number; ate: number; txt: string; cor?: string; top?: number; rot?: number }> = ({ t, de, ate, txt, cor = "#e23b2e", top = 300, rot = -8 }) => {
   if (t < de || t > ate + 0.3) return null;
   const k = clamp01((t - de) / 0.18);
-  const esc = lerp(txt.length > 9 ? 1.25 : 2.4, 1, ease.in(k));
+  const esc = lerp(txt.length > 9 ? 1.25 : 1.5, 1, ease.in(k));
   const treme = k >= 1 ? Math.sin((t - de) * 70) * Math.max(0, 1 - (t - de - 0.18) * 5) * 6 : 0;
   const sai = 1 - p(t, ate, 0.3, ease.in);
   return (

@@ -405,7 +405,7 @@ export const Libertadores1: React.FC = () => {
           <group position={[E3[0], 0.12, 0]} scale={0.66}>
             <Hotel p={[0.35, 0, -0.05]} s={0.7 * mola(T3 + 0.1, 220, 12)} />
             <Aviao p={[lerp(-1.0, -0.05, ease.out(p(t, T3, 3.0))), 0.58 + 0.08 * Math.sin(p(t, T3, 3.0) * Math.PI), 0.2]} s={0.85} rolo={Math.sin(t * 1.2) * 0.06} />
-            {t >= c.soma - 0.5 ? <Ingresso p={[-0.28, 0.1, 0.7]} rot={[0, 0.1, 0.03]} s={0.62 * mola(c.soma - 0.5, 220, 12)} cor="#d9a21e" l1="CATEGORIA 2" l2="≈ R$ 1.483" /> : null}
+            {t >= c.soma - 0.5 ? <Ingresso p={[-0.28, 0.32, 0.7]} rot={[0, 0.1, 0.03]} s={0.62 * mola(c.soma - 0.5, 220, 12)} cor="#d9a21e" l1="CATEGORIA 2" l2="≈ R$ 1.483" /> : null}
             <Maco p={[-0.55, 0, 0.3]} n={93 * ease.out(p(t, c.nove, 2.0))} s={0.4} h={0.0075} />
           </group>
         ) : null}
