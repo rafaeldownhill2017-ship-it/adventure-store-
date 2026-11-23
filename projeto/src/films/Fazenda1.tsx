@@ -24,7 +24,7 @@ const TILE = 0.1;
 const GAP = 0.006;
 
 /** Lavoura em grade: `n` lotes visíveis (de `total`), cada um passando de capim → terra → soja crescendo. */
-const Lavoura: React.FC<{ p: V3; cols: number; total: number; n: number; soja: number; seed?: number; cerca?: boolean }> = ({ p: pos, cols, total, n, soja, seed = 0, cerca = true }) => {
+export const Lavoura: React.FC<{ p: V3; cols: number; total: number; n: number; soja: number; seed?: number; cerca?: boolean }> = ({ p: pos, cols, total, n, soja, seed = 0, cerca = true }) => {
   const rows = Math.ceil(total / cols);
   const W = cols * (TILE + GAP);
   const D = rows * (TILE + GAP);

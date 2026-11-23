@@ -8,7 +8,7 @@
   "cinco": 2.07,
   "largar": 4.134,
   "escolha": 6.644,
-  "primeiro": 8.93,
+  "primeiro": 9.46,
   "picape": 11.378,
   "contrato": 12.073,
   "quinze": 14.577,
@@ -17,18 +17,18 @@
   "volta": 19.609,
   "desembarca": 20.566,
   "quarenta": 23.222,
-  "seis": 24.66,
+  "seis": 24.657,
   "mesmos": 26.562,
   "setecentos": 28.264,
   "dobro": 30.401,
   "chuva": 31.361,
   "planta": 31.956,
-  "la": 32.84,
-  "aqui": 35.57,
+  "la": 33.334,
+  "aqui": 36.179,
   "colheita": 37.627,
   "americano": 38.559,
   "brasileiro": 41.3,
-  "porra": 44.78,
+  "porra": 45.335,
   "media": 45.799,
   "aquiLa": 49.979,
   "comenta": 51.237,
@@ -164,8 +164,8 @@
   },
   {
    "w": "Primeiro,",
-   "start": 8.93,
-   "end": 9.38
+   "start": 9.46,
+   "end": 9.811
   },
   {
    "w": "os",
@@ -539,8 +539,8 @@
   },
   {
    "w": "Lá,",
-   "start": 32.84,
-   "end": 33.17
+   "start": 33.334,
+   "end": 33.87
   },
   {
    "w": "três",
@@ -574,8 +574,8 @@
   },
   {
    "w": "Aqui,",
-   "start": 35.57,
-   "end": 36.03
+   "start": 36.179,
+   "end": 36.723
   },
   {
    "w": "três",
@@ -699,8 +699,8 @@
   },
   {
    "w": "porra.",
-   "start": 44.78,
-   "end": 45.11
+   "start": 45.335,
+   "end": 45.638
   },
   {
    "w": "Só",
@@ -779,13 +779,13 @@
   },
   {
    "w": "E",
-   "start": 49.51,
-   "end": 49.6
+   "start": 49.979,
+   "end": 50.069
   },
   {
    "w": "aí,",
-   "start": 49.62,
-   "end": 49.91
+   "start": 50.104,
+   "end": 50.283
   },
   {
    "w": "aqui",

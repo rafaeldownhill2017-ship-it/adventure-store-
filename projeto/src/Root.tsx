@@ -28,7 +28,9 @@ import dPicape1 from "./data/picape1.json";
 import dBoi1 from "./data/boi1.json";
 import dRato1 from "./data/rato1.json";
 import dFazenda1 from "./data/fazenda1.json";
+import dFazenda2 from "./data/fazenda2.json";
 import dLibertadores1 from "./data/libertadores1.json";
+import { Fazenda2 } from "./films/Fazenda2";
 import { Libertadores1 } from "./films/Libertadores1";
 import { Fazenda1 } from "./films/Fazenda1";
 import { Rato1 } from "./films/Rato1";
@@ -77,6 +79,7 @@ const filmes = [
   { id: "boi1", data: dBoi1 as Timeline, C: filme(dBoi1 as Timeline, Boi1) },
   { id: "rato1", data: dRato1 as Timeline, C: filme(dRato1 as Timeline, Rato1) },
   { id: "fazenda1", data: dFazenda1 as Timeline, C: filme(dFazenda1 as Timeline, Fazenda1) },
+  { id: "fazenda2", data: dFazenda2 as Timeline, C: filme(dFazenda2 as Timeline, Fazenda2) },
   { id: "libertadores1", data: dLibertadores1 as Timeline, C: filme(dLibertadores1 as Timeline, Libertadores1) },
   // vídeos de vendas para negócio local: um JSON de cliente em data/negocios + um timeline em data/<id>.json
   { id: "negocio-exemplo", data: dNegocioEx as Timeline, C: filme(dNegocioEx as Timeline, fazNegocio(cfgBurguer as ConfigNegocio)) },

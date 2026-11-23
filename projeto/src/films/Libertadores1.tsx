@@ -86,7 +86,7 @@ const Estadio: React.FC<{ p: V3; s?: number; rotY?: number; t?: number; luz?: nu
 };
 
 /** Maço de notas: `n` camadas (cada uma = R$ 100). */
-const Maco: React.FC<{ p: V3; n: number; s?: number; cor?: string; h?: number }> = ({ p: pos, n, s = 1, cor = "#5fae5a", h = 0.045 }) => (
+export const Maco: React.FC<{ p: V3; n: number; s?: number; cor?: string; h?: number }> = ({ p: pos, n, s = 1, cor = "#5fae5a", h = 0.045 }) => (
   <group position={pos} scale={s}>
     {Array.from({ length: Math.max(0, Math.round(n)) }, (_, i) => (
       <B key={i} s={[0.5, h * 0.9, 0.26]} p={[((i % 3) - 1) * 0.012, h * 0.45 + i * h, 0]} cor={i % 2 ? cor : "#6dbb5e"} />
