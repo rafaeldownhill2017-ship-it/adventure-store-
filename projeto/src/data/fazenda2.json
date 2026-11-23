@@ -1,1 +1,937 @@
-{"id": "fazenda2", "voz": "36rVQA1AOIPwpA3Hg1tC", "preRoll": 0.3, "duracao": 53.863, "fimVoz": 52.063, "cues": {"anterior": 0.955, "cinco": 1.711, "trezentos": 3.286, "setecentos": 6.621, "colheita": 8.255, "duzentas": 9.117, "perguntaram": 12.475, "impostos": 13.963, "manutencao": 15.142, "hoje": 16.408, "hectare": 17.979, "media": 18.764, "governo": 20.318, "coracao": 21.554, "dez": 22.871, "mato": 24.544, "sete": 25.282, "imposto": 26.669, "cento": 28.079, "duzentosSess": 30.08, "manut": 31.337, "seiscentos": 32.615, "trinta": 34.5, "saca": 35.879, "vantagem": 36.476, "olha": 39.927, "nove": 43.864, "ganha": 45.568, "parte": 46.782, "comenta": 48.272, "fim": 52.037}, "palavras": [{"w": "No", "start": 0.359, "end": 0.431}, {"w": "episódio", "start": 0.459, "end": 0.931}, {"w": "anterior:", "start": 0.955, "end": 1.359}, {"w": "com", "start": 1.503, "end": 1.664}, {"w": "cinco", "start": 1.711, "end": 1.949}, {"w": "milhões", "start": 1.985, "end": 2.235}, {"w": "de", "start": 2.259, "end": 2.306}, {"w": "dólares,", "start": 2.378, "end": 2.735}, {"w": "você", "start": 2.736, "end": 2.964}, {"w": "compra", "start": 3.005, "end": 3.25}, {"w": "trezentos", "start": 3.286, "end": 3.75}, {"w": "e", "start": 3.786, "end": 3.821}, {"w": "trinta", "start": 3.846, "end": 3.964}, {"w": "e", "start": 4, "end": 4.036}, {"w": "seis", "start": 4.064, "end": 4.179}, {"w": "hectares", "start": 4.234, "end": 4.679}, {"w": "nos", "start": 4.768, "end": 5.036}, {"w": "Estados", "start": 5.071, "end": 5.321}, {"w": "Unidos.", "start": 5.372, "end": 6.036}, {"w": "No", "start": 6.008, "end": 6.055}, {"w": "Brasil,", "start": 6.106, "end": 6.626}, {"w": "setecentos", "start": 6.621, "end": 7.086}, {"w": "e", "start": 7.121, "end": 7.157}, {"w": "trinta", "start": 7.181, "end": 7.371}, {"w": "e", "start": 7.407, "end": 7.443}, {"w": "oito.", "start": 7.479, "end": 8.014}, {"w": "E", "start": 8.094, "end": 8.13}, {"w": "na", "start": 8.154, "end": 8.201}, {"w": "colheita,", "start": 8.255, "end": 8.844}, {"w": "mil", "start": 8.843, "end": 8.95}, {"w": "e", "start": 9.021, "end": 9.093}, {"w": "duzentas", "start": 9.117, "end": 9.378}, {"w": "toneladas", "start": 9.414, "end": 9.807}, {"w": "lá,", "start": 9.878, "end": 10.307}, {"w": "duas", "start": 10.357, "end": 10.586}, {"w": "mil", "start": 10.639, "end": 10.8}, {"w": "e", "start": 10.836, "end": 10.871}, {"w": "setecentas", "start": 10.925, "end": 11.443}, {"w": "aqui.", "start": 11.5, "end": 12.086}, {"w": "Vocês", "start": 12.182, "end": 12.432}, {"w": "perguntaram", "start": 12.475, "end": 12.861}, {"w": "nos", "start": 12.897, "end": 13.004}, {"w": "comentários:", "start": 13.034, "end": 13.718}, {"w": "e", "start": 13.785, "end": 13.821}, {"w": "os", "start": 13.845, "end": 13.892}, {"w": "impostos", "start": 13.963, "end": 14.535}, {"w": "e", "start": 14.606, "end": 14.678}, {"w": "o", "start": 14.713, "end": 14.749}, {"w": "custo", "start": 14.792, "end": 15.035}, {"w": "de", "start": 15.059, "end": 15.106}, {"w": "manutenção?", "start": 15.142, "end": 15.678}, {"w": "Então", "start": 15.958, "end": 16.351}, {"w": "hoje", "start": 16.408, "end": 16.636}, {"w": "a", "start": 16.708, "end": 16.779}, {"w": "conta", "start": 16.827, "end": 17.065}, {"w": "é", "start": 17.101, "end": 17.136}, {"w": "de", "start": 17.161, "end": 17.208}, {"w": "quem", "start": 17.236, "end": 17.351}, {"w": "planta.", "start": 17.402, "end": 17.886}, {"w": "Um", "start": 17.817, "end": 17.936}, {"w": "hectare", "start": 17.979, "end": 18.222}, {"w": "de", "start": 18.269, "end": 18.365}, {"w": "soja,", "start": 18.436, "end": 18.865}, {"w": "média", "start": 18.764, "end": 18.943}, {"w": "de", "start": 18.99, "end": 19.086}, {"w": "três", "start": 19.129, "end": 19.3}, {"w": "anos,", "start": 19.371, "end": 19.907}, {"w": "segundo", "start": 19.938, "end": 20.157}, {"w": "o", "start": 20.229, "end": 20.3}, {"w": "governo", "start": 20.318, "end": 20.443}, {"w": "americano.", "start": 20.473, "end": 20.943}, {"w": "No", "start": 21.28, "end": 21.518}, {"w": "coração", "start": 21.554, "end": 21.876}, {"w": "dos", "start": 21.911, "end": 22.018}, {"w": "Estados", "start": 22.045, "end": 22.233}, {"w": "Unidos,", "start": 22.294, "end": 22.84}, {"w": "uns", "start": 22.666, "end": 22.8}, {"w": "dez", "start": 22.871, "end": 23.086}, {"w": "mil", "start": 23.139, "end": 23.3}, {"w": "e", "start": 23.336, "end": 23.371}, {"w": "duzentos", "start": 23.396, "end": 23.729}, {"w": "reais.", "start": 23.776, "end": 24.371}, {"w": "No", "start": 24.461, "end": 24.509}, {"w": "Mato", "start": 24.544, "end": 24.723}, {"w": "Grosso,", "start": 24.759, "end": 25.294}, {"w": "sete", "start": 25.282, "end": 25.55}, {"w": "mil", "start": 25.577, "end": 25.657}, {"w": "e", "start": 25.693, "end": 25.729}, {"w": "novecentos.", "start": 25.753, "end": 26.3}, {"w": "Imposto", "start": 26.669, "end": 27.259}, {"w": "e", "start": 27.366, "end": 27.473}, {"w": "seguro:", "start": 27.503, "end": 27.759}, {"w": "uns", "start": 27.782, "end": 28.05}, {"w": "cento", "start": 28.079, "end": 28.264}, {"w": "e", "start": 28.3, "end": 28.336}, {"w": "setenta", "start": 28.354, "end": 28.55}, {"w": "reais", "start": 28.597, "end": 28.836}, {"w": "por", "start": 28.854, "end": 28.907}, {"w": "hectare", "start": 28.95, "end": 29.264}, {"w": "lá,", "start": 29.336, "end": 29.55}, {"w": "uns", "start": 29.711, "end": 30.033}, {"w": "duzentos", "start": 30.08, "end": 30.461}, {"w": "e", "start": 30.497, "end": 30.533}, {"w": "sessenta", "start": 30.575, "end": 30.89}, {"w": "aqui.", "start": 30.947, "end": 31.461}, {"w": "Manutenção", "start": 31.337, "end": 31.73}, {"w": "de", "start": 31.777, "end": 31.873}, {"w": "máquina:", "start": 31.92, "end": 32.444}, {"w": "uns", "start": 32.451, "end": 32.558}, {"w": "seiscentos", "start": 32.615, "end": 33.058}, {"w": "e", "start": 33.129, "end": 33.201}, {"w": "vinte", "start": 33.237, "end": 33.344}, {"w": "reais", "start": 33.391, "end": 33.629}, {"w": "lá,", "start": 33.701, "end": 33.915}, {"w": "uns", "start": 34.152, "end": 34.473}, {"w": "trinta", "start": 34.497, "end": 34.688}, {"w": "aqui.", "start": 34.745, "end": 35.188}, {"w": "E", "start": 35.218, "end": 35.29}, {"w": "o", "start": 35.326, "end": 35.361}, {"w": "preço", "start": 35.409, "end": 35.647}, {"w": "da", "start": 35.694, "end": 35.79}, {"w": "saca", "start": 35.879, "end": 36.218}, {"w": "e", "start": 36.29, "end": 36.361}, {"w": "a", "start": 36.397, "end": 36.433}, {"w": "vantagem", "start": 36.476, "end": 36.861}, {"w": "do", "start": 36.885, "end": 36.933}, {"w": "governo?", "start": 36.986, "end": 37.647}, {"w": "Esse", "start": 37.634, "end": 37.801}, {"w": "estudo", "start": 37.855, "end": 38.23}, {"w": "não", "start": 38.284, "end": 38.444}, {"w": "conta", "start": 38.492, "end": 38.73}, {"w": "o", "start": 38.766, "end": 38.801}, {"w": "dinheiro", "start": 38.825, "end": 39.016}, {"w": "do", "start": 39.04, "end": 39.087}, {"w": "governo.", "start": 39.141, "end": 39.694}, {"w": "Mas", "start": 39.746, "end": 39.88}, {"w": "olha", "start": 39.927, "end": 40.094}, {"w": "isso:", "start": 40.152, "end": 40.594}, {"w": "depois", "start": 40.631, "end": 40.875}, {"w": "de", "start": 40.899, "end": 40.947}, {"w": "pagar", "start": 40.994, "end": 41.232}, {"w": "todos", "start": 41.292, "end": 41.59}, {"w": "os", "start": 41.637, "end": 41.732}, {"w": "custos,", "start": 41.79, "end": 42.232}, {"w": "o", "start": 42.257, "end": 42.293}, {"w": "Mato", "start": 42.329, "end": 42.507}, {"w": "Grosso", "start": 42.543, "end": 42.721}, {"w": "ficou", "start": 42.757, "end": 42.936}, {"w": "na", "start": 42.96, "end": 43.007}, {"w": "frente", "start": 43.069, "end": 43.436}, {"w": "em", "start": 43.555, "end": 43.793}, {"w": "nove", "start": 43.864, "end": 44.15}, {"w": "anos", "start": 44.221, "end": 44.507}, {"w": "seguidos.", "start": 44.543, "end": 45.186}, {"w": "Quem", "start": 45.342, "end": 45.532}, {"w": "ganha", "start": 45.568, "end": 45.746}, {"w": "de", "start": 45.77, "end": 45.818}, {"w": "verdade", "start": 45.871, "end": 46.246}, {"w": "fica", "start": 46.318, "end": 46.603}, {"w": "pra", "start": 46.639, "end": 46.746}, {"w": "parte", "start": 46.782, "end": 46.961}, {"w": "três,", "start": 47.032, "end": 47.389}, {"w": "com", "start": 47.498, "end": 47.713}, {"w": "fonte.", "start": 47.784, "end": 48.355}, {"w": "Comenta", "start": 48.272, "end": 48.594}, {"w": "custo", "start": 48.665, "end": 49.022}, {"w": "que", "start": 49.058, "end": 49.165}, {"w": "eu", "start": 49.189, "end": 49.236}, {"w": "aviso.", "start": 49.284, "end": 49.808}, {"w": "E", "start": 49.887, "end": 49.959}, {"w": "quer", "start": 49.973, "end": 50.03}, {"w": "aprender", "start": 50.069, "end": 50.387}, {"w": "a", "start": 50.441, "end": 50.494}, {"w": "fazer", "start": 50.512, "end": 50.601}, {"w": "vídeos", "start": 50.643, "end": 50.887}, {"w": "assim?", "start": 50.935, "end": 51.244}, {"w": "Link", "start": 51.494, "end": 51.894}, {"w": "na", "start": 51.919, "end": 51.966}, {"w": "bio.", "start": 52.037, "end": 52.063}]}
+{
+ "id": "fazenda2",
+ "voz": "36rVQA1AOIPwpA3Hg1tC",
+ "preRoll": 0.3,
+ "duracao": 53.863,
+ "fimVoz": 52.063,
+ "cues": {
+  "anterior": 0.955,
+  "cinco": 1.711,
+  "trezentos": 3.286,
+  "setecentos": 6.621,
+  "colheita": 8.255,
+  "duzentas": 9.117,
+  "perguntaram": 12.475,
+  "impostos": 13.963,
+  "manutencao": 15.142,
+  "hoje": 16.408,
+  "hectare": 17.979,
+  "media": 18.764,
+  "governo": 20.318,
+  "coracao": 21.554,
+  "dez": 22.871,
+  "mato": 24.544,
+  "sete": 25.282,
+  "imposto": 26.669,
+  "cento": 28.079,
+  "duzentosSess": 30.08,
+  "manut": 31.337,
+  "seiscentos": 32.615,
+  "trinta": 34.497,
+  "saca": 35.879,
+  "vantagem": 36.476,
+  "olha": 39.927,
+  "nove": 43.864,
+  "ganha": 45.568,
+  "parte": 46.782,
+  "comenta": 48.272,
+  "fim": 52.037
+ },
+ "palavras": [
+  {
+   "w": "No",
+   "start": 0.359,
+   "end": 0.431
+  },
+  {
+   "w": "episódio",
+   "start": 0.459,
+   "end": 0.931
+  },
+  {
+   "w": "anterior:",
+   "start": 0.955,
+   "end": 1.359
+  },
+  {
+   "w": "com",
+   "start": 1.503,
+   "end": 1.664
+  },
+  {
+   "w": "cinco",
+   "start": 1.711,
+   "end": 1.949
+  },
+  {
+   "w": "milhões",
+   "start": 1.985,
+   "end": 2.235
+  },
+  {
+   "w": "de",
+   "start": 2.259,
+   "end": 2.306
+  },
+  {
+   "w": "dólares,",
+   "start": 2.378,
+   "end": 2.735
+  },
+  {
+   "w": "você",
+   "start": 2.736,
+   "end": 2.964
+  },
+  {
+   "w": "compra",
+   "start": 3.005,
+   "end": 3.25
+  },
+  {
+   "w": "trezentos",
+   "start": 3.286,
+   "end": 3.75
+  },
+  {
+   "w": "e",
+   "start": 3.786,
+   "end": 3.821
+  },
+  {
+   "w": "trinta",
+   "start": 3.846,
+   "end": 3.964
+  },
+  {
+   "w": "e",
+   "start": 4,
+   "end": 4.036
+  },
+  {
+   "w": "seis",
+   "start": 4.064,
+   "end": 4.179
+  },
+  {
+   "w": "hectares",
+   "start": 4.234,
+   "end": 4.679
+  },
+  {
+   "w": "nos",
+   "start": 4.768,
+   "end": 5.036
+  },
+  {
+   "w": "Estados",
+   "start": 5.071,
+   "end": 5.321
+  },
+  {
+   "w": "Unidos.",
+   "start": 5.372,
+   "end": 6.036
+  },
+  {
+   "w": "No",
+   "start": 6.008,
+   "end": 6.055
+  },
+  {
+   "w": "Brasil,",
+   "start": 6.106,
+   "end": 6.626
+  },
+  {
+   "w": "setecentos",
+   "start": 6.621,
+   "end": 7.086
+  },
+  {
+   "w": "e",
+   "start": 7.121,
+   "end": 7.157
+  },
+  {
+   "w": "trinta",
+   "start": 7.181,
+   "end": 7.371
+  },
+  {
+   "w": "e",
+   "start": 7.407,
+   "end": 7.443
+  },
+  {
+   "w": "oito.",
+   "start": 7.479,
+   "end": 8.014
+  },
+  {
+   "w": "E",
+   "start": 8.094,
+   "end": 8.13
+  },
+  {
+   "w": "na",
+   "start": 8.154,
+   "end": 8.201
+  },
+  {
+   "w": "colheita,",
+   "start": 8.255,
+   "end": 8.844
+  },
+  {
+   "w": "mil",
+   "start": 8.843,
+   "end": 8.95
+  },
+  {
+   "w": "e",
+   "start": 9.021,
+   "end": 9.093
+  },
+  {
+   "w": "duzentas",
+   "start": 9.117,
+   "end": 9.378
+  },
+  {
+   "w": "toneladas",
+   "start": 9.414,
+   "end": 9.807
+  },
+  {
+   "w": "lá,",
+   "start": 9.878,
+   "end": 10.307
+  },
+  {
+   "w": "duas",
+   "start": 10.357,
+   "end": 10.586
+  },
+  {
+   "w": "mil",
+   "start": 10.639,
+   "end": 10.8
+  },
+  {
+   "w": "e",
+   "start": 10.836,
+   "end": 10.871
+  },
+  {
+   "w": "setecentas",
+   "start": 10.925,
+   "end": 11.443
+  },
+  {
+   "w": "aqui.",
+   "start": 11.5,
+   "end": 12.086
+  },
+  {
+   "w": "Vocês",
+   "start": 12.182,
+   "end": 12.432
+  },
+  {
+   "w": "perguntaram",
+   "start": 12.475,
+   "end": 12.861
+  },
+  {
+   "w": "nos",
+   "start": 12.897,
+   "end": 13.004
+  },
+  {
+   "w": "comentários:",
+   "start": 13.034,
+   "end": 13.718
+  },
+  {
+   "w": "e",
+   "start": 13.785,
+   "end": 13.821
+  },
+  {
+   "w": "os",
+   "start": 13.845,
+   "end": 13.892
+  },
+  {
+   "w": "impostos",
+   "start": 13.963,
+   "end": 14.535
+  },
+  {
+   "w": "e",
+   "start": 14.606,
+   "end": 14.678
+  },
+  {
+   "w": "o",
+   "start": 14.713,
+   "end": 14.749
+  },
+  {
+   "w": "custo",
+   "start": 14.792,
+   "end": 15.035
+  },
+  {
+   "w": "de",
+   "start": 15.059,
+   "end": 15.106
+  },
+  {
+   "w": "manutenção?",
+   "start": 15.142,
+   "end": 15.678
+  },
+  {
+   "w": "Então",
+   "start": 15.958,
+   "end": 16.351
+  },
+  {
+   "w": "hoje",
+   "start": 16.408,
+   "end": 16.636
+  },
+  {
+   "w": "a",
+   "start": 16.708,
+   "end": 16.779
+  },
+  {
+   "w": "conta",
+   "start": 16.827,
+   "end": 17.065
+  },
+  {
+   "w": "é",
+   "start": 17.101,
+   "end": 17.136
+  },
+  {
+   "w": "de",
+   "start": 17.161,
+   "end": 17.208
+  },
+  {
+   "w": "quem",
+   "start": 17.236,
+   "end": 17.351
+  },
+  {
+   "w": "planta.",
+   "start": 17.402,
+   "end": 17.886
+  },
+  {
+   "w": "Um",
+   "start": 17.817,
+   "end": 17.936
+  },
+  {
+   "w": "hectare",
+   "start": 17.979,
+   "end": 18.222
+  },
+  {
+   "w": "de",
+   "start": 18.269,
+   "end": 18.365
+  },
+  {
+   "w": "soja,",
+   "start": 18.436,
+   "end": 18.865
+  },
+  {
+   "w": "média",
+   "start": 18.764,
+   "end": 18.943
+  },
+  {
+   "w": "de",
+   "start": 18.99,
+   "end": 19.086
+  },
+  {
+   "w": "três",
+   "start": 19.129,
+   "end": 19.3
+  },
+  {
+   "w": "anos,",
+   "start": 19.371,
+   "end": 19.907
+  },
+  {
+   "w": "segundo",
+   "start": 19.938,
+   "end": 20.157
+  },
+  {
+   "w": "o",
+   "start": 20.229,
+   "end": 20.3
+  },
+  {
+   "w": "governo",
+   "start": 20.318,
+   "end": 20.443
+  },
+  {
+   "w": "americano.",
+   "start": 20.473,
+   "end": 20.943
+  },
+  {
+   "w": "No",
+   "start": 21.28,
+   "end": 21.518
+  },
+  {
+   "w": "coração",
+   "start": 21.554,
+   "end": 21.876
+  },
+  {
+   "w": "dos",
+   "start": 21.911,
+   "end": 22.018
+  },
+  {
+   "w": "Estados",
+   "start": 22.045,
+   "end": 22.233
+  },
+  {
+   "w": "Unidos,",
+   "start": 22.294,
+   "end": 22.84
+  },
+  {
+   "w": "uns",
+   "start": 22.666,
+   "end": 22.8
+  },
+  {
+   "w": "dez",
+   "start": 22.871,
+   "end": 23.086
+  },
+  {
+   "w": "mil",
+   "start": 23.139,
+   "end": 23.3
+  },
+  {
+   "w": "e",
+   "start": 23.336,
+   "end": 23.371
+  },
+  {
+   "w": "duzentos",
+   "start": 23.396,
+   "end": 23.729
+  },
+  {
+   "w": "reais.",
+   "start": 23.776,
+   "end": 24.371
+  },
+  {
+   "w": "No",
+   "start": 24.461,
+   "end": 24.509
+  },
+  {
+   "w": "Mato",
+   "start": 24.544,
+   "end": 24.723
+  },
+  {
+   "w": "Grosso,",
+   "start": 24.759,
+   "end": 25.294
+  },
+  {
+   "w": "sete",
+   "start": 25.282,
+   "end": 25.55
+  },
+  {
+   "w": "mil",
+   "start": 25.577,
+   "end": 25.657
+  },
+  {
+   "w": "e",
+   "start": 25.693,
+   "end": 25.729
+  },
+  {
+   "w": "novecentos.",
+   "start": 25.753,
+   "end": 26.3
+  },
+  {
+   "w": "Imposto",
+   "start": 26.669,
+   "end": 27.259
+  },
+  {
+   "w": "e",
+   "start": 27.366,
+   "end": 27.473
+  },
+  {
+   "w": "seguro:",
+   "start": 27.503,
+   "end": 27.759
+  },
+  {
+   "w": "uns",
+   "start": 27.782,
+   "end": 28.05
+  },
+  {
+   "w": "cento",
+   "start": 28.079,
+   "end": 28.264
+  },
+  {
+   "w": "e",
+   "start": 28.3,
+   "end": 28.336
+  },
+  {
+   "w": "setenta",
+   "start": 28.354,
+   "end": 28.55
+  },
+  {
+   "w": "reais",
+   "start": 28.597,
+   "end": 28.836
+  },
+  {
+   "w": "por",
+   "start": 28.854,
+   "end": 28.907
+  },
+  {
+   "w": "hectare",
+   "start": 28.95,
+   "end": 29.264
+  },
+  {
+   "w": "lá,",
+   "start": 29.336,
+   "end": 29.55
+  },
+  {
+   "w": "uns",
+   "start": 29.711,
+   "end": 30.033
+  },
+  {
+   "w": "duzentos",
+   "start": 30.08,
+   "end": 30.461
+  },
+  {
+   "w": "e",
+   "start": 30.497,
+   "end": 30.533
+  },
+  {
+   "w": "sessenta",
+   "start": 30.575,
+   "end": 30.89
+  },
+  {
+   "w": "aqui.",
+   "start": 30.947,
+   "end": 31.461
+  },
+  {
+   "w": "Manutenção",
+   "start": 31.337,
+   "end": 31.73
+  },
+  {
+   "w": "de",
+   "start": 31.777,
+   "end": 31.873
+  },
+  {
+   "w": "máquina:",
+   "start": 31.92,
+   "end": 32.444
+  },
+  {
+   "w": "uns",
+   "start": 32.451,
+   "end": 32.558
+  },
+  {
+   "w": "seiscentos",
+   "start": 32.615,
+   "end": 33.058
+  },
+  {
+   "w": "e",
+   "start": 33.129,
+   "end": 33.201
+  },
+  {
+   "w": "vinte",
+   "start": 33.237,
+   "end": 33.344
+  },
+  {
+   "w": "reais",
+   "start": 33.391,
+   "end": 33.629
+  },
+  {
+   "w": "lá,",
+   "start": 33.701,
+   "end": 33.915
+  },
+  {
+   "w": "uns",
+   "start": 34.152,
+   "end": 34.473
+  },
+  {
+   "w": "trinta",
+   "start": 34.497,
+   "end": 34.688
+  },
+  {
+   "w": "aqui.",
+   "start": 34.745,
+   "end": 35.188
+  },
+  {
+   "w": "E",
+   "start": 35.218,
+   "end": 35.29
+  },
+  {
+   "w": "o",
+   "start": 35.326,
+   "end": 35.361
+  },
+  {
+   "w": "preço",
+   "start": 35.409,
+   "end": 35.647
+  },
+  {
+   "w": "da",
+   "start": 35.694,
+   "end": 35.79
+  },
+  {
+   "w": "saca",
+   "start": 35.879,
+   "end": 36.218
+  },
+  {
+   "w": "e",
+   "start": 36.29,
+   "end": 36.361
+  },
+  {
+   "w": "a",
+   "start": 36.397,
+   "end": 36.433
+  },
+  {
+   "w": "vantagem",
+   "start": 36.476,
+   "end": 36.861
+  },
+  {
+   "w": "do",
+   "start": 36.885,
+   "end": 36.933
+  },
+  {
+   "w": "governo?",
+   "start": 36.986,
+   "end": 37.647
+  },
+  {
+   "w": "Esse",
+   "start": 37.634,
+   "end": 37.801
+  },
+  {
+   "w": "estudo",
+   "start": 37.855,
+   "end": 38.23
+  },
+  {
+   "w": "não",
+   "start": 38.284,
+   "end": 38.444
+  },
+  {
+   "w": "conta",
+   "start": 38.492,
+   "end": 38.73
+  },
+  {
+   "w": "o",
+   "start": 38.766,
+   "end": 38.801
+  },
+  {
+   "w": "dinheiro",
+   "start": 38.825,
+   "end": 39.016
+  },
+  {
+   "w": "do",
+   "start": 39.04,
+   "end": 39.087
+  },
+  {
+   "w": "governo.",
+   "start": 39.141,
+   "end": 39.694
+  },
+  {
+   "w": "Mas",
+   "start": 39.746,
+   "end": 39.88
+  },
+  {
+   "w": "olha",
+   "start": 39.927,
+   "end": 40.094
+  },
+  {
+   "w": "isso:",
+   "start": 40.152,
+   "end": 40.594
+  },
+  {
+   "w": "depois",
+   "start": 40.631,
+   "end": 40.875
+  },
+  {
+   "w": "de",
+   "start": 40.899,
+   "end": 40.947
+  },
+  {
+   "w": "pagar",
+   "start": 40.994,
+   "end": 41.232
+  },
+  {
+   "w": "todos",
+   "start": 41.292,
+   "end": 41.59
+  },
+  {
+   "w": "os",
+   "start": 41.637,
+   "end": 41.732
+  },
+  {
+   "w": "custos,",
+   "start": 41.79,
+   "end": 42.232
+  },
+  {
+   "w": "o",
+   "start": 42.257,
+   "end": 42.293
+  },
+  {
+   "w": "Mato",
+   "start": 42.329,
+   "end": 42.507
+  },
+  {
+   "w": "Grosso",
+   "start": 42.543,
+   "end": 42.721
+  },
+  {
+   "w": "ficou",
+   "start": 42.757,
+   "end": 42.936
+  },
+  {
+   "w": "na",
+   "start": 42.96,
+   "end": 43.007
+  },
+  {
+   "w": "frente",
+   "start": 43.069,
+   "end": 43.436
+  },
+  {
+   "w": "em",
+   "start": 43.555,
+   "end": 43.793
+  },
+  {
+   "w": "nove",
+   "start": 43.864,
+   "end": 44.15
+  },
+  {
+   "w": "anos",
+   "start": 44.221,
+   "end": 44.507
+  },
+  {
+   "w": "seguidos.",
+   "start": 44.543,
+   "end": 45.186
+  },
+  {
+   "w": "Quem",
+   "start": 45.342,
+   "end": 45.532
+  },
+  {
+   "w": "ganha",
+   "start": 45.568,
+   "end": 45.746
+  },
+  {
+   "w": "de",
+   "start": 45.77,
+   "end": 45.818
+  },
+  {
+   "w": "verdade",
+   "start": 45.871,
+   "end": 46.246
+  },
+  {
+   "w": "fica",
+   "start": 46.318,
+   "end": 46.603
+  },
+  {
+   "w": "pra",
+   "start": 46.639,
+   "end": 46.746
+  },
+  {
+   "w": "parte",
+   "start": 46.782,
+   "end": 46.961
+  },
+  {
+   "w": "três,",
+   "start": 47.032,
+   "end": 47.389
+  },
+  {
+   "w": "com",
+   "start": 47.498,
+   "end": 47.713
+  },
+  {
+   "w": "fonte.",
+   "start": 47.784,
+   "end": 48.355
+  },
+  {
+   "w": "Comenta",
+   "start": 48.272,
+   "end": 48.594
+  },
+  {
+   "w": "custo",
+   "start": 48.665,
+   "end": 49.022
+  },
+  {
+   "w": "que",
+   "start": 49.058,
+   "end": 49.165
+  },
+  {
+   "w": "eu",
+   "start": 49.189,
+   "end": 49.236
+  },
+  {
+   "w": "aviso.",
+   "start": 49.284,
+   "end": 49.808
+  },
+  {
+   "w": "E",
+   "start": 49.887,
+   "end": 49.959
+  },
+  {
+   "w": "quer",
+   "start": 49.973,
+   "end": 50.03
+  },
+  {
+   "w": "aprender",
+   "start": 50.069,
+   "end": 50.387
+  },
+  {
+   "w": "a",
+   "start": 50.441,
+   "end": 50.494
+  },
+  {
+   "w": "fazer",
+   "start": 50.512,
+   "end": 50.601
+  },
+  {
+   "w": "vídeos",
+   "start": 50.643,
+   "end": 50.887
+  },
+  {
+   "w": "assim?",
+   "start": 50.935,
+   "end": 51.244
+  },
+  {
+   "w": "Link",
+   "start": 51.494,
+   "end": 51.894
+  },
+  {
+   "w": "na",
+   "start": 51.919,
+   "end": 51.966
+  },
+  {
+   "w": "bio.",
+   "start": 52.037,
+   "end": 52.063
+  }
+ ]
+}
