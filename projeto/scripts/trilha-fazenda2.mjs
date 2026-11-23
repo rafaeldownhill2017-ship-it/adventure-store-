@@ -106,7 +106,7 @@ const kaching = (t0, pan = 0) => {
   blip(t0 + 0.05, 3300, 3300, { g: 0.03, dur: 0.3, pan, rev: 0.3 });
   ruidoF(t0 + 0.08, 0.12, { tipo: "bp", f: 1500, Q: 1, g: 0.05, dec: 25, alvo: SFX, pan });
 };
-impacto(0.1, 0.18);
+impacto(0.06, 0.10);
 sino(c.cinco - 0.1, [72, 76, 79, 84], { g: 0.03, dur: 1.2 }); // prêmio do episódio 1
 pop(c.trezentos - 0.2, 900, 0.035, -0.4); pop(c.setecentos - 0.2, 1100, 0.035, 0.4);
 kaching(c.colheita + 0.1, 0.2);

@@ -86,13 +86,13 @@ export const Fazenda2: React.FC = () => {
           0,
           <group>
             <group position={[-0.5, 0, 0]} scale={1.5}>
-              <Lavoura p={[0, 0, 0]} cols={2} total={8} n={8 * ease.out(p(t, c.trezentos - 0.2, 1.6))} soja={0.9} seed={3} />
+              <Lavoura p={[0, 0, 0]} cols={2} total={8} n={8 * ease.out(p(t, 0.1, 1.4))} soja={0.9} seed={3} />
             </group>
-            <Bandeira p={[-0.5, 0.45, 0.6]} pais="US" s={0.5 * mola(c.trezentos - 0.2, 220, 12)} t={t} />
+            <Bandeira p={[-0.5, 0.45, 0.6]} pais="US" s={0.5 * mola(0.8, 220, 12)} t={t} />
             <group position={[0.35, 0, 0]} scale={1.5}>
-              <Lavoura p={[0, 0, 0]} cols={3} total={18} n={18 * ease.out(p(t, c.setecentos - 0.2, 1.8))} soja={0.9} seed={9} />
+              <Lavoura p={[0, 0, 0]} cols={3} total={18} n={18 * ease.out(p(t, 0.5, 1.6))} soja={0.9} seed={9} />
             </group>
-            <Bandeira p={[0.35, 0.45, 0.6]} pais="BR" s={0.5 * mola(c.setecentos - 0.2, 220, 12)} t={t} />
+            <Bandeira p={[0.35, 0.45, 0.6]} pais="BR" s={0.5 * mola(1.2, 220, 12)} t={t} />
             {t >= c.colheita - 0.1 ? (
               <group position={[0, 0, 0.9]}>
                 <B s={[0.25, 1.2 * 0.22 * ease.out(p(t, c.colheita - 0.1, 1.2)), 0.25]} p={[-0.5, 0.11 * ease.out(p(t, c.colheita - 0.1, 1.2)), 0]} cor="#e0b030" />
@@ -132,7 +132,7 @@ export const Fazenda2: React.FC = () => {
           <group>
             <Maco p={[-0.33, 0, 0]} n={51 * stackH(0)} s={0.8} h={0.012} cor="#5fae5a" />
             <Maco p={[0.33, 0, 0]} n={39.5 * stackH(1)} s={0.8} h={0.012} cor="#5fae5a" />
-            <PlanoTexto linhas={[["R$ 10.200", 1, "#ffffff"]]} fundo="#c8262c" tam={[0.5, 0.11]} p={[-0.33, 0.3, 0.5]} px={[500, 110]} />
+            <PlanoTexto linhas={[["R$ 10.200", 1, "#ffffff"]]} fundo="#c8262c" tam={[0.5, 0.11]} p={[-0.28, 0.3, 0.5]} px={[500, 110]} />
             <PlanoTexto linhas={[["R$ 7.900", 1, "#ffffff"]]} fundo="#1f7a42" tam={[0.5, 0.11]} p={[0.33, 0.24, 0.5]} px={[500, 110]} />
             <Bandeira p={[-0.33, 0.45, 0]} pais="US" s={0.4 * mola(T[3] + 0.1, 220, 12)} t={t} />
             <Bandeira p={[0.33, 0.36, 0]} pais="BR" s={0.4 * mola(c.mato - 0.1, 220, 12)} t={t} />
@@ -156,7 +156,7 @@ export const Fazenda2: React.FC = () => {
           <group>
             <Maco p={[-0.33, 0, 0]} n={62 * ease.out(p(t, c.seiscentos - 0.2, 1.2))} s={0.8} h={0.012} cor="#5fae5a" />
             <Maco p={[0.33, 0, 0]} n={2.8 * ease.out(p(t, c.trinta - 0.2, 0.6))} s={0.8} h={0.012} cor="#5fae5a" />
-            <Modelo url="carros/tractor" p={[0, 0, 0.45]} alvo={{ comp: 0.4 }} s={mola(T[5], 220, 12)} />
+            <Modelo url="carros/tractor" p={[0, 0.2, 0.7]} alvo={{ comp: 0.75 }} s={mola(T[5], 220, 12)} />
             <Bandeira p={[-0.33, 0.7, 0]} pais="US" s={0.4 * mola(c.seiscentos - 0.1, 220, 12)} t={t} />
             <Bandeira p={[0.33, 0.3, 0]} pais="BR" s={0.4 * mola(c.trinta - 0.1, 220, 12)} t={t} />
           </group>,
@@ -200,16 +200,16 @@ export const Fazenda2: React.FC = () => {
           8,
           <group>
             <group scale={mola(T[8], 200, 12)}>
-              <PlanoTexto linhas={[["PARTE 3", 1, "#ffffff"]]} fundo="#10331f" tam={[0.9, 0.2]} p={[0, 0.98, 0.3]} px={[720, 160]} />
+              <PlanoTexto linhas={[["PARTE 3", 1, "#ffffff"]]} fundo="#10331f" tam={[0.9, 0.2]} p={[0, 0.8, 0.3]} px={[720, 160]} />
             </group>
-            <Boneco url="personagens/character-male-a" p={[0, 0, 0.5]} altura={0.55} anim="idle" tAnim={t} s={mola(T[8] + 0.1, 220, 12)} />
+            <Boneco url="personagens/character-male-a" p={[0, 0.2, 0.5]} altura={0.55} anim="idle" tAnim={t} s={mola(T[8] + 0.1, 220, 12)} />
           </group>,
         )}
       </PalcoCor>
 
       {t >= c.hectare - 0.3 && t < T[6] - 0.1 ? (
         <div style={{ position: "absolute", top: 1480, left: 0, right: 0, display: "flex", justifyContent: "center", pointerEvents: "none" }}>
-          <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 36, color: "#fff", background: "rgba(14,18,24,0.75)", padding: "8px 26px", borderRadius: 999 }}>USDA · MÉDIA 2023–25 · US$ 1 = R$ 5,93</div>
+          <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 44, color: "#fff", background: "rgba(14,18,24,0.75)", padding: "8px 26px", borderRadius: 999 }}>USDA · MÉDIA 2023–25 · US$ 1 = R$ 5,93</div>
         </div>
       ) : null}
 
