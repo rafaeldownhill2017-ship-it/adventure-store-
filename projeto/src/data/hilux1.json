@@ -2,554 +2,569 @@
  "id": "hilux1",
  "voz": "36rVQA1AOIPwpA3Hg1tC",
  "preRoll": 0.3,
- "duracao": 35.16,
- "fimVoz": 33.36,
+ "duracao": 41.309,
+ "fimVoz": 39.509,
  "cues": {
-  "toyota": 0.519,
-  "quarenta": 3.427,
-  "tabela": 5.301,
-  "trezentos": 8.098,
-  "anuncio": 11.121,
-  "duzentos": 12.826,
-  "menos": 17.516,
-  "salarios": 19.512,
-  "geracao": 21.046,
-  "argentina": 22.415,
-  "dois": 27.374,
-  "esperar": 28.58,
-  "comenta": 30.034,
-  "fim": 33.343
+  "toyota": 0.512,
+  "quarenta": 5.11,
+  "tabela": 7.62,
+  "trezentos": 10.568,
+  "anuncio": 13.882,
+  "duzentos": 15.802,
+  "menos": 21.112,
+  "salarios": 23.179,
+  "geracao": 24.863,
+  "argentina": 26.374,
+  "dois": 32.83,
+  "esperar": 34.169,
+  "comenta": 35.825,
+  "fim": 39.404
  },
  "palavras": [
   {
    "w": "A",
-   "start": 0.386,
-   "end": 0.458
+   "start": 0.379,
+   "end": 0.451
   },
   {
    "w": "Toyota",
-   "start": 0.519,
-   "end": 0.886
+   "start": 0.512,
+   "end": 0.879
   },
   {
    "w": "vai",
-   "start": 0.922,
-   "end": 1.029
+   "start": 0.933,
+   "end": 1.094
   },
   {
    "w": "trocar",
-   "start": 1.083,
-   "end": 1.386
+   "start": 1.147,
+   "end": 1.522
   },
   {
    "w": "a",
-   "start": 1.458,
-   "end": 1.529
+   "start": 1.558,
+   "end": 1.594
   },
   {
    "w": "Hilux.",
-   "start": 1.565,
-   "end": 2.172
+   "start": 1.665,
+   "end": 2.451
   },
   {
-   "w": "Mas",
-   "start": 2.153,
-   "end": 2.26
+   "w": "Segundo",
+   "start": 2.632,
+   "end": 3.042
+  },
+  {
+   "w": "uma",
+   "start": 3.06,
+   "end": 3.114
+  },
+  {
+   "w": "reportagem,",
+   "start": 3.175,
+   "end": 3.9
   },
   {
    "w": "a",
-   "start": 2.296,
-   "end": 2.332
+   "start": 3.764,
+   "end": 3.8
   },
   {
    "w": "atual",
-   "start": 2.391,
-   "end": 2.689
+   "start": 3.871,
+   "end": 4.229
   },
   {
    "w": "já",
-   "start": 2.736,
-   "end": 2.832
+   "start": 4.276,
+   "end": 4.371
   },
   {
    "w": "está",
-   "start": 2.874,
-   "end": 3.046
+   "start": 4.414,
+   "end": 4.586
   },
   {
    "w": "com",
-   "start": 3.064,
-   "end": 3.117
+   "start": 4.621,
+   "end": 4.729
   },
   {
    "w": "mais",
-   "start": 3.16,
-   "end": 3.332
+   "start": 4.771,
+   "end": 4.943
   },
   {
    "w": "de",
-   "start": 3.356,
-   "end": 3.403
+   "start": 4.99,
+   "end": 5.086
   },
   {
    "w": "quarenta",
-   "start": 3.427,
-   "end": 3.903
+   "start": 5.11,
+   "end": 5.621
   },
   {
    "w": "mil",
-   "start": 3.921,
-   "end": 3.974
+   "start": 5.648,
+   "end": 5.729
   },
   {
    "w": "reais",
-   "start": 4.046,
-   "end": 4.26
+   "start": 5.8,
+   "end": 6.157
   },
   {
    "w": "de",
-   "start": 4.284,
-   "end": 4.332
+   "start": 6.229,
+   "end": 6.371
   },
   {
    "w": "desconto.",
-   "start": 4.403,
-   "end": 5.117
+   "start": 6.425,
+   "end": 7.229
   },
   {
    "w": "A",
-   "start": 5.214,
-   "end": 5.25
+   "start": 7.462,
+   "end": 7.569
   },
   {
    "w": "tabela",
-   "start": 5.301,
-   "end": 5.607
+   "start": 7.62,
+   "end": 7.926
   },
   {
    "w": "da",
-   "start": 5.631,
-   "end": 5.678
+   "start": 7.95,
+   "end": 7.997
   },
   {
    "w": "Hilux",
-   "start": 5.75,
-   "end": 6.178
+   "start": 8.069,
+   "end": 8.64
   },
   {
    "w": "SRV",
-   "start": 6.345,
-   "end": 6.892
+   "start": 8.807,
+   "end": 9.283
   },
   {
    "w": "2026:",
-   "start": 6.964,
-   "end": 7.892
+   "start": 9.355,
+   "end": 10.569
   },
   {
    "w": "trezentos",
-   "start": 8.098,
-   "end": 8.651
+   "start": 10.568,
+   "end": 11.015
   },
   {
    "w": "e",
-   "start": 8.687,
-   "end": 8.723
+   "start": 11.05,
+   "end": 11.086
   },
   {
    "w": "catorze",
-   "start": 8.758,
-   "end": 9.08
+   "start": 11.157,
+   "end": 11.515
   },
   {
    "w": "mil,",
-   "start": 9.133,
-   "end": 9.508
+   "start": 11.586,
+   "end": 12.015
   },
   {
    "w": "seiscentos",
-   "start": 9.371,
-   "end": 9.871
+   "start": 12.014,
+   "end": 12.514
   },
   {
    "w": "e",
-   "start": 9.907,
-   "end": 9.943
+   "start": 12.55,
+   "end": 12.586
   },
   {
    "w": "noventa.",
-   "start": 9.99,
-   "end": 10.586
+   "start": 12.657,
+   "end": 13.443
   },
   {
    "w": "Em",
-   "start": 10.813,
-   "end": 11.003
+   "start": 13.621,
+   "end": 13.764
   },
   {
    "w": "um",
-   "start": 11.027,
-   "end": 11.074
+   "start": 13.788,
+   "end": 13.835
   },
   {
    "w": "anúncio",
-   "start": 11.121,
-   "end": 11.431
+   "start": 13.882,
+   "end": 14.192
   },
   {
    "w": "de",
-   "start": 11.455,
-   "end": 11.503
+   "start": 14.24,
+   "end": 14.335
   },
   {
    "w": "novembro,",
-   "start": 11.556,
-   "end": 12.146
+   "start": 14.389,
+   "end": 15.014
   },
   {
    "w": "à",
-   "start": 12.082,
-   "end": 12.117
+   "start": 15.057,
+   "end": 15.147
   },
   {
    "w": "vista:",
-   "start": 12.189,
-   "end": 12.76
+   "start": 15.218,
+   "end": 15.79
   },
   {
    "w": "duzentos",
-   "start": 12.826,
-   "end": 13.279
+   "start": 15.802,
+   "end": 16.254
   },
   {
    "w": "e",
-   "start": 13.35,
-   "end": 13.422
+   "start": 16.29,
+   "end": 16.326
   },
   {
    "w": "sessenta",
-   "start": 13.45,
-   "end": 13.636
+   "start": 16.369,
+   "end": 16.683
   },
   {
    "w": "e",
-   "start": 13.672,
-   "end": 13.707
+   "start": 16.719,
+   "end": 16.754
   },
   {
    "w": "nove",
-   "start": 13.731,
-   "end": 13.85
+   "start": 16.802,
+   "end": 17.076
   },
   {
    "w": "mil,",
-   "start": 13.904,
-   "end": 14.279
+   "start": 17.12,
+   "end": 17.469
   },
   {
    "w": "novecentos",
-   "start": 14.29,
-   "end": 14.886
+   "start": 17.497,
+   "end": 18.092
   },
   {
    "w": "e",
-   "start": 14.921,
-   "end": 14.957
+   "start": 18.128,
+   "end": 18.164
   },
   {
    "w": "noventa.",
-   "start": 15.004,
-   "end": 15.671
+   "start": 18.211,
+   "end": 19.021
   },
   {
    "w": "Quarenta",
-   "start": 15.754,
-   "end": 16.087
+   "start": 19.076,
+   "end": 19.409
   },
   {
    "w": "e",
-   "start": 16.123,
-   "end": 16.159
+   "start": 19.445,
+   "end": 19.481
   },
   {
    "w": "quatro",
-   "start": 16.183,
-   "end": 16.373
+   "start": 19.505,
+   "end": 19.695
   },
   {
    "w": "mil",
-   "start": 16.427,
-   "end": 16.587
+   "start": 19.748,
+   "end": 19.909
   },
   {
    "w": "e",
-   "start": 16.694,
-   "end": 16.802
+   "start": 20.052,
+   "end": 20.195
   },
   {
    "w": "setecentos",
-   "start": 16.837,
-   "end": 17.373
+   "start": 20.248,
+   "end": 20.909
   },
   {
    "w": "a",
-   "start": 17.409,
-   "end": 17.444
+   "start": 20.981,
+   "end": 21.052
   },
   {
    "w": "menos.",
-   "start": 17.516,
-   "end": 18.052
+   "start": 21.112,
+   "end": 21.481
   },
   {
    "w": "Isso",
-   "start": 18.125,
-   "end": 18.316
+   "start": 21.721,
+   "end": 21.983
   },
   {
    "w": "dá",
-   "start": 18.363,
-   "end": 18.458
+   "start": 22.054,
+   "end": 22.197
   },
   {
    "w": "quase",
-   "start": 18.483,
-   "end": 18.744
+   "start": 22.221,
+   "end": 22.483
   },
   {
    "w": "vinte",
-   "start": 18.816,
-   "end": 19.101
+   "start": 22.554,
+   "end": 22.84
   },
   {
    "w": "e",
-   "start": 19.173,
-   "end": 19.244
+   "start": 22.876,
+   "end": 22.911
   },
   {
    "w": "oito",
-   "start": 19.28,
-   "end": 19.458
+   "start": 22.983,
+   "end": 23.126
   },
   {
    "w": "salários",
-   "start": 19.512,
-   "end": 19.816
+   "start": 23.179,
+   "end": 23.554
   },
   {
    "w": "mínimos.",
-   "start": 19.869,
-   "end": 20.494
+   "start": 23.608,
+   "end": 24.34
   },
   {
    "w": "E",
-   "start": 20.635,
-   "end": 20.725
+   "start": 24.399,
+   "end": 24.506
   },
   {
    "w": "a",
-   "start": 20.76,
-   "end": 20.796
+   "start": 24.542,
+   "end": 24.577
   },
   {
    "w": "nova",
-   "start": 20.839,
-   "end": 21.01
+   "start": 24.62,
+   "end": 24.792
   },
   {
    "w": "geração?",
-   "start": 21.046,
-   "end": 21.51
+   "start": 24.863,
+   "end": 25.577
   },
   {
    "w": "Será",
-   "start": 21.661,
-   "end": 22.001
+   "start": 25.577,
+   "end": 25.809
   },
   {
    "w": "feita",
-   "start": 22.048,
-   "end": 22.215
+   "start": 25.881,
+   "end": 26.167
   },
   {
    "w": "na",
-   "start": 22.262,
-   "end": 22.358
+   "start": 26.214,
+   "end": 26.309
   },
   {
    "w": "Argentina,",
-   "start": 22.415,
-   "end": 23.144
+   "start": 26.374,
+   "end": 27.095
   },
   {
    "w": "e",
-   "start": 23.049,
-   "end": 23.085
+   "start": 27.128,
+   "end": 27.163
   },
   {
    "w": "a",
-   "start": 23.12,
-   "end": 23.156
+   "start": 27.199,
+   "end": 27.235
   },
   {
    "w": "Toyota",
-   "start": 23.207,
-   "end": 23.513
+   "start": 27.286,
+   "end": 27.592
   },
   {
    "w": "ainda",
-   "start": 23.537,
-   "end": 23.656
+   "start": 27.628,
+   "end": 27.806
   },
   {
    "w": "não",
-   "start": 23.692,
-   "end": 23.799
+   "start": 27.842,
+   "end": 27.949
   },
   {
    "w": "confirmou",
-   "start": 23.835,
-   "end": 24.156
+   "start": 27.994,
+   "end": 28.378
   },
   {
    "w": "preço",
-   "start": 24.239,
-   "end": 24.656
+   "start": 28.461,
+   "end": 28.878
   },
   {
    "w": "nem",
-   "start": 24.745,
-   "end": 25.013
+   "start": 28.967,
+   "end": 29.235
   },
   {
    "w": "data.",
-   "start": 25.085,
-   "end": 25.442
+   "start": 29.32,
+   "end": 29.735
   },
   {
    "w": "Reportagens",
-   "start": 25.688,
-   "end": 26.474
+   "start": 30.002,
+   "end": 30.838
   },
   {
-   "w": "falam",
-   "start": 26.509,
-   "end": 26.688
+   "w": "divergem:",
+   "start": 30.898,
+   "end": 31.553
   },
   {
-   "w": "em",
-   "start": 26.712,
-   "end": 26.759
-  },
-  {
-   "w": "começo",
-   "start": 26.817,
-   "end": 27.188
-  },
-  {
-   "w": "de",
-   "start": 27.235,
-   "end": 27.331
-  },
-  {
-   "w": "dois",
-   "start": 27.374,
-   "end": 27.545
-  },
-  {
-   "w": "mil",
-   "start": 27.581,
-   "end": 27.688
-  },
-  {
-   "w": "e",
-   "start": 27.724,
-   "end": 27.759
-  },
-  {
-   "w": "vinte",
-   "start": 27.795,
-   "end": 27.902
-  },
-  {
-   "w": "e",
-   "start": 27.938,
-   "end": 27.974
-  },
-  {
-   "w": "sete.",
-   "start": 28.027,
-   "end": 28.331
-  },
-  {
-   "w": "Esperar",
-   "start": 28.58,
-   "end": 29.199
+   "w": "dezembro",
+   "start": 31.373,
+   "end": 31.873
   },
   {
    "w": "ou",
-   "start": 29.295,
-   "end": 29.485
+   "start": 31.944,
+   "end": 32.087
+  },
+  {
+   "w": "começo",
+   "start": 32.173,
+   "end": 32.658
+  },
+  {
+   "w": "de",
+   "start": 32.706,
+   "end": 32.801
+  },
+  {
+   "w": "dois",
+   "start": 32.83,
+   "end": 32.944
+  },
+  {
+   "w": "mil",
+   "start": 32.98,
+   "end": 33.087
+  },
+  {
+   "w": "e",
+   "start": 33.123,
+   "end": 33.158
+  },
+  {
+   "w": "vinte",
+   "start": 33.194,
+   "end": 33.301
+  },
+  {
+   "w": "e",
+   "start": 33.337,
+   "end": 33.373
+  },
+  {
+   "w": "sete.",
+   "start": 33.426,
+   "end": 33.73
+  },
+  {
+   "w": "Esperar",
+   "start": 34.169,
+   "end": 34.907
+  },
+  {
+   "w": "ou",
+   "start": 35.026,
+   "end": 35.264
   },
   {
    "w": "comprar?",
-   "start": 29.538,
-   "end": 30.199
+   "start": 35.327,
+   "end": 36.014
   },
   {
    "w": "Comenta.",
-   "start": 30.034,
-   "end": 30.749
+   "start": 35.825,
+   "end": 36.513
   },
   {
    "w": "E",
-   "start": 30.732,
-   "end": 30.768
+   "start": 36.671,
+   "end": 36.778
   },
   {
    "w": "quer",
-   "start": 30.811,
-   "end": 30.982
+   "start": 36.807,
+   "end": 36.921
   },
   {
    "w": "aprender",
-   "start": 31.015,
-   "end": 31.268
+   "start": 36.96,
+   "end": 37.278
   },
   {
    "w": "a",
-   "start": 31.34,
-   "end": 31.411
+   "start": 37.314,
+   "end": 37.35
   },
   {
    "w": "fazer",
-   "start": 31.435,
-   "end": 31.554
+   "start": 37.397,
+   "end": 37.635
   },
   {
    "w": "vídeos",
-   "start": 31.605,
-   "end": 31.911
+   "start": 37.686,
+   "end": 37.993
   },
   {
    "w": "assim?",
-   "start": 31.982,
-   "end": 32.411
+   "start": 38.076,
+   "end": 38.564
   },
   {
    "w": "Link",
-   "start": 32.689,
-   "end": 33.146
+   "start": 38.79,
+   "end": 39.19
   },
   {
    "w": "na",
-   "start": 33.193,
-   "end": 33.289
+   "start": 39.237,
+   "end": 39.333
   },
   {
    "w": "bio.",
-   "start": 33.343,
-   "end": 33.36
+   "start": 39.404,
+   "end": 39.509
   }
  ]
 }

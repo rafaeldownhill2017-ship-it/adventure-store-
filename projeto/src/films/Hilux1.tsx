@@ -2,16 +2,26 @@ import React from "react";
 import { AbsoluteFill } from "remotion";
 import { C } from "../brand";
 import { camPorKeys, type Key, type V3 } from "../lib/camera";
-import { Boneco, precarregar } from "../lib/kenney";
+import { Boneco, Modelo, precarregar } from "../lib/kenney";
 import { Carimbo, CardNumero, corBloco, PalcoCor, Pedestal, PlanoTexto, TOPO_PEDESTAL } from "../lib/objetos";
 import { ease, lerp, p, useT, useTimeline } from "../lib/time";
 import { Flash, Grain, PalavraGrande, useMola } from "../lib/ui";
 import { Maco } from "./Libertadores1";
-import { Bandeira, Picape } from "./Picape1";
+import { Bandeira } from "./Picape1";
 
 // PESO NO BOLSO · hilux1 · "A Hilux atual com mais de R$ 40 mil de desconto antes da nova geração" (formato do boi: pedestal + etiqueta de preço).
 // Dados: docs/dossies/hilux1.md. Picape genérica (sem logo Toyota). Preço de tabela R$ 314.690 (SRV 2026); R$ 269.990 = anúncio de uma loja (nov/2026).
-precarregar(["personagens/character-male-a"]);
+precarregar(["personagens/character-male-a", "carros/truck-flat"]);
+
+/** Picape: modelo Kenney "truck-flat" (cabine + caçamba aberta), mais parecido com picape que o bloco de caixas. */
+const Picape: React.FC<{ p: V3; s?: number; rotY?: number; cor?: string }> = ({ p: pos, s = 1, rotY = 0, cor = "#d8dde3" }) => {
+  if (s <= 0.002) return null;
+  return (
+    <group position={pos} rotation={[0, rotY, 0]} scale={s}>
+      <Modelo url="carros/truck-flat" p={[0, 0, 0]} alvo={{ comp: 1.1 }} tinta={cor} />
+    </group>
+  );
+};
 
 const S: V3[] = [0, 30, 60, 90, 120, 150].map((x) => [x, 0, 0] as V3);
 const DESTAQUE = /Hilux|Toyota|quarenta|tabela|trezentos|catorze|anúncio|duzentos|menos|salários|mínimos|geração|Argentina|data|Esperar|comprar|Comenta|vídeos|Link|bio/i;
@@ -44,8 +54,8 @@ export const Hilux1: React.FC = () => {
   const g = (t0: number, d = 1.0) => ease.out(p(t, t0, d));
 
   const cards: { de: number; ate: number; titulo: string; valor: string; cor?: string; tinta?: string }[] = [
-    { de: -0.6, ate: c.quarenta - 0.3, titulo: "HILUX 2026 · ANTES DA NOVA GERAÇÃO", valor: "olha o desconto 👇", cor: C.destaque },
-    { de: c.quarenta - 0.2, ate: Tt - 0.2, titulo: "DESCONTO NA HILUX ATUAL (REPORTAGEM)", valor: "> R$ 40 mil", cor: "#ff5a4e", tinta: "#ffffff" },
+    { de: -0.6, ate: c.quarenta - 0.3, titulo: "HILUX 2026 · QUANTO CUSTA?", valor: "olha o desconto 👇", cor: C.destaque },
+    { de: c.quarenta - 0.2, ate: Tt - 0.2, titulo: "SEGUNDO REPORTAGEM · DESCONTO NA HILUX ATUAL", valor: "> R$ 40 mil", cor: "#ff5a4e", tinta: "#ffffff" },
     { de: Tt + 0.1, ate: c.trezentos - 0.3, titulo: "HILUX SRV 2026 · TABELA", valor: "preço oficial" },
     { de: c.trezentos - 0.2, ate: Ta - 0.2, titulo: "TABELA OFICIAL · SRV 2026", valor: "R$ 314.690", cor: "#ff5a4e", tinta: "#ffffff" },
     { de: Ta + 0.1, ate: c.duzentos - 0.3, titulo: "ANÚNCIO DE NOVEMBRO · À VISTA", valor: "uma loja", cor: C.destaque },
@@ -53,7 +63,7 @@ export const Hilux1: React.FC = () => {
     { de: c.menos - 0.2, ate: Ts - 0.2, titulo: "DIFERENÇA", valor: "R$ 44.700", cor: "#ff5a4e", tinta: "#ffffff" },
     { de: Ts + 0.1, ate: Tn - 0.2, titulo: "R$ 44.700 EM SALÁRIOS MÍNIMOS (R$ 1.621)", valor: "≈ 27,6", cor: C.destaque },
     { de: Tn + 0.1, ate: c.dois - 0.3, titulo: "NOVA GERAÇÃO", valor: "feita na Argentina", cor: C.destaque },
-    { de: c.dois - 0.2, ate: Tc - 0.2, titulo: "PREÇO E DATA NO BRASIL", valor: "ainda não confirmados" },
+    { de: c.dois - 0.2, ate: Tc - 0.2, titulo: "PREÇO E DATA NO BRASIL · SEM CONFIRMAÇÃO", valor: "dez/26 ou início de 2027" },
     { de: Tc + 0.1, ate: c.comenta + 1.2, titulo: "ESPERAR OU COMPRAR?", valor: "comenta 👇", cor: C.destaque },
     { de: c.fim - 1.5, ate: 99, titulo: "QUER FAZER VÍDEOS ASSIM?", valor: "link na bio 👆", cor: C.destaque },
   ];
@@ -70,9 +80,9 @@ export const Hilux1: React.FC = () => {
           <group position={em(0) ? S[0] : S[1]}>
             <Pedestal raio={0.6} aro="#ffcf3a" />
             <group rotation={[0, Math.sin(t * 0.8) * 0.4 - 0.5, 0]}>
-              <Picape p={[0, TOPO_PEDESTAL + 0.12, 0]} s={0.9 * mola(0.0, 220, 12)} cor="#d8dde3" />
+              <Picape p={[0, TOPO_PEDESTAL + 0.02, 0]} s={0.9 * mola(0.0, 220, 12)} cor="#d8dde3" />
             </group>
-            <group position={[-0.32, 0.8, 0.6]} rotation={[0, 0.25, Math.sin(t * 3) * 0.05]} scale={0.62 * mola(0.2, 220, 12)}>
+            <group position={[-0.1, 1.02, 0.6]} rotation={[0, 0.25, Math.sin(t * 3) * 0.05]} scale={0.62 * mola(0.2, 220, 12)}>
               <PlanoTexto linhas={[[brl(lerp(120000, 314690, ease.out(p(t, 0.3, 3.0, (x) => x)))), 1, "#c8262c"]]} fundo="#fff6d8" tam={[0.9, 0.22]} px={[640, 150]} />
             </group>
           </group>
@@ -81,14 +91,14 @@ export const Hilux1: React.FC = () => {
         {/* 2: tabela × anúncio (dois pedestais) */}
         {em(2) ? (
           <group position={S[2]}>
-            <group position={[-0.5, 0, 0]}>
-              <Pedestal raio={0.46} aro="#ffcf3a" acende={g(Ta, 0.4)} s={mola(Ta - 0.15, 260, 12)} />
-              <Picape p={[0, TOPO_PEDESTAL + 0.1, 0]} s={0.62 * mola(Ta, 220, 12)} rotY={-0.5} cor="#d8dde3" />
+            <group position={[-0.42, 0, 0]}>
+              <Pedestal raio={0.38} aro="#ffcf3a" acende={g(Ta, 0.4)} s={mola(Ta - 0.15, 260, 12)} />
+              <Picape p={[0, TOPO_PEDESTAL + 0.02, 0]} s={0.62 * mola(Ta, 220, 12)} rotY={-0.5} cor="#d8dde3" />
               <Placa nome="TABELA SRV" val="R$ 314.690" />
             </group>
-            <group position={[0.5, 0, 0]}>
-              <Pedestal raio={0.46} aro="#ffcf3a" acende={g(c.duzentos - 0.2, 0.4)} s={mola(Ta - 0.15, 260, 12)} />
-              <Picape p={[0, TOPO_PEDESTAL + 0.1, 0]} s={0.62 * mola(Math.min(c.duzentos, Ta + 0.3), 220, 12)} rotY={-0.5} cor="#d8dde3" />
+            <group position={[0.42, 0, 0]}>
+              <Pedestal raio={0.38} aro="#ffcf3a" acende={g(c.duzentos - 0.2, 0.4)} s={mola(Ta - 0.15, 260, 12)} />
+              <Picape p={[0, TOPO_PEDESTAL + 0.02, 0]} s={0.62 * mola(Math.min(c.duzentos, Ta + 0.3), 220, 12)} rotY={-0.5} cor="#d8dde3" />
               <Placa nome="ANÚNCIO À VISTA" val={t >= c.duzentos - 0.1 ? "R$ 269.990" : "?"} />
             </group>
           </group>
@@ -108,7 +118,7 @@ export const Hilux1: React.FC = () => {
         {em(4) ? (
           <group position={S[4]}>
             <Pedestal raio={0.6} aro="#ffcf3a" />
-            <Picape p={[0, TOPO_PEDESTAL + 0.12, 0]} s={0.9 * mola(Tn, 220, 12)} rotY={-0.5} cor="#9aa3ad" />
+            <Picape p={[0, TOPO_PEDESTAL + 0.02, 0]} s={0.9 * mola(Tn, 220, 12)} rotY={-0.5} cor="#9aa3ad" />
             <Placa nome="NOVA GERAÇÃO" val="R$ ?" />
             <Bandeira p={[0.75, 0.2, 0.2]} pais="AR" s={0.4 * mola(c.argentina, 220, 12)} t={t} />
           </group>
