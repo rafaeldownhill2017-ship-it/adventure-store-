@@ -676,4 +676,27 @@ export const filmes = [
       fim: "bio",
     },
   },
+  {
+    id: "hilux1",
+    vozes: ["36rVQA1AOIPwpA3Hg1tC"], // Matheus 1,12× · texto aprovado em 28/11 ("Hilux")
+    preRoll: 0.3,
+    calibrar: true,
+    cauda: 1.8,
+    cues: {
+      toyota: "Toyota",
+      quarenta: ["quarenta", 1],
+      tabela: "tabela",
+      trezentos: "trezentos",
+      anuncio: "anúncio",
+      duzentos: "duzentos",
+      menos: "menos.",
+      salarios: "salários",
+      geracao: "geração?",
+      argentina: "Argentina,",
+      dois: "dois",
+      esperar: "Esperar",
+      comenta: "Comenta.",
+      fim: "bio",
+    },
+  },
 ];
